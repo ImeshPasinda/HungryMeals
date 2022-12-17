@@ -1,5 +1,5 @@
 import React from "react";
-import pizzas from '../pizzasdata'
+//import pizzas from '../pizzasdata'
 export default function Homescreen() {
 
     return(
