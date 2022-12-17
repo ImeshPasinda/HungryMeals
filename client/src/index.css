@@ -15,11 +15,28 @@ code {
     monospace;
 }
 
-.nav-link{
+.nav-link {
   color: black !important;
 }
 
-.nav-brand{
+.nav-brand {
   color: rgb(197, 71, 71) !important;
 }
 
+h1 {
+  font-size: 20px !important;
+}
+
+.flex-container {
+  display: flex !important;
+}
+
+.btn {
+  background-color: red !important;
+  color: white !important;
+}
+
+select{
+  box-shadow: none !important;
+  border-color: black !important;
+}

@@ -1,100 +1,94 @@
+
+
 const pizzas = [
-
     {
-
-        name: "PEPPER BARBECUE CHICKEN",
+        name: "Margherita",
         varients: ["small", "medium", "large"],
         prices: [
             {
-                small: 200,
-                medium: 350,
-                large: 400,
+                small: 99,
+                medium: 199,
+                large: 399,
             },
         ],
-        category: "nonveg",
+        category: "veg",
         image: "https://adminsc.pizzahut.lk//images/mainmenu/696c5a13-d652-4f83-b784-52a4f81ef68b.jpg",
-        description: "Pepper Barbecue Chicken Cheese",
+        description: "Classic delight with 100% real mozzarella cheese",
     },
-
     {
-
-        name: "PEPPER BARBECUE CHICKEN",
+        name: "Farmhouse",
         varients: ["small", "medium", "large"],
         prices: [
             {
-                small: 200,
-                medium: 350,
-                large: 400,
+                small: 229,
+                medium: 399,
+                large: 599,
             },
         ],
-        category: "nonveg",
+        category: "veg",
         image: "https://adminsc.pizzahut.lk//images/mainmenu/696c5a13-d652-4f83-b784-52a4f81ef68b.jpg",
-        description: "Pepper Barbecue Chicken Cheese",
+        description:
+            "Delightful combination of onion, capsicum, tomato & grilled mushroom",
     },
-
     {
-
-        name: "PEPPER BARBECUE CHICKEN",
+        name: "Veggie Paradise",
         varients: ["small", "medium", "large"],
         prices: [
             {
-                small: 200,
-                medium: 350,
-                large: 400,
+                small: 180,
+                medium: 290,
+                large: 460,
             },
         ],
-        category: "nonveg",
+        category: "veg",
+        description:
+            "The awesome foursome! Golden corn, black olives, capsicum, red paprika",
         image: "https://adminsc.pizzahut.lk//images/mainmenu/696c5a13-d652-4f83-b784-52a4f81ef68b.jpg",
-        description: "Pepper Barbecue Chicken Cheese",
     },
-
     {
-
-        name: "PEPPER BARBECUE CHICKEN",
+        name: "Chicken Golden Delight",
         varients: ["small", "medium", "large"],
         prices: [
             {
-                small: 200,
-                medium: 350,
-                large: 400,
+                small: 249,
+                medium: 349,
+                large: 599,
             },
         ],
         category: "nonveg",
         image: "https://adminsc.pizzahut.lk//images/mainmenu/696c5a13-d652-4f83-b784-52a4f81ef68b.jpg",
-        description: "Pepper Barbecue Chicken Cheese",
+        description:
+            "Double pepper barbecue chicken, golden corn and extra cheese, true delight",
     },
-
     {
-
-        name: "PEPPER BARBECUE CHICKEN",
+        name: "Chicken Pepperoni",
         varients: ["small", "medium", "large"],
         prices: [
             {
-                small: 200,
-                medium: 350,
-                large: 400,
+                small: 320,
+                medium: 580,
+                large: 800,
             },
         ],
         category: "nonveg",
         image: "https://adminsc.pizzahut.lk//images/mainmenu/696c5a13-d652-4f83-b784-52a4f81ef68b.jpg",
-        description: "Pepper Barbecue Chicken Cheese",
+        description:
+            "A classic American taste! Relish the delectable flavor of Chicken Pepperoni, topped with extra cheese",
     },
-
     {
-
-        name: "PEPPER BARBECUE CHICKEN",
+        name: "Indi Chicken Tikka",
         varients: ["small", "medium", "large"],
         prices: [
             {
-                small: 200,
-                medium: 350,
-                large: 400,
+                small: 250,
+                medium: 380,
+                large: 500,
             },
         ],
         category: "nonveg",
         image: "https://adminsc.pizzahut.lk//images/mainmenu/696c5a13-d652-4f83-b784-52a4f81ef68b.jpg",
-        description: "Pepper Barbecue Chicken Cheese",
+        description:
+            "The wholesome flavour of tandoori masala with Chicken tikka, onion, red paprika & mint mayo",
     },
 ];
-
-export default pizzas
+export default pizzas;
