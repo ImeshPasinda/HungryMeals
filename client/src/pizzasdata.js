@@ -12,11 +12,11 @@ const pizzas = [
             },
         ],
         category: "veg",
-        image: "https://adminsc.pizzahut.lk//images/mainmenu/696c5a13-d652-4f83-b784-52a4f81ef68b.jpg",
-        description: "Classic delight with 100% real mozzarella cheese",
+        image: "https://www.dominos.co.in/files/items/Margherit.jpg",
+        description: "Made with the goodness of 100% original mozzarella cheese, the Margherita pizza is prepared using cheese as the only topping. You can double the fun by adding more cheese as a topping or a few favorite toppings of your choice.",
     },
     {
-        name: "Farmhouse",
+        name: "NON VEG SUPREME",
         varients: ["small", "medium", "large"],
         prices: [
             {
@@ -26,9 +26,9 @@ const pizzas = [
             },
         ],
         category: "veg",
-        image: "https://adminsc.pizzahut.lk//images/mainmenu/696c5a13-d652-4f83-b784-52a4f81ef68b.jpg",
+        image: "https://www.dominos.co.in/files/items/MicrosoftTeams-image_(13).png",
         description:
-            "Delightful combination of onion, capsicum, tomato & grilled mushroom",
+            "Bite into supreme delight of Black Olives, Onions, Grilled Mushrooms, Pepper BBQ Chicken, Peri-Peri Chicken, Grilled Chicken Rashers",
     },
     {
         name: "Veggie Paradise",
@@ -42,8 +42,8 @@ const pizzas = [
         ],
         category: "veg",
         description:
-            "The awesome foursome! Golden corn, black olives, capsicum, red paprika",
-        image: "https://adminsc.pizzahut.lk//images/mainmenu/696c5a13-d652-4f83-b784-52a4f81ef68b.jpg",
+            " Four awesome combination ---Goldern Corn, Black Olives, Capsicum & Red Paprika",
+        image: "https://www.dominos.co.in/files/items/Digital_Veggie_Paradise_olo_266x265.jpg",
     },
     {
         name: "Chicken Golden Delight",
@@ -56,9 +56,9 @@ const pizzas = [
             },
         ],
         category: "nonveg",
-        image: "https://adminsc.pizzahut.lk//images/mainmenu/696c5a13-d652-4f83-b784-52a4f81ef68b.jpg",
+        image: "https://www.dominos.co.in/files/items/MicrosoftTeams-image_(14).png",
         description:
-            "Double pepper barbecue chicken, golden corn and extra cheese, true delight",
+            "Mmm! Barbeque chicken with a topping of golden corn loaded with extra cheese. Worth its weight in gold!",
     },
     {
         name: "Chicken Pepperoni",
@@ -71,7 +71,7 @@ const pizzas = [
             },
         ],
         category: "nonveg",
-        image: "https://adminsc.pizzahut.lk//images/mainmenu/696c5a13-d652-4f83-b784-52a4f81ef68b.jpg",
+        image: "https://www.dominos.co.in/files/items/MicrosoftTeams-image_(20).png",
         description:
             "A classic American taste! Relish the delectable flavor of Chicken Pepperoni, topped with extra cheese",
     },
@@ -86,7 +86,7 @@ const pizzas = [
             },
         ],
         category: "nonveg",
-        image: "https://adminsc.pizzahut.lk//images/mainmenu/696c5a13-d652-4f83-b784-52a4f81ef68b.jpg",
+        image: "https://www.dominos.co.in/files/items/MicrosoftTeams-image_(18).png",
         description:
             "The wholesome flavour of tandoori masala with Chicken tikka, onion, red paprika & mint mayo",
     },
