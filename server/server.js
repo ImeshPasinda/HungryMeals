@@ -11,7 +11,7 @@ app.use(express.json());
 
 app.get("/", (req, res) =>{
 
-    res.send("Server Workinggg!");
+    res.send("Server Working!");
 
 });
 
