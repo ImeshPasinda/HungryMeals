@@ -1,15 +1,21 @@
 import React, { useState } from "react";
 
+import Modal from 'react-bootstrap/Modal';
 export default function Pizza({ pizza }) {
 
     const [quantity, setquantity] = useState(1)
     const [varient, setvarient] = useState('small')
-
+    const [show, setShow] = useState(false);
+    
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
     return (
         <div style={{margin : '80px'}} className ="shadow-lg p-3 mb-5 bg-white rounded">
-            <h1>{pizza.name}</h1>
-            <img src={pizza.image} className="img-fluid" style={{ height: '200px', width: '200px' }} />
+           <div onClick={handleShow}>
+           <h1>{pizza.name}</h1>
+            <img src={pizza.image} alt="pizza images" className="img-fluid" style={{ height: '200px', width: '200px' }} />
 
+           </div>
             <div className="flex-container">
 
                 <div className='w-100 m-1'>
@@ -45,6 +51,36 @@ export default function Pizza({ pizza }) {
                 </div>
 
             </div>
+
+
+            <button variant="primary" onClick={handleShow}>
+        Launch demo modal
+      </button>
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Modal heading</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+        <Modal.Footer>
+         
+        </Modal.Footer>
+      </Modal>
+            <Modal show={show}>
+        <Modal.Header closeButton>
+          <Modal.Title>Modal title</Modal.Title>
+        </Modal.Header>
+
+        <Modal.Body>
+          <p>Modal body text goes here.</p>
+        </Modal.Body>
+
+        <Modal.Footer>
+         <button className="btn" onClick={handleClose}>CLOSE</button>
+        </Modal.Footer>
+      </Modal>
         </div>
+
+        
     )
 }
