@@ -53,9 +53,9 @@ export default function Pizza({ pizza }) {
             </div>
 
 
-            <button variant="primary" onClick={handleShow}>
-        Launch demo modal
-      </button>
+            <button variant="primary" onClick={handleShow}>Description</button>
+     
+      
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -68,11 +68,12 @@ export default function Pizza({ pizza }) {
       </Modal>
             <Modal show={show}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal title</Modal.Title>
+          <Modal.Title>{pizza.name}</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
-          <p>Modal body text goes here.</p>
+          <img src={pizza.image} className= "img-fluid" alt ='img' style={{height:'300px '}}/>
+          <p>{pizza.description}</p>
         </Modal.Body>
 
         <Modal.Footer>
