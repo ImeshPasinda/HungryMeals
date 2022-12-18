@@ -1,7 +1,7 @@
 const express = require("express");
 
 const db = require('./db')
-
+const Pizza = require('./models/PizzaModel')
 
 const app = express();
 
@@ -9,9 +9,24 @@ app.use(express.json());
 
 
 
-app.get("/", (req, res) =>{
+app.get("/", (req, res) => {
 
     res.send("Server Working!");
+
+});
+
+
+app.get("/getpizzas", (req, res) => {
+
+    Pizza.find({}, (err, docs) => {
+
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.send(docs)
+        }
+    })
 
 });
 
