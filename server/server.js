@@ -6,8 +6,11 @@ const Pizza = require('./models/PizzaModel')
 const app = express();
 
 app.use(express.json());
+const pizzaRoute = require('./routes/pizzasRoute')
 
 
+
+app.use('/api/pizzas/', pizzaRoute)
 
 app.get("/", (req, res) => {
 
@@ -16,19 +19,6 @@ app.get("/", (req, res) => {
 });
 
 
-app.get("/getpizzas", (req, res) => {
-
-    Pizza.find({}, (err, docs) => {
-
-        if (err) {
-            console.log(err);
-        }
-        else {
-            res.send(docs)
-        }
-    })
-
-});
 
 
 const port = process.env.PORT || 8070;
