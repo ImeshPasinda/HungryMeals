@@ -23,7 +23,7 @@ export default function Homescreen() {
     return (
 
         <div>
-            <div className="row justify-content-center">
+            <div className = 'row justify-content-center'>
 
 
 
@@ -32,7 +32,7 @@ export default function Homescreen() {
                     pizzas.map(pizza => {
 
 
-                        return <div className="col-md-3 m-3" key={pizza._id}>
+                        return <div className ='col-md-3 m-3' key={pizza._id}>
 
                             <div>
                                 <Pizza pizza={pizza} />
