@@ -10,12 +10,21 @@ router.post("/register", async (req, res) => {
 
     try {
 
-        newUser.save()
-        res.send('User Registered Successfully')
+        const userExit = await User.find({ email })
+
+        if (userExit) {
+
+            return res.status(400).json({ message: error });
+
+        } else {
+            
+            newUser.save()
+            res.send('User Registered Successfully')
+        }
 
     } catch (error) {
 
-        return res.send.status(400).json({ message: error });
+        return res.status(400).json({ message: error });
     }
 });
 

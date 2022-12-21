@@ -36,25 +36,35 @@ h1 {
   color: white !important;
 }
 
-select{
+select {
   box-shadow: none !important;
   border-color: black !important;
 }
 
-.fa-plus{
+.fa-plus {
   color: green;
   margin: 5px;
 }
 
-.fa-minus{
+.fa-minus {
   color: red !important;
   margin: 5px;
 }
 
-.fa-trash{
+.fa-trash {
   color: red !important;
 }
-input{
+
+input {
   margin-top: 10px !important;
   box-shadow: none !important;
+}
+
+.dropdown-toggle {
+  text-decoration: none;
+}
+
+.text-start {
+
+  text-decoration: none;
 }
