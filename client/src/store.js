@@ -19,7 +19,7 @@ const finalReducer = combineReducers({
 
 const cartItems = localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : []
 
-const currentUser = localStorage.getItem('currentUser') ? JSON.parse(localStorage.getItem('cartItems')) : null
+const currentUser = localStorage.getItem('currentUser') ? JSON.parse(localStorage.getItem('currentUser')) : null
 
 const initialState = {
     cartReducer: {
