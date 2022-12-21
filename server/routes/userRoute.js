@@ -6,18 +6,19 @@ router.post("/register", async (req, res) => {
 
     const { name, email, password } = req.body
 
-    const newUser = new User({ name, email, password })
+    
 
     try {
 
-        const userExit = await User.find({ email })
+        const userExit = await User.findOne({ email })
 
         if (userExit) {
 
             return res.status(400).json({ message: error });
 
         } else {
-            
+
+            const newUser = new User({ name, email, password })
             newUser.save()
             res.send('User Registered Successfully')
         }
