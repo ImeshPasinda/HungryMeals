@@ -1,9 +1,11 @@
 import React from 'react';
-import {useSelector , useDispatch} from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
 export default function Navbar() {
 
-    const cartState = useSelector(state=> state.cartReducer)
+    const cartState = useSelector(state => state.cartReducer)
+    const userstate = useSelector(state => state.loginUserReducer)
+    const { currentUser } = userstate
 
     return (
         <div>
@@ -15,11 +17,13 @@ export default function Navbar() {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav ms-auto">
-                            <li className="nav-item">
-                                <a className="nav-link " href="#">
+
+                            {currentUser ? (<li>{currentUser.name}</li>) : (<li className="nav-item">
+                                <a className="nav-link " href="/login">
                                     Login
                                 </a>
-                            </li>
+                            </li>)}
+
                             <li className="nav-item">
                                 <a className="nav-link" href="/cart">
                                     Cart {cartState.cartItems.length}

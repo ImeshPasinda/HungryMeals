@@ -7,19 +7,28 @@ import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { getAllPizzasReducer } from './reducers/pizzaReducers'
 import { cartReducer } from './reducers/cartReducer'
+import { loginUserReducer, registerUserReducer } from './reducers/userReducer'
 
 const finalReducer = combineReducers({
 
     getAllPizzasReducer: getAllPizzasReducer,
-    cartReducer: cartReducer
+    cartReducer: cartReducer,
+    registerUserReducer : registerUserReducer,
+    loginUserReducer : loginUserReducer
 })
 
 const cartItems = localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : []
 
+const currentUser = localStorage.getItem('currentUser') ? JSON.parse(localStorage.getItem('cartItems')) : null
+
 const initialState = {
     cartReducer: {
         cartItems: cartItems
+    },
+    loginUserReducer :{
+        currentUser : currentUser
     }
+
 }
 
 const composeEnhancers = composeWithDevTools({})

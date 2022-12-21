@@ -11,6 +11,8 @@ const pizzaRoute = require('./routes/pizzasRoute')
 
 
 app.use('/api/pizzas/', pizzaRoute)
+const userRoute = require('./routes/userRoute')
+app.use('/api/users/', userRoute)
 
 app.get("/", (req, res) => {
 
