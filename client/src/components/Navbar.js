@@ -16,12 +16,12 @@ export default function Navbar() {
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav ms-auto">
                             <li className="nav-item">
-                                <a className="nav-link " href="#">
+                                <a className="nav-link " href="/">
                                     Login
                                 </a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#">
+                                <a className="nav-link" href="/cart">
                                     Cart {cartState.cartItems.length}
                                 </a>
                             </li>
