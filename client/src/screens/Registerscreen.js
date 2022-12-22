@@ -47,7 +47,7 @@ function register(){
                 <h2 className="text-center m-4" style={{ fontSize: '35px' }}>Register</h2>
                     <input required type="text" placeholder='name'className='form-control' value={name}
                             onChange={(e) => { setname(e.target.value)} }/>
-                    <input required type="text" placeholder='email'className='form-control' value={email}
+                    <input required type="email" placeholder='email'className='form-control' value={email}
                             onChange={(e) => { setemail(e.target.value) }}/>
                     <input required type="text" placeholder='Password'className='form-control'  value={password}
                             onChange={(e) => { setpassword(e.target.value) }}/>

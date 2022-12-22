@@ -5,13 +5,13 @@ import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 
 import { composeWithDevTools } from 'redux-devtools-extension'
-import { getAllPizzasReducers } from './reducers/pizzaReducers'
+import { getAllPizzasReducer } from './reducers/pizzaReducers'
 import { cartReducer } from './reducers/cartReducer'
 import { registerUserReducer } from './reducers/userReducer';
 
 const finalReducer = combineReducers({
 
-    getAllPizzasReducer: getAllPizzasReducers,
+    getAllPizzasReducer: getAllPizzasReducer,
     cartReducer: cartReducer,
     registerUserReducer:registerUserReducer
 })
