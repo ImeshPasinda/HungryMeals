@@ -19,7 +19,7 @@ export default function Ordersscreen() {
 
     return (
 
-        <div>
+        <div >
             <h2 style={{ fontsize: '35px' }}>My Orders</h2>
             <br/>
             <div className='row justify-content-center'>
@@ -52,7 +52,7 @@ export default function Ordersscreen() {
                                 <p>Street : {order.shippingAddress.street}</p>
                                 <p>City : {order.shippingAddress.city}</p>
                                 <p>County : {order.shippingAddress.country}</p>
-                                <p>Pincode : {order.shippingAddress.pincode}</p>
+                                <p>Postal Code : {order.shippingAddress.pincode}</p>
                             </div>
 
 
@@ -61,7 +61,7 @@ export default function Ordersscreen() {
 
                                 <h2 style={{ fontSize: '25px' }}>Order Info</h2>
                                 <hr />
-                                <p>Order Amount : {order.orderAmount} LKR</p>
+                                <p>Order Amount : {order.orderAmount} LKR </p>
                                 <p>date : {order.createdAt.substring(0, 10)}</p>
                                 <p>Transaction Id : {order.transactionId}</p>
                                 <p>Order Id : {order._id}</p>
