@@ -1,25 +1,20 @@
-export const getAllPizzasReducer=(state={pizzas : []}, action) => {
 
 
-    switch (action.type) 
+export const getAllPizzasReducers=(state={},action)=>{
+
+    switch(action.type)
     {
-        case 'GET_PIZZAS_REQUEST' : return {
-
-            loading : true,
-            ...state
+        case 'GET_PIZZAS_REQUEST':return{
+                ...state
         }
-        case 'GET_PIZZAS_SUCCESS' : return {
-
-            loading : false,
-            pizzas : action.payload
+        // eslint-disable-next-line no-duplicate-case
+        case 'GET_PIZZAS_REQUEST':return{
+            pizzas :action.payload
         }
-        case 'GET_PIZZAS_FAILED' : return {
-
-            error : action.payload,
-            loading : false
+        // eslint-disable-next-line no-duplicate-case
+        case 'GET_PIZZAS_REQUEST':return{
+            error :action.payload
         }
-
-        default : return state
-        
+        default :return state
     }
 }
