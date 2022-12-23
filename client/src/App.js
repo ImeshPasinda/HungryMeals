@@ -2,21 +2,22 @@ import logo from './logo.svg';
 import './App.css';
 import bootstrap from '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap'
-import { BrowserRouter, Route, Link, Switch, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Link, Routes } from 'react-router-dom'
 import Navbar from './components/Navbar';
 import Homescreen from './screens/Homescreen';
 import Cartscreen from './screens/Cartscreen';
-import Loginscreen from './screens/Loginscreen';
 import Registerscreen from './screens/Registerscreen';
+import Loginscreen from './screens/Loginscreen';
 import Ordersscreen from './screens/Ordersscreen';
 import UserProfilescreen from './screens/UserProfilescreen';
 import FeedbackScreen from './screens/FeedbackScreen';
 
+
 function App() {
   return (
     <div className="App">
-      <Navbar />
-
+      <Navbar/>
+      
       <BrowserRouter>
         <Routes>
           <Route path="/" exact element={<Homescreen />} />
@@ -28,7 +29,6 @@ function App() {
           <Route path="/feedback" exact element={<FeedbackScreen/>} />
         </Routes>
       </BrowserRouter>
-
     </div>
   );
 }
