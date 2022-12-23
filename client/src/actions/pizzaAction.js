@@ -12,9 +12,10 @@ export const getAllPizzas = () => async dispatch => {
         console.log(response)
         dispatch({ type: 'GET_PIZZAS_SUCCESS', payload : response.data })
 
+
     } catch (error) {
 
-        dispatch({ type: 'GET_PIZZAS_FAILED', payload : error })
+        dispatch({ type: 'GET_PIZZAS_FAILED' +error , payload : error })
     }
 
 }

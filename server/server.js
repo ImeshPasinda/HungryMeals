@@ -1,24 +1,18 @@
 const express = require("express");
 
 
-const Pizza = require('./models/PizzaModel')
+
 
 const app = express();
-const db = require('./db')
-app.use(express.json());
-
-
-
-
-
+const db = require('./db');
 const pizzaRoute = require('./routes/pizzasRoute')
-const userRoute = require('./routes/userRoute')
-const ordersRoute = require('./routes/ordersRoute')
+const userRoute=require('./routes/userRoute')
+const Pizza = require('./models/PizzaModel')
 
 
-app.use('/api/pizzas/', pizzaRoute)
-app.use('/api/users/', userRoute)
-app.use('/api/orders/', ordersRoute)
+app.use(express.json());
+app.use('/api/pizza/', pizzaRoute)
+app.use('/api/user/', userRoute)
 app.get("/", (req, res) => {
 
     res.send("Server Working!");
