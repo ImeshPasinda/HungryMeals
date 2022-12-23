@@ -20,7 +20,7 @@ export default function Ordersscreen() {
     return (
 
         <div >
-            <h2 style={{ fontsize: '35px' }}>My Orders</h2>
+            <h2 style={{ fontSize: '35px' }}>My Orders</h2>
             <br/>
             <div className='row justify-content-center'>
 

@@ -7,8 +7,9 @@ import Navbar from './components/Navbar';
 import Homescreen from './screens/Homescreen';
 import Cartscreen from './screens/Cartscreen';
 import Loginscreen from './screens/Loginscreen';
-import Registerscreen from './screens/Registersreen';
+import Registerscreen from './screens/Registerscreen';
 import Ordersscreen from './screens/Ordersscreen';
+import UserProfilescreen from './screens/UserProfilescreen';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           <Route path="/login" exact element={<Loginscreen />} />
           <Route path="/register" exact element={<Registerscreen />} />
           <Route path="/orders" exact element={<Ordersscreen />} />
+          <Route path="/profile" exact element={<UserProfilescreen />} />
         </Routes>
       </BrowserRouter>
 

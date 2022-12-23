@@ -39,7 +39,7 @@ export default function Loginscreen() {
                     {error && (<Error error = 'Invalid Credentials'/>)}
                     
                     
-                    <form onSubmit={login}>
+                    <div>
 
                         <input
 
@@ -63,10 +63,10 @@ export default function Loginscreen() {
                         />
 
 
-                        <button type="submit" className="btn mt-3 mb-3 " >LOGIN</button>
+                        <button onClick={login} className="btn mt-3 mb-3 " >LOGIN</button>
                         <br/>
                         <a style={{color : 'black'}} className = 'text-start' href="/register">Click Here To Register</a>
-                    </form>
+                    </div>
 
                 </div>
 
