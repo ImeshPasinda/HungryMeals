@@ -29,14 +29,14 @@ export default function UserProfilescreen() {
 
                     <p>
 
-                        <a data-bs-toggle ="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        {/* <a data-bs-toggle ="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                             <i class="fas fa-bell"></i>
                             <span class="badge rounded-pill badge-notification bg-danger">1</span>
-                        </a>
+                        </a> */}
 
-                        {/* <button className="btn" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                            Button with data-bs-target
-                        </button> */}
+                        <button className="btn" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                            Notification
+                        </button>
                     </p>
                     <div class="collapse" id="collapseExample">
                         <div class="card card-body">
