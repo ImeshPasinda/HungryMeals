@@ -38,3 +38,26 @@ export const loginUserReducer = (state = {}, action) => {
 
     }
 }
+
+
+export const updateUserReducer = (state = {}, action) => {
+
+    switch (action.type) {
+
+        case 'UPDATE_USER_REQUEST': return {
+            loading: true
+        }
+        case 'UPDATE_USER_SUCCESS': return {
+            loading: false,
+            success: true,
+            currentUser : action.payload
+        }
+        case 'UPDATE_USER_FAILED': return {
+            loading: false,
+            error: action.payload
+        }
+        default: return state
+
+    }
+}
+

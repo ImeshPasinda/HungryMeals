@@ -33,6 +33,22 @@ export const loginUser = (user) => async dispatch => {
 export const logoutUser = () => dispatch => {
 
     localStorage.removeItem('currentUser')
+    localStorage.removeItem('cartItems')
     window.location.href = '/login'
 }
 
+
+
+export const updateUser = (id) => async dispatch => {
+
+    dispatch({ type: 'UPDATE_USER_REQUEST' })
+
+    try {
+        const response = await axios.put('/api/update/users/:id', id )
+        console.log(response);
+        dispatch({ type: 'UPDATE_USER_SUCCESS' })
+
+    } catch (error) {
+        dispatch({ type: 'UPDATE_USER_FAILED', payload: error })
+    }
+}

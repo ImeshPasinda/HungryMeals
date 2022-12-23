@@ -60,4 +60,69 @@ router.post("/login", async (req, res) => {
     }
 })
 
-module.exports = router
+
+
+router.get("/getallusers", async (req, res) => {
+
+  
+    try {
+
+        const users = await User.find({})
+        res.send(users)
+
+    } catch (error) {
+        return res.status(400).json({ message: error });
+    }
+});
+
+
+router.put("/update/password/:id", async (req, res) => {
+
+    let userId = req.params.id;
+    const { password} = req.body;
+
+    const updateUserPassword = {
+        
+        password,
+    
+    }
+  
+    try {
+
+        await User.findByIdAndUpdate(userId , updateUserPassword)
+        res.send('User Updated Successfully')
+
+    } catch (error) {
+        return res.status(400).json({ message: error });
+    }
+});
+
+
+
+
+router.put("/update/email/:id", async (req, res) => {
+
+    let userId = req.params.id;
+    const { email} = req.body;
+
+    const updateUserEmail = {
+        
+        email,
+    
+    }
+  
+    try {
+
+        await User.findByIdAndUpdate(userId , updateUserEmail)
+        res.send('User Updated Successfully')
+
+    } catch (error) {
+        return res.status(400).json({ message: error });
+    }
+});
+
+
+
+
+
+module.exports = router;

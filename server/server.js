@@ -1,11 +1,14 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 
 
 const Pizza = require('./models/PizzaModel')
+const User = require('./models/userModel')
 
 const app = express();
 const db = require('./db')
 app.use(express.json());
+app.use(bodyParser.json());
 
 
 
@@ -14,6 +17,7 @@ app.use(express.json());
 const pizzaRoute = require('./routes/pizzasRoute')
 const userRoute = require('./routes/userRoute')
 const ordersRoute = require('./routes/ordersRoute')
+
 
 
 app.use('/api/pizzas/', pizzaRoute)

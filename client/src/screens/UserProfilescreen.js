@@ -13,6 +13,30 @@ export default function UserProfilescreen() {
 
             <h2 style={{ fontSize: '35px' }}>My Profile</h2>
             <br />
+
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Update Name</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="mb-3">
+
+                                    <input type="text" class="form-control" id="recipient-name" defaultValue={currentUser.name} />
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn " data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn ">Update</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div className='row justify-content-center'>
 
                 <div className='col-md-8 m-2 p-1 shadow p-3 mb-5 bg-white rounded' style={{ backgroundColor: 'red', color: 'black' }}>
@@ -22,7 +46,7 @@ export default function UserProfilescreen() {
 
 
                     <div>
-                        <h2 style={{ fontSize: '30px' }}>{currentUser.name} <i className="fa fa-edit" style={{ fontSize: '15px' }} ></i></h2>
+                        <h2 style={{ fontSize: '30px' }}>{currentUser.name} <i className="fa fa-edit" style={{ fontSize: '15px' }} type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo" ></i></h2>
                         <p>{currentUser.email} <i className="fa fa-edit" style={{ fontSize: '13px' }} ></i></p>
 
                     </div>
@@ -35,7 +59,7 @@ export default function UserProfilescreen() {
                         </a> */}
 
                         <button className="btn" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                            Notification
+                            Notifications <i class="fas fa-bell"></i>
                         </button>
                     </p>
                     <div class="collapse" id="collapseExample">
