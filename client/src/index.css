@@ -40,35 +40,19 @@ select {
   box-shadow: none !important;
   border-color: black !important;
 }
-
-.fa-plus {
-  color: green;
-  margin: 5px;
+.fa-plus{
+  color:darkgreen;
+  margin:6px;
 }
-
-.fa-minus {
-  color: red !important;
-  margin: 5px;
+.fa-minus{
+  color:red;
+  margin:6px;
 }
-
 .fa-trash {
   color: red !important;
 }
-
-input {
+input{
   margin-top: 10px !important;
-  box-shadow: none !important;
-}
+  box-shadow: none!important;
 
-.dropdown-toggle {
-  text-decoration: none;
-}
-
-.text-start {
-
-  text-decoration: none;
-}
-
-.fa-trophy{
-  color: orange !important;
 }

@@ -1,35 +1,32 @@
 export const cartReducer = (state = { cartItems: [] }, action) => {
 
-    switch (action.type) 
-    
-    
-    {
+    switch (action.type) {
         case 'ADD_TO_CART': 
         
-        const alreadyExists = state.cartItems.find(item => item._id == action.payload._id)
+        const alreadyExists=state.cartItems.filter(items=>items._id===action.payload._id)
         if(alreadyExists)
         {
             return {
 
-            ...state,
-            cartItems: state.cartItems.map(item => item._id === action.payload._id ? action.payload : item)
-            
-        }
+                ...state,
+                cartItems:state.cartItems.map(items=>items._id===action.payload?action.payload:items)
+            }
         }
         else{
+            return {
 
-             return{
+                ...state,
+                cartItems: [...state.cartItems, action.payload]
+            }
+        }
+        
 
-                ...state ,
-                cartItems : [...state.cartItems , action.payload]
-             }
-
-    
-    }
-    case 'DELETE_FROM_CART' : return{
-        ...state , 
-        cartItems : state.cartItems.filter(item => item._id  !== action.payload._id)
-    }
+        case 'DELETE_FROM_CART' : return{
+            ...state , 
+            cartItems : state.cartItems.filter(items => items._id !== action.payload._id)
+        
+        }
+          
 
         default: return state
     }
