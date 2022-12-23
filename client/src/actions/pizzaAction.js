@@ -15,7 +15,7 @@ export const getAllPizzas = () => async dispatch => {
 
     } catch (error) {
 
-        dispatch({ type: 'GET_PIZZAS_FAILED' , payload : error })
+        dispatch({ type: 'GET_PIZZAS_FAILED' +error , payload : error })
     }
 
 }

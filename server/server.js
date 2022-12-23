@@ -1,16 +1,17 @@
 const express = require("express");
 
-const db = require('./db')
-const Pizza = require('./models/PizzaModel')
+
+
 
 const app = express();
-
-app.use(express.json());
+const db = require('./db');
 const pizzaRoute = require('./routes/pizzasRoute')
 const userRoute=require('./routes/userRoute')
+const Pizza = require('./models/PizzaModel')
 
 
-app.use('/api/pizzas/', pizzaRoute)
+app.use(express.json());
+app.use('/api/pizza/', pizzaRoute)
 app.use('/api/user/', userRoute)
 app.get("/", (req, res) => {
 
