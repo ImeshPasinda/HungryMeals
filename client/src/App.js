@@ -10,7 +10,7 @@ import Loginscreen from './screens/Loginscreen';
 import Registerscreen from './screens/Registerscreen';
 import Ordersscreen from './screens/Ordersscreen';
 import UserProfilescreen from './screens/UserProfilescreen';
-
+import FeedbackScreen from './screens/FeedbackScreen';
 
 function App() {
   return (
@@ -25,6 +25,7 @@ function App() {
           <Route path="/register" exact element={<Registerscreen />} />
           <Route path="/orders" exact element={<Ordersscreen />} />
           <Route path="/profile" exact element={<UserProfilescreen />} />
+          <Route path="/feedback" exact element={<FeedbackScreen/>} />
         </Routes>
       </BrowserRouter>
 
