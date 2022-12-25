@@ -28,7 +28,11 @@ function FeedbackScreen() {
 
     return (
         <div>
-
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
 
             <section class="mb-4">
 
@@ -42,7 +46,7 @@ function FeedbackScreen() {
                 <div class="row justify-content-center">
 
 
-                    <div className='col-md-8 m-2 p-1'>
+                    <div className='col-md-5 m-2 p-1'>
                         {loading && <Loading />}
                         {success && <Success success='Feedback Send Successfully' />}
                         {error && (<Error error='Error !!!' />)}

@@ -11,12 +11,14 @@ import Registerscreen from './screens/Registerscreen';
 import Ordersscreen from './screens/Ordersscreen';
 import UserProfilescreen from './screens/UserProfilescreen';
 import FeedbackScreen from './screens/Feedbackscreen';
+import Footer from './components/Footer';
 
 
 function App() {
   return (
     <div className="App">
       <Navbar />
+
 
       <BrowserRouter>
         <Routes>
@@ -29,7 +31,7 @@ function App() {
           <Route path="/profile" exact element={<UserProfilescreen />} />
         </Routes>
       </BrowserRouter>
-
+      <Footer />
     </div>
   );
 }

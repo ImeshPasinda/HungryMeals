@@ -8,11 +8,18 @@ export default function Cartscreen() {
 
     const cartstate = useSelector(state => state.cartReducer)
     const cartItems = cartstate.cartItems
-    var subtotal = cartItems.reduce((x , item) => x + item.price , 0)
+    var subtotal = cartItems.reduce((x, item) => x + item.price, 0)
     const dispatch = useDispatch()
 
     return (
         <div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            
             <div className="row justify-content-center">
 
                 <div className="col-md-6">
@@ -22,16 +29,16 @@ export default function Cartscreen() {
                     {cartItems.map(item => {
 
 
-                        return <div className="flex-container">
+                        return <div className="flex-container m-5">
 
                             <div className='text-start m-1 w-100'>
 
                                 <h1>{item.name} [{item.varient}]</h1>
                                 <h1>Price : {item.quantity}*{item.prices[0][item.varient]} = {item.price}</h1>
                                 <h1 className="d-inline"> Quantity : </h1>
-                                <i className="fa fa-plus" aria-hidden="true" onClick={() => { dispatch(addToCart(item, item.quantity +1, item.varient)) }} ></i>
+                                <i className="fa fa-plus" type = "button"  aria-hidden="true" onClick={() => { dispatch(addToCart(item, item.quantity + 1, item.varient)) }} ></i>
                                 <b>{item.quantity}</b>
-                                <i className="fa fa-minus" aria-hidden="true" onClick={() => { dispatch(addToCart(item, item.quantity -1, item.varient)) }} ></i>
+                                <i className="fa fa-minus" type = "button" aria-hidden="true" onClick={() => { dispatch(addToCart(item, item.quantity - 1, item.varient)) }} ></i>
                                 <hr />
                             </div>
 
@@ -44,9 +51,9 @@ export default function Cartscreen() {
 
                             </div>
 
-                            <div className='m-1 w-100'>
+                            <div className='m-2 w-100'>
 
-                                <i className="fa fa-trash mt-4"aria-hidden="true" onClick={() => dispatch(deleteFromCart(item))}></i>
+                                <i className="fa fa-trash mt-4" type = "button" aria-hidden="true" onClick={() => dispatch(deleteFromCart(item))}></i>
 
                             </div>
 
@@ -64,8 +71,8 @@ export default function Cartscreen() {
 
                 <div className="col-md-4 text-end">
 
-                        <h2 style={{fontsize: '45px'}}>SubTotal : {subtotal} /- </h2>
-                        <Checkout subtotal = {subtotal}/>
+                    <h2 style={{ fontsize: '45px' }}>SubTotal : {subtotal} /- </h2>
+                    <Checkout subtotal={subtotal} />
                 </div>
 
             </div>
