@@ -9,7 +9,9 @@ export const UserFB = (newFeedback) => async dispatch => {
        
         console.log(response);
         dispatch({ type: 'USER_FEEDBACK_SUCCESS' })
-        window.location.reload('/feedback')
+        setTimeout(function(){
+            window.location.reload();
+         }, 1000);
 
     } catch (error) {
         dispatch({ type: 'USER_FEEDBACK_FAILED' + error, payload: error })

@@ -41,16 +41,16 @@ function FeedbackScreen() {
                     Our team will come back to you within
                     a matter of hours to help you.</p>
 
-                <div class="row">
+                <div class="row justify-content-center">
 
 
-                    <div className='col-md-9 mb-md-0 mb-5'>
+                    <div className='col-md-8 m-2 p-1'>
                     {loading && <Loading/>}
                     {success && <Success success ='Feedback Send Successfully' />}
                     {error && (<Error error = 'Error !!!'/>)}
-                        <form id="contact-form" name="contact-form" action="mail.php" method="POST">
+                        <form id="contact-form" name="contact-form">
                          
-                            <div class="row">
+                            <div class="row ">
 
 
                                 <div class="col-md-6">
