@@ -1,12 +1,50 @@
-import React from "react"
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import 'bootstrap'
+import { updateUserEmail } from "../actions/userActions";
+import { updateUserName } from "../actions/userActions";
+import Loading from "../components/Loading"
+import Success from "../components/Success"
+import Error from "../components/Error"
 
-export default function UserProfilescreen() {
 
-    const userstate = useSelector(state => state.loginUserReducer)
-    const { currentUser } = userstate
+export default function UserProfilescreen({ }) {
+
+    
     const dispatch = useDispatch()
+
+    const updatestate = useSelector(state => state.updateUserReducer)
+    const { error, loading, success , currentUser } = updatestate
+
+
+
+    const [email, updateemail] = useState('')
+    const [name, updatename] = useState('')
+
+
+    function updateName(id) {
+
+        const updatename = {
+
+            name
+
+        }
+
+        console.log(updatename, id)
+        dispatch(updateUserName(updatename, id))
+    }
+
+    function updateEmail(id) {
+
+        const updateemail = {
+
+            email
+
+        }
+
+        console.log(updateemail, id)
+        dispatch(updateUserEmail(updateemail, id))
+    }
 
     return (
         <div>
@@ -15,28 +53,84 @@ export default function UserProfilescreen() {
             <br />
 
 
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+            <div class="modal fade" id="updatename" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <div class="modal-header">
+
+                            <h1 class="modal-title fs-5" id="updatenameLabel">Update Name</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+
+                            {loading && <Loading />}
+                            {success && <Success success='User Registered Successfully' />}
+                            {error && (<Error error='Email already registered' />)}
+                            
+                            <form>
+
+
+
+                                <div class="mb-3">
+
+                                    <input
+
+                                        required
+                                        type="text"
+                                        class="form-control"
+                                        id="recipient-name"
+                                        value={name}
+                                        onChange={(e) => { updatename(e.target.value) }}
+
+                                    />
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn " data-bs-dismiss="modal">Close</button>
+                            <button onClick={() => updateName(currentUser._id)} type="button" class="btn ">Update</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="modal fade" id="updateemail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Update Name</h1>
+                            <h1 class="modal-title fs-5" id="updateemailLabel">Update Email</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <form>
                                 <div class="mb-3">
 
-                                    <input type="text" class="form-control" id="recipient-name" defaultValue={currentUser.name} />
+                                    <input
+
+                                        required
+                                        type="text"
+                                        class="form-control"
+                                        id="recipient-name"
+                                        value={email}
+                                        onChange={(e) => { updateemail(e.target.value) }}
+
+                                    />
                                 </div>
                             </form>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn " data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn ">Update</button>
+                            <button onClick={() => updateEmail(currentUser._id)} type="button" class="btn ">Update</button>
                         </div>
                     </div>
                 </div>
             </div>
+
+
+
             <div className='row justify-content-center'>
 
                 <div className='col-md-8 m-2 p-1 shadow p-3 mb-5 bg-white rounded' style={{ backgroundColor: 'red', color: 'black' }}>
@@ -46,8 +140,8 @@ export default function UserProfilescreen() {
 
 
                     <div>
-                        <h2 style={{ fontSize: '30px' }}>{currentUser.name} <i className="fa fa-edit" style={{ fontSize: '15px' }} type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo" ></i></h2>
-                        <p>{currentUser.email} <i className="fa fa-edit" style={{ fontSize: '13px' }} ></i></p>
+                        <h2 style={{ fontSize: '30px' }}>{currentUser.name} <i className="fa fa-edit" style={{ fontSize: '15px' }} type="button" data-bs-toggle="modal" data-bs-target="#updatename" data-bs-whatever="@mdo" ></i></h2>
+                        <p>{currentUser.email} <i className="fa fa-edit" style={{ fontSize: '13px' }} type="button" data-bs-toggle="modal" data-bs-target="#updateemail" data-bs-whatever="@mdo" ></i></p>
 
                     </div>
 

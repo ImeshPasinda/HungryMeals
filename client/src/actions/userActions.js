@@ -1,4 +1,5 @@
 import axios from 'axios'
+// import swal from "sweetalert";
 
 export const registerUser = (user) => async dispatch => {
 
@@ -39,16 +40,39 @@ export const logoutUser = () => dispatch => {
 
 
 
-export const updateUser = (id) => async dispatch => {
+export const updateUserName = (updatename ,id) => async dispatch => {
 
-    dispatch({ type: 'UPDATE_USER_REQUEST' })
+    dispatch({ type: 'UPDATE_USER_NAME_REQUEST' })
 
     try {
-        const response = await axios.put('/api/update/users/:id', id )
+        const response = await axios.put(`/api/users/update/name/${id}`, updatename )
         console.log(response);
-        dispatch({ type: 'UPDATE_USER_SUCCESS' })
+        dispatch({ type: 'UPDATE_USER_NAME_SUCCESS' })
 
     } catch (error) {
-        dispatch({ type: 'UPDATE_USER_FAILED', payload: error })
+        dispatch({ type: 'UPDATE_USER_NAME_FAILED', payload: error })
+    }
+}
+
+
+
+export const updateUserEmail = (updateemail ,id) => async dispatch => {
+
+    dispatch({ type: 'UPDATE_USER_EMAIL_REQUEST' })
+
+    try {
+        const response = await axios.put(`/api/users/update/email/${id}`, updateemail )
+        // swal({ 
+        //     title: "Good job!",
+        //     text: "Student Updated Successfully!",
+        //     icon: "success",
+        //     button: "Close",
+        //   });
+        console.log(response);
+        dispatch({ type: 'UPDATE_USER_EMAIL_SUCCESS' })
+    
+
+    } catch (error) {
+        dispatch({ type: 'UPDATE_USER_EMAIL_FAILED', payload: error })
     }
 }

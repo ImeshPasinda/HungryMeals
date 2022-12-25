@@ -3,13 +3,16 @@ import { useDispatch, useSelector } from 'react-redux'
 import { loginUser, registerUser } from "../actions/userActions"
 import Error from "../components/Error";
 import Loading from "../components/Loading";
+
+
+
 export default function Loginscreen() {
 
 
     const [email, setemail] = useState('')
     const [password, setpassword] = useState('')
     const loginstate = useSelector(state => state.loginUserReducer)
-    const{loading , error  } = loginstate
+    const { loading, error } = loginstate
     const dispatch = useDispatch()
 
 
@@ -34,11 +37,11 @@ export default function Loginscreen() {
             <div className='row justify-content-center'>
                 <div className="col-md-5 mt-5 text-start shadow p-3 mb-5 bg-white rounded">
                     <h2 className="text-center m-4" style={{ fontSize: '35px' }}>Login</h2>
-                    
-                    {loading && (<Loading/>)}
-                    {error && (<Error error = 'Invalid Credentials'/>)}
-                    
-                    
+
+                    {loading && (<Loading />)}
+                    {error && (<Error error='Invalid Credentials' />)}
+
+
                     <div>
 
                         <input
@@ -64,8 +67,8 @@ export default function Loginscreen() {
 
 
                         <button onClick={login} className="btn mt-3 mb-3 " >LOGIN</button>
-                        <br/>
-                        <a style={{color : 'black'}} className = 'text-start' href="/register">Click Here To Register</a>
+                        <br />
+                        <a style={{ color: 'black' }} className='text-start' href="/register">Click Here To Register</a>
                     </div>
 
                 </div>

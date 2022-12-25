@@ -44,15 +44,15 @@ export const updateUserReducer = (state = {}, action) => {
 
     switch (action.type) {
 
-        case 'UPDATE_USER_REQUEST': return {
+        case 'USER_UPDATE_REQUEST': return {
             loading: true
         }
-        case 'UPDATE_USER_SUCCESS': return {
+        case 'USER_UPDATE_SUCCESS': return {
             loading: false,
             success: true,
             currentUser : action.payload
         }
-        case 'UPDATE_USER_FAILED': return {
+        case 'USER_UPDATE_FAILED': return {
             loading: false,
             error: action.payload
         }
@@ -60,4 +60,3 @@ export const updateUserReducer = (state = {}, action) => {
 
     }
 }
-

@@ -90,13 +90,34 @@ router.put("/update/password/:id", async (req, res) => {
     try {
 
         await User.findByIdAndUpdate(userId , updateUserPassword)
-        res.send('User Updated Successfully')
+        res.send('User Password Updated Successfully')
 
     } catch (error) {
         return res.status(400).json({ message: error });
     }
 });
 
+
+router.put("/update/name/:id", async (req, res) => {
+
+    let userId = req.params.id;
+    const { name} = req.body;
+
+    const updateUserName = {
+        
+        name,
+    
+    }
+  
+    try {
+
+        await User.findByIdAndUpdate(userId , updateUserName)
+        res.send('User Name Updated Successfully')
+
+    } catch (error) {
+        return res.status(400).json({ message: error });
+    }
+});
 
 
 
@@ -114,7 +135,7 @@ router.put("/update/email/:id", async (req, res) => {
     try {
 
         await User.findByIdAndUpdate(userId , updateUserEmail)
-        res.send('User Updated Successfully')
+        res.send('User Email Updated Successfully')
 
     } catch (error) {
         return res.status(400).json({ message: error });

@@ -31,7 +31,11 @@ const initialState = {
     },
     loginUserReducer: {
         currentUser: currentUser
+    },
+    updateUserReducer :{
+        currentUser: currentUser
     }
+
 
 }
 
