@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const UserFB = (newFeedback) => async dispatch => {
+export const UserFeedBack = (newFeedback) => async dispatch => {
 
     dispatch({ type: 'USER_FEEDBACK_SENDING' })
 

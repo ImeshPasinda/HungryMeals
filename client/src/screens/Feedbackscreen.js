@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux'
-import { UserFB } from './../actions/feedbackAction';
+import { UserFeedBack } from './../actions/feedbackAction';
 import { feedbackReducer } from "../reducers/feedbackReducer";
 import Loading from "../components/Loading"
 import Success from "../components/Success"
@@ -15,7 +15,7 @@ function FeedbackScreen() {
     const [subject, setsubject] = useState('')
     const [message, setmessage] = useState('')
     const feedbackstate = useSelector(state => state.feedbackReducer)
-    const{error , loading ,success} = feedbackstate
+    const { error, loading, success } = feedbackstate
 
     const dispatch = useDispatch()
 
@@ -23,7 +23,7 @@ function FeedbackScreen() {
 
         const newFeedback = { name, email, subject, message }
         console.log(newFeedback)
-        dispatch(UserFB(newFeedback))
+        dispatch(UserFeedBack(newFeedback))
     }
 
     return (
@@ -31,8 +31,6 @@ function FeedbackScreen() {
 
 
             <section class="mb-4">
-
-
 
 
                 <h2 class="h1-responsive font-weight-bold text-center my-4">Contact us</h2>
@@ -45,11 +43,11 @@ function FeedbackScreen() {
 
 
                     <div className='col-md-8 m-2 p-1'>
-                    {loading && <Loading/>}
-                    {success && <Success success ='Feedback Send Successfully' />}
-                    {error && (<Error error = 'Error !!!'/>)}
+                        {loading && <Loading />}
+                        {success && <Success success='Feedback Send Successfully' />}
+                        {error && (<Error error='Error !!!' />)}
                         <form id="contact-form" name="contact-form">
-                         
+
                             <div class="row ">
 
 

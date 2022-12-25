@@ -49,7 +49,10 @@ export default function Navbar() {
 
                             <li className="nav-item">
                                 <a className="nav-link" href="/cart">
-                                    Cart {cartState.cartItems.length}
+
+                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+
+                                    <span style={{color:'red'}}> {cartState.cartItems.length}</span>
                                 </a>
                             </li>
 
