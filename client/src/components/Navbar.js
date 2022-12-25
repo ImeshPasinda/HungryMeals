@@ -22,24 +22,30 @@ export default function Navbar() {
 
                             {currentUser ? (
                                 <div className="dropdown mt-2">
-                                    <a style={{color : 'black'}} className ="dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <a style={{ color: 'black' }} className="dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                         {currentUser.name}
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                
+
                                         <li><a className="dropdown-item" href="/profile">Profile</a></li>
                                         <li><a className="dropdown-item" href="/orders">Orders</a></li>
-                                        <li><a className="dropdown-item" href="#" onClick={() => {dispatch(logoutUser())}}><li>Logout</li></a></li>
+                                        <li><a className="dropdown-item" href="#" onClick={() => { dispatch(logoutUser()) }}><li>Logout</li></a></li>
                                     </ul>
                                 </div>
                             ) : (
-                                
+
                                 <li className="nav-item">
                                     <a className="nav-link " href="/login">
                                         Login
                                     </a>
                                 </li>
                             )}
+
+                            <li className="nav-item">
+                                <a className="nav-link" href="/feedback">
+                                    Feedback
+                                </a>
+                            </li>
 
                             <li className="nav-item">
                                 <a className="nav-link" href="/cart">

@@ -8,7 +8,7 @@ import Success from "../components/Success"
 import Error from "../components/Error"
 
 
-export default function UserProfilescreen({ }) {
+export default function UserProfilescreen() {
 
     
     const dispatch = useDispatch()
