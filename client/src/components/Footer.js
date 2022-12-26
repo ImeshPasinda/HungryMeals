@@ -6,18 +6,26 @@ export default function Footer() {
 
 
     return (
-        <div style={{ backgroundColor: 'black', color: 'white' }}>
+        <div style={{ backgroundColor: '#0A0708', color: 'white' }}>
             <div class="container" >
                 <footer class="py-5">
                     <div class="row">
                         <div class="col-6 col-md-2 mb-3">
-                            <h5>Section</h5>
+
                             <ul class="nav flex-column">
-                                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
+
+                                <a href="/">
+                                    <img src="https://static.wixstatic.com/media/618c8c_9a01260c6c1144c589bec4245b92f9b3~mv2.png" alt="" width="110" height="65" class="d-inline-block align-text-top" />
+                                </a>
+                                <br/>
+                                <i class="fab fa-facebook-f" aria-hidden="true" style={{fontSize:'20px'}}></i>
+                        <i class="fab fa-twitter mt-2" aria-hidden="true" style={{fontSize:'20px'}} ></i>
+                        <i class="fab fa-youtube mt-2 " aria-hidden="true" style={{fontSize:'20px'}}></i>
+                                {/* <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
                                 <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
                                 <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Pricing</a></li>
                                 <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
-                                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
+                                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li> */}
                             </ul>
                         </div>
 
@@ -42,15 +50,16 @@ export default function Footer() {
                                 <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
                             </ul>
                         </div>
+                        
 
                         <div class="col-md-5 offset-md-1 mb-3">
                             <form>
-                                <a href="/">
-                                    <img src="https://static.wixstatic.com/media/618c8c_35d7a5f69fbc446199b1a65fc645cca6~mv2.png" alt="" width="88" height="55" class="d-inline-block align-text-top" />
+                                {/* <a href="/">
+                                    <img src="https://static.wixstatic.com/media/618c8c_9a01260c6c1144c589bec4245b92f9b3~mv2.png" alt="" width="88" height="55" class="d-inline-block align-text-top" />
                                 </a>
                                
                                 <br/>
-                                
+                                 */}
                                 <h5>Subscribe to our newsletter</h5>
                                 <p>Monthly digest of what's new and exciting from us.</p>
                                 <div class="d-flex flex-column flex-sm-row w-100 gap-2">
@@ -61,15 +70,20 @@ export default function Footer() {
                             </form>
                         </div>
                     </div>
-
-                    <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
-                        <p>© 2022 Company, Inc. All rights reserved.</p>
-                        {/* <ul class="list-unstyled d-flex">
+                    <div>
+                    
+                       <hr/>
+                        <p className='text-end'>© 2022 Hungry Meals, Inc. All rights reserved.</p>
+                       
+                    </div>
+                    {/* <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
+                        <p>© 2022 Hungry Meals, Inc. All rights reserved.</p>
+                        <ul class="list-unstyled d-flex">
                             <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"></use></svg></a></li>
                             <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"></use></svg></a></li>
                             <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"></use></svg></a></li>
-                        </ul> */}
-                    </div>
+                        </ul>
+                    </div> */}
                 </footer>
             </div>
         </div>

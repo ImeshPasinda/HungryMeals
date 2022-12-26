@@ -76,9 +76,6 @@ export default function Ordersscreen() {
 
 
 
-
-
-
                         </div>
 
                     </div>
