@@ -96,7 +96,7 @@ export default function UserProfilescreen() {
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn " data-bs-dismiss="modal">Close</button>
-                            <button onClick={() => updateName(currentUser._id)} type="button" class="btn ">Update</button>
+                            <button  onClick={() => updateName(currentUser._id)} type="button" class="btn ">Update</button>
                         </div>
                     </div>
                 </div>
