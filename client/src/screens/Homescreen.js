@@ -23,7 +23,7 @@ export default function Homescreen() {
 
 
     return (
-
+     
         <div>
             <br />
             <br />
@@ -56,8 +56,10 @@ export default function Homescreen() {
 
 
             </div>
+        
+        
         </div>
-
+         
 
     )
 

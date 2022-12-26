@@ -8,7 +8,7 @@ import Success from "../components/Success"
 import Error from "../components/Error"
 
 
-function FeedbackScreen() {
+export default function FeedbackScreen() {
 
     const [name, setname] = useState('')
     const [email, setemail] = useState('')
@@ -159,4 +159,3 @@ function FeedbackScreen() {
     )
 }
 
-export default FeedbackScreen

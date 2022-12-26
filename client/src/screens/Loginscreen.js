@@ -34,6 +34,13 @@ export default function Loginscreen() {
     return (
 
         <div>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
             <div className='row justify-content-center'>
                 <div className="col-md-5 mt-5 text-start shadow p-3 mb-5 bg-white rounded">
                     <h2 className="text-center m-4" style={{ fontSize: '35px' }}>Login</h2>
@@ -74,6 +81,8 @@ export default function Loginscreen() {
                 </div>
 
             </div>
+            <br/>
+            
         </div>
     )
 }

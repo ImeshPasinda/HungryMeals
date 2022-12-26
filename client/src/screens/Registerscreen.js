@@ -40,6 +40,13 @@ export default function Registerscreen() {
     return (
 
         <div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
             <div className='row justify-content-center'>
                 <div className="col-md-5 mt-5 text-start shadow p-3 mb-5 bg-white rounded">
 
@@ -100,6 +107,7 @@ export default function Registerscreen() {
                 </div>
 
             </div>
+            <br />
         </div>
     )
 }

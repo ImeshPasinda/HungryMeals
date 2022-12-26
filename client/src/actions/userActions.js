@@ -1,5 +1,5 @@
 import axios from 'axios'
-// import swal from "sweetalert";
+import Swal from "sweetalert2";
 
 export const registerUser = (user) => async dispatch => {
 
@@ -40,39 +40,109 @@ export const logoutUser = () => dispatch => {
 
 
 
-export const updateUserName = (updatename ,id) => async dispatch => {
+export const updateUserName = (updatename, id) => async dispatch => {
 
     dispatch({ type: 'UPDATE_USER_NAME_REQUEST' })
 
     try {
-        const response = await axios.put(`/api/users/update/name/${id}`, updatename )
+        const response = await axios.put(`/api/users/update/name/${id}`, updatename)
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
+        Toast.fire({
+            icon: 'success',
+            title: 'Username updated successfully'
+        })
+        localStorage.removeItem('currentUser')
+        setTimeout(function () {
+            window.location.replace('/login');
+        }, 3000);
         console.log(response);
         dispatch({ type: 'UPDATE_USER_NAME_SUCCESS' })
 
+
     } catch (error) {
+
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
+        Toast.fire({
+            icon: 'error',
+            title: 'Email updated unsuccessfully'
+        })
         dispatch({ type: 'UPDATE_USER_NAME_FAILED', payload: error })
     }
 }
 
 
 
-export const updateUserEmail = (updateemail ,id) => async dispatch => {
+export const updateUserEmail = (updateemail, id) => async dispatch => {
 
     dispatch({ type: 'UPDATE_USER_EMAIL_REQUEST' })
 
     try {
-        const response = await axios.put(`/api/users/update/email/${id}`, updateemail )
-        // swal({ 
-        //     title: "Good job!",
-        //     text: "Student Updated Successfully!",
-        //     icon: "success",
-        //     button: "Close",
-        //   });
+        const response = await axios.put(`/api/users/update/email/${id}`, updateemail)
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
+        Toast.fire({
+            icon: 'success',
+            title: 'Email updated successfully'
+        })
+        localStorage.removeItem('currentUser')
+        setTimeout(function () {
+            window.location.replace('/login');
+        }, 3000);
+
         console.log(response);
         dispatch({ type: 'UPDATE_USER_EMAIL_SUCCESS' })
-    
+
 
     } catch (error) {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
+        Toast.fire({
+            icon: 'error',
+            title: 'Email updated unsuccessfully'
+        })
+
         dispatch({ type: 'UPDATE_USER_EMAIL_FAILED', payload: error })
     }
 }

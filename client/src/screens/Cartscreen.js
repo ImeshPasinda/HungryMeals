@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { addToCart } from "../actions/cartAction";
 import { deleteFromCart } from "../actions/cartAction";
 import Checkout from "../components/Checkout";
+import Footer from "../components/Footer";
 
 export default function Cartscreen() {
 
@@ -19,7 +20,7 @@ export default function Cartscreen() {
             <br />
             <br />
             <br />
-            
+
             <div className="row justify-content-center">
 
                 <div className="col-md-6">
@@ -36,9 +37,9 @@ export default function Cartscreen() {
                                 <h1>{item.name} [{item.varient}]</h1>
                                 <h1>Price : {item.quantity}*{item.prices[0][item.varient]} = {item.price}</h1>
                                 <h1 className="d-inline"> Quantity : </h1>
-                                <i className="fa fa-plus" type = "button"  aria-hidden="true" onClick={() => { dispatch(addToCart(item, item.quantity + 1, item.varient)) }} ></i>
+                                <i className="fa fa-plus" type="button" aria-hidden="true" onClick={() => { dispatch(addToCart(item, item.quantity + 1, item.varient)) }} ></i>
                                 <b>{item.quantity}</b>
-                                <i className="fa fa-minus" type = "button" aria-hidden="true" onClick={() => { dispatch(addToCart(item, item.quantity - 1, item.varient)) }} ></i>
+                                <i className="fa fa-minus" type="button" aria-hidden="true" onClick={() => { dispatch(addToCart(item, item.quantity - 1, item.varient)) }} ></i>
                                 <hr />
                             </div>
 
@@ -53,7 +54,7 @@ export default function Cartscreen() {
 
                             <div className='m-2 w-100'>
 
-                                <i className="fa fa-trash mt-4" type = "button" aria-hidden="true" onClick={() => dispatch(deleteFromCart(item))}></i>
+                                <i className="fa fa-trash mt-4" type="button" aria-hidden="true" onClick={() => dispatch(deleteFromCart(item))}></i>
 
                             </div>
 
@@ -76,6 +77,14 @@ export default function Cartscreen() {
                 </div>
 
             </div>
+            
         </div>
+    
+   
+
     )
+  
+
+     
+   
 }
