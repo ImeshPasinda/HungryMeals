@@ -18,9 +18,9 @@ export default function Footer() {
                                     <img src="https://static.wixstatic.com/media/618c8c_9a01260c6c1144c589bec4245b92f9b3~mv2.png" alt="" width="110" height="65" class="d-inline-block align-text-top" />
                                 </a>
                                 <br/>
-                                <i class="fab fa-facebook-f" aria-hidden="true" style={{fontSize:'20px'}}></i>
-                        <i class="fab fa-twitter mt-2" aria-hidden="true" style={{fontSize:'20px'}} ></i>
-                        <i class="fab fa-youtube mt-2 " aria-hidden="true" style={{fontSize:'20px'}}></i>
+                                <i class="fab fa-facebook-f mt-2 " aria-hidden="true" style={{fontSize : '19px'}} ></i>
+                        <i class="fab fa-twitter mt-2 " aria-hidden="true" ></i>
+                        <i class="fab fa-youtube mt-2 " aria-hidden="true" ></i>
                                 {/* <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
                                 <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
                                 <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Pricing</a></li>
