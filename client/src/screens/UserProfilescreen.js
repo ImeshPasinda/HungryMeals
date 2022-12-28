@@ -14,21 +14,21 @@ export default function UserProfilescreen() {
     const userstate = useSelector(state => state.loginUserReducer)
     const { currentUser } = userstate
 
-   
+
     const [email, updateemail] = useState('')
     const [name, updatename] = useState('')
 
     if (currentUser.isAdmin === true) {
         console.log('Admin')
 
-    }else{
+    } else {
         console.log('User')
     }
 
     function updateName(id) {
 
-        
-    
+
+
 
         const updatename = {
 
@@ -51,10 +51,10 @@ export default function UserProfilescreen() {
         console.log(updateemail, id)
         dispatch(updateUserEmail(updateemail, id))
     }
-    
 
 
- 
+
+
 
     return (
         <div>
@@ -153,7 +153,20 @@ export default function UserProfilescreen() {
 
 
                     <div>
-                        <h2 style={{ fontSize: '30px' }}>{currentUser.name} <i className="fa fa-edit" style={{ fontSize: '15px' }} type="button" data-bs-toggle="modal" data-bs-target="#updatename" data-bs-whatever="@mdo" ></i></h2>
+                        <h2 style={{ fontSize: '30px' }}>{currentUser.name}<> </>
+
+                            {currentUser.isVerified ? (
+
+                                <i class="fa fa-check-circle" title="Verified" style={{ fontSize: '20px', color: '#00b9ff' }} aria-hidden="true"></i>
+
+                            ) : (
+
+
+                               <></>
+
+                            )}
+
+                           <> </><i className="fa fa-edit" style={{ fontSize: '15px' }} type="button" data-bs-toggle="modal" data-bs-target="#updatename" data-bs-whatever="@mdo" ></i></h2>
                         <p>{currentUser.email} <i className="fa fa-edit" style={{ fontSize: '13px' }} type="button" data-bs-toggle="modal" data-bs-target="#updateemail" data-bs-whatever="@mdo" ></i></p>
 
                     </div>
