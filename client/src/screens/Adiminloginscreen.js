@@ -1,49 +1,49 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux'
-import { loginUser, registerUser } from "../actions/userActions"
+import { loginAdmin } from "../actions/adminActions"
 import Error from "../components/Error";
 import Loading from "../components/Loading";
 
 
 
-export default function Loginscreen() {
+export default function Adminloginscreen() {
 
 
     const [email, setemail] = useState('')
     const [password, setpassword] = useState('')
-    const loginstate = useSelector(state => state.loginUserReducer)
-    const { loading, error } = loginstate
+    const adminloginstate = useSelector(state => state.adminloginReducer)
+    const { loading, error } = adminloginstate
     const dispatch = useDispatch()
 
 
     useEffect(() => {
 
-        if (localStorage.getItem('currentUser')) {
-            window.location.href = '/'
+        if (localStorage.getItem('currentAdmin')) {
+            window.location.href = '/admin'
         }
     })
 
 
     function login() {
 
-        const user = { email, password }
-        dispatch(loginUser(user))
+        const admin = { email, password }
+        dispatch(loginAdmin(admin))
     }
 
 
     return (
 
         <div>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
             <div className='row justify-content-center'>
                 <div className="col-md-5 mt-5 text-start shadow p-3 mb-5 bg-white rounded">
-                    <h2 className="text-center m-4" style={{ fontSize: '35px' }}>Login</h2>
+                    <h2 className="text-center m-4" style={{ fontSize: '35px' }}>Admin Login</h2>
 
                     {loading && (<Loading />)}
                     {error && (<Error error='Invalid Credentials' />)}
@@ -76,14 +76,13 @@ export default function Loginscreen() {
                         <button onClick={login} className="btn mt-3 mb-3 " >LOGIN</button>
                         <br />
                         <a style={{ color: 'black' }} className='text-start' href="/register">Click Here To Register</a>
-                        <br/><a style={{ color: 'black' }} className='text-start' href="/admin/login"> Admin Login</a>
                     </div>
 
                 </div>
 
             </div>
-            <br/>
-            
+            <br />
+
         </div>
     )
 }

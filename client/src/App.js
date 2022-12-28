@@ -12,9 +12,18 @@ import Ordersscreen from './screens/Ordersscreen';
 import UserProfilescreen from './screens/UserProfilescreen';
 import FeedbackScreen from './screens/Feedbackscreen';
 import Footer from './components/Footer';
+import AdminProfilescreen from './screens/AdminProfilescreen';
+import Adminloginscreen from './screens/Adiminloginscreen';
+import { useSelector } from 'react-redux';
 
 
 function App() {
+
+  const userstate = useSelector(state => state.loginUserReducer)
+  const { currentUser } = userstate
+  const adminloginstate = useSelector(state => state.adminloginReducer)
+  const { currentAdmin } = adminloginstate
+
   return (
     <div className="App">
       <Navbar />
@@ -22,13 +31,38 @@ function App() {
 
       <BrowserRouter>
         <Routes>
+
+          
           <Route path="/" exact element={<Homescreen />} />
           <Route path="/cart" exact element={<Cartscreen />} />
           <Route path="/login" exact element={<Loginscreen />} />
+          <Route path="/admin/login" exact element={<Adminloginscreen />} />
           <Route path="/register" exact element={<Registerscreen />} />
           <Route path="/orders" exact element={<Ordersscreen />} />
+
+
+          {currentUser ? (
           <Route path="/feedback" exact element={<FeedbackScreen />} />
+           
+          ) : (
+
+
+            <Route path="/feedback" exact element={<FeedbackScreen />} />
+
+            ) && currentAdmin ? (<Route path="/nofeedback" exact element={<FeedbackScreen />} />) : (
+
+              <Route path="/feedback" exact element={<FeedbackScreen />} />
+
+
+            )}
+
+
+
           <Route path="/profile" exact element={<UserProfilescreen />} />
+          <Route path="/admin" exact element={<AdminProfilescreen />} />
+          
+
+
         </Routes>
       </BrowserRouter>
       <Footer />

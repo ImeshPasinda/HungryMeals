@@ -3,26 +3,32 @@ import { useSelector, useDispatch } from 'react-redux'
 import 'bootstrap'
 import { updateUserEmail } from "../actions/userActions";
 import { updateUserName } from "../actions/userActions";
-import Loading from "../components/Loading"
-import Success from "../components/Success"
-import Error from "../components/Error"
+
 
 
 export default function UserProfilescreen() {
 
-    
+
     const dispatch = useDispatch()
 
-    const updatestate = useSelector(state => state.updateUserReducer)
-    const { error, loading, success , currentUser } = updatestate
+    const userstate = useSelector(state => state.loginUserReducer)
+    const { currentUser } = userstate
 
-
-
+   
     const [email, updateemail] = useState('')
     const [name, updatename] = useState('')
 
+    if (currentUser.isAdmin === true) {
+        console.log('Admin')
+
+    }else{
+        console.log('User')
+    }
 
     function updateName(id) {
+
+        
+    
 
         const updatename = {
 
@@ -45,10 +51,14 @@ export default function UserProfilescreen() {
         console.log(updateemail, id)
         dispatch(updateUserEmail(updateemail, id))
     }
+    
+
+
+ 
 
     return (
         <div>
-            
+
             <br />
             <br />
             <br />
@@ -71,10 +81,7 @@ export default function UserProfilescreen() {
                         </div>
                         <div class="modal-body">
 
-                            {loading && <Loading />}
-                            {success && <Success success='User Registered Successfully' />}
-                            {error && (<Error error='Email already registered' />)}
-                            
+
                             <form>
 
 
@@ -168,7 +175,6 @@ export default function UserProfilescreen() {
                         </div>
                     </div>
                 </div>
-
 
             </div>
 
