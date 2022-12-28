@@ -153,11 +153,11 @@ export default function UserProfilescreen() {
 
 
                     <div>
-                        <h2 style={{ fontSize: '30px' }}>{currentUser.name}<> </>
+                        <h2 style={{ fontSize: '30px' }}>{currentUser.name}<></>
 
                             {currentUser.isVerified ? (
 
-                                <i class="fa fa-check-circle" title="Verified" style={{ fontSize: '20px', color: '#00b9ff' }} aria-hidden="true"></i>
+                                <i class="fa fa-check-circle p-1" title="Verified Customer" style={{ fontSize: '20px', color: '#00b9ff' }} aria-hidden="true"></i>
 
                             ) : (
 
