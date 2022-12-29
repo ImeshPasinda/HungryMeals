@@ -19,71 +19,71 @@ export default function Cartscreen() {
             <br />
             <br />
             <br />
+            
+                <div className="row justify-content-center">
 
-            <div className="row justify-content-center">
+                    <div className="col-md-6">
 
-                <div className="col-md-6">
+                        <h2 style={{ fontSize: '40px' }}>My Cart</h2>
 
-                    <h2 style={{ fontSize: '40px' }}>My Cart</h2>
-
-                    {cartItems.map(item => {
+                        {cartItems.map(item => {
 
 
-                        return <div className="flex-container m-5">
+                            return <div className="flex-container m-5">
 
-                            <div className='text-start m-1 w-100'>
+                                <div className='text-start m-1 w-100'>
 
-                                <h1>{item.name} [{item.varient}]</h1>
-                                <h1>Price : {item.quantity}*{item.prices[0][item.varient]} = {item.price}</h1>
-                                <h1 className="d-inline"> Quantity : </h1>
-                                <i className="fa fa-plus" type="button" aria-hidden="true" onClick={() => { dispatch(addToCart(item, item.quantity + 1, item.varient)) }} ></i>
-                                <b>{item.quantity}</b>
-                                <i className="fa fa-minus" type="button" aria-hidden="true" onClick={() => { dispatch(addToCart(item, item.quantity - 1, item.varient)) }} ></i>
-                                <hr />
+                                    <h1>{item.name} [{item.varient}]</h1>
+                                    <h1>Price : {item.quantity}*{item.prices[0][item.varient]} = {item.price}</h1>
+                                    <h1 className="d-inline"> Quantity : </h1>
+                                    <i className="fa fa-plus" type="button" aria-hidden="true" onClick={() => { dispatch(addToCart(item, item.quantity + 1, item.varient)) }} ></i>
+                                    <b>{item.quantity}</b>
+                                    <i className="fa fa-minus" type="button" aria-hidden="true" onClick={() => { dispatch(addToCart(item, item.quantity - 1, item.varient)) }} ></i>
+                                    <hr />
+                                </div>
+
+                                <div className='m-1 w-100'>
+
+
+                                    <img src={item.image} style={{ height: '80px', height: '80px' }} />
+
+
+
+                                </div>
+
+                                <div className='m-2 w-100'>
+
+                                    <i className="fa fa-trash mt-4" type="button" aria-hidden="true" onClick={() => dispatch(deleteFromCart(item))}></i>
+
+                                </div>
+
+
+
+
+
                             </div>
 
-                            <div className='m-1 w-100'>
-
-
-                                <img src={item.image} style={{ height: '80px', height: '80px' }} />
+                        })}
 
 
 
-                            </div>
+                    </div>
 
-                            <div className='m-2 w-100'>
+                    <div className="col-md-4 text-end">
 
-                                <i className="fa fa-trash mt-4" type="button" aria-hidden="true" onClick={() => dispatch(deleteFromCart(item))}></i>
+                        <h2 style={{ fontsize: '45px' }}>SubTotal : {subtotal} /- </h2>
+                        <Checkout subtotal={subtotal} />
+                    </div>
 
-                            </div>
-
-
-
-
-
-                        </div>
-
-                    })}
-
-
-
-                </div>
-
-                <div className="col-md-4 text-end">
-
-                    <h2 style={{ fontsize: '45px' }}>SubTotal : {subtotal} /- </h2>
-                    <Checkout subtotal={subtotal} />
                 </div>
 
             </div>
-            
-        </div>
+
+
     
-   
-
     )
-  
 
-     
-   
+
+
+
 }

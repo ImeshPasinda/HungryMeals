@@ -23,7 +23,8 @@ export default function Pizza({ pizza }) {
 
     return (
         
-        <div className="shadow-lg p-3 m-4 bg-white rounded">
+       
+        <div className="shadow-lg p-3 m-4 bg-white" style={{borderRadius: '15px'}}>
 
 
             <div onClick={handleShow}>
@@ -90,5 +91,7 @@ export default function Pizza({ pizza }) {
 
 
         </div>
+        
+
     )
 }
