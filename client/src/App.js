@@ -26,13 +26,15 @@ function App() {
 
   return (
     <div className="App">
+
+
       <Navbar />
 
 
       <BrowserRouter>
         <Routes>
 
-          
+
           <Route path="/" exact element={<Homescreen />} />
           <Route path="/cart" exact element={<Cartscreen />} />
           <Route path="/login" exact element={<Loginscreen />} />
@@ -42,25 +44,25 @@ function App() {
 
 
           {currentUser ? (
-          <Route path="/feedback" exact element={<FeedbackScreen />} />
-           
+            <Route path="/feedback" exact element={<FeedbackScreen />} />
+
           ) : (
 
 
             <Route path="/feedback" exact element={<FeedbackScreen />} />
 
-            ) && currentAdmin ? (<Route path="/nofeedback" exact element={<FeedbackScreen />} />) : (
+          ) && currentAdmin ? (<Route path="/nofeedback" exact element={<FeedbackScreen />} />) : (
 
-              <Route path="/feedback" exact element={<FeedbackScreen />} />
+            <Route path="/feedback" exact element={<FeedbackScreen />} />
 
 
-            )}
+          )}
 
 
 
           <Route path="/profile" exact element={<UserProfilescreen />} />
           <Route path="/admin" exact element={<AdminProfilescreen />} />
-          
+
 
 
         </Routes>
