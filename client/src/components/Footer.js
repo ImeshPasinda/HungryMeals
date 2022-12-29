@@ -7,7 +7,7 @@ export default function Footer() {
 
     return (
         
-        <div  style={{ backgroundColor: '#0A0708', color: 'white' , bottom : '0', marginTop: '800px', width : '100%' }}>
+        <div  style={{ backgroundColor: '#0A0708', color: 'white' , bottom : '0', marginTop: '400px', width : '100%' }}>
             <div class="container" >
                 <footer class="py-5" >
                     <div class="row">

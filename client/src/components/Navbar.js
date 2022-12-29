@@ -14,10 +14,11 @@ export default function Navbar() {
 
     return (
         <div>
-            <nav className="navbar navbar-expand-lg shadow-lg p-3 mb-5 bg-white rounded fixed-top">
+            <nav className="navbar navbar-expand-lg shadow-lg p-3 mb-5 bg-black  fixed-top">
+          
                 <div className="container-fluid">
                     <a class="navbar-brand" href="/">
-                        <img src="https://static.wixstatic.com/media/618c8c_35d7a5f69fbc446199b1a65fc645cca6~mv2.png" alt="" width="78" height="45" class="d-inline-block align-text-top" />
+                        <img src="https://static.wixstatic.com/media/618c8c_682a5ffcb637494aa42be045fbc82143~mv2.png" alt="" width="78" height="45" class="d-inline-block align-text-top" />
                     </a>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
@@ -27,7 +28,7 @@ export default function Navbar() {
 
                             {currentUser ? (
                                 <div className="dropdown mt-2">
-                                    <a style={{ color: 'black' }} className="dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <a style={{ color: 'white' }} className="dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                         {currentUser.name}
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -40,14 +41,14 @@ export default function Navbar() {
                             ) : (
 
                                 <li className="nav-item">
-                                    <a className="nav-link " href="/login">
+                                    <a className="nav-link" href="/login">
                                         Login
                                     </a>
                                 </li>
                             ) &&
                                 currentAdmin ? (
                                 <div className="dropdown mt-2">
-                                    <a style={{ color: 'black' }} className="dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <a style={{ color: 'white' }} className="dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                         {currentAdmin.name}
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -60,7 +61,7 @@ export default function Navbar() {
                             ) : (
 
                                 <li className="nav-item">
-                                    <a className="nav-link " href="/login">
+                                    <a  className="nav-link " href="/login">
                                         Login
                                     </a>
                                 </li>
@@ -70,7 +71,7 @@ export default function Navbar() {
 
                             {currentUser ? (
                                 <li className="nav-item">
-                                    <a className="nav-link" href="/feedback">
+                                    <a className="nav-link"  href="/feedback">
                                         Feedback
                                     </a>
                                 </li>
@@ -79,7 +80,7 @@ export default function Navbar() {
 
 
                                 <li className="nav-item">
-                                    <a className="nav-link" href="/feedback">
+                                    <a className="nav-link"   href="/feedback">
                                         Feedback
                                     </a>
                                 </li>
@@ -89,7 +90,7 @@ export default function Navbar() {
                                 </li>) : (
 
                                 <li className="nav-item">
-                                    <a className="nav-link" href="/feedback">
+                                    <a className="nav-link"  href="/feedback">
                                         Feedback
                                     </a>
                                 </li>
@@ -100,7 +101,7 @@ export default function Navbar() {
                             <li className="nav-item">
                                 <a className="nav-link" href="/cart">
 
-                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                    <i class="fa fa-shopping-cart" style={{ color: 'white' }} aria-hidden="true"></i>
 
                                     <span style={{ color: 'red' }}> {cartState.cartItems.length}</span>
                                 </a>

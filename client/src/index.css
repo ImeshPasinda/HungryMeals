@@ -8,6 +8,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: 'Montserrat', sans-serif !important;
+  background-image: url('https://static.wixstatic.com/media/618c8c_bcbef975be324255bd1d67f84b85e59b~mv2.png') !important;
  
 }
 
@@ -17,7 +18,7 @@ code {
 }
 
 .nav-link {
-  color: black !important;
+  color: white !important;
 }
 
 .nav-brand {
