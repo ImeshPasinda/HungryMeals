@@ -8,13 +8,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: 'Montserrat', sans-serif !important;
-  background-image: url('https://static.wixstatic.com/media/618c8c_bcbef975be324255bd1d67f84b85e59b~mv2.png') !important;
+  background-image: url('https://static.wixstatic.com/media/618c8c_2c491f4204b84dc09f043ee3290ba12f~mv2.png') !important;
 
-  background: rgba(255, 255, 255, 0.23);
-  border-radius: 16px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(6.4px);
-  -webkit-backdrop-filter: blur(6.4px);
+  /* background: rgba(255, 255, 255, 0.23);
+  backdrop-filter: blur(8.4px); */
 
 }
 
@@ -83,12 +80,12 @@ input {
   color: orange !important;
 }
 
-.cartbox {
-  /* From https://css.glass */
+.box {
+
   background: rgba(255, 255, 255, 0.23);
-  border-radius: 16px;
+  border-radius: 25px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(6.4px);
-  -webkit-backdrop-filter: blur(6.4px);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.3);
 }

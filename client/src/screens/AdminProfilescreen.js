@@ -33,7 +33,7 @@ export default function AdminProfilescreen() {
 
             <div className='row justify-content-center'>
 
-                <div className='col-md-8 m-2 p-1 shadow p-3 mb-5 bg-white rounded' style={{ backgroundColor: 'red', color: 'black' }}>
+                <div className='col-md-8 m-2 p-1 shadow p-3 mb-5 bg-white' style={{ backgroundColor: 'red',  color: 'black' , borderRadius: '15px' }}>
 
                     <img src='https://static.vecteezy.com/system/resources/previews/002/002/403/large_2x/man-with-beard-avatar-character-isolated-icon-free-vector.jpg' style={{ height: '150px', height: '150px' }} />
 
@@ -70,7 +70,7 @@ export default function AdminProfilescreen() {
             <div className='row justify-content-center '>
 
 
-                <div class="card col-md-4 m-4 shadow p-3 mb-5 bg-white rounded" style={{ width: '18rem' }}>
+                <div class="card col-md-4 m-4 shadow p-3 mb-5 bg-white " style={{ width: '18rem', borderRadius: '15px' }}>
                     <img src="https://static.wixstatic.com/media/618c8c_5b96780e12eb4670ab9717d14cfde2d8~mv2.png" class="card-img-top" alt="..." />
                     <div class="card-body">
                         <h5 class="card-title">Card title</h5>

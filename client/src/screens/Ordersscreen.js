@@ -35,7 +35,7 @@ export default function Ordersscreen() {
                 {error && (<Error error='Something went wrong' />)}
                 {orders && orders.map(order => {
 
-                    return <div className='col-md-8 m-2 p-1 shadow p-3 mb-5 bg-red rounded' style={{ backgroundColor: 'red', color: 'white' }}>
+                    return <div className='box col-md-8 m-2 p-1  p-3 mb-5 shadow-lg'>
 
                         <div className='flex-container'>
 

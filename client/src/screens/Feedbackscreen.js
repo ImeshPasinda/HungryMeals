@@ -46,7 +46,7 @@ export default function FeedbackScreen() {
                 <div class="row justify-content-center">
 
 
-                    <div className='col-md-5 m-2 p-1'>
+                    <div className='box col-md-5 m-2 p-5'>
                         {loading && <Loading />}
                         {success && <Success success='Feedback Send Successfully' />}
                         {error && (<Error error='Error !!!' />)}
