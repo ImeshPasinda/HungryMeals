@@ -50,7 +50,7 @@ export const updateUserName = (updatename, id) => async dispatch => {
             toast: true,
             position: 'top-end',
             showConfirmButton: false,
-            timer: 3000,
+            timer: 1500,
             timerProgressBar: true,
             didOpen: (toast) => {
                 toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -62,11 +62,12 @@ export const updateUserName = (updatename, id) => async dispatch => {
             icon: 'success',
             title: 'Username updated successfully'
         })
-        localStorage.removeItem('currentUser')
+       
         setTimeout(function () {
-            window.location.replace('/login');
-        }, 3000);
+            window.location.reload('/profile');
+        }, 1500);
         console.log(response);
+        
         dispatch({ type: 'UPDATE_USER_NAME_SUCCESS' })
 
 
@@ -104,7 +105,7 @@ export const updateUserEmail = (updateemail, id) => async dispatch => {
             toast: true,
             position: 'top-end',
             showConfirmButton: false,
-            timer: 3000,
+            timer: 1500,
             timerProgressBar: true,
             didOpen: (toast) => {
                 toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -116,10 +117,9 @@ export const updateUserEmail = (updateemail, id) => async dispatch => {
             icon: 'success',
             title: 'Email updated successfully'
         })
-        localStorage.removeItem('currentUser')
         setTimeout(function () {
-            window.location.replace('/login');
-        }, 3000);
+            window.location.reload('/profile');
+        }, 1500);
 
         console.log(response);
         dispatch({ type: 'UPDATE_USER_EMAIL_SUCCESS' })

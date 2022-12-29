@@ -6,6 +6,7 @@ const userSchema = mongoose.Schema({
     email: { type: String, require },
     password: { type: String, require },
     isVerified: { type: Boolean, require, default: false },
+    notifications : { type: String, require, default: 'Welcome to Hungy Meals!' },
 
 }, {
 

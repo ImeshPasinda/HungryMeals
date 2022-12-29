@@ -18,12 +18,7 @@ export default function UserProfilescreen() {
     const [email, updateemail] = useState('')
     const [name, updatename] = useState('')
 
-    if (currentUser.isAdmin === true) {
-        console.log('Admin')
 
-    } else {
-        console.log('User')
-    }
 
     function updateName(id) {
 
@@ -38,6 +33,11 @@ export default function UserProfilescreen() {
 
         console.log(updatename, id)
         dispatch(updateUserName(updatename, id))
+
+    
+        currentUser.name = name; 
+        localStorage.setItem('currentUser', JSON.stringify(currentUser))
+        
     }
 
     function updateEmail(id) {
@@ -50,6 +50,10 @@ export default function UserProfilescreen() {
 
         console.log(updateemail, id)
         dispatch(updateUserEmail(updateemail, id))
+
+        currentUser.email = email; 
+        localStorage.setItem('currentUser', JSON.stringify(currentUser))
+        
     }
 
 
@@ -162,11 +166,11 @@ export default function UserProfilescreen() {
                             ) : (
 
 
-                               <></>
+                                <></>
 
                             )}
 
-                           <> </><i className="fa fa-edit" style={{ fontSize: '15px' }} type="button" data-bs-toggle="modal" data-bs-target="#updatename" data-bs-whatever="@mdo" ></i></h2>
+                            <> </><i className="fa fa-edit" style={{ fontSize: '15px' }} type="button" data-bs-toggle="modal" data-bs-target="#updatename" data-bs-whatever="@mdo" ></i></h2>
                         <p>{currentUser.email} <i className="fa fa-edit" style={{ fontSize: '13px' }} type="button" data-bs-toggle="modal" data-bs-target="#updateemail" data-bs-whatever="@mdo" ></i></p>
 
                     </div>
@@ -184,10 +188,11 @@ export default function UserProfilescreen() {
                     </p>
                     <div class="collapse" id="collapseExample">
                         <div class="card card-body">
-                            Welcome Back ! {currentUser.name}
+                            <div className="text-start" style={{ fontSize: '10px', color: 'gray' }}><><i class="fa fa-calendar" aria-hidden="true"></i> </>{currentUser.createdAt.substring(0, 10)}</div>{currentUser.notifications}
                         </div>
                     </div>
                 </div>
+
 
             </div>
 

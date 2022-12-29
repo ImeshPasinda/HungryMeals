@@ -105,6 +105,7 @@ export default function Navbar() {
                                     <span style={{ color: 'red' }}> {cartState.cartItems.length}</span>
                                 </a>
                             </li>
+                            
 
                         </ul>
                     </div>

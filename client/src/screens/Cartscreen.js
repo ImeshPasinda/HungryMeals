@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import { addToCart } from "../actions/cartAction";
 import { deleteFromCart } from "../actions/cartAction";
 import Checkout from "../components/Checkout";
-import Footer from "../components/Footer";
 
 export default function Cartscreen() {
 

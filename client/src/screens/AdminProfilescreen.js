@@ -70,76 +70,77 @@ export default function AdminProfilescreen() {
             <div className='row justify-content-center '>
 
 
-                <div class="card col-md-4 m-4" style={{ width: '18rem' }}>
-                    <img src="..." class="card-img-top" alt="..." />
+                <div class="card col-md-4 m-4 shadow p-3 mb-5 bg-white rounded" style={{ width: '18rem' }}>
+                    <img src="https://static.wixstatic.com/media/618c8c_5b96780e12eb4670ab9717d14cfde2d8~mv2.png" class="card-img-top" alt="..." />
                     <div class="card-body">
                         <h5 class="card-title">Card title</h5>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <a href="#" class="btn">Go somewhere</a>
                     </div>
                 </div>
 
-                <div class="card col-md-4 m-4" style={{ width: '18rem' }}>
-                    <img src="..." class="card-img-top" alt="..." />
+                <div class="card col-md-4 m-4 shadow p-3 mb-5 bg-white rounded" style={{ width: '18rem' }}>
+                    <img src="https://static.wixstatic.com/media/618c8c_5b96780e12eb4670ab9717d14cfde2d8~mv2.png" class="card-img-top" alt="..." />
                     <div class="card-body">
                         <h5 class="card-title">Card title</h5>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <a href="#" class="btn">Go somewhere</a>
                     </div>
                 </div>
 
-                <div class="card col-md-4 m-4" style={{ width: '18rem' }}>
-                    <img src="..." class="card-img-top" alt="..." />
+                <div class="card col-md-4 m-4 shadow p-3 mb-5 bg-white rounded" style={{ width: '18rem' }}>
+                    <img src="https://static.wixstatic.com/media/618c8c_5b96780e12eb4670ab9717d14cfde2d8~mv2.png" class="card-img-top" alt="..." />
                     <div class="card-body">
                         <h5 class="card-title">Card title</h5>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <a href="#" class="btn">Go somewhere</a>
                     </div>
                 </div>
 
-                <div class="card col-md-4 m-4" style={{ width: '18rem' }}>
-                    <img src="..." class="card-img-top" alt="..." />
+                <div class="card col-md-4 m-4 shadow p-3 mb-5 bg-white rounded" style={{ width: '18rem' }}>
+                    <img src="https://static.wixstatic.com/media/618c8c_5b96780e12eb4670ab9717d14cfde2d8~mv2.png" class="card-img-top" alt="..." />
                     <div class="card-body">
                         <h5 class="card-title">Card title</h5>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <a href="#" class="btn">Go somewhere</a>
                     </div>
                 </div>
 
                 <div className='row justify-content-center '>
-                    <div class="card col-md-3 m-4" style={{ width: '18rem' }}>
-                        <img src="..." class="card-img-top" alt="..." />
+                    
+                    <div class="card col-md-4 m-4 shadow p-3 mb-5 bg-white rounded" style={{ width: '18rem' }}>
+                        <img src="https://static.wixstatic.com/media/618c8c_5b96780e12eb4670ab9717d14cfde2d8~mv2.png" class="card-img-top" alt="..." />
                         <div class="card-body">
                             <h5 class="card-title">Card title</h5>
                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <a href="#" class="btn">Go somewhere</a>
                         </div>
                     </div>
 
-                    <div class="card col-md-4 m-4" style={{ width: '18rem' }}>
-                        <img src="..." class="card-img-top" alt="..." />
+                    <div class="card col-md-4 m-4 shadow p-3 mb-5 bg-white rounded" style={{ width: '18rem' }}>
+                        <img src="https://static.wixstatic.com/media/618c8c_5b96780e12eb4670ab9717d14cfde2d8~mv2.png" class="card-img-top" alt="..." />
                         <div class="card-body">
                             <h5 class="card-title">Card title</h5>
                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <a href="#" class="btn">Go somewhere</a>
                         </div>
                     </div>
 
-                    <div class="card col-md-4 m-4" style={{ width: '18rem' }}>
-                        <img src="..." class="card-img-top" alt="..." />
+                    <div class="card col-md-4 m-4 shadow p-3 mb-5 bg-white rounded" style={{ width: '18rem' }}>
+                        <img src="https://static.wixstatic.com/media/618c8c_5b96780e12eb4670ab9717d14cfde2d8~mv2.png" class="card-img-top" alt="..." />
                         <div class="card-body">
                             <h5 class="card-title">Card title</h5>
                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <a href="#" class="btn">Go somewhere</a>
                         </div>
                     </div>
 
-                    <div class="card col-md-4 m-4" style={{ width: '18rem' }}>
-                        <img src="..." class="card-img-top" alt="..." />
+                    <div class="card col-md-4 m-4 shadow p-3 mb-5 bg-white rounded" style={{ width: '18rem' }}>
+                        <img src="https://static.wixstatic.com/media/618c8c_5b96780e12eb4670ab9717d14cfde2d8~mv2.png" class="card-img-top" alt="..." />
                         <div class="card-body">
                             <h5 class="card-title">Card title</h5>
                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <a href="#" class="btn">Go somewhere</a>
                         </div>
                     </div>
                 </div>

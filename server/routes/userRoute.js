@@ -43,7 +43,10 @@ router.post("/login", async (req, res) => {
                 name: user[0].name,
                 email: user[0].email,
                 isVerified: user[0].isVerified,
-                _id: user[0]._id
+                notifications: user[0].notifications,
+                _id: user[0]._id,
+                createdAt: user[0].createdAt
+                
             }
             res.send(currentUser);
 
