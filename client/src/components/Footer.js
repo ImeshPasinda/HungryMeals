@@ -6,8 +6,17 @@ export default function Footer() {
 
 
     return (
-        
+        <div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
         <div  style={{ backgroundColor: '#0A0708', color: 'white' , bottom : '0', marginTop: '400px', width : '100%' }}>
+            
             <div class="container" >
                 <footer class="py-5" >
                     <div class="row">
@@ -87,6 +96,7 @@ export default function Footer() {
                     </div> */}
                 </footer>
             </div>
+        </div>
         </div>
     )
 }

@@ -15,7 +15,7 @@ import Footer from './components/Footer';
 import AdminProfilescreen from './screens/AdminProfilescreen';
 import Adminloginscreen from './screens/Adiminloginscreen';
 import { useSelector } from 'react-redux';
-
+import Notificationmanagementscreen from './screens/Notificationmanagementscreen';
 
 function App() {
 
@@ -51,10 +51,16 @@ function App() {
 
             <Route path="/feedback" exact element={<FeedbackScreen />} />
 
-          ) && currentAdmin ? (<Route path="/nofeedback" exact element={<FeedbackScreen />} />) : (
+          ) && currentAdmin ? (<Route path="/404" exact element={<FeedbackScreen />} />) : (
 
             <Route path="/feedback" exact element={<FeedbackScreen />} />
 
+
+          )}
+
+          {currentAdmin ? (<Route path="admin/notifications" exact element={<Notificationmanagementscreen />} />) : (
+
+            <Route path="/404" exact element={<FeedbackScreen />} />
 
           )}
 
@@ -62,6 +68,7 @@ function App() {
 
           <Route path="/profile" exact element={<UserProfilescreen />} />
           <Route path="/admin" exact element={<AdminProfilescreen />} />
+
 
 
 

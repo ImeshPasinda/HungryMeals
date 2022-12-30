@@ -143,7 +143,7 @@ export default function AdminProfilescreen() {
                             <p class="card-text">-Manage all types of notification(seasonal offers,promotional details)</p>
                             <br />
 
-                            <a href="#" class="btn">See More</a>
+                            <a href="/admin/notifications" class="btn">See More</a>
                         </div>
                     </div>
 

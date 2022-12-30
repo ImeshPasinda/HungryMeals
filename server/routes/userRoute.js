@@ -6,7 +6,7 @@ router.post("/register", async (req, res) => {
 
     const { name, email, password } = req.body
 
-    
+
 
     try {
 
@@ -45,8 +45,27 @@ router.post("/login", async (req, res) => {
                 isVerified: user[0].isVerified,
                 notifications: user[0].notifications,
                 _id: user[0]._id,
-                createdAt: user[0].createdAt
-                
+
+                notificationOneImage: user[0].notificationOneImage,
+                notificationOneHeader: user[0].notificationOneHeader,
+                notificationOneBody: user[0].notificationOneBody,
+                notificationOneDate: user[0].notificationOneDate,
+
+                notificationTwoImage: user[0].notificationTwoImage,
+                notificationTwoHeader: user[0].notificationTwoHeader,
+                notificationTwoBody: user[0].notificationTwoBody,
+                notificationTwoDate: user[0].notificationTwoDate,
+
+                notificationThreeImage: user[0].notificationThreeImage,
+                notificationThreeHeader: user[0].notificationThreeHeader,
+                notificationThreeBody: user[0].notificationThreeBody,
+                notificationThreeDate: user[0].notificationThreeDate,
+
+                notificationFourImage: user[0].notificationFourImage,
+                notificationFourHeader: user[0].notificationFourHeader,
+                notificationFourBody: user[0].notificationFourBody,
+                notificationFourDate: user[0].notificationFourDate,
+
             }
             res.send(currentUser);
 
@@ -67,10 +86,10 @@ router.post("/login", async (req, res) => {
 
 router.get("/getallusers", async (req, res) => {
 
-  
+
     try {
 
-        const users = await User.find({})
+        const users = await User.find()
         res.send(users)
 
     } catch (error) {
@@ -82,17 +101,17 @@ router.get("/getallusers", async (req, res) => {
 router.put("/update/password/:id", async (req, res) => {
 
     let userId = req.params.id;
-    const { password} = req.body;
+    const { password } = req.body;
 
     const updateUserPassword = {
-        
+
         password,
-    
+
     }
-  
+
     try {
 
-        await User.findByIdAndUpdate(userId , updateUserPassword)
+        await User.findByIdAndUpdate(userId, updateUserPassword)
         res.send('User Password Updated Successfully')
 
     } catch (error) {
@@ -104,17 +123,17 @@ router.put("/update/password/:id", async (req, res) => {
 router.put("/update/name/:id", async (req, res) => {
 
     let userId = req.params.id;
-    const { name} = req.body;
+    const { name } = req.body;
 
     const updateUserName = {
-        
+
         name,
-    
+
     }
-  
+
     try {
 
-        await User.findByIdAndUpdate(userId , updateUserName)
+        await User.findByIdAndUpdate(userId, updateUserName)
         res.send('User Name Updated Successfully')
 
     } catch (error) {
@@ -127,18 +146,64 @@ router.put("/update/name/:id", async (req, res) => {
 router.put("/update/email/:id", async (req, res) => {
 
     let userId = req.params.id;
-    const { email} = req.body;
+    const { email } = req.body;
 
     const updateUserEmail = {
-        
+
         email,
-    
+
     }
-  
+
     try {
 
-        await User.findByIdAndUpdate(userId , updateUserEmail)
+        await User.findByIdAndUpdate(userId, updateUserEmail)
         res.send('User Email Updated Successfully')
+
+    } catch (error) {
+        return res.status(400).json({ message: error });
+    }
+});
+
+router.put("/update/notificationone/:id", async (req, res) => {
+
+    let userId = req.params.id;
+    const { notificationOneImage ,notificationOneHeader ,notificationOneBody ,notificationOneDate } = req.body;
+
+    const updateNotificationOne = {
+
+        notificationOneImage,
+        notificationOneHeader,
+        notificationOneBody,
+        notificationOneDate
+    }
+
+    try {
+
+        await User.findByIdAndUpdate(userId, updateNotificationOne)
+        res.send('User Notification One Updated Successfully')
+
+    } catch (error) {
+        return res.status(400).json({ message: error });
+    }
+});
+
+router.put("/update/notificationtwo/:id", async (req, res) => {
+
+    let userId = req.params.id;
+    const { notificationTwoImage ,notificationTwoHeader ,notificationTwoBody ,notificationTwoDate } = req.body;
+
+    const updateNotificationTwo = {
+
+        notificationTwoImage,
+        notificationTwoHeader,
+        notificationTwoBody,
+        notificationTwoDate
+    }
+
+    try {
+
+        await User.findByIdAndUpdate(userId, updateNotificationTwo)
+        res.send('User Notification Two Updated Successfully')
 
     } catch (error) {
         return res.status(400).json({ message: error });

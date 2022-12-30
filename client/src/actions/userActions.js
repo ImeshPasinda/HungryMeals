@@ -146,3 +146,111 @@ export const updateUserEmail = (updateemail, id) => async dispatch => {
         dispatch({ type: 'UPDATE_USER_EMAIL_FAILED', payload: error })
     }
 }
+
+
+
+export const updateNotificationOneAction = (updateNotificationOne, userId) => async dispatch => {
+
+    dispatch({ type: 'UPDATE_USER_NOTIFICATION_ONE_REQUEST' })
+
+    try {
+        const response = await axios.put(`/api/users/update/notificationone/${userId}`, updateNotificationOne)
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1500,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
+        Toast.fire({
+            icon: 'success',
+            title: 'Notification One updated successfully'
+        })
+        setTimeout(function () {
+            window.location.reload('/admin/notifications');
+        }, 1500);
+
+        console.log(response);
+        dispatch({ type: 'UPDATE_USER_NOTIFICATION_ONE_SUCCESS' })
+
+
+    } catch (error) {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
+        Toast.fire({
+            icon: 'error',
+            title: 'Notification One updated unsuccessfully'
+        })
+
+        dispatch({ type: 'UPDATE_USER_NOTIFICATION_ONE_FAILED', payload: error })
+    }
+}
+
+
+
+export const updateNotificationTwoAction = (updateNotificationTwo, userId) => async dispatch => {
+
+    dispatch({ type: 'UPDATE_USER_NOTIFICATION_TWO_REQUEST' })
+
+    try {
+        const response = await axios.put(`/api/users/update/notificationTwo/${userId}`, updateNotificationTwo)
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1500,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
+        Toast.fire({
+            icon: 'success',
+            title: 'Notification Two updated successfully'
+        })
+        setTimeout(function () {
+            window.location.reload('/admin/notifications');
+        }, 1500);
+
+        console.log(response);
+        dispatch({ type: 'UPDATE_USER_NOTIFICATION_TWO_SUCCESS' })
+
+
+    } catch (error) {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
+        Toast.fire({
+            icon: 'error',
+            title: 'Notification Two updated unsuccessfully'
+        })
+
+        dispatch({ type: 'UPDATE_USER_NOTIFICATION_TWO_FAILED', payload: error })
+    }
+}

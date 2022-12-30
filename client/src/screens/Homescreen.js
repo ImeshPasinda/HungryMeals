@@ -36,9 +36,6 @@ export default function Homescreen() {
 
             <div className='row justify-content-center'>
 
-
-
-
                 {/* <div className="flex-container shadow p-0 bg-white rounded justify-content-center"> */}
                 <div className='col-md-9  shadow-lg p-0 mb-5 bg-white rounded'>
                     <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">

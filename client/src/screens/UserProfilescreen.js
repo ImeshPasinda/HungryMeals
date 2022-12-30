@@ -34,10 +34,10 @@ export default function UserProfilescreen() {
         console.log(updatename, id)
         dispatch(updateUserName(updatename, id))
 
-    
-        currentUser.name = name; 
+
+        currentUser.name = name;
         localStorage.setItem('currentUser', JSON.stringify(currentUser))
-        
+
     }
 
     function updateEmail(id) {
@@ -51,9 +51,9 @@ export default function UserProfilescreen() {
         console.log(updateemail, id)
         dispatch(updateUserEmail(updateemail, id))
 
-        currentUser.email = email; 
+        currentUser.email = email;
         localStorage.setItem('currentUser', JSON.stringify(currentUser))
-        
+
     }
 
 
@@ -150,7 +150,7 @@ export default function UserProfilescreen() {
 
             <div className='row justify-content-center'>
 
-                <div className='col-md-8 m-2 p-1 shadow p-3 mb-5 bg-white' style={{ backgroundColor: 'red', color: 'black' , borderRadius: '15px'}}>
+                <div className='col-md-8 m-2 p-1 shadow p-3 mb-5 bg-white' style={{ backgroundColor: 'red', color: 'black', borderRadius: '15px' }}>
 
                     <img src='https://static.vecteezy.com/system/resources/previews/002/002/403/large_2x/man-with-beard-avatar-character-isolated-icon-free-vector.jpg' style={{ height: '150px', height: '150px' }} />
 
@@ -188,7 +188,108 @@ export default function UserProfilescreen() {
                     </p>
                     <div class="collapse" id="collapseExample">
                         <div class="card card-body">
-                            <div className="text-start" style={{ fontSize: '10px', color: 'gray' }}><><i class="fa fa-calendar" aria-hidden="true"></i> </>{currentUser.createdAt.substring(0, 10)}</div>{currentUser.notifications}
+                            {currentUser.notificationOneHeader === '' && currentUser.notificationTwoHeader === '' && currentUser.notificationThreeHeader === '' && currentUser.notificationFourHeader === '' ? (
+                      
+
+                                <small class="text-muted text-center fst-italic"><i class="fa-solid fa-mug-saucer"></i><> </>You're All Caught Up...</small>
+                        
+                            ) : (
+
+                                <></>
+
+                            )}
+                            <br/>
+
+                            <div class="row row-cols-1 row-cols-md-4 g-4">
+
+
+                                {currentUser.notificationOneHeader === '' ? (
+                                    <></>
+
+                                ) : (
+
+                                    < div class="col">
+                                        <div class="card h-100 shadow">
+                                            <button type="button" class="btn-close p-2" style={{ position: 'absolute', right: '4px' }} aria-label="Close"></button>
+
+                                            <img src={currentUser.notificationOneImage} class="card-img-top" alt="..." />
+                                            <div class="card-body">
+                                                <h5 class="card-title">{currentUser.notificationOneHeader}</h5>
+                                                <p class="card-text">{currentUser.notificationOneBody}</p> </div>
+                                            <div class="card-footer">
+                                                <small class="text-muted"><i class="fa fa-calendar" aria-hidden="true"></i><> </>{currentUser.notificationOneDate.substring(0, 10)}</small>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                )}
+
+
+                                {currentUser.notificationTwoHeader === '' ? (
+                                    <></>
+
+                                ) : (
+
+                                    < div class="col">
+                                        <div class="card h-100 shadow">
+                                            <button type="button" class="btn-close p-2" style={{ position: 'absolute', right: '4px' }} aria-label="Close"></button>
+                                            <img src={currentUser.notificationTwoImage} class="card-img-top" alt="..." />
+                                            <div class="card-body">
+                                                <h5 class="card-title">{currentUser.notificationTwoHeader}</h5>
+                                                <p class="card-text">{currentUser.notificationTwoBody}</p> </div>
+                                            <div class="card-footer">
+                                                <small class="text-muted"><i class="fa fa-calendar" aria-hidden="true"></i><> </>{currentUser.notificationTwoDate.substring(0, 10)}</small>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                )}
+
+
+                                {currentUser.notificationThreeHeader === '' ? (
+                                    <></>
+
+                                ) : (
+
+                                    <div class="col">
+                                        <div class="card h-100 shadow">
+                                            <button type="button" class="btn-close p-2" style={{ position: 'absolute', right: '4px' }} aria-label="Close"></button>
+                                            <img src={currentUser.notificationThreeImage} class="card-img-top" alt="..." />
+                                            <div class="card-body">
+                                                <h5 class="card-title">{currentUser.notificationThreeHeader}</h5>
+                                                <p class="card-text">{currentUser.notificationThreeBody}</p></div>
+                                            <div class="card-footer">
+                                                <small class="text-muted"><i class="fa fa-calendar" aria-hidden="true"></i><> </>{currentUser.notificationThreeDate.substring(0, 10)}</small>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                )}
+
+                                {currentUser.notificationFourHeader === '' ? (
+                                    <></>
+
+                                ) : (
+
+                                    <div class="col">
+                                        <div class="card h-100 shadow">
+                                            <button type="button" class="btn-close p-2" style={{ position: 'absolute', right: '4px' }} aria-label="Close"></button>
+                                            <img src={currentUser.notificationThreeImage} class="card-img-top" alt="..." />
+                                            <div class="card-body">
+                                                <h5 class="card-title">{currentUser.notificationFourHeader}</h5>
+                                                <p class="card-text">{currentUser.notificationThreeBody}</p></div>
+                                            <div class="card-footer">
+                                                <small class="text-muted"><i class="fa fa-calendar" aria-hidden="true"></i><> </>{currentUser.notificationThreeDate.substring(0, 10)}</small>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                )}
+
+
+
+
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -197,6 +298,6 @@ export default function UserProfilescreen() {
             </div>
 
 
-        </div>
+        </div >
     )
 }

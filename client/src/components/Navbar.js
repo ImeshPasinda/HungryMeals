@@ -14,14 +14,14 @@ export default function Navbar() {
 
     return (
         <div>
-            <nav className="navbar navbar-expand-lg shadow-lg p-3 mb-5 bg-black  fixed-top">
+            <nav className="navbar navbar-expand-lg shadow-lg p-3 mb-5 navbar-dark bg-black  fixed-top">
           
                 <div className="container-fluid">
                     <a class="navbar-brand" href="/">
                         <img src="https://static.wixstatic.com/media/618c8c_682a5ffcb637494aa42be045fbc82143~mv2.png" alt="" width="78" height="45" class="d-inline-block align-text-top" />
                     </a>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
+                        <span className="navbar-toggler-icon" ></span>
                     </button>
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav ms-auto">

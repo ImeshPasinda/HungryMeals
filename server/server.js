@@ -1,6 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-
+const cors = require("cors");
 
 const Pizza = require('./models/PizzaModel')
 const User = require('./models/userModel')
@@ -12,7 +12,7 @@ const app = express();
 const db = require('./db')
 app.use(express.json());
 app.use(bodyParser.json());
-
+app.use(cors());
 
 
 
