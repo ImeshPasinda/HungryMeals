@@ -22,15 +22,15 @@ export default function Notificationmanagementscreen() {
     const [notificationOneBody, updatenotiOneBody] = useState('')
     const [notificationOneDate, updatenotiOneDate] = useState('')
 
-    function updateNotificationOne(userId) {
+    function updateNotificationOne(userId,val) {
 
 
-        console.log(userId)
+        console.log(userId,val)
 
         const updateNotificationOne = {
 
             notificationOneImage,
-            notificationOneHeader,
+            notificationOneHeader : val,
             notificationOneBody,
             notificationOneDate
 
@@ -49,15 +49,15 @@ export default function Notificationmanagementscreen() {
     const [notificationTwoBody, updatenotiTwoBody] = useState('')
     const [notificationTwoDate, updatenotiTwoDate] = useState('')
 
-    function updateNotificationTwo(userId) {
+    function updateNotificationTwo(userId,val) {
 
 
-        console.log(userId)
+        console.log(userId,val)
 
         const updateNotificationTwo = {
 
             notificationTwoImage,
-            notificationTwoHeader,
+            notificationTwoHeader : val,
             notificationTwoBody,
             notificationTwoDate
 
@@ -85,7 +85,7 @@ export default function Notificationmanagementscreen() {
         const updateNotificationThree = {
 
             notificationThreeImage,
-            notificationThreeHeader ,
+            notificationThreeHeader: val ,
             notificationThreeBody,
             notificationThreeDate
 
@@ -128,34 +128,7 @@ export default function Notificationmanagementscreen() {
     }
 
 
-    
-    const [notification1Rest, Restnotifications1] = useState('')
-    const [notification2Rest, Restnotifications2] = useState('')
-    const [notification3Rest, Restnotifications3] = useState('')
-    const [notification4Rest, Restnotifications4] = useState('')
-   
 
-    // function resetNotifications(userId) {
-
-
-    //     console.log(userId)
-
-    //     const resetNotifications = {
-
-    //         notification1Rest : '',
-    //         notification2Rest,
-    //         notification3Rest,
-    //         notification4Rest
-
-    //     }
-
-    //     console.log(resetNotifications, userId)
-    //     dispatch(updateNotificationFourAction(resetNotifications, userId))
-
-
-
-
-    // }
 
 
 
@@ -213,7 +186,7 @@ export default function Notificationmanagementscreen() {
         },
         {
             name: "Empty",
-            cell: row => <button onClick={() => { empty(row._id) }} className="btn">Empty</button>
+            cell: row => <button onClick={() => {updateNotificationOne(row._id,notificationOneHeader);updateNotificationOne(row._id,'empty');updateNotificationTwo(row._id,notificationTwoHeader);updateNotificationTwo(row._id,'empty');updateNotificationThree(row._id,notificationThreeHeader);updateNotificationThree(row._id,'empty');updateNotificationFour(row._id,notificationFourHeader);updateNotificationFour(row._id,'empty')}} type="button" class="btn ">Reset All</button>
 
         }
 
@@ -351,7 +324,8 @@ export default function Notificationmanagementscreen() {
                                         <label for="exampleFormControlInput1" class="form-label">Date</label>
                                         <input
                                             required
-                                            type="Date"
+                                            type="text"
+                                            placeholder="YYYY-MM-DD"
                                             class="form-control"
                                             id="exampleFormControlInput1"
                                             value={notificationOneDate}
@@ -419,7 +393,8 @@ export default function Notificationmanagementscreen() {
                                         <label for="exampleFormControlInput1" class="form-label">Date</label>
                                         <input
                                             required
-                                            type="Date"
+                                            type="text"
+                                            placeholder="YYYY-MM-DD"
                                             class="form-control"
                                             id="exampleFormControlInput1"
                                             value={notificationTwoDate}
@@ -489,7 +464,8 @@ export default function Notificationmanagementscreen() {
                                         <label for="exampleFormControlInput1" class="form-label">Date</label>
                                         <input
                                             required
-                                            type="Date"
+                                            type="text"
+                                            placeholder="YYYY-MM-DD"
                                             class="form-control"
                                             id="exampleFormControlInput1"
                                             value={notificationThreeDate}
@@ -560,7 +536,8 @@ export default function Notificationmanagementscreen() {
                                         <label for="exampleFormControlInput1" class="form-label">Date</label>
                                         <input
                                             required
-                                            type="Date"
+                                            type="text"
+                                            placeholder="YYYY-MM-DD"
                                             class="form-control"
                                             id="exampleFormControlInput1"
                                             value={notificationFourDate}

@@ -217,7 +217,7 @@ export default function UserProfilescreen() {
                                                 <h5 class="card-title">{currentUser.notificationOneHeader}</h5>
                                                 <p class="card-text">{currentUser.notificationOneBody}</p> </div>
                                             <div class="card-footer">
-                                                <small class="text-muted"><i class="fa fa-calendar" aria-hidden="true"></i><> </>{currentUser.notificationOneDate.substring(0, 10)}</small>
+                                                <small class="text-muted"><i class="fa fa-calendar" aria-hidden="true"></i><> </>{currentUser.notificationOneDate}</small>
                                             </div>
                                         </div>
                                     </div>
@@ -238,7 +238,7 @@ export default function UserProfilescreen() {
                                                 <h5 class="card-title">{currentUser.notificationTwoHeader}</h5>
                                                 <p class="card-text">{currentUser.notificationTwoBody}</p> </div>
                                             <div class="card-footer">
-                                                <small class="text-muted"><i class="fa fa-calendar" aria-hidden="true"></i><> </>{currentUser.notificationTwoDate.substring(0, 10)}</small>
+                                                <small class="text-muted"><i class="fa fa-calendar" aria-hidden="true"></i><> </>{currentUser.notificationTwoDate}</small>
                                             </div>
                                         </div>
                                     </div>
@@ -259,7 +259,7 @@ export default function UserProfilescreen() {
                                                 <h5 class="card-title">{currentUser.notificationThreeHeader}</h5>
                                                 <p class="card-text">{currentUser.notificationThreeBody}</p></div>
                                             <div class="card-footer">
-                                                <small class="text-muted"><i class="fa fa-calendar" aria-hidden="true"></i><> </>{currentUser.notificationThreeDate.substring(0, 10)}</small>
+                                                <small class="text-muted"><i class="fa fa-calendar" aria-hidden="true"></i><> </>{currentUser.notificationThreeDate}</small>
                                             </div>
                                         </div>
                                     </div>
@@ -279,7 +279,7 @@ export default function UserProfilescreen() {
                                                 <h5 class="card-title">{currentUser.notificationFourHeader}</h5>
                                                 <p class="card-text">{currentUser.notificationThreeBody}</p></div>
                                             <div class="card-footer">
-                                                <small class="text-muted"><i class="fa fa-calendar" aria-hidden="true"></i><> </>{currentUser.notificationThreeDate.substring(0, 10)}</small>
+                                                <small class="text-muted"><i class="fa fa-calendar" aria-hidden="true"></i><> </>{currentUser.notificationThreeDate}</small>
                                             </div>
                                         </div>
                                     </div>
