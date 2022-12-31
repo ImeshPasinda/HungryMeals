@@ -172,14 +172,14 @@ export const updateNotificationOneAction = (updateNotificationOne, userId) => as
     
             Toast.fire({
                 icon: 'success',
-                title: 'Notification One reset successfully'
+                title: 'Notification One remove successfully'
             })
             setTimeout(function () {
                 window.location.reload('/admin/notifications');
             }, 1500);
     
             console.log(response);
-            dispatch({ type: 'RESET_USER_NOTIFICATION_ONE_SUCCESS' })
+            dispatch({ type: 'REMOVE_USER_NOTIFICATION_ONE_SUCCESS' })
         }else{
             const Toast = Swal.mixin({
                 toast: true,
@@ -256,14 +256,14 @@ export const updateNotificationTwoAction = (updateNotificationTwo, userId) => as
     
             Toast.fire({
                 icon: 'success',
-                title: 'Notification Two reset successfully'
+                title: 'Notification Two remove successfully'
             })
             setTimeout(function () {
                 window.location.reload('/admin/notifications');
             }, 1500);
     
             console.log(response);
-            dispatch({ type: 'RESET_USER_NOTIFICATION_TWO_SUCCESS' })
+            dispatch({ type: 'REMOVE_USER_NOTIFICATION_TWO_SUCCESS' })
         }else{
             const Toast = Swal.mixin({
                 toast: true,
@@ -338,14 +338,14 @@ export const updateNotificationThreeAction = (updateNotificationThree, userId) =
     
             Toast.fire({
                 icon: 'success',
-                title: 'Notification Three reset successfully'
+                title: 'Notification Three remove successfully'
             })
             setTimeout(function () {
                 window.location.reload('/admin/notifications');
             }, 1500);
     
             console.log(response);
-            dispatch({ type: 'RESET_USER_NOTIFICATION_THREE_SUCCESS' })
+            dispatch({ type: 'REMOVE_USER_NOTIFICATION_THREE_SUCCESS' })
         }else{
             const Toast = Swal.mixin({
                 toast: true,
@@ -420,14 +420,14 @@ export const updateNotificationFourAction = (updateNotificationFour, userId) => 
     
             Toast.fire({
                 icon: 'success',
-                title: 'Notification Four reset successfully'
+                title: 'Notification Four remove successfully'
             })
             setTimeout(function () {
                 window.location.reload('/admin/notifications');
             }, 1500);
     
             console.log(response);
-            dispatch({ type: 'RESET_USER_NOTIFICATION_FOUR_SUCCESS' })
+            dispatch({ type: 'REMOVE_USER_NOTIFICATION_FOUR_SUCCESS' })
         }else{
             const Toast = Swal.mixin({
                 toast: true,

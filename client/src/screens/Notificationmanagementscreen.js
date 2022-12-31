@@ -186,7 +186,7 @@ export default function Notificationmanagementscreen() {
         },
         {
             name: "Empty",
-            cell: row => <button onClick={() => {updateNotificationOne(row._id,notificationOneHeader);updateNotificationOne(row._id,'empty');updateNotificationTwo(row._id,notificationTwoHeader);updateNotificationTwo(row._id,'empty');updateNotificationThree(row._id,notificationThreeHeader);updateNotificationThree(row._id,'empty');updateNotificationFour(row._id,notificationFourHeader);updateNotificationFour(row._id,'empty')}} type="button" class="btn ">Reset All</button>
+            cell: row => <button onClick={() => {updateNotificationOne(row._id,notificationOneHeader);updateNotificationOne(row._id,'empty');updateNotificationTwo(row._id,notificationTwoHeader);updateNotificationTwo(row._id,'empty');updateNotificationThree(row._id,notificationThreeHeader);updateNotificationThree(row._id,'empty');updateNotificationFour(row._id,notificationFourHeader);updateNotificationFour(row._id,'empty')}} type="button" class="btn ">Remove All</button>
 
         }
 
@@ -337,7 +337,7 @@ export default function Notificationmanagementscreen() {
                             </div>
                             <div class="modal-footer">
                             <button onClick={() => updateNotificationOne(userId,notificationOneHeader)} type="button" class="btn ">Update</button>
-                                <button onClick={() => {updateNotificationOne(userId,'empty')} } type="button" class="btn ">Reset</button>
+                                <button onClick={() => {updateNotificationOne(userId,'empty')} } type="button" class="btn ">Remove</button>
                                 <button class="btn" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Next</button>
                             </div>
                         </div>
@@ -406,7 +406,7 @@ export default function Notificationmanagementscreen() {
                             </div>
                             <div class="modal-footer">
                             <button onClick={() => updateNotificationTwo(userId,notificationTwoHeader)} type="button" class="btn ">Update</button>
-                                <button onClick={() => {updateNotificationTwo(userId,'empty')} } type="button" class="btn ">Reset</button>
+                                <button onClick={() => {updateNotificationTwo(userId,'empty')} } type="button" class="btn ">Remove</button>
                                 <button class="btn" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" data-bs-dismiss="modal">Next</button>
                             </div>
                         </div>
@@ -477,7 +477,7 @@ export default function Notificationmanagementscreen() {
                             </div>
                             <div class="modal-footer">
                             <button onClick={() => updateNotificationThree(userId,notificationThreeHeader)} type="button" class="btn ">Update</button>
-                                <button onClick={() => {updateNotificationThree(userId,'empty')} } type="button" class="btn ">Reset</button>
+                                <button onClick={() => {updateNotificationThree(userId,'empty')} } type="button" class="btn ">Remove</button>
                                 <button class="btn" data-bs-target="#exampleModalToggle4" data-bs-toggle="modal" data-bs-dismiss="modal">Next</button>
                             </div>
                         </div>
@@ -549,7 +549,7 @@ export default function Notificationmanagementscreen() {
                             </div>
                             <div class="modal-footer">
                                 <button onClick={() => updateNotificationFour(userId,notificationFourHeader)} type="button" class="btn ">Update</button>
-                                <button onClick={() => {updateNotificationFour(userId,'empty')} } type="button" class="btn ">Reset</button>
+                                <button onClick={() => {updateNotificationFour(userId,'empty')} } type="button" class="btn ">Remove</button>
                                 <button class="btn" data-bs-target="#" data-bs-toggle="modal" data-bs-dismiss="modal">Close</button>
                             </div>
                         
