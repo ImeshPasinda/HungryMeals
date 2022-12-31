@@ -21,6 +21,9 @@ export default function Notificationmanagementscreen() {
     const [notificationOneHeader, updatenotiOneHeader] = useState('')
     const [notificationOneBody, updatenotiOneBody] = useState('')
     const [notificationOneDate, updatenotiOneDate] = useState('')
+    const [filterdUsers ,setFilterdUsers ] = useState([]);
+    const [search ,setSearch] = useState("");
+
 
     function updateNotificationOne(userId,val) {
 
@@ -138,7 +141,8 @@ export default function Notificationmanagementscreen() {
     useEffect(() => {
         function getUsers() {
             axios.get("http://localhost:8070/api/users/getAllusers").then((res) => {
-                setUsers(res.data)
+                setUsers(res.data);
+                setFilterdUsers(res.data);
             }).catch((err) => {
                 console.log(err.message)
             })
@@ -185,7 +189,7 @@ export default function Notificationmanagementscreen() {
 
         },
         {
-            name: "Empty",
+            name: "Remove",
             cell: row => <button onClick={() => {updateNotificationOne(row._id,notificationOneHeader);updateNotificationOne(row._id,'empty');updateNotificationTwo(row._id,notificationTwoHeader);updateNotificationTwo(row._id,'empty');updateNotificationThree(row._id,notificationThreeHeader);updateNotificationThree(row._id,'empty');updateNotificationFour(row._id,notificationFourHeader);updateNotificationFour(row._id,'empty')}} type="button" class="btn ">Remove All</button>
 
         }
@@ -195,48 +199,16 @@ export default function Notificationmanagementscreen() {
 
     ];
 
-    function empty(userId) {
-        
 
-        const swalWithBootstrapButtons = Swal.mixin({
-            customClass: {
-              confirmButton: 'btn',
-              cancelButton: 'btn'
-            },
-            buttonsStyling: false
-          })
-          
-          swalWithBootstrapButtons.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'delete it!',
-            cancelButtonText: 'cancel!',
-            reverseButtons: true
-          }).then((result) => {
-            if (result.isConfirmed) {
+          useEffect(()=> {
+            const result = users.filter(users =>{
+                return users.name.toLowerCase().match(search.toLowerCase());
+            });
 
-            updateNotificationFour(userId)
+            setFilterdUsers(result);
+          } ,[search]);
 
-              swalWithBootstrapButtons.fire(
-                'Deleted!',
-                'Your file has been deleted.',
-                'success'
-              )
-            } else if (
-              /* Read more about handling dismissals below */
-              result.dismiss === Swal.DismissReason.cancel
-            ) {
-              swalWithBootstrapButtons.fire(
-                'Cancelled',
-                'Your imaginary file is safe :)',
-                'error'
-              )
-            }
-          })
-
-    }
+    
 
 
 
@@ -263,10 +235,24 @@ export default function Notificationmanagementscreen() {
 
                         title='Custom Notifications'
                         columns={columns}
-                        data={users}
+                        data={filterdUsers}
                         pagination
                         fixedHeader
                         fixedHeaderScrollHeight="450px"
+                        selectableRows
+                        selectableRowsHighlight
+                        subHeader
+                        subHeaderComponent ={
+                            <input
+                               
+                                type = "text"
+                                placeholder = "Search here..."
+                                className='w-25 form-control'
+                                value={search}
+                                onChange ={(e) => setSearch(e.target.value)}
+
+                            />
+                        }
 
                     />
 
