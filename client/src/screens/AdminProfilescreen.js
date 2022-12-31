@@ -148,7 +148,7 @@ export default function AdminProfilescreen() {
                     </div>
 
                     <div class="card col-md-4 m-4 shadow p-3 mb-5 bg-white " style={{ width: '18rem' , borderRadius: '15px'}}>
-                        <img src="https://static.wixstatic.com/media/618c8c_5b96780e12eb4670ab9717d14cfde2d8~mv2.png" class="card-img-top" alt="..." />
+                        <img src="https://img.freepik.com/free-vector/system-administrators-sysadmins-are-servicing-server-racks-system-administration-upkeeping-configuration-computer-systems-networks-concept-pinkish-coral-blue-palette-vector-illustration_335657-1642.jpg?w=996&t=st=1672481216~exp=1672481816~hmac=b5199f350aeb485298c5145e7e103810a1ce589904445f64fbdfbadddcca8fff" class="card-img-top" alt="..." />
                         <div class="card-body">
                             <h5 class="card-title">Service Management</h5>
                             <p class="card-text">-Manage all the details about services <br></br>
