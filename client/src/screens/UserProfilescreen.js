@@ -3,7 +3,10 @@ import { useSelector, useDispatch } from 'react-redux'
 import 'bootstrap'
 import { updateUserEmail } from "../actions/userActions";
 import { updateUserName } from "../actions/userActions";
-
+import { updateNotificationOneAction } from "../actions/userActions";
+import { updateNotificationTwoAction } from "../actions/userActions";
+import { updateNotificationThreeAction } from "../actions/userActions";
+import { updateNotificationFourAction } from "../actions/userActions";
 
 
 export default function UserProfilescreen() {
@@ -55,6 +58,130 @@ export default function UserProfilescreen() {
         localStorage.setItem('currentUser', JSON.stringify(currentUser))
 
     }
+
+    const [notificationOneImage, updatenotiOneImage] = useState('')
+    const [notificationOneHeader, updatenotiOneHeader] = useState('')
+    const [notificationOneBody, updatenotiOneBody] = useState('')
+    const [notificationOneDate, updatenotiOneDate] = useState('')
+
+    function updateNotificationOne(userId,val) {
+
+
+        console.log(userId,val)
+
+        const updateNotificationOne = {
+
+            notificationOneImage,
+            notificationOneHeader : val,
+            notificationOneBody,
+            notificationOneDate
+
+        }
+
+        console.log(updateNotificationOne, userId)
+        dispatch(updateNotificationOneAction(updateNotificationOne, userId))
+
+        currentUser.notificationOneHeader = 'empty';
+        localStorage.setItem('currentUser', JSON.stringify(currentUser))
+
+
+
+
+    }
+
+
+    const [notificationTwoImage, updatenotiTwoImage] = useState('')
+    const [notificationTwoHeader, updatenotiTwoHeader] = useState('')
+    const [notificationTwoBody, updatenotiTwoBody] = useState('')
+    const [notificationTwoDate, updatenotiTwoDate] = useState('')
+
+    function updateNotificationTwo(userId,val) {
+
+
+        console.log(userId,val)
+
+        const updateNotificationTwo = {
+
+            notificationTwoImage,
+            notificationTwoHeader : val,
+            notificationTwoBody,
+            notificationTwoDate
+
+        }
+
+        console.log(updateNotificationTwo, userId)
+        dispatch(updateNotificationTwoAction(updateNotificationTwo, userId))
+
+        currentUser.notificationTwoHeader = 'empty';
+        localStorage.setItem('currentUser', JSON.stringify(currentUser))
+
+
+
+
+    }   
+    
+    const [notificationThreeImage, updatenotiThreeImage] = useState('')
+    const [notificationThreeHeader, updatenotiThreeHeader] = useState('')
+    const [notificationThreeBody, updatenotiThreeBody] = useState('')
+    const [notificationThreeDate, updatenotiThreeDate] = useState('')
+
+    function updateNotificationThree(userId,val) {
+
+
+        console.log(userId,val)
+
+        const updateNotificationThree = {
+
+            notificationThreeImage,
+            notificationThreeHeader : val,
+            notificationThreeBody,
+            notificationThreeDate
+
+        }
+
+        console.log(updateNotificationThree, userId)
+        dispatch(updateNotificationThreeAction(updateNotificationThree, userId))
+
+        currentUser.notificationThreeHeader = 'empty';
+        localStorage.setItem('currentUser', JSON.stringify(currentUser))
+
+
+
+
+    }
+
+    const [notificationFourImage, updatenotiFourImage] = useState('')
+    const [notificationFourHeader, updatenotiFourHeader] = useState('')
+    const [notificationFourBody, updatenotiFourBody] = useState('')
+    const [notificationFourDate, updatenotiFourDate] = useState('')
+
+    function updateNotificationFour(userId,val) {
+
+
+        console.log(userId,val)
+
+        const updateNotificationFour = {
+
+            notificationFourImage,
+            notificationFourHeader : val,
+            notificationFourBody,
+            notificationFourDate
+
+        }
+
+        console.log(updateNotificationFour, userId)
+        dispatch(updateNotificationFourAction(updateNotificationFour, userId))
+
+        currentUser.notificationFourHeader = 'empty';
+        localStorage.setItem('currentUser', JSON.stringify(currentUser))
+
+
+
+
+    }
+
+    
+
 
 
 
@@ -210,7 +337,7 @@ export default function UserProfilescreen() {
 
                                     < div class="col">
                                         <div class="card h-100 shadow">
-                                            <button type="button" class="btn-close p-2" style={{ position: 'absolute', right: '4px' }} aria-label="Close"></button>
+                                            <button onClick={() => {updateNotificationOne(currentUser._id,'empty')} } type="button" class="btn-close p-2" style={{ position: 'absolute', right: '4px' }} aria-label="Close"></button>
 
                                             <img src={currentUser.notificationOneImage} class="card-img-top" alt="..." />
                                             <div class="card-body">
@@ -232,7 +359,7 @@ export default function UserProfilescreen() {
 
                                     < div class="col">
                                         <div class="card h-100 shadow">
-                                            <button type="button" class="btn-close p-2" style={{ position: 'absolute', right: '4px' }} aria-label="Close"></button>
+                                            <button onClick={() => {updateNotificationTwo(currentUser._id,'empty')} }  type="button" class="btn-close p-2" style={{ position: 'absolute', right: '4px' }} aria-label="Close"></button>
                                             <img src={currentUser.notificationTwoImage} class="card-img-top" alt="..." />
                                             <div class="card-body">
                                                 <h5 class="card-title">{currentUser.notificationTwoHeader}</h5>
@@ -253,7 +380,7 @@ export default function UserProfilescreen() {
 
                                     <div class="col">
                                         <div class="card h-100 shadow">
-                                            <button type="button" class="btn-close p-2" style={{ position: 'absolute', right: '4px' }} aria-label="Close"></button>
+                                            <button onClick={() => {updateNotificationThree(currentUser._id,'empty')} } type="button" class="btn-close p-2" style={{ position: 'absolute', right: '4px' }} aria-label="Close"></button>
                                             <img src={currentUser.notificationThreeImage} class="card-img-top" alt="..." />
                                             <div class="card-body">
                                                 <h5 class="card-title">{currentUser.notificationThreeHeader}</h5>
@@ -273,7 +400,7 @@ export default function UserProfilescreen() {
 
                                     <div class="col">
                                         <div class="card h-100 shadow">
-                                            <button type="button" class="btn-close p-2" style={{ position: 'absolute', right: '4px' }} aria-label="Close"></button>
+                                            <button onClick={() => {updateNotificationFour(currentUser._id,'empty')} } type="button" class="btn-close p-2" style={{ position: 'absolute', right: '4px' }} aria-label="Close"></button>
                                             <img src={currentUser.notificationThreeImage} class="card-img-top" alt="..." />
                                             <div class="card-body">
                                                 <h5 class="card-title">{currentUser.notificationFourHeader}</h5>
