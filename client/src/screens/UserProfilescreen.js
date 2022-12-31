@@ -188,7 +188,7 @@ export default function UserProfilescreen() {
                     </p>
                     <div class="collapse" id="collapseExample">
                         <div class="card card-body">
-                            {currentUser.notificationOneHeader === '' && currentUser.notificationTwoHeader === '' && currentUser.notificationThreeHeader === '' && currentUser.notificationFourHeader === '' ? (
+                            {currentUser.notificationOneHeader === 'empty' && currentUser.notificationTwoHeader === 'empty' && currentUser.notificationThreeHeader === 'empty' && currentUser.notificationFourHeader === 'empty' ? (
                       
 
                                 <small class="text-muted text-center fst-italic"><i class="fa-solid fa-mug-saucer"></i><> </>You're All Caught Up...</small>
@@ -203,7 +203,7 @@ export default function UserProfilescreen() {
                             <div class="row row-cols-1 row-cols-md-4 g-4">
 
 
-                                {currentUser.notificationOneHeader === '' ? (
+                                {currentUser.notificationOneHeader === 'empty' ? (
                                     <></>
 
                                 ) : (
@@ -225,7 +225,7 @@ export default function UserProfilescreen() {
                                 )}
 
 
-                                {currentUser.notificationTwoHeader === '' ? (
+                                {currentUser.notificationTwoHeader === 'empty' ? (
                                     <></>
 
                                 ) : (
@@ -246,7 +246,7 @@ export default function UserProfilescreen() {
                                 )}
 
 
-                                {currentUser.notificationThreeHeader === '' ? (
+                                {currentUser.notificationThreeHeader === 'empty' ? (
                                     <></>
 
                                 ) : (
@@ -266,7 +266,7 @@ export default function UserProfilescreen() {
 
                                 )}
 
-                                {currentUser.notificationFourHeader === '' ? (
+                                {currentUser.notificationFourHeader === 'empty' ? (
                                     <></>
 
                                 ) : (

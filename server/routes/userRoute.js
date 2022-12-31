@@ -210,6 +210,52 @@ router.put("/update/notificationtwo/:id", async (req, res) => {
     }
 });
 
+router.put("/update/notificationthree/:id", async (req, res) => {
+
+    let userId = req.params.id;
+    const { notificationThreeImage ,notificationThreeHeader ,notificationThreeBody ,notificationThreeDate } = req.body;
+
+    const updateNotificationThree = {
+
+        notificationThreeImage,
+        notificationThreeHeader,
+        notificationThreeBody,
+        notificationThreeDate
+    }
+
+    try {
+
+        await User.findByIdAndUpdate(userId, updateNotificationThree)
+        res.send('User Notification Three Updated Successfully')
+
+    } catch (error) {
+        return res.status(400).json({ message: error });
+    }
+});
+
+router.put("/update/notificationfour/:id", async (req, res) => {
+
+    let userId = req.params.id;
+    const { notificationFourImage ,notificationFourHeader ,notificationFourBody ,notificationFourDate } = req.body;
+
+    const updateNotificationFour = {
+
+        notificationFourImage,
+        notificationFourHeader,
+        notificationFourBody,
+        notificationFourDate
+    }
+
+    try {
+
+        await User.findByIdAndUpdate(userId, updateNotificationFour)
+        res.send('User Notification Four Updated Successfully')
+
+    } catch (error) {
+        return res.status(400).json({ message: error });
+    }
+});
+
 
 
 
