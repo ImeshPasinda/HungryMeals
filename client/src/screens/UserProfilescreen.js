@@ -337,7 +337,7 @@ export default function UserProfilescreen() {
 
                                     < div class="col">
                                         <div class="card h-100 shadow">
-                                            <button onClick={() => {updateNotificationOne(currentUser._id,'empty')} } type="button" class="btn-close p-2" style={{ position: 'absolute', right: '4px' }} aria-label="Close"></button>
+                                            <button onClick={() => {updateNotificationOne(currentUser._id,'empty')} } type="button" class="btn-close p-2" style={{ position: 'relative', margin: '2%' ,left: '220px' }} aria-label="Close"></button>
 
                                             <img src={currentUser.notificationOneImage} class="card-img-top" alt="..." />
                                             <div class="card-body">
