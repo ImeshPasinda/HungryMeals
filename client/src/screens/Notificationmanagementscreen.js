@@ -156,7 +156,7 @@ export default function Notificationmanagementscreen() {
                 notificationType: "Public Notification",
                 notificationHeader: val,
                 notificationBody : "empty",
-                notificationButton : "empty",
+                notificationButton : "#",
                 notificationDate : "YYYY-MM-DD",
 
 
@@ -165,7 +165,7 @@ export default function Notificationmanagementscreen() {
             currentNotifications[0].notificationType = "Public Notification";
             currentNotifications[0].notificationHeader = "empty";
             currentNotifications[0].notificationBody = "empty";
-            currentNotifications[0].notificationButton = "empty";
+            currentNotifications[0].notificationButton = "#";
             currentNotifications[0].notificationDate = "YYYY-MM-DD";
 
 
@@ -704,7 +704,7 @@ export default function Notificationmanagementscreen() {
 
                                 <div class="modal-body">
                                     <div class="mb-3">
-                                        <label for="exampleFormControlInput1" class="form-label">Date</label>
+                                        <label for="exampleFormControlInput1" class="form-label">Button URL</label>
                                         <input
                                             required
                                             type="text"
