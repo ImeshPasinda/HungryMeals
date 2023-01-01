@@ -60,7 +60,7 @@ function Customermanagementscreen() {
         },
         {
             name: "Password",
-            selector: (row) => row.notificationOneHeader,
+            selector: (row) => row.password,
         },
        
 
