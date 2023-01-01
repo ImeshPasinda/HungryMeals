@@ -167,7 +167,7 @@ router.put("/update/email/:id", async (req, res) => {
 router.put("/update/notificationone/:id", async (req, res) => {
 
     let userId = req.params.id;
-    const { notificationOneImage ,notificationOneHeader ,notificationOneBody ,notificationOneDate } = req.body;
+    const { notificationOneImage, notificationOneHeader, notificationOneBody, notificationOneDate } = req.body;
 
     const updateNotificationOne = {
 
@@ -190,7 +190,7 @@ router.put("/update/notificationone/:id", async (req, res) => {
 router.put("/update/notificationtwo/:id", async (req, res) => {
 
     let userId = req.params.id;
-    const { notificationTwoImage ,notificationTwoHeader ,notificationTwoBody ,notificationTwoDate } = req.body;
+    const { notificationTwoImage, notificationTwoHeader, notificationTwoBody, notificationTwoDate } = req.body;
 
     const updateNotificationTwo = {
 
@@ -213,7 +213,7 @@ router.put("/update/notificationtwo/:id", async (req, res) => {
 router.put("/update/notificationthree/:id", async (req, res) => {
 
     let userId = req.params.id;
-    const { notificationThreeImage ,notificationThreeHeader ,notificationThreeBody ,notificationThreeDate } = req.body;
+    const { notificationThreeImage, notificationThreeHeader, notificationThreeBody, notificationThreeDate } = req.body;
 
     const updateNotificationThree = {
 
@@ -236,7 +236,7 @@ router.put("/update/notificationthree/:id", async (req, res) => {
 router.put("/update/notificationfour/:id", async (req, res) => {
 
     let userId = req.params.id;
-    const { notificationFourImage ,notificationFourHeader ,notificationFourBody ,notificationFourDate } = req.body;
+    const { notificationFourImage, notificationFourHeader, notificationFourBody, notificationFourDate } = req.body;
 
     const updateNotificationFour = {
 
@@ -255,8 +255,6 @@ router.put("/update/notificationfour/:id", async (req, res) => {
         return res.status(400).json({ message: error });
     }
 });
-
-
 
 
 

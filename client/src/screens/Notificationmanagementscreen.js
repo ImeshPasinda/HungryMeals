@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import { updateNotificationFourAction, updateNotificationOneAction, updateNotificationThreeAction } from '../actions/userActions';
 import { updateNotificationTwoAction } from '../actions/userActions'
+import { updateNotificationAction } from '../actions/notificationAction';
 import Swal from 'sweetalert2';
 
 
@@ -17,23 +18,28 @@ export default function Notificationmanagementscreen() {
 
     const dispatch = useDispatch()
 
+
+    const userstate = useSelector(state => state.adminloginReducer)
+    const { currentNotifications } = userstate
+
+
     const [notificationOneImage, updatenotiOneImage] = useState('')
     const [notificationOneHeader, updatenotiOneHeader] = useState('')
     const [notificationOneBody, updatenotiOneBody] = useState('')
     const [notificationOneDate, updatenotiOneDate] = useState('')
-    const [filterdUsers ,setFilterdUsers ] = useState([]);
-    const [search ,setSearch] = useState("");
+    const [filterdUsers, setFilterdUsers] = useState([]);
+    const [search, setSearch] = useState("");
 
 
-    function updateNotificationOne(userId,val) {
+    function updateNotificationOne(userId, val) {
 
 
-        console.log(userId,val)
+        console.log(userId, val)
 
         const updateNotificationOne = {
 
             notificationOneImage,
-            notificationOneHeader : val,
+            notificationOneHeader: val,
             notificationOneBody,
             notificationOneDate
 
@@ -52,15 +58,15 @@ export default function Notificationmanagementscreen() {
     const [notificationTwoBody, updatenotiTwoBody] = useState('')
     const [notificationTwoDate, updatenotiTwoDate] = useState('')
 
-    function updateNotificationTwo(userId,val) {
+    function updateNotificationTwo(userId, val) {
 
 
-        console.log(userId,val)
+        console.log(userId, val)
 
         const updateNotificationTwo = {
 
             notificationTwoImage,
-            notificationTwoHeader : val,
+            notificationTwoHeader: val,
             notificationTwoBody,
             notificationTwoDate
 
@@ -80,7 +86,7 @@ export default function Notificationmanagementscreen() {
     const [notificationThreeBody, updatenotiThreeBody] = useState('')
     const [notificationThreeDate, updatenotiThreeDate] = useState('')
 
-    function updateNotificationThree(userId,val) {
+    function updateNotificationThree(userId, val) {
 
 
         console.log(userId)
@@ -88,7 +94,7 @@ export default function Notificationmanagementscreen() {
         const updateNotificationThree = {
 
             notificationThreeImage,
-            notificationThreeHeader: val ,
+            notificationThreeHeader: val,
             notificationThreeBody,
             notificationThreeDate
 
@@ -108,15 +114,15 @@ export default function Notificationmanagementscreen() {
     const [notificationFourBody, updatenotiFourBody] = useState('')
     const [notificationFourDate, updatenotiFourDate] = useState('')
 
-    function updateNotificationFour(userId,val) {
+    function updateNotificationFour(userId, val) {
 
 
-        console.log(userId ,val)
+        console.log(userId, val)
 
         const updateNotificationFour = {
 
             notificationFourImage,
-            notificationFourHeader:val,
+            notificationFourHeader: val,
             notificationFourBody,
             notificationFourDate
 
@@ -129,6 +135,75 @@ export default function Notificationmanagementscreen() {
 
 
     }
+
+
+    const [notificationType, updatenotificationType] = useState('')
+    const [notificationHeader, updatenotificationHeader] = useState('')
+    const [notificationBody, updatenotificationBody] = useState('')
+    const [notificationButton, updatenotificationButton] = useState('')
+    const [notificationDate, updatenotificationDate] = useState('')
+
+
+
+    function updateNotification(val) {
+
+        if (val === 'empty') {
+
+            console.log(val)
+
+            const updateNotification = {
+
+                notificationType: "Public Notification",
+                notificationHeader: val,
+                notificationBody : "empty",
+                notificationButton : "empty",
+                notificationDate : "YYYY-MM-DD",
+
+
+            }
+
+            currentNotifications[0].notificationType = "Public Notification";
+            currentNotifications[0].notificationHeader = "empty";
+            currentNotifications[0].notificationBody = "empty";
+            currentNotifications[0].notificationButton = "empty";
+            currentNotifications[0].notificationDate = "YYYY-MM-DD";
+
+
+            dispatch(updateNotificationAction(updateNotification))
+
+            localStorage.setItem('currentNotifications', JSON.stringify(currentNotifications))
+        } else {
+
+            console.log(val)
+
+            const updateNotification = {
+
+                notificationType,
+                notificationHeader: val,
+                notificationBody,
+                notificationButton,
+                notificationDate
+
+
+            }
+
+            console.log(updateNotification)
+            dispatch(updateNotificationAction(updateNotification))
+
+            currentNotifications[0].notificationType = notificationType;
+            currentNotifications[0].notificationHeader = notificationHeader;
+            currentNotifications[0].notificationBody = notificationBody;
+            currentNotifications[0].notificationButton = notificationButton;
+            currentNotifications[0].notificationDate = notificationDate;
+
+
+
+            localStorage.setItem('currentNotifications', JSON.stringify(currentNotifications))
+        }
+
+
+    }
+
 
 
 
@@ -188,11 +263,11 @@ export default function Notificationmanagementscreen() {
             cell: row => <button onClick={() => { (userId = row._id) }} className="btn" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Update</button>
 
         },
-        {
-            name: "Remove",
-            cell: row => <button onClick={() => {updateNotificationOne(row._id,notificationOneHeader);updateNotificationOne(row._id,'empty');updateNotificationTwo(row._id,notificationTwoHeader);updateNotificationTwo(row._id,'empty');updateNotificationThree(row._id,notificationThreeHeader);updateNotificationThree(row._id,'empty');updateNotificationFour(row._id,notificationFourHeader);updateNotificationFour(row._id,'empty')}} type="button" class="btn ">Remove All</button>
+        // {
+        //     name: "Remove",
+        //     cell: row => <button onClick={() => {updateNotificationOne(row._id,notificationOneHeader);updateNotificationOne(row._id,'empty');updateNotificationTwo(row._id,notificationTwoHeader);updateNotificationTwo(row._id,'empty');updateNotificationThree(row._id,notificationThreeHeader);updateNotificationThree(row._id,'empty');updateNotificationFour(row._id,notificationFourHeader);updateNotificationFour(row._id,'empty')}} type="button" class="btn ">Remove All</button>
 
-        }
+        // }
 
 
 
@@ -200,15 +275,15 @@ export default function Notificationmanagementscreen() {
     ];
 
 
-          useEffect(()=> {
-            const result = users.filter(users =>{
-                return users.name.toLowerCase().match(search.toLowerCase());
-            });
+    useEffect(() => {
+        const result = users.filter(users => {
+            return users.name.toLowerCase().match(search.toLowerCase());
+        });
 
-            setFilterdUsers(result);
-          } ,[search]);
+        setFilterdUsers(result);
+    }, [search]);
 
-    
+
 
 
 
@@ -229,6 +304,34 @@ export default function Notificationmanagementscreen() {
 
             <div className='row justify-content-center'>
 
+
+
+                <div className='col-md-9 m-2 p-1 shadow p-3 mb-5 bg-white' style={{ color: 'black', borderRadius: '25px' }}>
+                    <h1>Public Notifications</h1>
+                    <br /><br />
+                    <br />
+                    <div class="card text-center shadow">
+                        <div class="card-header">
+                            {currentNotifications[0].notificationType}
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{currentNotifications[0].notificationHeader}</h5>
+                            <p class="card-text">{currentNotifications[0].notificationBody}</p>
+                            <a href={currentNotifications[0].notificationButton} class="btn">Go somewhere</a>
+                        </div>
+                        <div class="card-footer text-muted">
+                            {currentNotifications[0].notificationDate}
+                        </div>
+                    </div>
+                    <br />
+                    <div className=' p-3 '>
+                        <button className="btn" data-bs-toggle="modal" href="#exampleModalToggle0" role="button">Update</button>
+                        <> </>
+                        <button onClick={() => { updateNotification('empty') }} type="button" class="btn ">Remove</button>
+                    </div>
+                </div>
+
+
                 <div className='col-md-9 m-3   p-0 ' >
 
                     <DataTable
@@ -242,14 +345,14 @@ export default function Notificationmanagementscreen() {
                         selectableRows
                         selectableRowsHighlight
                         subHeader
-                        subHeaderComponent ={
+                        subHeaderComponent={
                             <input
-                               
-                                type = "text"
-                                placeholder = "Search here..."
+
+                                type="text"
+                                placeholder="Search here..."
                                 className='w-25 form-control'
                                 value={search}
-                                onChange ={(e) => setSearch(e.target.value)}
+                                onChange={(e) => setSearch(e.target.value)}
 
                             />
                         }
@@ -322,8 +425,8 @@ export default function Notificationmanagementscreen() {
                                 </div>
                             </div>
                             <div class="modal-footer">
-                            <button onClick={() => updateNotificationOne(userId,notificationOneHeader)} type="button" class="btn ">Update</button>
-                                <button onClick={() => {updateNotificationOne(userId,'empty')} } type="button" class="btn ">Remove</button>
+                                <button onClick={() => updateNotificationOne(userId, notificationOneHeader)} type="button" class="btn ">Update</button>
+                                <button onClick={() => { updateNotificationOne(userId, 'empty') }} type="button" class="btn ">Remove</button>
                                 <button class="btn" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Next</button>
                             </div>
                         </div>
@@ -391,8 +494,8 @@ export default function Notificationmanagementscreen() {
                                 </div>
                             </div>
                             <div class="modal-footer">
-                            <button onClick={() => updateNotificationTwo(userId,notificationTwoHeader)} type="button" class="btn ">Update</button>
-                                <button onClick={() => {updateNotificationTwo(userId,'empty')} } type="button" class="btn ">Remove</button>
+                                <button onClick={() => updateNotificationTwo(userId, notificationTwoHeader)} type="button" class="btn ">Update</button>
+                                <button onClick={() => { updateNotificationTwo(userId, 'empty') }} type="button" class="btn ">Remove</button>
                                 <button class="btn" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" data-bs-dismiss="modal">Next</button>
                             </div>
                         </div>
@@ -403,7 +506,7 @@ export default function Notificationmanagementscreen() {
                 <div class="modal fade" id="exampleModalToggle3" aria-hidden="true" aria-labelledby="exampleModalToggleLabel3" tabindex="-1">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
-                        <div class="modal-header">
+                            <div class="modal-header">
                                 <h5 class="modal-title" id="exampleModalToggleLabel">Notification 3</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
@@ -462,12 +565,12 @@ export default function Notificationmanagementscreen() {
                                 </div>
                             </div>
                             <div class="modal-footer">
-                            <button onClick={() => updateNotificationThree(userId,notificationThreeHeader)} type="button" class="btn ">Update</button>
-                                <button onClick={() => {updateNotificationThree(userId,'empty')} } type="button" class="btn ">Remove</button>
+                                <button onClick={() => updateNotificationThree(userId, notificationThreeHeader)} type="button" class="btn ">Update</button>
+                                <button onClick={() => { updateNotificationThree(userId, 'empty') }} type="button" class="btn ">Remove</button>
                                 <button class="btn" data-bs-target="#exampleModalToggle4" data-bs-toggle="modal" data-bs-dismiss="modal">Next</button>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
 
@@ -475,7 +578,7 @@ export default function Notificationmanagementscreen() {
                 <div class="modal fade" id="exampleModalToggle4" aria-hidden="true" aria-labelledby="exampleModalToggleLabel4" tabindex="-1">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
-                        <div class="modal-header">
+                            <div class="modal-header">
                                 <h5 class="modal-title" id="exampleModalToggleLabel">Notification 4</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
@@ -534,11 +637,107 @@ export default function Notificationmanagementscreen() {
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button onClick={() => updateNotificationFour(userId,notificationFourHeader)} type="button" class="btn ">Update</button>
-                                <button onClick={() => {updateNotificationFour(userId,'empty')} } type="button" class="btn ">Remove</button>
+                                <button onClick={() => updateNotificationFour(userId, notificationFourHeader)} type="button" class="btn ">Update</button>
+                                <button onClick={() => { updateNotificationFour(userId, 'empty') }} type="button" class="btn ">Remove</button>
                                 <button class="btn" data-bs-target="#" data-bs-toggle="modal" data-bs-dismiss="modal">Close</button>
                             </div>
-                        
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+                <div class="modal fade" id="exampleModalToggle0" aria-hidden="true" aria-labelledby="exampleModalToggle0Label" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalToggle0Label">Public Notification</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput1" class="form-label">Notification Type</label>
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id="exampleFormControlInput1"
+                                        value={notificationType}
+                                        onChange={(e) => { updatenotificationType(e.target.value) }}
+                                    />
+
+                                </div>
+                            </div>
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput1" class="form-label">Header</label>
+                                    <input
+                                        class="form-control"
+                                        id="exampleFormControlInput1"
+                                        value={notificationHeader}
+                                        onChange={(e) => { updatenotificationHeader(e.target.value) }}
+                                    />
+
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="exampleFormControlTextarea1" class="form-label">Notification Body</label>
+                                    <textarea
+                                        class="form-control"
+                                        id="exampleFormControlTextarea1"
+                                        rows="3"
+                                        value={notificationBody}
+                                        onChange={(e) => { updatenotificationBody(e.target.value) }}
+                                    >
+
+                                    </textarea>
+                                </div>
+
+                                <div class="modal-body">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Date</label>
+                                        <input
+                                            required
+                                            type="text"
+                                            placeholder="https://........."
+                                            class="form-control"
+                                            id="exampleFormControlInput1"
+                                            value={notificationButton}
+                                            onChange={(e) => { updatenotificationButton(e.target.value) }}
+                                        />
+
+                                    </div>
+                                </div>
+
+                                <div class="modal-body">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Date</label>
+                                        <input
+                                            required
+                                            type="text"
+                                            placeholder="YYYY-MM-DD"
+                                            class="form-control"
+                                            id="exampleFormControlInput1"
+                                            value={notificationDate}
+                                            onChange={(e) => { updatenotificationDate(e.target.value) }}
+                                        />
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button onClick={() => updateNotification(notificationHeader)} type="button" class="btn ">Update</button>
+
+                            </div>
                         </div>
                     </div>
                 </div>

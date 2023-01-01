@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux'
 import { loginAdmin } from "../actions/adminActions"
+import { setNotification } from "../actions/notificationAction";
 import Error from "../components/Error";
 import Loading from "../components/Loading";
 
@@ -28,6 +29,7 @@ export default function Adminloginscreen() {
 
         const admin = { email, password }
         dispatch(loginAdmin(admin))
+        dispatch(setNotification())
     }
 
 

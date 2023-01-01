@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { loginUser, registerUser } from "../actions/userActions"
 import Error from "../components/Error";
 import Loading from "../components/Loading";
+import { setNotification } from "../actions/notificationAction";
 
 
 
@@ -27,7 +28,9 @@ export default function Loginscreen() {
     function login() {
 
         const user = { email, password }
-        dispatch(loginUser(user))
+        dispatch(loginUser(user),setNotification())
+        dispatch(setNotification())
+        
     }
 
 

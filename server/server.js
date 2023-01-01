@@ -6,6 +6,7 @@ const Pizza = require('./models/PizzaModel')
 const User = require('./models/userModel')
 const Admin = require('./models/adminModel')
 const Feedback = require('./models/feedbackModel')
+const Notification = require('./models/notificationModel')
 
 
 const app = express();
@@ -25,6 +26,7 @@ const userRoute = require('./routes/userRoute')
 const adminRoute = require('./routes/adminRoute')
 const ordersRoute = require('./routes/ordersRoute')
 const feedbackRoute = require('./routes/feedbackRoute')
+const notificationRoute = require('./routes/notificationRoute')
 
 
 
@@ -33,6 +35,7 @@ app.use('/api/feedback/', feedbackRoute)
 app.use('/api/users/', userRoute)
 app.use('/api/admins/', adminRoute)
 app.use('/api/orders/', ordersRoute)
+app.use('/api/notifications/', notificationRoute)
 app.get("/", (req, res) => {
 
     res.send("Server Working!");

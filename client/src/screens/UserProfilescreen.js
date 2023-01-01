@@ -15,7 +15,12 @@ export default function UserProfilescreen() {
     const dispatch = useDispatch()
 
     const userstate = useSelector(state => state.loginUserReducer)
-    const { currentUser } = userstate
+    const { currentUser, currentNotifications } = userstate
+
+
+
+
+
 
 
     const [email, updateemail] = useState('')
@@ -64,15 +69,15 @@ export default function UserProfilescreen() {
     const [notificationOneBody, updatenotiOneBody] = useState('')
     const [notificationOneDate, updatenotiOneDate] = useState('')
 
-    function updateNotificationOne(userId,val) {
+    function updateNotificationOne(userId, val) {
 
 
-        console.log(userId,val)
+        console.log(userId, val)
 
         const updateNotificationOne = {
 
             notificationOneImage,
-            notificationOneHeader : val,
+            notificationOneHeader: val,
             notificationOneBody,
             notificationOneDate
 
@@ -95,15 +100,15 @@ export default function UserProfilescreen() {
     const [notificationTwoBody, updatenotiTwoBody] = useState('')
     const [notificationTwoDate, updatenotiTwoDate] = useState('')
 
-    function updateNotificationTwo(userId,val) {
+    function updateNotificationTwo(userId, val) {
 
 
-        console.log(userId,val)
+        console.log(userId, val)
 
         const updateNotificationTwo = {
 
             notificationTwoImage,
-            notificationTwoHeader : val,
+            notificationTwoHeader: val,
             notificationTwoBody,
             notificationTwoDate
 
@@ -118,22 +123,22 @@ export default function UserProfilescreen() {
 
 
 
-    }   
-    
+    }
+
     const [notificationThreeImage, updatenotiThreeImage] = useState('')
     const [notificationThreeHeader, updatenotiThreeHeader] = useState('')
     const [notificationThreeBody, updatenotiThreeBody] = useState('')
     const [notificationThreeDate, updatenotiThreeDate] = useState('')
 
-    function updateNotificationThree(userId,val) {
+    function updateNotificationThree(userId, val) {
 
 
-        console.log(userId,val)
+        console.log(userId, val)
 
         const updateNotificationThree = {
 
             notificationThreeImage,
-            notificationThreeHeader : val,
+            notificationThreeHeader: val,
             notificationThreeBody,
             notificationThreeDate
 
@@ -155,15 +160,15 @@ export default function UserProfilescreen() {
     const [notificationFourBody, updatenotiFourBody] = useState('')
     const [notificationFourDate, updatenotiFourDate] = useState('')
 
-    function updateNotificationFour(userId,val) {
+    function updateNotificationFour(userId, val) {
 
 
-        console.log(userId,val)
+        console.log(userId, val)
 
         const updateNotificationFour = {
 
             notificationFourImage,
-            notificationFourHeader : val,
+            notificationFourHeader: val,
             notificationFourBody,
             notificationFourDate
 
@@ -180,7 +185,7 @@ export default function UserProfilescreen() {
 
     }
 
-    
+
 
 
 
@@ -315,17 +320,17 @@ export default function UserProfilescreen() {
                     </p>
                     <div class="collapse" id="collapseExample">
                         <div class="card card-body">
-                            {currentUser.notificationOneHeader === 'empty' && currentUser.notificationTwoHeader === 'empty' && currentUser.notificationThreeHeader === 'empty' && currentUser.notificationFourHeader === 'empty' ? (
-                      
+                            {currentUser.notificationOneHeader === 'empty' && currentUser.notificationTwoHeader === 'empty' && currentUser.notificationThreeHeader === 'empty' && currentUser.notificationFourHeader === 'empty' && currentNotifications[0].notificationHeader === 'empty' ? (
+
 
                                 <small class="text-muted text-center fst-italic"><i class="fa-solid fa-mug-saucer"></i><> </>You're All Caught Up...</small>
-                        
+
                             ) : (
 
                                 <></>
 
                             )}
-                            <br/>
+                           
 
                             <div class="row row-cols-1 row-cols-md-4 g-4">
 
@@ -337,8 +342,8 @@ export default function UserProfilescreen() {
 
                                     < div class="col">
                                         <div class="card h-100 shadow">
-                                            <button onClick={() => {updateNotificationOne(currentUser._id,'empty')} } type="button" class="btn-close p-2" style={{ position: 'relative', margin: '2%' ,left: '220px' }} aria-label="Close"></button>
-
+                                            <button onClick={() => { updateNotificationOne(currentUser._id, 'empty') }} type="button" class="btn-close p-2" style={{ position: 'absolute', right: '4px' }} aria-label="Close"></button>
+                                            <br />
                                             <img src={currentUser.notificationOneImage} class="card-img-top" alt="..." />
                                             <div class="card-body">
                                                 <h5 class="card-title">{currentUser.notificationOneHeader}</h5>
@@ -359,7 +364,8 @@ export default function UserProfilescreen() {
 
                                     < div class="col">
                                         <div class="card h-100 shadow">
-                                            <button onClick={() => {updateNotificationTwo(currentUser._id,'empty')} }  type="button" class="btn-close p-2" style={{ position: 'absolute', right: '4px' }} aria-label="Close"></button>
+                                            <button onClick={() => { updateNotificationTwo(currentUser._id, 'empty') }} type="button" class="btn-close p-2" style={{ position: 'absolute', right: '4px' }} aria-label="Close"></button>
+                                            <br />
                                             <img src={currentUser.notificationTwoImage} class="card-img-top" alt="..." />
                                             <div class="card-body">
                                                 <h5 class="card-title">{currentUser.notificationTwoHeader}</h5>
@@ -380,7 +386,8 @@ export default function UserProfilescreen() {
 
                                     <div class="col">
                                         <div class="card h-100 shadow">
-                                            <button onClick={() => {updateNotificationThree(currentUser._id,'empty')} } type="button" class="btn-close p-2" style={{ position: 'absolute', right: '4px' }} aria-label="Close"></button>
+                                            <button onClick={() => { updateNotificationThree(currentUser._id, 'empty') }} type="button" class="btn-close p-2" style={{ position: 'absolute', right: '4px' }} aria-label="Close"></button>
+                                            <br />
                                             <img src={currentUser.notificationThreeImage} class="card-img-top" alt="..." />
                                             <div class="card-body">
                                                 <h5 class="card-title">{currentUser.notificationThreeHeader}</h5>
@@ -400,7 +407,8 @@ export default function UserProfilescreen() {
 
                                     <div class="col">
                                         <div class="card h-100 shadow">
-                                            <button onClick={() => {updateNotificationFour(currentUser._id,'empty')} } type="button" class="btn-close p-2" style={{ position: 'absolute', right: '4px' }} aria-label="Close"></button>
+                                            <button onClick={() => { updateNotificationFour(currentUser._id, 'empty') }} type="button" class="btn-close p-2" style={{ position: 'absolute', right: '4px' }} aria-label="Close"></button>
+                                            <br />
                                             <img src={currentUser.notificationThreeImage} class="card-img-top" alt="..." />
                                             <div class="card-body">
                                                 <h5 class="card-title">{currentUser.notificationFourHeader}</h5>
@@ -417,14 +425,33 @@ export default function UserProfilescreen() {
 
 
                             </div>
+                            <br />
+                            {currentNotifications[0].notificationHeader === 'empty' ? (
+                                <></>
+
+                            ) : (
+                                <div class="card text-center h-100 shadow">
+                                    <div class="card-header">
+                                        {currentNotifications[0].notificationType}
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">{currentNotifications[0].notificationHeader}</h5>
+                                        <p class="card-text">{currentNotifications[0].notificationBody}</p>
+                                        <a href={currentNotifications[0].notificationButton} class="btn">Go somewhere</a>
+                                    </div>
+                                    <div class="card-footer text-muted">
+                                        {currentNotifications[0].notificationDate}
+                                    </div>
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>
-
-
             </div>
 
+        </div>
 
-        </div >
+
+
     )
 }
