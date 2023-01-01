@@ -256,6 +256,22 @@ router.put("/update/notificationfour/:id", async (req, res) => {
     }
 });
 
+//customer management 
+router.delete("/delete/customer/:id", async (req, res) => {
 
+    let userId = req.params.id;
+
+    try {
+        await User.findByIdAndDelete(userId)
+
+        res.send('Customer Deleted Successfully')
+    }
+
+    catch (error) {
+
+
+        return res.status(400).json({ message: error });
+    }
+});
 
 module.exports = router;

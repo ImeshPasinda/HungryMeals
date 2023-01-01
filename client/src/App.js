@@ -19,6 +19,7 @@ import Notificationmanagementscreen from './screens/Notificationmanagementscreen
 import Errorscreen from './screens/Errorscreen';
 import AboutScreen from './screens/Aboutscreen';
 import FAQScreen from './screens/FAQscreen';
+import Customermanagementscreen from './screens/Customermanagementscreen';
 
 function App() {
 
@@ -67,12 +68,18 @@ function App() {
 
           )}
 
+          {currentAdmin ? (<Route path="admin/customers" exact element={<Customermanagementscreen />} />) : (
+
+            <Route path="/error" exact element={<Errorscreen />} />
+
+          )}
+
 
 
           <Route path="/profile" exact element={<UserProfilescreen />} />
           <Route path="/admin" exact element={<AdminProfilescreen />} />
-          <Route path= "/about" exact element={<AboutScreen/>} />
-          <Route path= "/faq" exact element={<FAQScreen/>} />
+          <Route path="/about" exact element={<AboutScreen />} />
+          <Route path="/faq" exact element={<FAQScreen />} />
 
 
 
