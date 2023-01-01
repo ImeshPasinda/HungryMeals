@@ -17,6 +17,8 @@ import Adminloginscreen from './screens/Adiminloginscreen';
 import { useSelector } from 'react-redux';
 import Notificationmanagementscreen from './screens/Notificationmanagementscreen';
 import Errorscreen from './screens/Errorscreen';
+import AboutScreen from './screens/Aboutscreen';
+import FAQScreen from './screens/FAQscreen';
 
 function App() {
 
@@ -69,6 +71,8 @@ function App() {
 
           <Route path="/profile" exact element={<UserProfilescreen />} />
           <Route path="/admin" exact element={<AdminProfilescreen />} />
+          <Route path= "/about" exact element={<AboutScreen/>} />
+          <Route path= "/faq" exact element={<FAQScreen/>} />
 
 
 

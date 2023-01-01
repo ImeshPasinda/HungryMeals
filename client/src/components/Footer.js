@@ -45,8 +45,8 @@ export default function Footer() {
                                 <li class="nav-item mb-2"><a href="/" class="nav-link p-0 text-muted">Home</a></li>
                                 <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Menus</a></li>
                                 <li class="nav-item mb-2"><a href="/feedback" class="nav-link p-0 text-muted">Feedback</a></li>
-                                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
-                                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About Us</a></li>
+                                <li class="nav-item mb-2"><a href="/faq" class="nav-link p-0 text-muted">FAQs</a></li>
+                                <li class="nav-item mb-2"><a href="/about" class="nav-link p-0 text-muted">About Us</a></li>
                             </ul>
                         </div>
 
