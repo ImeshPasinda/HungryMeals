@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import DataTable from "react-data-table-component"
+import Swal from 'sweetalert2';
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import { deleteCustomerAction } from '../actions/CustomerAction';
@@ -10,6 +11,9 @@ import { updateCustomerName, updateCustomerEmail, updateCustomerPassword } from 
 
 let userId;
 var usersCount;
+var usersArray;
+
+
 
 function Customermanagementscreen() {
 
@@ -27,7 +31,7 @@ function Customermanagementscreen() {
                 // console.log(res.data)
                 localStorage.setItem('activeUsers', JSON.stringify(res.data))
 
-                var usersArray = res.data;
+                usersArray = res.data;
                 usersCount = usersArray.length;
 
                 // console.log(usersCount)
@@ -88,27 +92,91 @@ function Customermanagementscreen() {
             email
         }
 
-        console.log(updateCEmail, userId)
-        dispatch(updateCustomerEmail(updateCEmail, userId))
 
 
-        // let x = 0;
-        // while (x <= usersCount) {
 
-        //     x++;
-        //     console.log(x);
+       
+        for (let index = 0; index < usersCount; index++) {
 
-        //     if (activeUsers[x].email === email) {
-        //         console.log('email already registerd')
-        //         break;
-        //     }
-        //     else {
-        //         console.log(updateCEmail, userId)
-        //         dispatch(updateCustomerEmail(updateCEmail, userId))
-        //     }
-        // }
+            if (activeUsers[index].email === email) {
+
+
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+
+                Toast.fire({
+                    icon: 'error',
+                    title: 'Email already registerd'
+                })
+
+                console.log('Email already registerd')
+                var isTrue = 'false';
+
+            }
+
+        }
+
+
+        console.log(isTrue)
+        if (isTrue === 'false') {
+            console.log(updateCEmail, userId)
+            dispatch(updateCustomerEmail(updateCEmail, userId))
+            isTrue = 'true'
+        }
+
+
 
     }
+
+
+    const VerifiedUsers = new Array();
+    for (let index = 0; index < usersCount; index++) {
+
+        if (activeUsers[index].isVerified) {
+
+
+            // console.log(activeUsers[index].name)
+            const DATA = activeUsers[index].name;
+            VerifiedUsers.push(DATA)
+            // console.log(VerifiedUsers)
+        }
+    }
+
+
+
+
+
+
+
+
+    let totalVerifedCount = 0;
+
+    for (let index = 0; index < usersCount; index++) {
+
+        if (activeUsers[index].isVerified) {
+
+            totalVerifedCount = totalVerifedCount + 1
+
+        }
+    }
+
+
+
+
+
+
+
+
+
 
     function updatepassword(userId) {
 
@@ -201,9 +269,51 @@ function Customermanagementscreen() {
                                 onChange={(e) => setSearch(e.target.value)}
 
                             />
+
                         }
 
+
                     />
+                    <br />
+                    <br />
+                    <div className='text-end'>
+                        <button class="btn" data-bs-target="#exampleModalToggleReport" data-bs-toggle="modal" data-bs-dismiss="modal">Generate Customer Report</button>
+                    </div>
+
+                    {/* report model */}
+
+                    <div class="modal fade" id="exampleModalToggleReport" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                        <div class="modal-dialog modal-lg modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalToggleLabel">Customer Report</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Active Users = {usersCount} <br />
+                                    Verified Users = {totalVerifedCount}
+                            
+
+                                    <ol>
+                                        {VerifiedUsers.map((names) => (
+                                            <li>{names}</li>
+                                        ))}
+                                    </ol>
+
+
+
+
+
+
+                                </div>
+                                <div class="modal-footer">
+                                    {/* <button class="btn"  data-bs-toggle="modal" data-bs-dismiss="modal">Open second modal</button> */}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
 
                     {/* name model */}
                     <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
@@ -232,7 +342,7 @@ function Customermanagementscreen() {
                                     <button onClick={() => updatename(userId)} type="button" class="btn ">Save Changes</button>
 
 
-                                    <button class="btn" data-bs-target="#exampleModalToggle1" data-bs-toggle="modal" data-bs-dismiss="modal">Change Email</button><br />  <br />
+                                    <button class="btn" data-bs-target="#exampleModalToggle1" data-bs-toggle="modal" data-bs-dismiss="modal">Change Email</button>
                                     <button class="btn" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Change Password</button>
                                 </div>
                             </div>

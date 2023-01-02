@@ -199,7 +199,7 @@ export const updateCustomerPassword = (updatecustomerpassword, userId) => async 
             title: 'Password updated successfully'
         })
         setTimeout(function () {
-            window.location.reload('/profile');
+            window.location.reload('/admin/customers');
         }, 1500);
 
         console.log(response);
