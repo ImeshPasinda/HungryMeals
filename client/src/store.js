@@ -32,6 +32,8 @@ const currentAdmin = localStorage.getItem('currentAdmin') ? JSON.parse(localStor
 
 const currentNotifications = localStorage.getItem('currentNotifications') ? JSON.parse(localStorage.getItem('currentNotifications')) : null
 
+const activeUsers = localStorage.getItem('activeUsers') ? JSON.parse(localStorage.getItem('activeUsers')) : null
+
 const initialState = {
     cartReducer: {
         cartItems: cartItems
@@ -42,7 +44,8 @@ const initialState = {
     },
     adminloginReducer: {
         currentAdmin: currentAdmin,
-        currentNotifications: currentNotifications
+        currentNotifications: currentNotifications,
+        activeUsers : activeUsers
     }
 }
 

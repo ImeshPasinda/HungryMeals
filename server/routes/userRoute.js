@@ -10,6 +10,9 @@ router.post("/register", async (req, res) => {
 
     try {
 
+
+
+
         const userExit = await User.findOne({ email })
 
         if (userExit) {
@@ -256,7 +259,7 @@ router.put("/update/notificationfour/:id", async (req, res) => {
     }
 });
 
-//customer management 
+//customer management delete function
 router.delete("/delete/customer/:id", async (req, res) => {
 
     let userId = req.params.id;
@@ -270,6 +273,87 @@ router.delete("/delete/customer/:id", async (req, res) => {
     catch (error) {
 
 
+        return res.status(400).json({ message: error });
+    }
+});
+
+//customer management update function
+
+router.put("/update/customer/name/:id", async (req, res) => {
+
+    let userId = req.params.id;
+    const { name } = req.body;
+
+    const updateCustomerName = {
+
+        name,
+
+    }
+
+    try {
+
+        await User.findByIdAndUpdate(userId, updateCustomerName)
+        res.send('Customer Name Updated Successfully')
+
+    } catch (error) {
+        return res.status(400).json({ message: error });
+    }
+});
+
+
+
+router.put("/update/customer/email/:id", async (req, res) => {
+
+    let userId = req.params.id;
+    const { email } = req.body;
+
+    const updateCustomerEmail = {
+
+        email,
+
+    }
+
+    try {
+
+        const userExit = await User.findOne({ email })
+
+        if (userExit) {
+
+            res.send('Customer Email already registered')
+            
+            
+
+        } else {
+
+            await User.findByIdAndUpdate(userId, updateCustomerEmail)
+            res.send('Customer Email Updated Successfully')
+            
+        }
+
+
+
+    } catch (error) {
+        return res.status(400).json({ message: error });
+    }
+});
+
+router.put("/update/customer/password/:id", async (req, res) => {
+
+    let userId = req.params.id;
+    const { password } = req.body;
+
+    const updateCustomerPassword = {
+
+        password,
+
+    }
+
+    try {
+
+        await User.findByIdAndUpdate(userId, updateCustomerPassword)
+        res.send('Customer Password Updated Successfully')
+
+    } catch (error) {
         return res.status(400).json({ message: error });
     }
 });
