@@ -143,9 +143,9 @@ export const updateCustomerEmail = (updatecustomeremail, userId) => async dispat
             icon: 'success',
             title: 'Email updated successfully'
         })
-        // setTimeout(function () {
-        //     window.location.reload('/admin/customers');
-        // }, 1500);
+        setTimeout(function () {
+            window.location.reload('/admin/customers');
+        }, 1500);
 
         console.log(response);
         dispatch({ type: 'UPDATE_CUSTOMER_EMAIL_SUCCESS' })
@@ -226,4 +226,113 @@ export const updateCustomerPassword = (updatecustomerpassword, userId) => async 
 
         dispatch({ type: 'UPDATE_CUSTOMER_PASSWORD_FAILED', payload: error })
     }
+}
+
+export const updateCustomerVerification = (updatecustomerverification, userId, val) => async dispatch => {
+
+    dispatch({ type: 'UPDATE_CUSTOMER_VERIFICATION_REQUEST' })
+
+
+    if (val === true) {
+
+
+        try {
+            const response = await axios.put(`/api/users/update/customer/verification/${userId}`, updatecustomerverification)
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 1500,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon: 'success',
+                title: 'Enable Verified user successfully'
+            })
+            setTimeout(function () {
+                window.location.reload('/admin/customers');
+            }, 1500);
+
+            console.log(response);
+            dispatch({ type: 'UPDATE_CUSTOMER_VERIFICATION_SUCCESS' })
+
+
+        } catch (error) {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon: 'error',
+                title: 'Enable Verified user unsuccessfully'
+            })
+
+            dispatch({ type: 'UPDATE_CUSTOMER_VERIFICATION_FAILED', payload: error })
+        }
+
+
+    } else {
+
+        try {
+            const response = await axios.put(`/api/users/update/customer/verification/${userId}`, updatecustomerverification)
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 1500,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon: 'success',
+                title: 'Disable Verified user successfully'
+            })
+            setTimeout(function () {
+                window.location.reload('/admin/customers');
+            }, 1500);
+
+            console.log(response);
+            dispatch({ type: 'UPDATE_CUSTOMER_VERIFICATION_SUCCESS' })
+
+
+        } catch (error) {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon: 'error',
+                title: 'Disable Verified user unsuccessfully'
+            })
+
+            dispatch({ type: 'UPDATE_CUSTOMER_VERIFICATION_FAILED', payload: error })
+        }
+    }
+
+
 }

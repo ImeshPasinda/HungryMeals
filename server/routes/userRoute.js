@@ -358,4 +358,25 @@ router.put("/update/customer/password/:id", async (req, res) => {
     }
 });
 
+router.put("/update/customer/verification/:id", async (req, res) => {
+
+    let userId = req.params.id;
+    const { isVerified } = req.body;
+
+    const updateisVerified = {
+
+        isVerified,
+
+    }
+
+    try {
+
+        await User.findByIdAndUpdate(userId, updateisVerified)
+        res.send('Customer verification Updated Successfully')
+
+    } catch (error) {
+        return res.status(400).json({ message: error });
+    }
+});
+
 module.exports = router;

@@ -293,7 +293,7 @@ export default function UserProfilescreen() {
 
                             {currentUser.isVerified ? (
 
-                                <i class="fa fa-check-circle p-1" title="Verified Customer" style={{ fontSize: '20px', color: '#00b9ff' }} aria-hidden="true"></i>
+                                <i class="fa fa-check-circle p-1" title="Verified Customer"  style={{ fontSize: '20px', color: '#00b9ff' }} aria-hidden="true"></i>
 
                             ) : (
 

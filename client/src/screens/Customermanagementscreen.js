@@ -5,17 +5,25 @@ import Swal from 'sweetalert2';
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import { deleteCustomerAction } from '../actions/CustomerAction';
-import { updateCustomerName, updateCustomerEmail, updateCustomerPassword } from '../actions/CustomerAction';
+import { updateCustomerName, updateCustomerEmail, updateCustomerPassword, updateCustomerVerification } from '../actions/CustomerAction';
 
 
 
 let userId;
-var usersCount;
-var usersArray;
+let usersCount;
+let usersArray;
+
+
+
+
+
+
 
 
 
 function Customermanagementscreen() {
+
+
 
     const [users, setUsers] = useState([]);
     const [filterdUsers, setFilterdUsers] = useState([]);
@@ -23,6 +31,8 @@ function Customermanagementscreen() {
 
     const userstate = useSelector(state => state.adminloginReducer)
     const { activeUsers } = userstate
+
+
 
     useEffect(() => {
         function getUsers() {
@@ -85,6 +95,9 @@ function Customermanagementscreen() {
 
     }
 
+
+
+    var isTrue = false
     function updateemail(userId) {
 
         const updateCEmail = {
@@ -93,87 +106,82 @@ function Customermanagementscreen() {
         }
 
 
+        for (let index = 0; index <= usersCount; index++) {
+
+            if (index !== usersCount) {
 
 
-       
-        for (let index = 0; index < usersCount; index++) {
-
-            if (activeUsers[index].email === email) {
+                if (activeUsers[index].email === email) {
 
 
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.addEventListener('mouseenter', Swal.stopTimer)
-                        toast.addEventListener('mouseleave', Swal.resumeTimer)
-                    }
-                })
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
 
-                Toast.fire({
-                    icon: 'error',
-                    title: 'Email already registerd'
-                })
+                    Toast.fire({
+                        icon: 'error',
+                        title: 'Email already registerd'
+                    })
 
-                console.log('Email already registerd')
-                var isTrue = 'false';
+                    setTimeout(function () {
+                        window.location.reload('/admin/customers');
+                    }, 1500);
+
+                    console.log('Email already registerd')
+                    index = 1000
+
+                }
+            }
+
+
+            if (index === usersCount) {
+
+
+                dispatch(updateCustomerEmail(updateCEmail, userId))
 
             }
 
-        }
 
-
-        console.log(isTrue)
-        if (isTrue === 'false') {
-            console.log(updateCEmail, userId)
-            dispatch(updateCustomerEmail(updateCEmail, userId))
-            isTrue = 'true'
         }
 
 
 
     }
 
-
-    const VerifiedUsers = new Array();
-    for (let index = 0; index < usersCount; index++) {
-
-        if (activeUsers[index].isVerified) {
-
-
-            // console.log(activeUsers[index].name)
-            const DATA = activeUsers[index].name;
-            VerifiedUsers.push(DATA)
-            // console.log(VerifiedUsers)
-        }
-    }
-
-
-
-
-
-
-
-
-    let totalVerifedCount = 0;
-
-    for (let index = 0; index < usersCount; index++) {
-
-        if (activeUsers[index].isVerified) {
-
-            totalVerifedCount = totalVerifedCount + 1
-
-        }
-    }
+  
+ function verification() {
+       let index =0;
+   
+       const VerifiedUsers = new Array();
+       while (index <= usersCount) {
+           if (activeUsers[index].isVerified) {
+   
+               // console.log(activeUsers[index].name)
+               const DATA = activeUsers[index].name;
+               VerifiedUsers.push(DATA)
+               // console.log(VerifiedUsers)
+           }
+           index++;
+          
+           console.log(VerifiedUsers)
+           console.log(VerifiedUsers.length)
+       }
+      
+ }
 
 
 
 
-
-
+    
+    
 
 
 
@@ -189,6 +197,24 @@ function Customermanagementscreen() {
 
 
         dispatch(updateCustomerPassword(updateCPassword, userId))
+
+
+    }
+
+
+    const [isVerified, updateCisVerified] = useState('')
+
+    function updateverification(userId, val) {
+
+        const updateCisVerified = {
+
+            isVerified: val
+        }
+
+        console.log(updateCisVerified, userId)
+
+
+        dispatch(updateCustomerVerification(updateCisVerified, userId, val))
 
 
     }
@@ -226,10 +252,10 @@ function Customermanagementscreen() {
         },
         {
             name: "Verification Status",
-            cell: row => <button onClick={() => { (userId = row._id) }} className="btn" data-bs-toggle="modal" href="#exampleModalToggle" role="button">
-                {row.isVerified === true ? (<>Disable</>) : (<>Enable</>)}
 
-            </button>
+
+            cell: row => <> {row.isVerified === true ? (<button onClick={() => { { updateverification(row._id, false) } }} className="btn" role="button">Disable</button>) : (<button onClick={() => { { updateverification(row._id, true) } }} className="btn" role="button">Enable</button>)} </>
+
 
 
         }
@@ -277,7 +303,7 @@ function Customermanagementscreen() {
                     <br />
                     <br />
                     <div className='text-end'>
-                        <button class="btn" data-bs-target="#exampleModalToggleReport" data-bs-toggle="modal" data-bs-dismiss="modal">Generate Customer Report</button>
+                        <button  onClick={() => verification()} class="btn" data-bs-target="#exampleModalToggleReport" data-bs-toggle="modal" data-bs-dismiss="modal">Generate Customer Report</button>
                     </div>
 
                     {/* report model */}
@@ -291,18 +317,14 @@ function Customermanagementscreen() {
                                 </div>
                                 <div class="modal-body">
                                     Active Users = {usersCount} <br />
-                                    Verified Users = {totalVerifedCount}
-                            
+                                    {/* Verified Users = {VerifiedUsers.length}
+
 
                                     <ol>
                                         {VerifiedUsers.map((names) => (
                                             <li>{names}</li>
                                         ))}
-                                    </ol>
-
-
-
-
+                                    </ol> */}
 
 
                                 </div>
