@@ -326,6 +326,169 @@ function Customermanagementscreen() {
 
 
                                 </div>
+                                <div class="container my-4">
+                                    
+                                    <div class="border p-5 mb-5">
+
+                                        <section>
+                                            <div class="row">
+                                                <div class="col-lg-3 col-md-6 mb-4">
+                                                    <div class="card">
+                                                        <div class="card-body">
+                                                            <p class="text-uppercase small mb-2">
+                                                                <strong>USERS</strong>
+                                                            </p>
+                                                            <h5 class="mb-0">
+                                                                <strong>14 567</strong>
+                                                                <small class="text-success ms-2">
+                                                                    <i class="fas fa-arrow-up fa-sm pe-1"></i>13,48%</small>
+                                                            </h5>
+
+                                                            <hr />
+
+                                                            <p class="text-uppercase text-muted small mb-2">
+                                                                Previous period
+                                                            </p>
+                                                            <h5 class="text-muted mb-0">11 467</h5>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="col-lg-3 col-md-6 mb-4">
+                                                    <div class="card">
+                                                        <div class="card-body">
+                                                            <p class="text-uppercase small mb-2">
+                                                                <strong>PAGE VIEWS</strong>
+                                                            </p>
+                                                            <h5 class="mb-0">
+                                                                <strong>51 354 </strong>
+                                                                <small class="text-success ms-2">
+                                                                    <i class="fas fa-arrow-up fa-sm pe-1"></i>23,58%</small>
+                                                            </h5>
+
+                                                            <hr />
+
+                                                            <p class="text-uppercase text-muted small mb-2">
+                                                                Previous period
+                                                            </p>
+                                                            <h5 class="text-muted mb-0">38 454</h5>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-3 col-md-6 mb-4">
+                                                    <div class="card">
+                                                        <div class="card-body">
+                                                            <p class="text-uppercase small mb-2">
+                                                                <strong>AVERAGE TIME</strong>
+                                                            </p>
+                                                            <h5 class="mb-0">
+                                                                <strong>00:04:20</strong>
+                                                                <small class="text-danger ms-2">
+                                                                    <i class="fas fa-arrow-down fa-sm pe-1"></i>23,58%</small>
+                                                            </h5>
+
+                                                            <hr />
+
+                                                            <p class="text-uppercase text-muted small mb-2">
+                                                                Previous period
+                                                            </p>
+                                                            <h5 class="text-muted mb-0">00:05:20</h5>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-3 col-md-6 mb-4">
+                                                    <div class="card">
+                                                        <div class="card-body">
+                                                            <p class="text-uppercase small mb-2">
+                                                                <strong>BOUNCE RATE</strong>
+                                                            </p>
+                                                            <h5 class="mb-0">
+                                                                <strong>32.35%</strong>
+                                                                <small class="text-danger ms-2">
+                                                                    <i class="fas fa-arrow-down fa-sm pe-1"></i>23,58%</small>
+                                                            </h5>
+
+                                                            <hr />
+
+                                                            <p class="text-uppercase text-muted small mb-2">
+                                                                Previous period
+                                                            </p>
+                                                            <h5 class="text-muted mb-0">24.35%</h5>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </section>
+
+                                        <section>
+                                            <div class="row">
+                                                <div class="col-md-8 mb-4">
+                                                    <div class="card">
+                                                        <div class="card-body">
+
+                                                            <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
+                                                                <li class="nav-item" role="presentation">
+                                                                    <a class="nav-link active" id="ex1-tab-1" data-mdb-toggle="pill" href="#ex1-pills-1" role="tab"
+                                                                        aria-controls="ex1-pills-1" aria-selected="true">Users</a>
+                                                                </li>
+                                                                <li class="nav-item" role="presentation">
+                                                                    <a class="nav-link" id="ex1-tab-2" data-mdb-toggle="pill" href="#ex1-pills-2" role="tab"
+                                                                        aria-controls="ex1-pills-2" aria-selected="false">Page views</a>
+                                                                </li>
+                                                                <li class="nav-item" role="presentation">
+                                                                    <a class="nav-link" id="ex1-tab-3" data-mdb-toggle="pill" href="#ex1-pills-3" role="tab"
+                                                                        aria-controls="ex1-pills-3" aria-selected="false">Average time</a>
+                                                                </li>
+                                                                <li class="nav-item" role="presentation">
+                                                                    <a class="nav-link" id="ex1-tab-4" data-mdb-toggle="pill" href="#ex1-pills-4" role="tab"
+                                                                        aria-controls="ex1-pills-4" aria-selected="false">Bounce rate</a>
+                                                                </li>
+                                                            </ul>
+
+                                                            <div class="tab-content" id="ex1-content">
+                                                                <div class="tab-pane fade show active" id="ex1-pills-1" role="tabpanel" aria-labelledby="ex1-tab-1">
+                                                                    <div id="chart-users"></div>
+                                                                </div>
+                                                                <div class="tab-pane fade" id="ex1-pills-2" role="tabpanel" aria-labelledby="ex1-tab-2">
+                                                                    <div id="chart-page-views"></div>
+                                                                </div>
+                                                                <div class="tab-pane fade" id="ex1-pills-3" role="tabpanel" aria-labelledby="ex1-tab-3">
+                                                                    <div id="chart-average-time"></div>
+                                                                </div>
+                                                                <div class="tab-pane fade" id="ex1-pills-4" role="tabpanel" aria-labelledby="ex1-tab-4">
+                                                                    <div id="chart-bounce-rate"></div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-4 mb-4">
+                                                    <div class="card mb-4">
+                                                        <div class="card-body">
+                                                            <p class="text-center"><strong>Current period</strong></p>
+                                                            <div id="pie-chart-current"></div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="card">
+                                                        <div class="card-body">
+                                                            <p class="text-center"><strong>Previous period</strong></p>
+                                                            <div id="pie-chart-previous"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </section>
+
+                                    </div>
+
+
+                                </div>
                                 <div class="modal-footer">
                                     {/* <button class="btn"  data-bs-toggle="modal" data-bs-dismiss="modal">Open second modal</button> */}
                                 </div>
