@@ -16,11 +16,6 @@ let usersArray;
 
 
 
-
-
-
-
-
 function Customermanagementscreen() {
 
 
@@ -44,12 +39,15 @@ function Customermanagementscreen() {
                 usersArray = res.data;
                 usersCount = usersArray.length;
 
+
+
                 // console.log(usersCount)
 
 
                 setFilterdUsers(res.data);
             }).catch((err) => {
                 console.log(err.message)
+
             })
         }
         getUsers();
@@ -156,32 +154,32 @@ function Customermanagementscreen() {
 
     }
 
-  
- function verification() {
-       let index =0;
-   
-       const VerifiedUsers = new Array();
-       while (index <= usersCount) {
-           if (activeUsers[index].isVerified) {
-   
-               // console.log(activeUsers[index].name)
-               const DATA = activeUsers[index].name;
-               VerifiedUsers.push(DATA)
-               // console.log(VerifiedUsers)
-           }
-           index++;
-          
-           console.log(VerifiedUsers)
-           console.log(VerifiedUsers.length)
-       }
-      
- }
+
+
+    const VerifiedUsers = new Array();
+    for (let index = 0; index < usersCount; index++) {
+
+        if (activeUsers[index].isVerified) {
+
+            // console.log(activeUsers[index].name)
+            const DATA = activeUsers[index].name;
+
+            VerifiedUsers.push(DATA)
+
+
+            //    console.log(VerifiedUsers)
+
+            // dispatch(verificationCount(VerifiedUsers.length))
+
+        }
+    }
+
+
+    console.log(VerifiedUsers)
 
 
 
 
-    
-    
 
 
 
@@ -303,7 +301,7 @@ function Customermanagementscreen() {
                     <br />
                     <br />
                     <div className='text-end'>
-                        <button  onClick={() => verification()} class="btn" data-bs-target="#exampleModalToggleReport" data-bs-toggle="modal" data-bs-dismiss="modal">Generate Customer Report</button>
+                        <button class="btn" data-bs-target="#exampleModalToggleReport" data-bs-toggle="modal" data-bs-dismiss="modal">Generate Customer Report</button>
                     </div>
 
                     {/* report model */}
@@ -317,14 +315,14 @@ function Customermanagementscreen() {
                                 </div>
                                 <div class="modal-body">
                                     Active Users = {usersCount} <br />
-                                    {/* Verified Users = {VerifiedUsers.length}
+                                    Verified Users = {VerifiedUsers.length}
 
 
                                     <ol>
                                         {VerifiedUsers.map((names) => (
                                             <li>{names}</li>
                                         ))}
-                                    </ol> */}
+                                    </ol>
 
 
                                 </div>

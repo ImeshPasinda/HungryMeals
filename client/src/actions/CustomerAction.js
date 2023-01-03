@@ -257,6 +257,7 @@ export const updateCustomerVerification = (updatecustomerverification, userId, v
             setTimeout(function () {
                 window.location.reload('/admin/customers');
             }, 1500);
+           
 
             console.log(response);
             dispatch({ type: 'UPDATE_CUSTOMER_VERIFICATION_SUCCESS' })
@@ -307,6 +308,8 @@ export const updateCustomerVerification = (updatecustomerverification, userId, v
             setTimeout(function () {
                 window.location.reload('/admin/customers');
             }, 1500);
+            
+
 
             console.log(response);
             dispatch({ type: 'UPDATE_CUSTOMER_VERIFICATION_SUCCESS' })

@@ -79,7 +79,7 @@ export default function AdminProfilescreen() {
                         </p>
                         <br />
                         <br />
-                        <a href="#" class="btn">See More</a>
+                        <a href="/admin/customers" class="btn">See More</a>
                     </div>
                 </div>
 

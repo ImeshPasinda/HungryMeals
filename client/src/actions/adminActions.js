@@ -20,7 +20,7 @@ export const logoutAdmin = () => dispatch => {
 
     localStorage.removeItem('currentAdmin')
     localStorage.removeItem('cartItems')
-    localStorage.removeItem('activeUsers')
+    // localStorage.removeItem('activeUsers')
     localStorage.removeItem('currentNotifications')
     window.location.href = 'admin/login'
 }
