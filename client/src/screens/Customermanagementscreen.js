@@ -4,14 +4,20 @@ import DataTable from "react-data-table-component"
 import Swal from 'sweetalert2';
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux'
-import { deleteCustomerAction } from '../actions/CustomerAction';
+import { deleteCustomerAction, addUser } from '../actions/CustomerAction';
 import { updateCustomerName, updateCustomerEmail, updateCustomerPassword, updateCustomerVerification } from '../actions/CustomerAction';
+import Loading from "../components/Loading"
+import Success from "../components/Success"
+import Error from "../components/Error"
 
 
 
 let userId;
 let usersCount;
 let usersArray;
+let totalVerifiedUsers = 0
+const VerifiedUsers = new Array();
+
 
 
 
@@ -20,12 +26,51 @@ function Customermanagementscreen() {
 
 
 
+
+    const [cpassword, setcpassword] = useState('')
+    const customeraddstate = useSelector(state => state.addCustomerReducer)
+    const { error, loading, success } = customeraddstate
+
+
+    function addcustomer() {
+
+        if (password != cpassword) {
+
+            alert("passwords not matched")
+
+        } else {
+
+            const user = {
+
+                name,
+                email,
+                password
+            }
+            console.log(user)
+            dispatch(addUser(user))
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     const [users, setUsers] = useState([]);
     const [filterdUsers, setFilterdUsers] = useState([]);
     const [search, setSearch] = useState("");
 
     const userstate = useSelector(state => state.adminloginReducer)
-    const { activeUsers } = userstate
+    const { activeUsers, activeUsersforVerifiedPurpose } = userstate
 
 
 
@@ -34,10 +79,25 @@ function Customermanagementscreen() {
             axios.get("http://localhost:8070/api/users/getAllusers").then((res) => {
                 setUsers(res.data);
                 // console.log(res.data)
-                localStorage.setItem('activeUsers', JSON.stringify(res.data))
-
+              
                 usersArray = res.data;
                 usersCount = usersArray.length;
+
+
+                //verification status purpose
+
+                for (let index = 0; index < usersArray.length; index++) {
+                    if (res.data[index].isVerified) {
+                        const DATA = res.data[index].name;
+                        VerifiedUsers.push(DATA)
+                        totalVerifiedUsers = totalVerifiedUsers + 1;
+                    }
+
+                }
+                console.log(VerifiedUsers)
+                console.log(totalVerifiedUsers)
+
+
 
 
 
@@ -154,34 +214,7 @@ function Customermanagementscreen() {
 
     }
 
-
-
-    const VerifiedUsers = new Array();
-    for (let index = 0; index < usersCount; index++) {
-
-        if (activeUsers[index].isVerified) {
-
-            // console.log(activeUsers[index].name)
-            const DATA = activeUsers[index].name;
-
-            VerifiedUsers.push(DATA)
-
-
-            //    console.log(VerifiedUsers)
-
-            // dispatch(verificationCount(VerifiedUsers.length))
-
-        }
-    }
-
-
-    console.log(VerifiedUsers)
-
-
-
-
-
-
+    
 
 
     function updatepassword(userId) {
@@ -300,8 +333,10 @@ function Customermanagementscreen() {
                     />
                     <br />
                     <br />
-                    <div className='text-end'>
-                        <button class="btn" data-bs-target="#exampleModalToggleReport" data-bs-toggle="modal" data-bs-dismiss="modal">Generate Customer Report</button>
+                    <div className='modal-footer'>
+                        <button class="btn" data-bs-target="#addnewcustomer" data-bs-toggle="modal" data-bs-dismiss="modal"><i style={{ fontSize: '15px', color: 'white' }} class="fa fa-plus" aria-hidden="true"></i>Add Customer</button>
+                        <div className='p-1'><button class="btn" data-bs-target="#exampleModalToggleReport" data-bs-toggle="modal" data-bs-dismiss="modal">Generate Customer Report</button>
+                        </div>
                     </div>
 
                     {/* report model */}
@@ -314,183 +349,175 @@ function Customermanagementscreen() {
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    Active Users = {usersCount} <br />
-                                    Verified Users = {VerifiedUsers.length}
 
+                                    <div class="container my-4">
 
-                                    <ol>
-                                        {VerifiedUsers.map((names) => (
-                                            <li>{names}</li>
-                                        ))}
-                                    </ol>
+                                        <div class="border p-5 mb-5">
 
+                                            <section>
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-6 mb-4">
+                                                        <div class="card">
+                                                            <div class="card-body shadow shadow" >
+                                                                <p class="text-uppercase small mb-2">
+                                                                    <strong>ACTIVE LIVE USERS <i class="fa-solid fa-circle fa-fade" style={{ fontSize: '13px', color: 'red' }} ></i></strong>
+                                                                </p>
+                                                                <h5 class="mb-0">
+                                                                    <strong>{usersCount}</strong>
+                                                                    <small class="text-success ms-2">
+                                                                        <i class="fas fa-arrow-up fa-sm pe-1"></i></small>
+                                                                </h5>
 
-                                </div>
-                                <div class="container my-4">
-                                    
-                                    <div class="border p-5 mb-5">
+                                                                <hr />
 
-                                        <section>
-                                            <div class="row">
-                                                <div class="col-lg-3 col-md-6 mb-4">
-                                                    <div class="card">
-                                                        <div class="card-body">
-                                                            <p class="text-uppercase small mb-2">
-                                                                <strong>USERS</strong>
-                                                            </p>
-                                                            <h5 class="mb-0">
-                                                                <strong>14 567</strong>
-                                                                <small class="text-success ms-2">
-                                                                    <i class="fas fa-arrow-up fa-sm pe-1"></i>13,48%</small>
-                                                            </h5>
-
-                                                            <hr />
-
-                                                            <p class="text-uppercase text-muted small mb-2">
-                                                                Previous period
-                                                            </p>
-                                                            <h5 class="text-muted mb-0">11 467</h5>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-
-                                                <div class="col-lg-3 col-md-6 mb-4">
-                                                    <div class="card">
-                                                        <div class="card-body">
-                                                            <p class="text-uppercase small mb-2">
-                                                                <strong>PAGE VIEWS</strong>
-                                                            </p>
-                                                            <h5 class="mb-0">
-                                                                <strong>51 354 </strong>
-                                                                <small class="text-success ms-2">
-                                                                    <i class="fas fa-arrow-up fa-sm pe-1"></i>23,58%</small>
-                                                            </h5>
-
-                                                            <hr />
-
-                                                            <p class="text-uppercase text-muted small mb-2">
-                                                                Previous period
-                                                            </p>
-                                                            <h5 class="text-muted mb-0">38 454</h5>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-lg-3 col-md-6 mb-4">
-                                                    <div class="card">
-                                                        <div class="card-body">
-                                                            <p class="text-uppercase small mb-2">
-                                                                <strong>AVERAGE TIME</strong>
-                                                            </p>
-                                                            <h5 class="mb-0">
-                                                                <strong>00:04:20</strong>
-                                                                <small class="text-danger ms-2">
-                                                                    <i class="fas fa-arrow-down fa-sm pe-1"></i>23,58%</small>
-                                                            </h5>
-
-                                                            <hr />
-
-                                                            <p class="text-uppercase text-muted small mb-2">
-                                                                Previous period
-                                                            </p>
-                                                            <h5 class="text-muted mb-0">00:05:20</h5>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-lg-3 col-md-6 mb-4">
-                                                    <div class="card">
-                                                        <div class="card-body">
-                                                            <p class="text-uppercase small mb-2">
-                                                                <strong>BOUNCE RATE</strong>
-                                                            </p>
-                                                            <h5 class="mb-0">
-                                                                <strong>32.35%</strong>
-                                                                <small class="text-danger ms-2">
-                                                                    <i class="fas fa-arrow-down fa-sm pe-1"></i>23,58%</small>
-                                                            </h5>
-
-                                                            <hr />
-
-                                                            <p class="text-uppercase text-muted small mb-2">
-                                                                Previous period
-                                                            </p>
-                                                            <h5 class="text-muted mb-0">24.35%</h5>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </section>
-
-                                        <section>
-                                            <div class="row">
-                                                <div class="col-md-8 mb-4">
-                                                    <div class="card">
-                                                        <div class="card-body">
-
-                                                            <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
-                                                                <li class="nav-item" role="presentation">
-                                                                    <a class="nav-link active" id="ex1-tab-1" data-mdb-toggle="pill" href="#ex1-pills-1" role="tab"
-                                                                        aria-controls="ex1-pills-1" aria-selected="true">Users</a>
-                                                                </li>
-                                                                <li class="nav-item" role="presentation">
-                                                                    <a class="nav-link" id="ex1-tab-2" data-mdb-toggle="pill" href="#ex1-pills-2" role="tab"
-                                                                        aria-controls="ex1-pills-2" aria-selected="false">Page views</a>
-                                                                </li>
-                                                                <li class="nav-item" role="presentation">
-                                                                    <a class="nav-link" id="ex1-tab-3" data-mdb-toggle="pill" href="#ex1-pills-3" role="tab"
-                                                                        aria-controls="ex1-pills-3" aria-selected="false">Average time</a>
-                                                                </li>
-                                                                <li class="nav-item" role="presentation">
-                                                                    <a class="nav-link" id="ex1-tab-4" data-mdb-toggle="pill" href="#ex1-pills-4" role="tab"
-                                                                        aria-controls="ex1-pills-4" aria-selected="false">Bounce rate</a>
-                                                                </li>
-                                                            </ul>
-
-                                                            <div class="tab-content" id="ex1-content">
-                                                                <div class="tab-pane fade show active" id="ex1-pills-1" role="tabpanel" aria-labelledby="ex1-tab-1">
-                                                                    <div id="chart-users"></div>
-                                                                </div>
-                                                                <div class="tab-pane fade" id="ex1-pills-2" role="tabpanel" aria-labelledby="ex1-tab-2">
-                                                                    <div id="chart-page-views"></div>
-                                                                </div>
-                                                                <div class="tab-pane fade" id="ex1-pills-3" role="tabpanel" aria-labelledby="ex1-tab-3">
-                                                                    <div id="chart-average-time"></div>
-                                                                </div>
-                                                                <div class="tab-pane fade" id="ex1-pills-4" role="tabpanel" aria-labelledby="ex1-tab-4">
-                                                                    <div id="chart-bounce-rate"></div>
-                                                                </div>
+                                                                <p class="text-uppercase text-muted small mb-2">
+                                                                    Previous period
+                                                                </p>
+                                                                {/* <h5 class="text-muted mb-0">11 467</h5> */}
                                                             </div>
+                                                        </div>
 
+                                                    </div>
+
+                                                    <div class="col-lg-3 col-md-6 mb-4">
+                                                        <div class="card">
+                                                            <div class="card-body shadow">
+                                                                <p class="text-uppercase small mb-2">
+                                                                    <strong>VERIFIED LIVE USERS <i class="fa-solid fa-circle fa-fade" style={{ fontSize: '13px', color: 'red' }}></i></strong>
+                                                                </p>
+                                                                <h5 class="mb-0">
+                                                                    <strong>{totalVerifiedUsers}</strong>
+                                                                    <small class="text-success ms-2">
+                                                                        <i class="fas fa-arrow-up fa-sm pe-1"></i></small>
+                                                                </h5>
+
+                                                                <hr />
+
+                                                                <p class="text-uppercase text-muted small mb-2">
+                                                                    Previous period
+                                                                </p>
+                                                                {/* <h5 class="text-muted mb-0">38 454</h5> */}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-3 col-md-6 mb-4">
+                                                        <div class="card">
+                                                            <div class="card-body shadow">
+                                                                <p class="text-uppercase small mb-2">
+                                                                    <strong>AVERAGE LIVE TIME <i class="fa-solid fa-circle fa-fade" style={{ fontSize: '13px', color: 'red' }}></i></strong>
+                                                                </p>
+                                                                <h5 class="mb-0">
+                                                                    <strong>00:00</strong>
+                                                                    <small class="text-danger ms-2">
+                                                                        <i class="fas fa-arrow-down fa-sm pe-1"></i></small>
+                                                                </h5>
+
+                                                                <hr />
+
+                                                                <p class="text-uppercase text-muted small mb-2">
+                                                                    Previous period
+                                                                </p>
+                                                                <h5 class="text-muted mb-0"></h5>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-3 col-md-6 mb-4">
+                                                        <div class="card">
+                                                            <div class="card-body shadow">
+                                                                <p class="text-uppercase small mb-2">
+                                                                    <strong>BOUNCE LIVE RATE <i class="fa-solid fa-circle fa-fade" style={{ fontSize: '13px', color: 'red' }}></i></strong>
+                                                                </p>
+                                                                <h5 class="mb-0">
+                                                                    <strong>00.00%</strong>
+                                                                    <small class="text-danger ms-2">
+                                                                        <i class="fas fa-arrow-down fa-sm pe-1"></i></small>
+                                                                </h5>
+
+                                                                <hr />
+
+                                                                <p class="text-uppercase text-muted small mb-2">
+                                                                    Previous period
+                                                                </p>
+                                                                <h5 class="text-muted mb-0"></h5>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
+                                            </section>
 
-                                                <div class="col-md-4 mb-4">
-                                                    <div class="card mb-4">
-                                                        <div class="card-body">
-                                                            <p class="text-center"><strong>Current period</strong></p>
-                                                            <div id="pie-chart-current"></div>
+                                            <section>
+                                                <div class="row">
+                                                    <div class="col-md-8 mb-4">
+                                                        <div class="card">
+                                                            <div class="card-body shadow">
+
+                                                                <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
+                                                                    <li class="nav-item" role="presentation">
+                                                                        <a class="nav-link active" id="ex1-tab-1" data-mdb-toggle="pill" role="tab"
+                                                                            aria-controls="ex1-pills-1" aria-selected="true">Verified Users</a>
+                                                                    </li>
+
+
+
+                                                                </ul>
+
+                                                                <div className=''> {VerifiedUsers.map((names) => (
+                                                                    <ol>{names}<i class="fa fa-check-circle p-1" title="Verified Customer" style={{ fontSize: '14px', color: '#00b9ff' }} aria-hidden="true"></i></ol>
+
+                                                                ))}
+                                                                </div>
+
+
+
+                                                                <div class="tab-content" id="ex1-content">
+                                                                    <div class="tab-pane fade show active" id="ex1-pills-1" role="tabpanel" aria-labelledby="ex1-tab-1">
+                                                                        <div id="chart-users"></div>
+                                                                    </div>
+                                                                    <div class="tab-pane fade" id="ex1-pills-2" role="tabpanel" aria-labelledby="ex1-tab-2">
+                                                                        <div id="chart-page-views"></div>
+                                                                    </div>
+                                                                    <div class="tab-pane fade" id="ex1-pills-3" role="tabpanel" aria-labelledby="ex1-tab-3">
+                                                                        <div id="chart-average-time"></div>
+                                                                    </div>
+                                                                    <div class="tab-pane fade" id="ex1-pills-4" role="tabpanel" aria-labelledby="ex1-tab-4">
+                                                                        <div id="chart-bounce-rate"></div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
                                                         </div>
                                                     </div>
 
-                                                    <div class="card">
-                                                        <div class="card-body">
-                                                            <p class="text-center"><strong>Previous period</strong></p>
-                                                            <div id="pie-chart-previous"></div>
+                                                    <div class="col-md-4 mb-4">
+                                                        <div class="card mb-4">
+                                                            <div class="card-body shadow">
+                                                                <p class="text-center"><strong>Current period</strong></p>
+                                                                <div id="pie-chart-current">0</div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="card">
+                                                            <div class="card-body shadow">
+                                                                <p class="text-center"><strong>Previous period</strong></p>
+                                                                <div id="pie-chart-previous">0</div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </section>
+                                            </section>
+
+                                        </div>
+
 
                                     </div>
 
-
                                 </div>
+
                                 <div class="modal-footer">
-                                    {/* <button class="btn"  data-bs-toggle="modal" data-bs-dismiss="modal">Open second modal</button> */}
+                                    <button class="btn" onClick={() => window.print()} >Print</button>
+                                    <button class="btn" data-bs-toggle="modal">Close</button>
                                 </div>
                             </div>
                         </div>
@@ -591,6 +618,91 @@ function Customermanagementscreen() {
                                     <button onClick={() => updatepassword(userId)} type="button" class="btn ">Save Changes</button>
                                     <button class="btn" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" data-bs-dismiss="modal">Change Name</button>
                                     <button class="btn" data-bs-target="#exampleModalToggle1" data-bs-toggle="modal" data-bs-dismiss="modal">Change Email</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="modal fade" id="addnewcustomer" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="updateemailLabel">Add new Customer</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+
+                                    {loading && <Loading />}
+                                    {success && <Success success='Customer Added Successfully' />}
+                                    {error && (<Error error='Email already registered' />)}
+                                    <form>
+
+
+                                        <div class="mb-3">
+                                            <label for="customer-name" class="col-form-label">Name:</label>
+                                            <input
+
+                                                required
+                                                type="text"
+                                                class="form-control"
+                                                id="customer-name"
+                                                value={name}
+                                                onChange={(e) => { updateCName(e.target.value) }}
+
+                                            />
+                                        </div>
+
+
+                                        <div class="mb-3">
+                                            <label for="customer-email" class="col-form-label">Email:</label>
+                                            <input
+
+                                                required
+                                                type="text"
+                                                class="form-control"
+                                                id="customer-email"
+                                                value={email}
+                                                onChange={(e) => { updateCEmail(e.target.value) }}
+
+                                            />
+                                        </div>
+
+
+                                        <div class="mb-3">
+                                            <label for="customer-password" class="col-form-label">Password:</label>
+                                            <input
+
+                                                required
+                                                type="password"
+                                                class="form-control"
+                                                id="customer-password"
+                                                value={password}
+                                                onChange={(e) => { updateCPassword(e.target.value) }}
+
+                                            />
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="customer-cpassword" class="col-form-label">ReType - Password:</label>
+                                            <input
+
+                                                required
+                                                type="password"
+                                                class="form-control"
+                                                id="customer-cpassword"
+                                                value={cpassword}
+                                                onChange={(e) => { setcpassword(e.target.value) }}
+
+                                            />
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+
+                                    <button onClick={addcustomer} type="button" class="btn ">Add</button>
+                                    <button type="button" class="btn " data-bs-dismiss="modal">Close</button>
+
                                 </div>
                             </div>
                         </div>

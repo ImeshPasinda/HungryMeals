@@ -38,3 +38,23 @@ export const loginUserReducer = (state = {}, action) => {
 
     }
 }
+
+export const addCustomerReducer = (state = {}, action) => {
+
+    switch (action.type) {
+
+        case 'ADD_CUSTOMER_REQUEST': return {
+            loading: true
+        }
+        case 'CUSTOMER_ADDED_SUCCESS': return {
+            loading: false,
+            success: true,
+        }
+        case 'CUSTOMER_ADDED_FAILED': return {
+            loading: false,
+            error: action.payload
+        }
+        default: return state
+
+    }
+}

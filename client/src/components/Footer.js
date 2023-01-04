@@ -25,7 +25,7 @@ export default function Footer() {
                             <ul class="nav flex-column">
 
                                 <a href="/">
-                                    <img src="https://static.wixstatic.com/media/618c8c_9a01260c6c1144c589bec4245b92f9b3~mv2.png" alt="" width="110" height="65" class="d-inline-block align-text-top" />
+                                    <img src="https://static.wixstatic.com/media/618c8c_698b18719d9142ca9ec080803802ceb4~mv2.png" alt="" width="110" height="65" class="d-inline-block align-text-top" />
                                 </a>
                                 <br/>
                                 <i class="fab fa-facebook-f mt-2 " aria-hidden="true" style={{fontSize : '19px'}} ></i>

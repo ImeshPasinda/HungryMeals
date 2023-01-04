@@ -339,3 +339,61 @@ export const updateCustomerVerification = (updatecustomerverification, userId, v
 
 
 }
+
+export const addUser = (user) => async dispatch => {
+
+    dispatch({ type: 'CUSTOMER_ADDED_REQUEST' })
+
+    try {
+        const response = await axios.post('/api/users/addcustomer', user)
+        console.log(response);
+
+        
+        
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1500,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
+        Toast.fire({
+            icon: 'success',
+            title: 'Customer addded successfully'
+        })
+       
+        setTimeout(function () {
+            window.location.reload('/admin/customers');
+        }, 1500);
+        console.log(response);
+        
+        dispatch({ type: 'CUSTOMER_ADDED_SUCCESS' })
+
+    } catch (error) {
+        
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
+        Toast.fire({
+            icon: 'error',
+            title: 'Customer added unsuccessfully'
+        })
+
+        dispatch({ type: 'CUSTOMER_ADDED_FAILED', payload: error })
+    }
+}
+

@@ -32,6 +32,36 @@ router.post("/register", async (req, res) => {
     }
 });
 
+
+router.post("/addcustomer", async (req, res) => {
+
+    const { name, email, password } = req.body
+
+
+
+    try {
+
+
+        const userExit = await User.findOne({ email })
+
+        if (userExit) {
+
+            return res.status(400).json({ message: error });
+
+        } else {
+
+            const newUser = new User({ name, email, password })
+            newUser.save()
+            res.send('Customer added Successfully')
+        }
+
+    } catch (error) {
+
+        return res.status(400).json({ message: error });
+    }
+
+});
+
 router.post("/login", async (req, res) => {
 
     const { email, password } = req.body

@@ -7,7 +7,7 @@ import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { getAllPizzasReducer } from './reducers/pizzaReducers'
 import { cartReducer } from './reducers/cartReducer'
-import { loginUserReducer, registerUserReducer } from './reducers/userReducer'
+import { loginUserReducer, registerUserReducer ,addCustomerReducer } from './reducers/userReducer'
 import { adminloginReducer} from './reducers/adminReducer'
 import { feedbackReducer } from './reducers/feedbackReducer'
 import { placeOrderReducer, getUserOrdersReducer } from './reducers/orderReducer'
@@ -21,7 +21,8 @@ const finalReducer = combineReducers({
     adminloginReducer: adminloginReducer,
     placeOrderReducer: placeOrderReducer , 
     feedbackReducer : feedbackReducer,
-    getUserOrdersReducer : getUserOrdersReducer
+    getUserOrdersReducer : getUserOrdersReducer,
+    addCustomerReducer : addCustomerReducer
 })
 
 const cartItems = localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : []
@@ -32,7 +33,7 @@ const currentAdmin = localStorage.getItem('currentAdmin') ? JSON.parse(localStor
 
 const currentNotifications = localStorage.getItem('currentNotifications') ? JSON.parse(localStorage.getItem('currentNotifications')) : null
 
-const activeUsers = localStorage.getItem('activeUsers') ? JSON.parse(localStorage.getItem('activeUsers')) : null
+
 
 const initialState = {
     cartReducer: {
@@ -45,7 +46,7 @@ const initialState = {
     adminloginReducer: {
         currentAdmin: currentAdmin,
         currentNotifications: currentNotifications,
-        activeUsers : activeUsers
+        
     }
 }
 
