@@ -35,13 +35,15 @@ const currentNotifications = localStorage.getItem('currentNotifications') ? JSON
 
 
 
+
 const initialState = {
     cartReducer: {
         cartItems: cartItems
     },
     loginUserReducer: {
         currentUser: currentUser,
-        currentNotifications: currentNotifications
+        currentNotifications: currentNotifications,
+        
     },
     adminloginReducer: {
         currentAdmin: currentAdmin,

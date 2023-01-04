@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import 'bootstrap'
+import axios from 'axios'
 import { updateUserEmail } from "../actions/userActions";
 import { updateUserName } from "../actions/userActions";
 import { updateNotificationOneAction } from "../actions/userActions";
@@ -9,6 +10,39 @@ import { updateNotificationThreeAction } from "../actions/userActions";
 import { updateNotificationFourAction } from "../actions/userActions";
 
 
+var isVerified;
+
+
+var NotificationOneImage
+var NotificationOneHeader
+var NotificationOneBody
+var NotificationOneDate
+
+
+var NotificationTwoImage
+var NotificationTwoHeader
+var NotificationTwoBody
+var NotificationTwoDate
+
+
+var NotificationThreeImage
+var NotificationThreeHeader
+var NotificationThreeBody
+var NotificationThreeDate
+
+
+var NotificationFourImage
+var NotificationFourHeader
+var NotificationFourBody
+var NotificationFourDate
+
+
+var NotificationType
+var NotificationHeader
+var NotificationBody
+var NotificationButton
+var NotificationDate
+
 export default function UserProfilescreen() {
 
 
@@ -16,6 +50,107 @@ export default function UserProfilescreen() {
 
     const userstate = useSelector(state => state.loginUserReducer)
     const { currentUser, currentNotifications } = userstate
+    const [currentusers, setUsers] = useState([]);
+    const [notifications, setNotifications] = useState([]);
+
+
+
+    useEffect(() => {
+
+
+
+
+        function getCurrentUser() {
+
+            axios.get(`http://localhost:8070/api/users/getcurrentuser/${currentUser._id}`).then((res) => {
+
+
+                setUsers(res.data);
+
+
+                isVerified = res.data.isVerified
+
+
+                NotificationOneImage = res.data.notificationOneImage
+                NotificationOneHeader = res.data.notificationOneHeader
+                NotificationOneBody = res.data.notificationOneBody
+                NotificationOneDate = res.data.notificationOneDate
+
+
+                NotificationTwoImage = res.data.notificationTwoImage
+                NotificationTwoHeader = res.data.notificationTwoHeader
+                NotificationTwoBody = res.data.notificationTwoBody
+                NotificationTwoDate = res.data.notificationTwoDate
+
+
+                NotificationThreeImage = res.data.notificationThreeImage
+                NotificationThreeHeader = res.data.notificationThreeHeader
+                NotificationThreeBody = res.data.notificationThreeBody
+                NotificationThreeDate = res.data.notificationThreeDate
+
+
+                NotificationFourImage = res.data.notificationFourImage
+                NotificationFourHeader = res.data.notificationFourHeader
+                NotificationFourBody = res.data.notificationFourBody
+                NotificationFourDate = res.data.notificationFourDate
+
+
+
+
+
+
+
+
+            }).catch((error) => {
+                console.log(error)
+
+
+            })
+        }
+        getCurrentUser();
+
+    }, [])
+
+
+
+    useEffect(() => {
+
+
+
+
+        function getPublicNotifications() {
+
+            axios.get('http://localhost:8070/api/notifications/getnotifications').then((res) => {
+
+
+                setNotifications(res.data);
+
+
+
+
+
+                NotificationType = res.data[0].notificationType
+                NotificationHeader = res.data[0].notificationHeader
+                NotificationBody = res.data[0].notificationBody
+                NotificationButton = res.data[0].notificationButton
+                NotificationDate = res.data[0].notificationDate
+
+
+
+
+
+
+            }).catch((error) => {
+                console.log(error)
+
+
+            })
+        }
+        getPublicNotifications();
+
+    }, [])
+
+
 
 
 
@@ -291,9 +426,9 @@ export default function UserProfilescreen() {
                     <div>
                         <h2 style={{ fontSize: '30px' }}>{currentUser.name}<></>
 
-                            {currentUser.isVerified ? (
+                            {isVerified ? (
 
-                                <i class="fa fa-check-circle p-1" title="Verified Customer"  style={{ fontSize: '20px', color: '#00b9ff' }} aria-hidden="true"></i>
+                                <i class="fa fa-check-circle p-1" title="Verified Customer" style={{ fontSize: '20px', color: '#00b9ff' }} aria-hidden="true"></i>
 
                             ) : (
 
@@ -320,7 +455,7 @@ export default function UserProfilescreen() {
                     </p>
                     <div class="collapse" id="collapseExample">
                         <div class="card card-body">
-                            {currentUser.notificationOneHeader === 'empty' && currentUser.notificationTwoHeader === 'empty' && currentUser.notificationThreeHeader === 'empty' && currentUser.notificationFourHeader === 'empty' && currentNotifications[0].notificationHeader === 'empty' ? (
+                            {NotificationOneHeader === 'empty' && NotificationTwoHeader === 'empty' && NotificationThreeHeader === 'empty' && NotificationFourHeader === 'empty' && NotificationHeader === 'empty' ? (
 
 
                                 <small class="text-muted text-center fst-italic"><i class="fa-solid fa-mug-saucer"></i><> </>You're All Caught Up...</small>
@@ -330,26 +465,27 @@ export default function UserProfilescreen() {
                                 <></>
 
                             )}
-                           
+
 
                             <div class="row row-cols-1 row-cols-md-4 g-4">
 
 
-                                {currentUser.notificationOneHeader === 'empty' ? (
+                                {NotificationOneHeader === 'empty' ? (
                                     <></>
 
                                 ) : (
 
                                     < div class="col">
                                         <div class="card h-100 shadow">
-                                            <button onClick={() => { updateNotificationOne(currentUser._id, 'empty') }} type="button" class="btn-close p-2" style={{ position: 'absolute', right: '4px' }} aria-label="Close"></button>
+                                            <button onClick={() => { updateNotificationOne(currentUser._id, 'empty') }} type="button" class="btn-close p-2" style={{ position: 'absolute', right: '3px' }} aria-label="Close"></button>
                                             <br />
-                                            <img src={currentUser.notificationOneImage} class="card-img-top" alt="..." />
+                                            <br />
+                                            <img src={NotificationOneImage} class="card-img-top" alt="..." />
                                             <div class="card-body">
-                                                <h5 class="card-title">{currentUser.notificationOneHeader}</h5>
-                                                <p class="card-text">{currentUser.notificationOneBody}</p> </div>
+                                                <h5 class="card-title">{NotificationOneHeader}</h5>
+                                                <p class="card-text">{NotificationOneBody}</p> </div>
                                             <div class="card-footer">
-                                                <small class="text-muted"><i class="fa fa-calendar" aria-hidden="true"></i><> </>{currentUser.notificationOneDate}</small>
+                                                <small class="text-muted"><i class="fa fa-calendar" aria-hidden="true"></i><> </>{NotificationOneDate}</small>
                                             </div>
                                         </div>
                                     </div>
@@ -357,7 +493,7 @@ export default function UserProfilescreen() {
                                 )}
 
 
-                                {currentUser.notificationTwoHeader === 'empty' ? (
+                                {NotificationTwoHeader === 'empty' ? (
                                     <></>
 
                                 ) : (
@@ -366,12 +502,13 @@ export default function UserProfilescreen() {
                                         <div class="card h-100 shadow">
                                             <button onClick={() => { updateNotificationTwo(currentUser._id, 'empty') }} type="button" class="btn-close p-2" style={{ position: 'absolute', right: '4px' }} aria-label="Close"></button>
                                             <br />
-                                            <img src={currentUser.notificationTwoImage} class="card-img-top" alt="..." />
+                                            <br />
+                                            <img src={NotificationTwoImage} class="card-img-top" alt="..." />
                                             <div class="card-body">
-                                                <h5 class="card-title">{currentUser.notificationTwoHeader}</h5>
-                                                <p class="card-text">{currentUser.notificationTwoBody}</p> </div>
+                                                <h5 class="card-title">{NotificationTwoHeader}</h5>
+                                                <p class="card-text">{NotificationTwoBody}</p> </div>
                                             <div class="card-footer">
-                                                <small class="text-muted"><i class="fa fa-calendar" aria-hidden="true"></i><> </>{currentUser.notificationTwoDate}</small>
+                                                <small class="text-muted"><i class="fa fa-calendar" aria-hidden="true"></i><> </>{NotificationTwoDate}</small>
                                             </div>
                                         </div>
                                     </div>
@@ -379,7 +516,7 @@ export default function UserProfilescreen() {
                                 )}
 
 
-                                {currentUser.notificationThreeHeader === 'empty' ? (
+                                {NotificationThreeHeader === 'empty' ? (
                                     <></>
 
                                 ) : (
@@ -388,19 +525,20 @@ export default function UserProfilescreen() {
                                         <div class="card h-100 shadow">
                                             <button onClick={() => { updateNotificationThree(currentUser._id, 'empty') }} type="button" class="btn-close p-2" style={{ position: 'absolute', right: '4px' }} aria-label="Close"></button>
                                             <br />
-                                            <img src={currentUser.notificationThreeImage} class="card-img-top" alt="..." />
+                                            <br />
+                                            <img src={NotificationThreeImage} class="card-img-top" alt="..." />
                                             <div class="card-body">
-                                                <h5 class="card-title">{currentUser.notificationThreeHeader}</h5>
-                                                <p class="card-text">{currentUser.notificationThreeBody}</p></div>
+                                                <h5 class="card-title">{NotificationThreeHeader}</h5>
+                                                <p class="card-text">{NotificationThreeBody}</p></div>
                                             <div class="card-footer">
-                                                <small class="text-muted"><i class="fa fa-calendar" aria-hidden="true"></i><> </>{currentUser.notificationThreeDate}</small>
+                                                <small class="text-muted"><i class="fa fa-calendar" aria-hidden="true"></i><> </>{NotificationThreeDate}</small>
                                             </div>
                                         </div>
                                     </div>
 
                                 )}
 
-                                {currentUser.notificationFourHeader === 'empty' ? (
+                                {NotificationFourHeader === 'empty' ? (
                                     <></>
 
                                 ) : (
@@ -409,12 +547,13 @@ export default function UserProfilescreen() {
                                         <div class="card h-100 shadow">
                                             <button onClick={() => { updateNotificationFour(currentUser._id, 'empty') }} type="button" class="btn-close p-2" style={{ position: 'absolute', right: '4px' }} aria-label="Close"></button>
                                             <br />
-                                            <img src={currentUser.notificationThreeImage} class="card-img-top" alt="..." />
+                                            <br />
+                                            <img src={NotificationThreeImage} class="card-img-top" alt="..." />
                                             <div class="card-body">
-                                                <h5 class="card-title">{currentUser.notificationFourHeader}</h5>
-                                                <p class="card-text">{currentUser.notificationThreeBody}</p></div>
+                                                <h5 class="card-title">{NotificationFourHeader}</h5>
+                                                <p class="card-text">{NotificationFourBody}</p></div>
                                             <div class="card-footer">
-                                                <small class="text-muted"><i class="fa fa-calendar" aria-hidden="true"></i><> </>{currentUser.notificationThreeDate}</small>
+                                                <small class="text-muted"><i class="fa fa-calendar" aria-hidden="true"></i><> </>{NotificationFourDate}</small>
                                             </div>
                                         </div>
                                     </div>
@@ -426,21 +565,21 @@ export default function UserProfilescreen() {
 
                             </div>
                             <br />
-                            {currentNotifications[0].notificationHeader === 'empty' ? (
+                            {NotificationHeader === 'empty' ? (
                                 <></>
 
                             ) : (
                                 <div class="card text-center h-100 shadow">
                                     <div class="card-header">
-                                        {currentNotifications[0].notificationType}
+                                        {NotificationType}
                                     </div>
                                     <div class="card-body">
-                                        <h5 class="card-title">{currentNotifications[0].notificationHeader}</h5>
-                                        <p class="card-text">{currentNotifications[0].notificationBody}</p>
-                                        <a href={currentNotifications[0].notificationButton} class="btn">Go somewhere</a>
+                                        <h5 class="card-title">{NotificationHeader}</h5>
+                                        <p class="card-text">{NotificationBody}</p>
+                                        <a href={NotificationButton} class="btn">Go somewhere</a>
                                     </div>
                                     <div class="card-footer text-muted">
-                                        {currentNotifications[0].notificationDate}
+                                        {NotificationDate}
                                     </div>
                                 </div>
                             )}

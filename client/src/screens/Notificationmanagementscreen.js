@@ -155,9 +155,9 @@ export default function Notificationmanagementscreen() {
 
                 notificationType: "Public Notification",
                 notificationHeader: val,
-                notificationBody : "empty",
-                notificationButton : "#",
-                notificationDate : "YYYY-MM-DD",
+                notificationBody: "empty",
+                notificationButton: "#",
+                notificationDate: "YYYY-MM-DD",
 
 
             }
@@ -427,7 +427,9 @@ export default function Notificationmanagementscreen() {
                             <div class="modal-footer">
                                 <button onClick={() => updateNotificationOne(userId, notificationOneHeader)} type="button" class="btn ">Update</button>
                                 <button onClick={() => { updateNotificationOne(userId, 'empty') }} type="button" class="btn ">Remove</button>
-                                <button class="btn" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Next</button>
+                                <button class="btn" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Notification 2</button>
+                                <button class="btn" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" data-bs-dismiss="modal">Notification 3</button>
+                                <button class="btn" data-bs-target="#exampleModalToggle4" data-bs-toggle="modal" data-bs-dismiss="modal">Notification 4</button>
                             </div>
                         </div>
                     </div>
@@ -496,7 +498,9 @@ export default function Notificationmanagementscreen() {
                             <div class="modal-footer">
                                 <button onClick={() => updateNotificationTwo(userId, notificationTwoHeader)} type="button" class="btn ">Update</button>
                                 <button onClick={() => { updateNotificationTwo(userId, 'empty') }} type="button" class="btn ">Remove</button>
-                                <button class="btn" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" data-bs-dismiss="modal">Next</button>
+                                <button class="btn" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" data-bs-dismiss="modal">Notification 1</button>
+                                <button class="btn" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" data-bs-dismiss="modal">Notification 3</button>
+                                <button class="btn" data-bs-target="#exampleModalToggle4" data-bs-toggle="modal" data-bs-dismiss="modal">Notification 4</button>
                             </div>
                         </div>
                     </div>
@@ -567,7 +571,9 @@ export default function Notificationmanagementscreen() {
                             <div class="modal-footer">
                                 <button onClick={() => updateNotificationThree(userId, notificationThreeHeader)} type="button" class="btn ">Update</button>
                                 <button onClick={() => { updateNotificationThree(userId, 'empty') }} type="button" class="btn ">Remove</button>
-                                <button class="btn" data-bs-target="#exampleModalToggle4" data-bs-toggle="modal" data-bs-dismiss="modal">Next</button>
+                                <button class="btn" data-bs-target="#exampleModalToggle1" data-bs-toggle="modal" data-bs-dismiss="modal">Notification 1</button>
+                                <button class="btn" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Notification 2</button>
+                                <button class="btn" data-bs-target="#exampleModalToggle4" data-bs-toggle="modal" data-bs-dismiss="modal">Notification 4</button>
                             </div>
                         </div>
 
@@ -639,7 +645,9 @@ export default function Notificationmanagementscreen() {
                             <div class="modal-footer">
                                 <button onClick={() => updateNotificationFour(userId, notificationFourHeader)} type="button" class="btn ">Update</button>
                                 <button onClick={() => { updateNotificationFour(userId, 'empty') }} type="button" class="btn ">Remove</button>
-                                <button class="btn" data-bs-target="#" data-bs-toggle="modal" data-bs-dismiss="modal">Close</button>
+                                <button class="btn" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" data-bs-dismiss="modal">Notification 1</button>
+                                <button class="btn" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Notification 2</button>
+                                <button class="btn" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" data-bs-dismiss="modal">Notification 3</button>
                             </div>
 
                         </div>

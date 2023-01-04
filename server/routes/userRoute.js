@@ -116,6 +116,19 @@ router.post("/login", async (req, res) => {
 })
 
 
+router.get("/getcurrentuser/:id" , async (req, res) => {
+
+    let userId = req.params.id;
+    try {
+
+        const currentusers = await User.findById(userId)
+        res.send(currentusers)
+
+    } catch (error) {
+        return res.status(400).json({ message: error });
+    }
+
+})
 
 router.get("/getallusers", async (req, res) => {
 
@@ -350,14 +363,14 @@ router.put("/update/customer/email/:id", async (req, res) => {
         if (userExit) {
 
             res.send('Customer Email already registered')
-            
-            
+
+
 
         } else {
 
             await User.findByIdAndUpdate(userId, updateCustomerEmail)
             res.send('Customer Email Updated Successfully')
-            
+
         }
 
 

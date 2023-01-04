@@ -60,7 +60,7 @@ function Customermanagementscreen() {
     const [search, setSearch] = useState("");
 
     const userstate = useSelector(state => state.adminloginReducer)
-    const { activeUsers, activeUsersforVerifiedPurpose } = userstate
+    const { activeUsers } = userstate
 
 
 
