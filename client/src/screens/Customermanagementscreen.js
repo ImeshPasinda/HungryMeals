@@ -55,16 +55,6 @@ function Customermanagementscreen() {
 
 
 
-
-
-
-
-
-
-
-
-
-
     const [users, setUsers] = useState([]);
     const [filterdUsers, setFilterdUsers] = useState([]);
     const [search, setSearch] = useState("");
@@ -94,6 +84,7 @@ function Customermanagementscreen() {
                     }
 
                 }
+                
                 console.log(VerifiedUsers)
                 console.log(totalVerifiedUsers)
 
