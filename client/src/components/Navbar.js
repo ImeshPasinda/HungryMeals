@@ -15,7 +15,7 @@ export default function Navbar() {
     return (
         <div>
             <nav className="navbar navbar-expand-lg shadow-lg p-3 mb-5 navbar-dark bg-black  fixed-top">
-          
+
                 <div className="container-fluid">
                     <a class="navbar-brand" href="/">
                         <img src="https://static.wixstatic.com/media/618c8c_698b18719d9142ca9ec080803802ceb4~mv2.png" alt="" width="78" height="45" class="d-inline-block align-text-top" />
@@ -61,7 +61,7 @@ export default function Navbar() {
                             ) : (
 
                                 <li className="nav-item">
-                                    <a  className="nav-link " href="/login">
+                                    <a className="nav-link " href="/login">
                                         Login
                                     </a>
                                 </li>
@@ -71,7 +71,7 @@ export default function Navbar() {
 
                             {currentUser ? (
                                 <li className="nav-item">
-                                    <a className="nav-link"  href="/feedback">
+                                    <a className="nav-link" href="/feedback">
                                         Feedback
                                     </a>
                                 </li>
@@ -80,7 +80,7 @@ export default function Navbar() {
 
 
                                 <li className="nav-item">
-                                    <a className="nav-link"   href="/feedback">
+                                    <a className="nav-link" href="/feedback">
                                         Feedback
                                     </a>
                                 </li>
@@ -90,12 +90,23 @@ export default function Navbar() {
                                 </li>) : (
 
                                 <li className="nav-item">
-                                    <a className="nav-link"  href="/feedback">
+                                    <a className="nav-link" href="/feedback">
                                         Feedback
                                     </a>
                                 </li>
 
                             )}
+
+                            <li className="nav-item">
+                                <a className="nav-link" >
+
+                                    <a href="" class="text-dark">
+                                        <i class="fas fa-bell" style={{ color: 'white' }}></i>
+                                        <span class="badge rounded-pill badge-notification " style={{ fontSize: '11px', color: 'white', backgroundColor: 'red' }} >9</span>
+                                    </a>
+
+                                </a>
+                            </li>
 
 
                             <li className="nav-item">
@@ -106,7 +117,7 @@ export default function Navbar() {
                                     <span style={{ color: 'red' }}> {cartState.cartItems.length}</span>
                                 </a>
                             </li>
-                            
+
 
                         </ul>
                     </div>
