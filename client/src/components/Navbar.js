@@ -28,9 +28,14 @@ export default function Navbar() {
 
                             {currentUser ? (
                                 <div className="dropdown mt-2">
-                                    <a style={{ color: 'white' }} className="dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                        {currentUser.name}
-                                    </a>
+                                    
+                                    
+                                    <a style={{ color: 'white' }} className="dropdown-toggles" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Hi, {currentUser.name}
+                                    </a> <>  </>
+                                    <i className="fas fa-user dropdown-toggles" href="#" role="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style={{ color: 'white' }}></i>
+                                    
+                                    
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
 
                                         <li><a className="dropdown-item" href="/profile">Profile</a></li>
@@ -47,16 +52,23 @@ export default function Navbar() {
                                 </li>
                             ) &&
                                 currentAdmin ? (
+
+                                
                                 <div className="dropdown mt-2">
-                                    <a style={{ color: 'white' }} className="dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                        {currentAdmin.name}
+                                    
+                                    <a style={{ color: 'white', width : '120px' }} className="dropdown-toggles" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Hi, {currentAdmin.name}<> </><i className="fas fa-user dropdown-toggles"  style={{ color: 'white' }}></i>
                                     </a>
+                                    
+                                   
+                                    
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
 
                                         <li><a className="dropdown-item" href="/admin">Profile</a></li>
 
                                         <li><a className="dropdown-item" href="#" onClick={() => { dispatch(logoutAdmin()) }}><li>Logout</li></a></li>
                                     </ul>
+                                
                                 </div>
                             ) : (
 
@@ -97,17 +109,66 @@ export default function Navbar() {
 
                             )}
 
-                            <li className="nav-item">
-                                <a className="nav-link" >
 
-                                    <a href="" class="text-dark">
-                                        <i class="fas fa-bell" style={{ color: 'white' }}></i>
-                                        <span class="badge rounded-pill badge-notification " style={{ fontSize: '11px', color: 'white', backgroundColor: 'red' }} >9</span>
+                            <div class="dropdown">
+                                <li className="nav-item">
+                                    <a className="nav-link" >
+                                        <i className="fas fa-bell dropdown-toggles" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" style={{ color: 'white' }}></i>
+                                        <span class="badge rounded-pill badge-notification " style={{ fontSize: '11px', color: 'white', backgroundColor: 'red' }} >2</span>
+
+
+
+                                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-star" aria-labelledby="dropdownMenuLink">
+
+
+
+                                            <li>
+
+                                                <a class="dropdown-item" href="/admin" >
+                                                    <p class=" mb-2" style={{ fontSize: '9px' }}>12/22/2022</p>
+
+
+                                                    <p class="mb-2 " style={{ fontSize: '13px' }}>Check out 9 MORE lessons<br />  on MDB UI Kit. Learn about<br />  Cascading Cards,Modals,<br />   Filtersmore.</p>
+
+                                                    {/* <img src="https://static.toiimg.com/thumb/56933159.cms?imgsize=686279&width=800&height=800" alt="" width="200" height="120" style={{ borderRadius: '15px' }} /> */}
+
+
+
+
+                                                </a>
+
+                                            </li>
+
+                                            <li>
+
+                                                <a class="dropdown-item" href="#">
+                                                    <p class="mb-2" style={{ fontSize: '9px' }}>12/22/2022</p>
+
+
+                                                    <p class="mb-2 " style={{ fontSize: '13px' }}>Check out 9 MORE lessons<br />  on MDB UI Kit. Learn about<br />  Cascading Cards,Modals,<br />   Filtersmore.</p>
+
+                                                    {/* <img src="https://static.toiimg.com/thumb/56933159.cms?imgsize=686279&width=800&height=800" alt="" width="200" height="120" style={{ borderRadius: '15px' }} /> */}
+
+
+
+
+                                                </a>
+
+                                            </li>
+
+
+
+                                        </ul>
+
                                     </a>
 
-                                </a>
-                            </li>
 
+                                </li>
+
+
+
+
+                            </div>
 
                             <li className="nav-item">
                                 <a className="nav-link" href="/cart">

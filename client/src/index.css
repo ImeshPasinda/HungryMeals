@@ -73,7 +73,7 @@ input {
   box-shadow: none !important;
 }
 
-.dropdown-toggle {
+.dropdown-toggles {
   text-decoration: none;
 }
 
@@ -115,94 +115,109 @@ input {
 
 
 
-.content-section{
-	float: left;
-	width: 55%;
-}
-.image-section{
-	float: right;
-	width: 40%;
-  margin-top: 4%;
-  
-}
-.image-section img{
-	width: 100%;
-	height: auto;
-}
-.content-section .title{
-	text-transform: uppercase;
-	font-size: 28px;
-}
-.content-section .content h3{
-	margin-top: 20px;
-	color:#5d5d5d;
-	font-size: 21px;
-}
-.content-section .content h1{
-	margin-top: 15px;
-	color:#111010;
-	font-size: 40px !important
-}
-.content-section .content p{
-	margin-top: 10px;
-	font-family: sans-serif;
-	font-size: 18px;
-	line-height: 1.5;
-}
-.content-section .content .button{
-	margin-top: 30px;
-}
-.content-section .content .button a{
-	background-color: #3d3d3d;
-	padding:12px 40px;
-	text-decoration: none;
-	color:#fff;
-	font-size: 25px;
-	letter-spacing: 1.5px;
-}
-.content-section .content .button a:hover{
-	background-color: #a52a2a;
-	color:#fff;
+.content-section {
+  float: left;
+  width: 55%;
 }
 
-@media screen and (max-width: 768px){
-	.container{
-	width: 80%;
-	display: block;
-	margin:auto;
-	padding-top:50px
-  !important
+.image-section {
+  float: right;
+  width: 40%;
+  margin-top: 4%;
+
 }
-.content-section{
-	float:none;
-	width:100%;
-	display: block;
-	margin:auto;
+
+.image-section img {
+  width: 100%;
+  height: auto;
 }
-.image-section{
-	float:none;
-	width:100%;
-	
+
+.content-section .title {
+  text-transform: uppercase;
+  font-size: 28px;
 }
-.image-section img{
-	width: 100%;
-	height: auto;
-	display: block;
-	margin:auto;
+
+.content-section .content h3 {
+  margin-top: 20px;
+  color: #5d5d5d;
+  font-size: 21px;
 }
-.content-section .title{
-	text-align: center;
-	font-size: 19px;
+
+.content-section .content h1 {
+  margin-top: 15px;
+  color: #111010;
+  font-size: 40px !important
 }
-.content-section .content .button{
-	text-align: center;
+
+.content-section .content p {
+  margin-top: 10px;
+  font-family: sans-serif;
+  font-size: 18px;
+  line-height: 1.5;
 }
-.content-section .content .button a{
-	padding:9px 30px;
+
+.content-section .content .button {
+  margin-top: 30px;
 }
-.content-section .social{
-	text-align: center;
+
+.content-section .content .button a {
+  background-color: #3d3d3d;
+  padding: 12px 40px;
+  text-decoration: none;
+  color: #fff;
+  font-size: 25px;
+  letter-spacing: 1.5px;
 }
+
+.content-section .content .button a:hover {
+  background-color: #a52a2a;
+  color: #fff;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    width: 80%;
+    display: block;
+    margin: auto;
+    padding-top: 50px !important
+  }
+
+  .content-section {
+    float: none;
+    width: 100%;
+    display: block;
+    margin: auto;
+  }
+
+  .image-section {
+    float: none;
+    width: 100%;
+
+  }
+
+  .image-section img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: auto;
+  }
+
+  .content-section .title {
+    text-align: center;
+    font-size: 19px;
+  }
+
+  .content-section .content .button {
+    text-align: center;
+  }
+
+  .content-section .content .button a {
+    padding: 9px 30px;
+  }
+
+  .content-section .social {
+    text-align: center;
+  }
 
 }
 
@@ -212,50 +227,105 @@ input {
 /* FAQ */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
-.faq{
+.faq {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif
 }
-  
-  body{
-    background-image: linear-gradient(to right top, #9ecff5, #7096F8);
-    min-height: 100vh
-    
+
+body {
+  background-image: linear-gradient(to right top, #9ecff5, #7096F8);
+  min-height: 100vh
+}
+
+.wrapper {
+  max-width: 760px;
+  margin: 50px auto;
+  padding: 40px 20px
+}
+
+
+
+
+.wrapper .accordion-button {
+  font-size: 0.9rem;
+  font-weight: 500
+}
+
+.wrapper .accordion-button:hover {
+  background-color: #f8f8f8
+}
+
+.wrapper .accordion-button:focus {
+  box-shadow: none
+}
+
+.wrapper .accordion-button::after {
+  background-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #c8c8c8;
+  background-position: center center;
+  border-radius: 50%
+}
+
+.wrapper .accordion-button:not(.collapsed) {
+  color: #000;
+  background-color: #f7f7f7;
+  font-weight: 600;
+  border-bottom: 1px solid #ddd !important
+}
+
+.accordion-button:not(.collapsed)::after {
+  border-color: #1E88E5
+}
+
+.wrapper .accordion-button.collapsed {
+  border-bottom: 1px solid #ddd !important
+}
+
+.wrapper .accordion-collapse.show {
+  border-bottom: 1px solid #ddd !important
+}
+
+.wrapper .accordion-collapse {
+  background-color: #eaf3fa
+}
+
+
+
+@media (max-width: 365px) {
+  .wrapper {
+    margin: 50px 10px
   }
-  
-  .wrapper{
-    max-width: 760px;
-    margin: 50px auto;
-    padding: 40px 20px
-    
+
+  .w-75 {
+    width: 90% !important
   }
-    
-  
-    
+}
+
+
+.dropdown-item {
+  display: block;
+  width: 100%;
+  padding: var(--bs-dropdown-item-padding-y) var(--bs-dropdown-item-padding-x);
+  clear: both;
+  font-weight: 400;
+  color: var(--bs-dropdown-link-color);
+  text-align: inherit;
+  text-decoration: none;
+  white-space: nowrap !important;
+  background-color: transparent;
+  border: 0;
+}
+
+.dropdown-menu {
  
-    .wrapper .accordion-button{font-size: 0.9rem;font-weight: 500}
-    .wrapper .accordion-button:hover{background-color: #f8f8f8}
-    .wrapper .accordion-button:focus{box-shadow: none}
-    .wrapper .accordion-button::after{
-      background-size: 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid #c8c8c8;
-      background-position: center center;
-      border-radius: 50%
-    }
-      .wrapper .accordion-button:not(.collapsed){
-        color: #000;
-        background-color: #f7f7f7;
-        font-weight: 600;border-bottom: 1px solid #ddd !important}
-        .accordion-button:not(.collapsed)::after{border-color: #1E88E5}
-        .wrapper .accordion-button.collapsed{border-bottom: 1px solid #ddd !important}
-        .wrapper .accordion-collapse.show{border-bottom: 1px solid #ddd !important}
-        .wrapper .accordion-collapse{background-color: #eaf3fa}
+  --bs-dropdown-link-active-bg: black !important;
+  
+}
 
 
-        
-        @media (max-width: 365px){.wrapper{margin: 50px 10px}.w-75{width: 90% !important}}
+
