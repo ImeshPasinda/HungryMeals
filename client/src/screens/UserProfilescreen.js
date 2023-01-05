@@ -465,9 +465,30 @@ export default function UserProfilescreen() {
                                 <></>
 
                             )}
+                            {NotificationHeader === 'empty' ? (
+                                <></>
 
+                            ) : (
+                                <div class="card text-center h-100 shadow">
+                                    <div class="card-header">
+                                        {NotificationType}
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">{NotificationHeader}</h5>
+                                        <p class="card-text">{NotificationBody}</p>
+                                        <a href={NotificationButton} class="btn">Go somewhere</a>
+                                    </div>
+                                    <div class="card-footer text-muted">
+                                        {NotificationDate}
+                                    </div>
+                                </div>
+                            )}
+
+                            <br/>
 
                             <div class="row row-cols-1 row-cols-md-4 g-4">
+
+
 
 
                                 {NotificationOneHeader === 'empty' ? (
@@ -564,30 +585,13 @@ export default function UserProfilescreen() {
 
 
                             </div>
-                            <br />
-                            {NotificationHeader === 'empty' ? (
-                                <></>
+                           
 
-                            ) : (
-                                <div class="card text-center h-100 shadow">
-                                    <div class="card-header">
-                                        {NotificationType}
-                                    </div>
-                                    <div class="card-body">
-                                        <h5 class="card-title">{NotificationHeader}</h5>
-                                        <p class="card-text">{NotificationBody}</p>
-                                        <a href={NotificationButton} class="btn">Go somewhere</a>
-                                    </div>
-                                    <div class="card-footer text-muted">
-                                        {NotificationDate}
-                                    </div>
-                                </div>
-                            )}
                         </div>
                     </div>
                 </div>
             </div>
-            
+
 
         </div>
 

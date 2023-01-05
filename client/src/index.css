@@ -323,7 +323,7 @@ body {
 
 .dropdown-menu {
  
-  --bs-dropdown-link-active-bg: black !important;
+  --bs-dropdown-link-active-bg: red !important;
   
 }
 

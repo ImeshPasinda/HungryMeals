@@ -306,32 +306,6 @@ export default function Notificationmanagementscreen() {
 
 
 
-                <div className='col-md-9 m-2 p-1 shadow p-3 mb-5 bg-white' style={{ color: 'black', borderRadius: '25px' }}>
-                    <h1>Public Notifications</h1>
-                    <br /><br />
-                    <br />
-                    <div class="card text-center shadow">
-                        <div class="card-header">
-                            {currentNotifications[0].notificationType}
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">{currentNotifications[0].notificationHeader}</h5>
-                            <p class="card-text">{currentNotifications[0].notificationBody}</p>
-                            <a href={currentNotifications[0].notificationButton} class="btn">Go somewhere</a>
-                        </div>
-                        <div class="card-footer text-muted">
-                            {currentNotifications[0].notificationDate}
-                        </div>
-                    </div>
-                    <br />
-                    <div className=' p-3 '>
-                        <button className="btn" data-bs-toggle="modal" href="#exampleModalToggle0" role="button">Update</button>
-                        <> </>
-                        <button onClick={() => { updateNotification('empty') }} type="button" class="btn ">Remove</button>
-                    </div>
-                </div>
-
-
                 <div className='col-md-9 m-3   p-0 ' >
 
                     <DataTable
@@ -360,8 +334,15 @@ export default function Notificationmanagementscreen() {
                     />
 
 
-
+                    <br />
+                    <br />
+                    <div className='modal-footer'>
+                        <button class="btn" data-bs-target="#exampleModalToggle0" data-bs-toggle="modal" data-bs-dismiss="modal"><i style={{ fontSize: '15px', color: 'white' }} class="fa fa-paper-plane" aria-hidden="true"></i> Public Notifications</button>
+                        <div className='p-1'><button class="btn" data-bs-target="#" data-bs-toggle="modal" data-bs-dismiss="modal"><i style={{ fontSize: '15px', color: 'white' }} class="fa fa-file" aria-hidden="true"></i> Generate Customer Report</button></div>
+                    </div>
                 </div>
+
+
 
                 <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
                     <div class="modal-dialog modal-dialog-centered">
@@ -666,12 +647,38 @@ export default function Notificationmanagementscreen() {
 
 
                 <div class="modal fade" id="exampleModalToggle0" aria-hidden="true" aria-labelledby="exampleModalToggle0Label" tabindex="-1">
-                    <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-dialog  modal-dialog-centered">
                         <div class="modal-content">
+
+
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalToggle0Label">Public Notification</h5>
+                                <h5 class="modal-title" id="exampleModalToggle0Label"><i style={{ fontSize: '18px' }} class="fa fa-paper-plane" aria-hidden="true"></i> Public Notifications</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
+
+
+                           <br/>
+
+                                <div className='container'> 
+
+                                    <div class="card text-center shadow">
+                                        <div class="card-header">
+                                            {currentNotifications[0].notificationType}
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title">{currentNotifications[0].notificationHeader}</h5>
+                                            <p class="card-text">{currentNotifications[0].notificationBody}</p>
+                                            <a href={currentNotifications[0].notificationButton} class="btn">Go somewhere</a>
+                                        </div>
+                                        <div class="card-footer text-muted">
+                                            {currentNotifications[0].notificationDate}
+                                        </div>
+                                    </div>
+
+                            </div>
+
+                            <br/>
+                            <hr/>
                             <div class="modal-body">
                                 <div class="mb-3">
                                     <label for="exampleFormControlInput1" class="form-label">Notification Type</label>
@@ -743,6 +750,7 @@ export default function Notificationmanagementscreen() {
                                 </div>
                             </div>
                             <div class="modal-footer">
+                            <button onClick={() => { updateNotification('empty') }} type="button" class="btn ">Remove</button>
                                 <button onClick={() => updateNotification(notificationHeader)} type="button" class="btn ">Update</button>
 
                             </div>

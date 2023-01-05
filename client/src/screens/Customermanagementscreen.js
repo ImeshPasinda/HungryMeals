@@ -326,7 +326,7 @@ function Customermanagementscreen() {
                     <br />
                     <div className='modal-footer'>
                         <button class="btn" data-bs-target="#addnewcustomer" data-bs-toggle="modal" data-bs-dismiss="modal"><i style={{ fontSize: '15px', color: 'white' }} class="fa fa-plus" aria-hidden="true"></i>Add Customer</button>
-                        <div className='p-1'><button class="btn" data-bs-target="#exampleModalToggleReport" data-bs-toggle="modal" data-bs-dismiss="modal">Generate Customer Report</button>
+                        <div className='p-1'><button class="btn" data-bs-target="#exampleModalToggleReport" data-bs-toggle="modal" data-bs-dismiss="modal"><i style={{ fontSize: '15px', color: 'white' }} class="fa fa-file" aria-hidden="true"></i> Generate Customer Report</button>
                         </div>
                     </div>
 
