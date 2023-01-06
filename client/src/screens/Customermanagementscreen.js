@@ -17,15 +17,10 @@ let usersCount;
 let usersArray;
 let totalVerifiedUsers = 0
 const VerifiedUsers = new Array();
-
-
-
+let VerifiedPercentage;
 
 
 function Customermanagementscreen() {
-
-
-
 
     const [cpassword, setcpassword] = useState('')
     const customeraddstate = useSelector(state => state.addCustomerReducer)
@@ -69,7 +64,7 @@ function Customermanagementscreen() {
             axios.get("http://localhost:8070/api/users/getAllusers").then((res) => {
                 setUsers(res.data);
                 // console.log(res.data)
-              
+
                 usersArray = res.data;
                 usersCount = usersArray.length;
 
@@ -84,14 +79,9 @@ function Customermanagementscreen() {
                     }
 
                 }
-                
+
                 console.log(VerifiedUsers)
                 console.log(totalVerifiedUsers)
-
-
-
-
-
                 // console.log(usersCount)
 
 
@@ -104,6 +94,11 @@ function Customermanagementscreen() {
         getUsers();
 
     }, [])
+
+
+    VerifiedPercentage=(totalVerifiedUsers/usersCount)*100;
+    console.log(VerifiedPercentage)
+
 
     // search button
     useEffect(() => {
@@ -131,6 +126,7 @@ function Customermanagementscreen() {
     const [email, updateCEmail] = useState('')
     const [password, updateCPassword] = useState('')
 
+    //update name
     function updatename(userId) {
 
         const updateCName = {
@@ -145,7 +141,7 @@ function Customermanagementscreen() {
     }
 
 
-
+    //update email
     var isTrue = false
     function updateemail(userId) {
 
@@ -197,15 +193,8 @@ function Customermanagementscreen() {
                 dispatch(updateCustomerEmail(updateCEmail, userId))
 
             }
-
-
         }
-
-
-
     }
-
-    
 
 
     function updatepassword(userId) {
@@ -284,6 +273,8 @@ function Customermanagementscreen() {
 
     ]
 
+
+
     return (
         <div>
             <br />
@@ -336,7 +327,7 @@ function Customermanagementscreen() {
                         <div class="modal-dialog modal-lg modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalToggleLabel">Customer Report</h5>
+                                    <h5 class="modal-title" id="exampleModalToggleLabel">Customer Detail Report</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
@@ -383,10 +374,10 @@ function Customermanagementscreen() {
                                                                 </h5>
 
                                                                 <hr />
-
                                                                 <p class="text-uppercase text-muted small mb-2">
                                                                     Previous period
                                                                 </p>
+
                                                                 {/* <h5 class="text-muted mb-0">38 454</h5> */}
                                                             </div>
                                                         </div>
@@ -396,19 +387,19 @@ function Customermanagementscreen() {
                                                         <div class="card">
                                                             <div class="card-body shadow">
                                                                 <p class="text-uppercase small mb-2">
-                                                                    <strong>AVERAGE LIVE TIME <i class="fa-solid fa-circle fa-fade" style={{ fontSize: '13px', color: 'red' }}></i></strong>
+                                                                    <strong>Verified User Rate <i class="fa-solid fa-circle fa-fade" style={{ fontSize: '13px', color: 'red' }}></i></strong>
                                                                 </p>
                                                                 <h5 class="mb-0">
-                                                                    <strong>00:00</strong>
-                                                                    <small class="text-danger ms-2">
-                                                                        <i class="fas fa-arrow-down fa-sm pe-1"></i></small>
+                                                                    <strong>{VerifiedPercentage}%</strong>
+                                                                    <small class="text-success ms-2">
+                                                                        <i class="fas fa-arrow-up fa-sm pe-1"></i></small>
                                                                 </h5>
 
                                                                 <hr />
-
                                                                 <p class="text-uppercase text-muted small mb-2">
                                                                     Previous period
                                                                 </p>
+
                                                                 <h5 class="text-muted mb-0"></h5>
                                                             </div>
                                                         </div>
