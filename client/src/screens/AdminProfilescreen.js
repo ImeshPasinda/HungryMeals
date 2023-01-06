@@ -131,7 +131,7 @@ export default function AdminProfilescreen() {
                             <h5 class="card-title">Feedback Management</h5>
                             <p class="card-text">-Handle all the feedbacks(read,delete,display positive feedbacks on the page)
                             </p>
-                            <a href="#" class="btn">See More</a>
+                            <a href="/admin/feedback" class="btn">See More</a>
                         </div>
                     </div>
 

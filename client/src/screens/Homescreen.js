@@ -25,14 +25,14 @@ export default function Homescreen() {
     return (
 
         <div>
-         
-   <br/>
-   <br/>
-   <br/>
-   <br/>
-   <br/>
 
-    
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+
+
 
             <div className='row justify-content-center'>
 
@@ -46,7 +46,7 @@ export default function Homescreen() {
                         </div>
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img src="https://static.wixstatic.com/media/618c8c_3d0e0b4795ad42af900a44a933f01251~mv2.png"  className="d-block w-100" alt="..." />
+                                <img src="https://static.wixstatic.com/media/618c8c_3d0e0b4795ad42af900a44a933f01251~mv2.png" className="d-block w-100" alt="..." />
                                 <div class="carousel-caption d-none d-md-block">
                                     <h5 className="svg-shadow-xs">First slide label</h5>
                                     <p>Some representative placeholder content for the first slide.</p>
@@ -78,9 +78,11 @@ export default function Homescreen() {
                     </div>
 
 
-
-
+                
+                
                 </div>
+               
+
 
 
 
