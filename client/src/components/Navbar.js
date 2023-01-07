@@ -175,7 +175,7 @@ export default function Navbar() {
 
                                     <i class="fa fa-shopping-cart" style={{ color: 'white' }} aria-hidden="true"></i>
 
-                                    <span style={{ color: 'red' }}> {cartState.cartItems.length}</span>
+                                    <span style={{ color: 'white' }}> {cartState.cartItems.length}</span>
                                 </a>
                             </li>
 

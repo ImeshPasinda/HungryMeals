@@ -22,6 +22,33 @@ export default function Homescreen() {
 
 
 
+
+
+    useEffect(() => {
+        function getFeedbacks() {
+          axios.get("http://localhost:8070/api/feedback/getallfeedbacks").then((res) => {
+    
+            
+           
+            console.log(res.data)
+    
+    
+          }).catch((err) => {
+            console.log(err.message)
+    
+          })
+        }
+        getFeedbacks();
+    
+      }, [])
+
+
+
+
+
+
+
+
     return (
 
         <div>
@@ -106,61 +133,153 @@ export default function Homescreen() {
                 )}
 
 
-                {/* <div className='col-md-9  shadow-lg p-0 mb-5 bg-white rounded'>
-                    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-indicators">
-                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                        </div>
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="https://static.wixstatic.com/media/618c8c_3d0e0b4795ad42af900a44a933f01251~mv2.png" className="d-block w-100" alt="..." />
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h5 className="svg-shadow-xs">First slide label</h5>
-                                    <p>Some representative placeholder content for the first slide.</p>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <img src="https://static.wixstatic.com/media/618c8c_3d0e0b4795ad42af900a44a933f01251~mv2.png" className="d-block w-100" alt="..." />
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h5>Second slide label</h5>
-                                    <p>Some representative placeholder content for the second slide.</p>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <img src="https://static.wixstatic.com/media/618c8c_3d0e0b4795ad42af900a44a933f01251~mv2.png" className="d-block w-100" alt="..." />
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h5>Third slide label</h5>
-                                    <p>Some representative placeholder content for the third slide.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
-                    </div>
+                <div>
 
 
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                </div>
 
-
-                </div> */}
                 <div className='col-md-9  shadow-lg p-0 mb-5 bg-white rounded'>
-                    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                    <div id="carouselExampleControls" class="carousel slide" >
                         <div class="carousel-inner">
                             <div class="carousel-item active">
                                 <img src="https://static.wixstatic.com/media/618c8c_66b85eea9a4e44308771a5947da637c1~mv2.png" class="d-block w-100" alt="..." />
+                                <div class="carousel-caption" style={{postition : 'absolute'}}>
+
+                                    <div class="row text-center">
+                                        <div class="col-md-4 mb-5 mb-md-0">
+                                           
+                                        </div>
+                                        <div class="col-md-4 mb-5 mb-md-0">
+                                            
+                                            
+                                               
+                                        </div>
+                                        <div class="col-md-4 mb-0">
+                                           
+                                            
+                                            <p class="px-xl-3" >
+                                                <i class="fas fa-quote-left pe-2"></i>At vero eos et accusamus et iusto odio
+                                                dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti.
+                                            </p>
+                                            <p  style={{fontSize : '12px'}}>Imesh</p>
+                                            <ul class="list-unstyled d-flex justify-content-center mb-0">
+                                                <li>
+                                                    <i class="fas fa-star fa-sm text-warning"></i>
+                                                </li>
+                                                <li>
+                                                    <i class="fas fa-star fa-sm text-warning"></i>
+                                                </li>
+                                                <li>
+                                                    <i class="fas fa-star fa-sm text-warning"></i>
+                                                </li>
+                                                <li>
+                                                    <i class="fas fa-star fa-sm text-warning"></i>
+                                                </li>
+                                                <li>
+                                                    <i class="far fa-star fa-sm text-warning"></i>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                   
+
+                                </div>
+
+                             
+
                             </div>
                             <div class="carousel-item">
-                                <img src="https://static.wixstatic.com/media/618c8c_66b85eea9a4e44308771a5947da637c1~mv2.png" class="d-block w-100" alt="..." />
+                            <img src="https://static.wixstatic.com/media/618c8c_66b85eea9a4e44308771a5947da637c1~mv2.png" class="d-block w-100" alt="..." />
+                                <div class="carousel-caption" style={{postition : 'absolute'}}>
+
+                                    <div class="row text-center">
+                                        <div class="col-md-4 mb-5 mb-md-0">
+                                           
+                                        </div>
+                                        <div class="col-md-4 mb-5 mb-md-0">
+                                            
+                                            
+                                               
+                                        </div>
+                                        <div class="col-md-4 mb-0">
+                                           
+                                            
+                                            <p class="px-xl-3" >
+                                                <i class="fas fa-quote-left pe-2"></i>At vero eos et accusamus et iusto odio
+                                                dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti.
+                                            </p>
+                                            <p  style={{fontSize : '12px'}}>Imesh</p>
+                                            <ul class="list-unstyled d-flex justify-content-center mb-0">
+                                                <li>
+                                                    <i class="fas fa-star fa-sm text-warning"></i>
+                                                </li>
+                                                <li>
+                                                    <i class="fas fa-star fa-sm text-warning"></i>
+                                                </li>
+                                                <li>
+                                                    <i class="fas fa-star fa-sm text-warning"></i>
+                                                </li>
+                                                <li>
+                                                    <i class="fas fa-star fa-sm text-warning"></i>
+                                                </li>
+                                                <li>
+                                                    <i class="far fa-star fa-sm text-warning"></i>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                   
+
+                                </div>
                             </div>
                             <div class="carousel-item">
-                                <img src="https://static.wixstatic.com/media/618c8c_66b85eea9a4e44308771a5947da637c1~mv2.png" class="d-block w-100" alt="..." />
+                            <img src="https://static.wixstatic.com/media/618c8c_66b85eea9a4e44308771a5947da637c1~mv2.png" class="d-block w-100" alt="..." />
+                                <div class="carousel-caption" style={{postition : 'absolute'}}>
+
+                                    <div class="row text-center">
+                                        <div class="col-md-4 mb-5 mb-md-0">
+                                           
+                                        </div>
+                                        <div class="col-md-4 mb-5 mb-md-0">
+                                            
+                                            
+                                               
+                                        </div>
+                                        <div class="col-md-4 mb-0">
+                                           
+                                            
+                                            <p class="px-xl-3" >
+                                                <i class="fas fa-quote-left pe-2"></i>At vero eos et accusamus et iusto odio
+                                                dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti.
+                                            </p>
+                                            <p  style={{fontSize : '12px'}}>Imesh</p>
+                                            <ul class="list-unstyled d-flex justify-content-center mb-0">
+                                                <li>
+                                                    <i class="fas fa-star fa-sm text-warning"></i>
+                                                </li>
+                                                <li>
+                                                    <i class="fas fa-star fa-sm text-warning"></i>
+                                                </li>
+                                                <li>
+                                                    <i class="fas fa-star fa-sm text-warning"></i>
+                                                </li>
+                                                <li>
+                                                    <i class="fas fa-star fa-sm text-warning"></i>
+                                                </li>
+                                                <li>
+                                                    <i class="far fa-star fa-sm text-warning"></i>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                   
+
+                                </div>
                             </div>
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -174,15 +293,15 @@ export default function Homescreen() {
                     </div>
 
                 </div>
-                </div>
-
             </div>
 
+        </div>
 
 
 
 
 
-            )
+
+    )
 
 }

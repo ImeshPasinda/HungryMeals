@@ -10,11 +10,8 @@ export default function Footer() {
             <br />
             <br />
             <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
+           
+            
         <div  style={{ backgroundColor: '#0A0708', color: 'white' , bottom : '0', marginTop: '400px', width : '100%' }}>
             
             <div class="container" >
