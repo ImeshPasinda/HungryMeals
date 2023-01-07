@@ -5,6 +5,12 @@ import Swal from 'sweetalert2';
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import { deletefeedbackAction } from '../actions/feedbackAction';
+import { updateDisplayFeedback } from '../actions/feedbackAction';
+
+
+
+
+
 
 let userId;
 let usersCount;
@@ -58,9 +64,6 @@ function Feedbackmanagementscreen() {
 
 
     usersCount = res.data.length;
-
-
-    //verification status purpose
 
 
   }).catch((err) => {
@@ -123,6 +126,22 @@ function Feedbackmanagementscreen() {
 
   }
 
+  const [isDisplayed, updateisDisplayed] = useState('')
+
+    function updateDisplay(userId, val) {
+
+        const updateisDisplayed = {
+
+          isDisplayed: val
+        }
+
+        console.log(updateisDisplayed, userId)
+
+
+        dispatch(updateDisplayFeedback(updateisDisplayed, userId, val))
+
+
+    }
 
   //create data table
   const columns = [
@@ -149,7 +168,7 @@ function Feedbackmanagementscreen() {
     },
     {
       name: "Add to Homepage",
-      cell: row => <button className="btn" role="button">Enable</button>
+      cell: row => <> {row.isDisplayed === true ? (<button onClick={() => { { updateDisplay(row._id, false) } }} className="btn" role="button">Remove</button>) : (<button onClick={() => { { updateDisplay(row._id, true) } }} className="btn" role="button">Add</button>)} </>
 
 
     },
