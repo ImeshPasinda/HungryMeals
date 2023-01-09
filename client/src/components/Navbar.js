@@ -10,13 +10,22 @@ import { logoutAdmin } from '../actions/adminActions';
 
 var NotificationArray = new Array();
 let userId;
+let tot;
 let notificationcount;
+let publiccount = 0
 
 var NotificationType
 var NotificationHeader
 var NotificationBody
 var NotificationButton
 var NotificationDate
+
+let notificationOnecount = 0;
+let notificationTwocount = 0;
+let notificationThreecount = 0;
+let notificationFourcount = 0;
+
+
 
 
 export default function Navbar() {
@@ -43,7 +52,7 @@ export default function Navbar() {
 
 
             NotificationArray = res.data
-            console.log(res.data)
+
 
 
 
@@ -79,7 +88,8 @@ export default function Navbar() {
                 NotificationBody = res.data[0].notificationBody
                 NotificationButton = res.data[0].notificationButton
                 NotificationDate = res.data[0].notificationDate
-                
+
+
 
 
 
@@ -97,31 +107,19 @@ export default function Navbar() {
     }, [])
 
 
-
-
-
-
-
-
-
-
-
-    if (NotificationArray.notificationOneHeader === 'empty') {
-
-        notificationcount = notificationcount + 1;
-
-    } else if (NotificationArray.notificationTwoHeader === 'empty') {
-
-        notificationcount = notificationcount + 1;
-
-    } else if (NotificationArray.notificationThreeHeader === 'empty') {
-
-        notificationcount = notificationcount + 1;
-
-    } else if (NotificationArray.notificationFourHeader === 'empty') {
-
-        notificationcount = notificationcount + 1;
+    if (NotificationHeader === 'empty') {
+        publiccount = 0;
+    } else {
+        publiccount = 1;
     }
+
+    console.log(publiccount)
+
+
+
+
+    tot = notificationOnecount + notificationTwocount + notificationThreecount + notificationFourcount + publiccount;
+    console.log(tot)
 
     return (
         <div>
@@ -139,14 +137,14 @@ export default function Navbar() {
 
                             {currentUser ? (
 
-                                <div className="dropdown mt-2">
+                                <div className="dropdown m-2">
 
 
                                     <a style={{ color: 'white' }} className="dropdown-toggles" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Hi, {currentUser.name} <img src='https://static.wixstatic.com/media/618c8c_5f176f88792f40609c74309e7f6f2eb2~mv2.png' style={{ height: '24px', height: '24px' }} />
+                                        Hi, {currentUser.name} <img src='https://static.wixstatic.com/media/618c8c_5f176f88792f40609c74309e7f6f2eb2~mv2.png' style={{ height: '30px', height: '30px' }} />
                                     </a>
 
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <ul class="dropdown-menu text-center" style={{minWidth: '6rem '}} aria-labelledby="dropdownMenuButton1">
 
                                         <li><a className="dropdown-item" href="/profile">Profile</a></li>
                                         <li><a className="dropdown-item" href="/orders">Orders</a></li>
@@ -156,7 +154,7 @@ export default function Navbar() {
 
                             ) : (
 
-                                <li className="nav-item">
+                                <li className="nav-item mt-1">
                                     <a className="nav-link" href="/login">
                                         Login
                                     </a>
@@ -165,15 +163,15 @@ export default function Navbar() {
                                 currentAdmin ? (
 
 
-                                <div className="dropdown mt-2">
+                                <div className="dropdown m-2">
 
                                     <a style={{ color: 'white', width: '120px' }} className="dropdown-toggles" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Hi, {currentAdmin.name} <img src='https://static.wixstatic.com/media/618c8c_5f176f88792f40609c74309e7f6f2eb2~mv2.png' style={{ height: '24px', height: '24px' }} />
+                                        Hi, {currentAdmin.name} <img src='https://static.wixstatic.com/media/618c8c_5f176f88792f40609c74309e7f6f2eb2~mv2.png' style={{ height: '30px', height: '30px' }} />
                                     </a>
 
 
 
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <ul class="dropdown-menu text-center" style={{minWidth: '7rem '}} aria-labelledby="dropdownMenuButton1">
 
                                         <li><a className="dropdown-item" href="/admin">Profile</a></li>
 
@@ -183,7 +181,7 @@ export default function Navbar() {
                                 </div>
                             ) : (
 
-                                <li className="nav-item">
+                                <li className="nav-item mt-1">
                                     <a className="nav-link " href="/login">
                                         Login
                                     </a>
@@ -192,7 +190,7 @@ export default function Navbar() {
 
 
 
-                            {currentUser ? (
+                            {/* {currentUser ? (
                                 <li className="nav-item">
                                     <a className="nav-link" href="/feedback">
                                         Feedback
@@ -218,16 +216,16 @@ export default function Navbar() {
                                     </a>
                                 </li>
 
-                            )}
+                            )} */}
 
 
 
                             {currentUser ? (
                                 <div class="dropdown">
-                                    <li className="nav-item">
+                                    <li className="nav-item p-1">
                                         <a className="nav-link" >
-                                            <i onClick={() => { getCurrentNotifications(userId = currentUser._id) }} className="fas fa-bell dropdown-toggles" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" style={{ color: 'white' }}></i>
-                                            <span class="badge rounded-pill badge-notification " style={{ fontSize: '11px', color: 'white', backgroundColor: 'red' }} >0</span>
+                                            <i onClick={() => { getCurrentNotifications(userId = currentUser._id) }} className="fas fa-bell dropdown-toggles" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" style={{ color: 'white' , fontSize : '17px' }}></i>
+                                            <span class="badge rounded-pill badge-notification " style={{ fontSize: '11px', color: 'white', backgroundColor: 'red' }} >{tot}</span>
 
 
 
@@ -242,7 +240,7 @@ export default function Navbar() {
 
                                                     <li>
 
-                                                        <a class="dropdown-item" href="/admin" >
+                                                        <div class="row justify-content-center p-0 m-1">
 
 
 
@@ -253,13 +251,38 @@ export default function Navbar() {
 
 
 
-                                                        </a>
+                                                        </div>
 
                                                     </li>
 
                                                 ) : (
 
                                                     <></>
+
+                                                )}
+
+
+                                                {NotificationHeader === 'empty' ? (
+                                                    <></>
+
+                                                ) : (
+
+                                                    <li>
+
+                                                        <div class="row justify-content-center p-0 m-1">
+                                                            <p class=" mb-2 text-muted" style={{ fontSize: '9px' }}>{NotificationDate} <i class="fa fas fa-bell " style={{ fontSize: '8px', color: 'red' }} ></i></p>
+
+
+                                                            <p class="mb-2 " style={{ fontSize: '13px'}}> {NotificationBody}</p>
+
+                                                            {/* <img src="https://static.toiimg.com/thumb/56933159.cms?imgsize=686279&width=800&height=800" alt="" width="200" height="120" style={{ borderRadius: '15px' }} /> */}
+
+
+
+
+                                                        </div>
+
+                                                    </li>
 
                                                 )}
 
@@ -272,9 +295,9 @@ export default function Navbar() {
 
                                                     <li>
 
-                                                        <a class="dropdown-item" href="/admin" >
+                                                        <div class="row justify-content-center p-0 m-1">
 
-                                                            <p class=" mb-2" style={{ fontSize: '9px' }}>{NotificationArray.notificationOneDate}</p>
+                                                            <p class=" mb-2 text-muted" style={{ fontSize: '9px' }}>{NotificationArray.notificationOneDate}</p>
 
 
                                                             <p class="mb-2 " style={{ fontSize: '13px' }}>{NotificationArray.notificationOneBody}</p>
@@ -283,7 +306,7 @@ export default function Navbar() {
 
 
 
-                                                        </a>
+                                                        </div>
 
                                                     </li>
 
@@ -297,8 +320,8 @@ export default function Navbar() {
 
                                                     <li>
 
-                                                        <a class="dropdown-item" href="/admin" >
-                                                            <p class=" mb-2" style={{ fontSize: '9px' }}>{NotificationArray.notificationTwoDate}</p>
+                                                        <div class="row justify-content-center p-0 m-1">
+                                                            <p class=" mb-2 text-muted" style={{ fontSize: '9px' }}>{NotificationArray.notificationTwoDate}</p>
 
 
                                                             <p class="mb-2 " style={{ fontSize: '13px' }}> {NotificationArray.notificationTwoBody}</p>
@@ -308,7 +331,7 @@ export default function Navbar() {
 
 
 
-                                                        </a>
+                                                        </div>
 
                                                     </li>
 
@@ -322,8 +345,8 @@ export default function Navbar() {
 
                                                     <li>
 
-                                                        <a class="dropdown-item" href="/admin" >
-                                                            <p class=" mb-2" style={{ fontSize: '9px' }}>{NotificationArray.notificationThreeDate}</p>
+                                                        <div class="row justify-content-center p-0 m-1">
+                                                            <p class=" mb-2 text-muted" style={{ fontSize: '9px' }}>{NotificationArray.notificationThreeDate}</p>
 
 
                                                             <p class="mb-2 " style={{ fontSize: '13px' }}> {NotificationArray.notificationThreeBody}</p>
@@ -333,7 +356,7 @@ export default function Navbar() {
 
 
 
-                                                        </a>
+                                                        </div>
 
                                                     </li>
 
@@ -346,8 +369,8 @@ export default function Navbar() {
 
                                                     <li>
 
-                                                        <a class="dropdown-item" href="/admin" >
-                                                            <p class=" mb-2" style={{ fontSize: '9px' }}>{NotificationArray.notificationFourDate}</p>
+                                                        <div class="row justify-content-center p-0 m-1">
+                                                            <p class=" mb-2 text-muted" style={{ fontSize: '9px' }}>{NotificationArray.notificationFourDate}</p>
 
 
                                                             <p class="mb-2 " style={{ fontSize: '13px' }}> {NotificationArray.notificationFourBody}</p>
@@ -357,35 +380,13 @@ export default function Navbar() {
 
 
 
-                                                        </a>
+                                                        </div>
 
                                                     </li>
 
                                                 )}
 
-                                                {NotificationHeader === 'empty' ? (
-                                                    <></>
 
-                                                ) : (
-
-                                                    <li>
-
-                                                        <a class="dropdown-item" href="/admin" >
-                                                            <p class=" mb-2" style={{ fontSize: '9px' }}>{NotificationDate}</p>
-
-
-                                                            <p class="mb-2 " style={{ fontSize: '13px' }}> {NotificationBody}</p>
-
-                                                            {/* <img src="https://static.toiimg.com/thumb/56933159.cms?imgsize=686279&width=800&height=800" alt="" width="200" height="120" style={{ borderRadius: '15px' }} /> */}
-
-
-
-
-                                                        </a>
-
-                                                    </li>
-
-                                                )}
 
 
 
@@ -422,10 +423,10 @@ export default function Navbar() {
 
 
 
-                            <li className="nav-item">
+                            <li className="nav-item mt-1">
                                 <a className="nav-link" href="/cart">
 
-                                    <i class="fa fa-shopping-cart" style={{ color: 'white' }} aria-hidden="true"></i>
+                                    <i class="fa fa-shopping-cart" style={{ color: 'white' ,fontSize : '96%' }} aria-hidden="true"></i>
 
                                     <span style={{ color: 'white' }}> {cartState.cartItems.length}</span>
                                 </a>
