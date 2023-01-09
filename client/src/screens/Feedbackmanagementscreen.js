@@ -18,6 +18,7 @@ var feedbackSub, feedbackMessage;
 let feedbackArray;
 let feedbackCount;
 let feedbackPercentage;
+let feedbackPercentageRate;
 
 function Feedbackmanagementscreen() {
 
@@ -103,8 +104,10 @@ function Feedbackmanagementscreen() {
 
     })
   }
+  
   //percentagge
   feedbackPercentage=(feedbackCount/usersCount)*100;
+  feedbackPercentageRate = feedbackPercentage.toFixed(2)
 
 
   // search button
@@ -330,7 +333,7 @@ function Feedbackmanagementscreen() {
                               <strong>Percentage Rate <i class="fa-solid fa-circle fa-fade" style={{ fontSize: '13px', color: 'red' }}></i></strong>
                             </p>
                             <h5 class="mb-0">
-                              <strong>{feedbackPercentage}%</strong>
+                              <strong>{feedbackPercentageRate}%</strong>
                               <small class="text-danger ms-2">
                                 <i class="fas fa-arrow-up fa-sm pe-1"></i></small>
                             </h5>

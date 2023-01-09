@@ -4,8 +4,20 @@ import Pizza from "../components/Pizza";
 import { getAllPizzas } from '../actions/pizzaAction'
 import Loading from "../components/Loading";
 import Error from "../components/Error";
+import axios from "axios";
 
 
+
+const feedbackArray = new Array();
+
+var feedbackOneMesssage;
+var feedbackOneName;
+
+var feedbackTwoMesssage;
+var feedbackTwoName;
+
+var feedbackThreeMesssage;
+var feedbackThreeName;
 
 export default function Homescreen() {
 
@@ -13,8 +25,10 @@ export default function Homescreen() {
     const dispatch = useDispatch()
 
     const pizzasstate = useSelector(state => state.getAllPizzasReducer)
-
+    const [currentFeedbacks, setFeedbacks] = useState([]);
     const { pizzas, error, loading } = pizzasstate
+
+
 
     useEffect(() => {
         dispatch(getAllPizzas())
@@ -26,28 +40,50 @@ export default function Homescreen() {
 
     useEffect(() => {
         function getFeedbacks() {
-          axios.get("http://localhost:8070/api/feedback/getallfeedbacks").then((res) => {
-    
-            
-           
-            console.log(res.data)
-    
-    
-          }).catch((err) => {
-            console.log(err.message)
-    
-          })
+            axios.get("http://localhost:8070/api/feedback/getallfeedbacks").then((res) => {
+                setFeedbacks(res.data)
+
+
+
+                for (let index = 0; index < res.data.length; index++) {
+
+                    if (res.data[index].isDisplayed === true) {
+                        const DATA = res.data[index]
+                        feedbackArray.push(DATA)
+
+
+
+
+                    }
+
+
+
+
+                }
+
+                feedbackOneMesssage = feedbackArray[0].message;
+                feedbackOneName = feedbackArray[0].name;
+
+                feedbackTwoMesssage = feedbackArray[1].message;
+                feedbackTwoName = feedbackArray[1].name;
+
+                feedbackThreeMesssage = feedbackArray[2].message;
+                feedbackThreeName = feedbackArray[2].name;
+
+
+
+
+            }).catch((err) => {
+                console.log(err.message)
+
+            })
         }
         getFeedbacks();
-    
-      }, [])
+
+    }, [])
 
 
-
-
-
-
-
+    console.log(feedbackArray.length)
 
     return (
 
@@ -146,141 +182,333 @@ export default function Homescreen() {
                 <div className='col-md-9  shadow-lg p-0 mb-5 bg-white rounded'>
                     <div id="carouselExampleControls" class="carousel slide" >
                         <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="https://static.wixstatic.com/media/618c8c_66b85eea9a4e44308771a5947da637c1~mv2.png" class="d-block w-100" alt="..." />
-                                <div class="carousel-caption" style={{postition : 'absolute'}}>
 
-                                    <div class="row text-center">
-                                        <div class="col-md-4 mb-5 mb-md-0">
-                                           
+
+                            {feedbackArray.length === 3 ? (
+
+                                <div>
+
+                                    <div class="carousel-item active">
+                                        <img src="https://static.wixstatic.com/media/618c8c_66b85eea9a4e44308771a5947da637c1~mv2.png" class="d-block w-100" alt="..." />
+                                        <div class="carousel-caption" style={{ postition: 'absolute' }}>
+
+                                            <div class="row text-center">
+                                                <div class="col-md-4 mb-5 mb-md-0">
+
+                                                </div>
+                                                <div class="col-md-4 mb-5 mb-md-0">
+
+                                                </div>
+                                                <div class="col-md-4 mb-0">
+
+
+                                                    <p class="px-xl-3" >
+                                                        <i class="fas fa-quote-left pe-2"></i>{feedbackOneMesssage}
+                                                    </p>
+                                                    <p style={{ fontSize: '12px' }}>{feedbackOneName}</p>
+                                                    <ul class="list-unstyled d-flex justify-content-center mb-0">
+                                                        <li>
+                                                            <i class="fas fa-star fa-sm text-warning"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fas fa-star fa-sm text-warning"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fas fa-star fa-sm text-warning"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fas fa-star fa-sm text-warning"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="far fa-star fa-sm text-warning"></i>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+
                                         </div>
-                                        <div class="col-md-4 mb-5 mb-md-0">
-                                            
-                                            
-                                               
-                                        </div>
-                                        <div class="col-md-4 mb-0">
-                                           
-                                            
-                                            <p class="px-xl-3" >
-                                                <i class="fas fa-quote-left pe-2"></i>At vero eos et accusamus et iusto odio
-                                                dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti.
-                                            </p>
-                                            <p  style={{fontSize : '12px'}}>Imesh</p>
-                                            <ul class="list-unstyled d-flex justify-content-center mb-0">
-                                                <li>
-                                                    <i class="fas fa-star fa-sm text-warning"></i>
-                                                </li>
-                                                <li>
-                                                    <i class="fas fa-star fa-sm text-warning"></i>
-                                                </li>
-                                                <li>
-                                                    <i class="fas fa-star fa-sm text-warning"></i>
-                                                </li>
-                                                <li>
-                                                    <i class="fas fa-star fa-sm text-warning"></i>
-                                                </li>
-                                                <li>
-                                                    <i class="far fa-star fa-sm text-warning"></i>
-                                                </li>
-                                            </ul>
+
+
+
+                                    </div>
+
+
+
+                                    <div class="carousel-item">
+                                        <img src="https://static.wixstatic.com/media/618c8c_66b85eea9a4e44308771a5947da637c1~mv2.png" class="d-block w-100" alt="..." />
+                                        <div class="carousel-caption" style={{ postition: 'absolute' }}>
+
+                                            <div class="row text-center">
+                                                <div class="col-md-4 mb-5 mb-md-0">
+
+                                                </div>
+                                                <div class="col-md-4 mb-5 mb-md-0">
+
+
+
+                                                </div>
+                                                <div class="col-md-4 mb-0">
+
+
+                                                    <p class="px-xl-3" >
+                                                        <i class="fas fa-quote-left pe-2"></i>{feedbackTwoMesssage}
+                                                    </p>
+                                                    <p style={{ fontSize: '12px' }}>{feedbackTwoName}</p>
+                                                    <ul class="list-unstyled d-flex justify-content-center mb-0">
+                                                        <li>
+                                                            <i class="fas fa-star fa-sm text-warning"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fas fa-star fa-sm text-warning"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fas fa-star fa-sm text-warning"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fas fa-star fa-sm text-warning"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="far fa-star fa-sm text-warning"></i>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+
                                         </div>
                                     </div>
-                                   
 
-                                </div>
 
-                             
 
-                            </div>
-                            <div class="carousel-item">
-                            <img src="https://static.wixstatic.com/media/618c8c_66b85eea9a4e44308771a5947da637c1~mv2.png" class="d-block w-100" alt="..." />
-                                <div class="carousel-caption" style={{postition : 'absolute'}}>
+                                    <div class="carousel-item">
+                                        <img src="https://static.wixstatic.com/media/618c8c_66b85eea9a4e44308771a5947da637c1~mv2.png" class="d-block w-100" alt="..." />
+                                        <div class="carousel-caption" style={{ postition: 'absolute' }}>
 
-                                    <div class="row text-center">
-                                        <div class="col-md-4 mb-5 mb-md-0">
-                                           
-                                        </div>
-                                        <div class="col-md-4 mb-5 mb-md-0">
-                                            
-                                            
-                                               
-                                        </div>
-                                        <div class="col-md-4 mb-0">
-                                           
-                                            
-                                            <p class="px-xl-3" >
-                                                <i class="fas fa-quote-left pe-2"></i>At vero eos et accusamus et iusto odio
-                                                dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti.
-                                            </p>
-                                            <p  style={{fontSize : '12px'}}>Imesh</p>
-                                            <ul class="list-unstyled d-flex justify-content-center mb-0">
-                                                <li>
-                                                    <i class="fas fa-star fa-sm text-warning"></i>
-                                                </li>
-                                                <li>
-                                                    <i class="fas fa-star fa-sm text-warning"></i>
-                                                </li>
-                                                <li>
-                                                    <i class="fas fa-star fa-sm text-warning"></i>
-                                                </li>
-                                                <li>
-                                                    <i class="fas fa-star fa-sm text-warning"></i>
-                                                </li>
-                                                <li>
-                                                    <i class="far fa-star fa-sm text-warning"></i>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                   
+                                            <div class="row text-center">
+                                                <div class="col-md-4 mb-5 mb-md-0">
 
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                            <img src="https://static.wixstatic.com/media/618c8c_66b85eea9a4e44308771a5947da637c1~mv2.png" class="d-block w-100" alt="..." />
-                                <div class="carousel-caption" style={{postition : 'absolute'}}>
+                                                </div>
+                                                <div class="col-md-4 mb-5 mb-md-0">
 
-                                    <div class="row text-center">
-                                        <div class="col-md-4 mb-5 mb-md-0">
-                                           
-                                        </div>
-                                        <div class="col-md-4 mb-5 mb-md-0">
-                                            
-                                            
-                                               
-                                        </div>
-                                        <div class="col-md-4 mb-0">
-                                           
-                                            
-                                            <p class="px-xl-3" >
-                                                <i class="fas fa-quote-left pe-2"></i>At vero eos et accusamus et iusto odio
-                                                dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti.
-                                            </p>
-                                            <p  style={{fontSize : '12px'}}>Imesh</p>
-                                            <ul class="list-unstyled d-flex justify-content-center mb-0">
-                                                <li>
-                                                    <i class="fas fa-star fa-sm text-warning"></i>
-                                                </li>
-                                                <li>
-                                                    <i class="fas fa-star fa-sm text-warning"></i>
-                                                </li>
-                                                <li>
-                                                    <i class="fas fa-star fa-sm text-warning"></i>
-                                                </li>
-                                                <li>
-                                                    <i class="fas fa-star fa-sm text-warning"></i>
-                                                </li>
-                                                <li>
-                                                    <i class="far fa-star fa-sm text-warning"></i>
-                                                </li>
-                                            </ul>
+
+
+                                                </div>
+                                                <div class="col-md-4 mb-0">
+
+
+                                                    <p class="px-xl-3" >
+                                                        <i class="fas fa-quote-left pe-2"></i>{feedbackThreeMesssage}
+                                                    </p>
+                                                    <p style={{ fontSize: '12px' }}>{feedbackThreeName}</p>
+                                                    <ul class="list-unstyled d-flex justify-content-center mb-0">
+                                                        <li>
+                                                            <i class="fas fa-star fa-sm text-warning"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fas fa-star fa-sm text-warning"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fas fa-star fa-sm text-warning"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fas fa-star fa-sm text-warning"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="far fa-star fa-sm text-warning"></i>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+
                                         </div>
                                     </div>
-                                   
+                                </div> 
+
+                            ):(<></>) && feedbackArray.length === 2 ? (
+
+                                <div>
+
+                                    <div class="carousel-item active">
+                                        <img src="https://static.wixstatic.com/media/618c8c_66b85eea9a4e44308771a5947da637c1~mv2.png" class="d-block w-100" alt="..." />
+                                        <div class="carousel-caption" style={{ postition: 'absolute' }}>
+
+                                            <div class="row text-center">
+                                                <div class="col-md-4 mb-5 mb-md-0">
+
+                                                </div>
+                                                <div class="col-md-4 mb-5 mb-md-0">
+
+                                                </div>
+                                                <div class="col-md-4 mb-0">
+
+
+                                                    <p class="px-xl-3" >
+                                                        <i class="fas fa-quote-left pe-2"></i>{feedbackOneMesssage}
+                                                    </p>
+                                                    <p style={{ fontSize: '12px' }}>{feedbackOneName}</p>
+                                                    <ul class="list-unstyled d-flex justify-content-center mb-0">
+                                                        <li>
+                                                            <i class="fas fa-star fa-sm text-warning"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fas fa-star fa-sm text-warning"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fas fa-star fa-sm text-warning"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fas fa-star fa-sm text-warning"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="far fa-star fa-sm text-warning"></i>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+
+
+                                    </div>
+
+
+
+                                    <div class="carousel-item">
+                                        <img src="https://static.wixstatic.com/media/618c8c_66b85eea9a4e44308771a5947da637c1~mv2.png" class="d-block w-100" alt="..." />
+                                        <div class="carousel-caption" style={{ postition: 'absolute' }}>
+
+                                            <div class="row text-center">
+                                                <div class="col-md-4 mb-5 mb-md-0">
+
+                                                </div>
+                                                <div class="col-md-4 mb-5 mb-md-0">
+
+
+
+                                                </div>
+                                                <div class="col-md-4 mb-0">
+
+
+                                                    <p class="px-xl-3" >
+                                                        <i class="fas fa-quote-left pe-2"></i>{feedbackTwoMesssage}
+                                                    </p>
+                                                    <p style={{ fontSize: '12px' }}>{feedbackTwoName}</p>
+                                                    <ul class="list-unstyled d-flex justify-content-center mb-0">
+                                                        <li>
+                                                            <i class="fas fa-star fa-sm text-warning"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fas fa-star fa-sm text-warning"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fas fa-star fa-sm text-warning"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fas fa-star fa-sm text-warning"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="far fa-star fa-sm text-warning"></i>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            ) :(<></>) && feedbackArray.length === 1 ? (
+
+                                <div>
+
+                                    <div class="carousel-item active">
+                                        <img src="https://static.wixstatic.com/media/618c8c_66b85eea9a4e44308771a5947da637c1~mv2.png" class="d-block w-100" alt="..." />
+                                        <div class="carousel-caption" style={{ postition: 'absolute' }}>
+
+                                            <div class="row text-center">
+                                                <div class="col-md-4 mb-5 mb-md-0">
+
+                                                </div>
+                                                <div class="col-md-4 mb-5 mb-md-0">
+
+                                                </div>
+                                                <div class="col-md-4 mb-0">
+
+
+                                                    <p class="px-xl-3" >
+                                                        <i class="fas fa-quote-left pe-2"></i>{feedbackOneMesssage}
+                                                    </p>
+                                                    <p style={{ fontSize: '12px' }}>{feedbackOneName}</p>
+                                                    <ul class="list-unstyled d-flex justify-content-center mb-0">
+                                                        <li>
+                                                            <i class="fas fa-star fa-sm text-warning"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fas fa-star fa-sm text-warning"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fas fa-star fa-sm text-warning"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fas fa-star fa-sm text-warning"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="far fa-star fa-sm text-warning"></i>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+
+
+                                    </div>
+                                </div>
+
+                            ) : (
+                                <div>
+
+                                <div class="carousel-item active">
+                                    <img src="https://static.wixstatic.com/media/618c8c_66b85eea9a4e44308771a5947da637c1~mv2.png" class="d-block w-100" alt="..." />
+                                    <div class="carousel-caption" style={{ postition: 'absolute' }}>
+
+                                        <div class="row text-center">
+                                            <div class="col-md-4 mb-5 mb-md-0">
+
+                                            </div>
+                                            <div class="col-md-4 mb-5 mb-md-0">
+
+                                            </div>
+                                            <div class="col-md-4 mb-0">
+
+
+                                                <p class="px-xl-3" >
+                                                    <i class="fas fa-quote-left pe-2"></i>Hurry Up Foodies!!! Give Us  Your Valuable Feedback... 
+                                                </p>
+                                                
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+
 
                                 </div>
                             </div>
+                            
+                            )}
+
+
+
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>

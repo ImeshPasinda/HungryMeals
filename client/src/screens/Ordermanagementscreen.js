@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Ordermanagementscreen() {
+export default function Ordermanagementscreen() {
   return (
     <div>
       
@@ -8,4 +8,3 @@ function Ordermanagementscreen() {
   )
 }
 
-export default Ordermanagementscreen

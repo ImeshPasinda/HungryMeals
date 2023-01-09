@@ -50,6 +50,7 @@ const initialState = {
         currentNotifications: currentNotifications,
         
     }
+   
 }
 
 const composeEnhancers = composeWithDevTools({})

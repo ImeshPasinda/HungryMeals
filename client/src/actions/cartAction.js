@@ -45,3 +45,4 @@ export const deleteFromCart = (pizza) => (dispatch, getState) => {
     localStorage.setItem('cartItems', JSON.stringify(cartItems))
 
 }
+

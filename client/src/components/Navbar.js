@@ -1,16 +1,127 @@
 import React from 'react';
+import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux'
+import { useState, useEffect } from "react";
 import { logoutUser } from '../actions/userActions';
 import { logoutAdmin } from '../actions/adminActions';
+
+
+
+
+var NotificationArray = new Array();
+let userId;
+let notificationcount;
+
+var NotificationType
+var NotificationHeader
+var NotificationBody
+var NotificationButton
+var NotificationDate
+
 
 export default function Navbar() {
 
     const cartState = useSelector(state => state.cartReducer)
     const userstate = useSelector(state => state.loginUserReducer)
     const { currentUser } = userstate
+    const [currentusers, setUsers] = useState([]);
+    const [notifications, setNotifications] = useState([]);
     const adminloginstate = useSelector(state => state.adminloginReducer)
     const { currentAdmin } = adminloginstate
     const dispatch = useDispatch()
+
+
+
+
+
+    function getCurrentNotifications(userId) {
+
+
+
+        axios.get(`http://localhost:8070/api/users/getcurrentuser/${userId}`).then((res) => {
+            setUsers(res.data)
+
+
+            NotificationArray = res.data
+            console.log(res.data)
+
+
+
+
+
+
+        }).catch((error) => {
+            console.log(error)
+
+
+        })
+    }
+
+
+    useEffect(() => {
+
+
+
+
+        function getPublicNotifications() {
+
+            axios.get('http://localhost:8070/api/notifications/getnotifications').then((res) => {
+
+
+                setNotifications(res.data);
+
+
+
+
+
+                NotificationType = res.data[0].notificationType
+                NotificationHeader = res.data[0].notificationHeader
+                NotificationBody = res.data[0].notificationBody
+                NotificationButton = res.data[0].notificationButton
+                NotificationDate = res.data[0].notificationDate
+                
+
+
+
+
+
+
+            }).catch((error) => {
+                console.log(error)
+
+
+            })
+        }
+        getPublicNotifications();
+
+    }, [])
+
+
+
+
+
+
+
+
+
+
+
+    if (NotificationArray.notificationOneHeader === 'empty') {
+
+        notificationcount = notificationcount + 1;
+
+    } else if (NotificationArray.notificationTwoHeader === 'empty') {
+
+        notificationcount = notificationcount + 1;
+
+    } else if (NotificationArray.notificationThreeHeader === 'empty') {
+
+        notificationcount = notificationcount + 1;
+
+    } else if (NotificationArray.notificationFourHeader === 'empty') {
+
+        notificationcount = notificationcount + 1;
+    }
 
     return (
         <div>
@@ -27,14 +138,13 @@ export default function Navbar() {
                         <ul className="navbar-nav ms-auto">
 
                             {currentUser ? (
+
                                 <div className="dropdown mt-2">
 
 
                                     <a style={{ color: 'white' }} className="dropdown-toggles" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Hi, {currentUser.name}
-                                    </a> <>  </>
-                                    <i className="fas fa-user dropdown-toggles" href="#" role="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style={{ color: 'white' }}></i>
-
+                                        Hi, {currentUser.name} <img src='https://static.wixstatic.com/media/618c8c_5f176f88792f40609c74309e7f6f2eb2~mv2.png' style={{ height: '24px', height: '24px' }} />
+                                    </a>
 
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
 
@@ -43,6 +153,7 @@ export default function Navbar() {
                                         <li><a className="dropdown-item" href="#" onClick={() => { dispatch(logoutUser()) }}><li>Logout</li></a></li>
                                     </ul>
                                 </div>
+
                             ) : (
 
                                 <li className="nav-item">
@@ -57,7 +168,7 @@ export default function Navbar() {
                                 <div className="dropdown mt-2">
 
                                     <a style={{ color: 'white', width: '120px' }} className="dropdown-toggles" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Hi, {currentAdmin.name}<> </><i className="fas fa-user dropdown-toggles" style={{ color: 'white' }}></i>
+                                        Hi, {currentAdmin.name} <img src='https://static.wixstatic.com/media/618c8c_5f176f88792f40609c74309e7f6f2eb2~mv2.png' style={{ height: '24px', height: '24px' }} />
                                     </a>
 
 
@@ -110,65 +221,206 @@ export default function Navbar() {
                             )}
 
 
-                            <div class="dropdown">
+
+                            {currentUser ? (
+                                <div class="dropdown">
+                                    <li className="nav-item">
+                                        <a className="nav-link" >
+                                            <i onClick={() => { getCurrentNotifications(userId = currentUser._id) }} className="fas fa-bell dropdown-toggles" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" style={{ color: 'white' }}></i>
+                                            <span class="badge rounded-pill badge-notification " style={{ fontSize: '11px', color: 'white', backgroundColor: 'red' }} >0</span>
+
+
+
+                                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-star" aria-labelledby="dropdownMenuLink">
+
+
+
+
+
+                                                {NotificationArray.notificationOneHeader === 'empty' && NotificationArray.notificationTwoHeader === 'empty' && NotificationArray.notificationThreeHeader === 'empty' && NotificationArray.notificationFourHeader === 'empty' && NotificationHeader === 'empty' ? (
+
+
+                                                    <li>
+
+                                                        <a class="dropdown-item" href="/admin" >
+
+
+
+                                                            <p class="mb-2 text-muted fst-italic" style={{ fontSize: '13px' }}>You're All Caught Up...</p>
+
+                                                            {/* <img src="https://static.toiimg.com/thumb/56933159.cms?imgsize=686279&width=800&height=800" alt="" width="200" height="120" style={{ borderRadius: '15px' }} /> */}
+
+
+
+
+                                                        </a>
+
+                                                    </li>
+
+                                                ) : (
+
+                                                    <></>
+
+                                                )}
+
+
+
+                                                {NotificationArray.notificationOneHeader === 'empty' ? (
+                                                    <></>
+
+                                                ) : (
+
+                                                    <li>
+
+                                                        <a class="dropdown-item" href="/admin" >
+
+                                                            <p class=" mb-2" style={{ fontSize: '9px' }}>{NotificationArray.notificationOneDate}</p>
+
+
+                                                            <p class="mb-2 " style={{ fontSize: '13px' }}>{NotificationArray.notificationOneBody}</p>
+
+                                                            {/* <img src="https://static.toiimg.com/thumb/56933159.cms?imgsize=686279&width=800&height=800" alt="" width="200" height="120" style={{ borderRadius: '15px' }} /> */}
+
+
+
+                                                        </a>
+
+                                                    </li>
+
+                                                )}
+
+
+                                                {NotificationArray.notificationTwoHeader === 'empty' ? (
+                                                    <></>
+
+                                                ) : (
+
+                                                    <li>
+
+                                                        <a class="dropdown-item" href="/admin" >
+                                                            <p class=" mb-2" style={{ fontSize: '9px' }}>{NotificationArray.notificationTwoDate}</p>
+
+
+                                                            <p class="mb-2 " style={{ fontSize: '13px' }}> {NotificationArray.notificationTwoBody}</p>
+
+                                                            {/* <img src="https://static.toiimg.com/thumb/56933159.cms?imgsize=686279&width=800&height=800" alt="" width="200" height="120" style={{ borderRadius: '15px' }} /> */}
+
+
+
+
+                                                        </a>
+
+                                                    </li>
+
+                                                )}
+
+
+                                                {NotificationArray.notificationThreeHeader === 'empty' ? (
+                                                    <></>
+
+                                                ) : (
+
+                                                    <li>
+
+                                                        <a class="dropdown-item" href="/admin" >
+                                                            <p class=" mb-2" style={{ fontSize: '9px' }}>{NotificationArray.notificationThreeDate}</p>
+
+
+                                                            <p class="mb-2 " style={{ fontSize: '13px' }}> {NotificationArray.notificationThreeBody}</p>
+
+                                                            {/* <img src="https://static.toiimg.com/thumb/56933159.cms?imgsize=686279&width=800&height=800" alt="" width="200" height="120" style={{ borderRadius: '15px' }} /> */}
+
+
+
+
+                                                        </a>
+
+                                                    </li>
+
+                                                )}
+
+                                                {NotificationArray.notificationFourHeader === 'empty' ? (
+                                                    <></>
+
+                                                ) : (
+
+                                                    <li>
+
+                                                        <a class="dropdown-item" href="/admin" >
+                                                            <p class=" mb-2" style={{ fontSize: '9px' }}>{NotificationArray.notificationFourDate}</p>
+
+
+                                                            <p class="mb-2 " style={{ fontSize: '13px' }}> {NotificationArray.notificationFourBody}</p>
+
+                                                            {/* <img src="https://static.toiimg.com/thumb/56933159.cms?imgsize=686279&width=800&height=800" alt="" width="200" height="120" style={{ borderRadius: '15px' }} /> */}
+
+
+
+
+                                                        </a>
+
+                                                    </li>
+
+                                                )}
+
+                                                {NotificationHeader === 'empty' ? (
+                                                    <></>
+
+                                                ) : (
+
+                                                    <li>
+
+                                                        <a class="dropdown-item" href="/admin" >
+                                                            <p class=" mb-2" style={{ fontSize: '9px' }}>{NotificationDate}</p>
+
+
+                                                            <p class="mb-2 " style={{ fontSize: '13px' }}> {NotificationBody}</p>
+
+                                                            {/* <img src="https://static.toiimg.com/thumb/56933159.cms?imgsize=686279&width=800&height=800" alt="" width="200" height="120" style={{ borderRadius: '15px' }} /> */}
+
+
+
+
+                                                        </a>
+
+                                                    </li>
+
+                                                )}
+
+
+
+
+
+                                            </ul>
+
+                                        </a>
+
+
+                                    </li>
+
+
+
+
+                                </div>
+
+                            ) : (
+
+
                                 <li className="nav-item">
-                                    <a className="nav-link" >
-                                        <i className="fas fa-bell dropdown-toggles" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" style={{ color: 'white' }}></i>
-                                        <span class="badge rounded-pill badge-notification " style={{ fontSize: '11px', color: 'white', backgroundColor: 'red' }} >2</span>
-
-
-
-                                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-star" aria-labelledby="dropdownMenuLink">
-
-
-
-                                            <li>
-
-                                                <a class="dropdown-item" href="/admin" >
-                                                    <p class=" mb-2" style={{ fontSize: '9px' }}>12/22/2022</p>
-
-
-                                                    <p class="mb-2 " style={{ fontSize: '13px' }}>Check out 9 MORE lessons<br />  on MDB UI Kit. Learn about<br />  Cascading Cards,Modals,<br />   Filtersmore.</p>
-
-                                                    {/* <img src="https://static.toiimg.com/thumb/56933159.cms?imgsize=686279&width=800&height=800" alt="" width="200" height="120" style={{ borderRadius: '15px' }} /> */}
-
-
-
-
-                                                </a>
-
-                                            </li>
-
-                                            <li>
-
-                                                <a class="dropdown-item" href="#">
-                                                    <p class="mb-2" style={{ fontSize: '9px' }}>12/22/2022</p>
-
-
-                                                    <p class="mb-2 " style={{ fontSize: '13px' }}>Check out 9 MORE lessons<br />  on MDB UI Kit. Learn about<br />  Cascading Cards,Modals,<br />   Filtersmore.</p>
-
-                                                    {/* <img src="https://static.toiimg.com/thumb/56933159.cms?imgsize=686279&width=800&height=800" alt="" width="200" height="120" style={{ borderRadius: '15px' }} /> */}
-
-
-
-
-                                                </a>
-
-                                            </li>
-
-
-
-                                        </ul>
-
-                                    </a>
-
-
                                 </li>
 
+                            ) && currentAdmin ? (
+
+                                <li className="nav-item">
+                                </li>) : (
+
+                                <li className="nav-item">
+                                </li>
+
+                            )}
 
 
 
-                            </div>
 
                             <li className="nav-item">
                                 <a className="nav-link" href="/cart">

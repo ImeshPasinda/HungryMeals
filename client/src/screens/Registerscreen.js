@@ -30,6 +30,7 @@ export default function Registerscreen() {
                 name,
                 email,
                 password
+               
             }
             console.log(user)
             dispatch(registerUser(user))
@@ -49,7 +50,7 @@ export default function Registerscreen() {
             <br />
             <div className='row justify-content-center'>
                 <div className="col-md-5 mt-5 text-start shadow p-3 mb-5 bg-white rounded">
-
+              
                     {loading && <Loading />}
                     {success && <Success success='User Registered Successfully' />}
                     {error && (<Error error='Email already registered' />)}
@@ -57,6 +58,8 @@ export default function Registerscreen() {
 
                     <h2 className="text-center m-4" style={{ fontSize: '35px' }}>Register</h2>
                     <div>
+                        
+                      
 
                         <input
 
@@ -98,12 +101,15 @@ export default function Registerscreen() {
                             onChange={(e) => { setcpassword(e.target.value) }}
 
                         />
-
                         <button onClick={register} className="btn mt-3 mb-3" >REGISTER</button>
+                       
+                       
+
+                        
                         <br />
                         <a style={{ color: 'black' }} className='text-start' href="/login">Click Here To Login</a>
                     </div>
-
+                   
                 </div>
 
             </div>

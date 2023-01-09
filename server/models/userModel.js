@@ -5,6 +5,7 @@ const userSchema = mongoose.Schema({
     name: { type: String, require },
     email: { type: String, require },
     password: { type: String, require },
+    profilepicture:{ type: String, require,default: 'empty' },
     isVerified: { type: Boolean, require, default: false },
     notificationOneImage: { type: String, require, default: 'https://img.freepik.com/free-vector/character-illustration-people-with-internet-message-icons_53876-66149.jpg?w=900&t=st=1672323497~exp=1672324097~hmac=8f1145a507dba8e09043821090e0b1a0681a94cd1d95ce7f2459d0cb08ef4fe3' },
     notificationOneHeader: { type: String, require, default: 'empty' },

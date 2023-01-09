@@ -1,11 +1,13 @@
 const express = require("express");
 const router = express.Router();
-const User = require("../models/userModel")
+const User = require("../models/userModel");
+
+
 
 router.post("/register", async (req, res) => {
 
     const { name, email, password } = req.body
-
+    
 
 
     try {
@@ -116,7 +118,7 @@ router.post("/login", async (req, res) => {
 })
 
 
-router.get("/getcurrentuser/:id" , async (req, res) => {
+router.get("/getcurrentuser/:id", async (req, res) => {
 
     let userId = req.params.id;
     try {

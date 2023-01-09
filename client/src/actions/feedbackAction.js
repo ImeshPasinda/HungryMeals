@@ -85,7 +85,7 @@ export const deletefeedbackAction = (userId) => async dispatch => {
 
 //add to home screen
 
-export const updateDisplayFeedback = (updatecustomerdisplay, userId, val) => async dispatch => {
+export const updateDisplayFeedback = (updateDisplayFeedback, userId, val) => async dispatch => {
 
     dispatch({ type: 'DISPLAY_CUSTOMER_FEEDBACK_REQUEST' })
 
@@ -94,7 +94,7 @@ export const updateDisplayFeedback = (updatecustomerdisplay, userId, val) => asy
 
 
         try {
-            const response = await axios.put(`/api/feedback/update/feedback/display/${userId}`, updatecustomerdisplay)
+            const response = await axios.put(`/api/feedback/update/feedback/display/${userId}`, updateDisplayFeedback)
             const Toast = Swal.mixin({
                 toast: true,
                 position: 'top-end',

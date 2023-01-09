@@ -18,6 +18,7 @@ let usersArray;
 let totalVerifiedUsers = 0
 const VerifiedUsers = new Array();
 let VerifiedPercentage;
+let VerifiedPercentageRate;
 
 
 function Customermanagementscreen() {
@@ -54,9 +55,7 @@ function Customermanagementscreen() {
     const [filterdUsers, setFilterdUsers] = useState([]);
     const [search, setSearch] = useState("");
 
-    const userstate = useSelector(state => state.adminloginReducer)
-    const { activeUsers } = userstate
-
+    
 
 
     useEffect(() => {
@@ -97,7 +96,8 @@ function Customermanagementscreen() {
 
 
     VerifiedPercentage=(totalVerifiedUsers/usersCount)*100;
-    console.log(VerifiedPercentage)
+    VerifiedPercentageRate = VerifiedPercentage.toFixed(2)
+    
 
 
     // search button
@@ -149,14 +149,14 @@ function Customermanagementscreen() {
 
             email
         }
-
+        
 
         for (let index = 0; index <= usersCount; index++) {
 
             if (index !== usersCount) {
 
 
-                if (activeUsers[index].email === email) {
+                if (usersArray[index].email === email) {
 
 
                     const Toast = Swal.mixin({
@@ -390,7 +390,7 @@ function Customermanagementscreen() {
                                                                     <strong>Verified User Rate <i class="fa-solid fa-circle fa-fade" style={{ fontSize: '13px', color: 'red' }}></i></strong>
                                                                 </p>
                                                                 <h5 class="mb-0">
-                                                                    <strong>{VerifiedPercentage}%</strong>
+                                                                    <strong>{VerifiedPercentageRate}%</strong>
                                                                     <small class="text-success ms-2">
                                                                         <i class="fas fa-arrow-up fa-sm pe-1"></i></small>
                                                                 </h5>
