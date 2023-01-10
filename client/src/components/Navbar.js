@@ -40,8 +40,7 @@ export default function Navbar() {
     const dispatch = useDispatch()
 
 
-
-
+    
 
     function getCurrentNotifications(userId) {
 
@@ -55,10 +54,6 @@ export default function Navbar() {
 
 
 
-
-
-
-
         }).catch((error) => {
             console.log(error)
 
@@ -66,6 +61,8 @@ export default function Navbar() {
         })
     }
 
+
+   
 
     useEffect(() => {
 
@@ -144,7 +141,7 @@ export default function Navbar() {
                                         Hi, {currentUser.name} <img src='https://static.wixstatic.com/media/618c8c_5f176f88792f40609c74309e7f6f2eb2~mv2.png' style={{ height: '30px', height: '30px' }} />
                                     </a>
 
-                                    <ul class="dropdown-menu text-center" style={{minWidth: '6rem '}} aria-labelledby="dropdownMenuButton1">
+                                    <ul class="dropdown-menu text-center" style={{minWidth: '0rem '}} aria-labelledby="dropdownMenuButton1">
 
                                         <li><a className="dropdown-item" href="/profile">Profile</a></li>
                                         <li><a className="dropdown-item" href="/orders">Orders</a></li>
