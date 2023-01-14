@@ -15,6 +15,7 @@ let userId;
 var val;
 var notificationsArray = new Array();
 
+
 export default function Notificationmanagementscreen() {
 
     const dispatch = useDispatch()
@@ -350,8 +351,7 @@ export default function Notificationmanagementscreen() {
         })
     }
 
-
-
+ 
 
 
     return (
@@ -365,8 +365,6 @@ export default function Notificationmanagementscreen() {
             <br />
 
 
-
-
             <div className='row justify-content-center'>
 
 
@@ -375,7 +373,7 @@ export default function Notificationmanagementscreen() {
 
                     <DataTable
 
-                        title= <h1>Custom Notifications <span class="badge bg-success">Added in v1.0.0</span></h1>
+                        title=<h1>Custom & Public Notifications <sup><span class="badge bg-success">Added in v1.0.0</span></sup></h1>
                         columns={columns}
                         data={filterdUsers}
                         pagination
@@ -419,14 +417,16 @@ export default function Notificationmanagementscreen() {
 
 
                             <div class="modal-header">
-                           
+
                                 <h5 class="modal-title" id="exampleModalToggleLabel">Notification <span class="badge bg-dark">1</span>
                                     <> </><span class="btn badge bg-secondary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal" >2</span>
                                     <> </><span class="badge bg-secondary">3</span>
                                     <> </><span class="badge bg-secondary">4</span>
 
                                 </h5>
+
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
                             </div>
 
 
@@ -437,6 +437,14 @@ export default function Notificationmanagementscreen() {
 
 
                                 <div class="container">
+                                    <div className='p-3'><h6>Status <sup>
+
+                                        {notificationsArray.notificationOneHeader === 'empty' ? (
+                                            <span class="badge bg-danger text-end">Empty</span>
+                                        ) : (<span class="badge bg-success text-end">Active</span>)}
+
+                                    </sup></h6></div>
+
                                     <div class="row justify-content-center">
                                         <div class="col-md">
 
@@ -460,7 +468,7 @@ export default function Notificationmanagementscreen() {
 
 
                                             <br />
-                                            <h6><span class="badge bg-secondary bg-success">Header Required</span></h6>
+                                            <h6><span class="badge bg-secondary">* ! important Header is Required</span></h6>
                                             <div class="form-floating">
                                                 <input
                                                     required="true"
@@ -477,8 +485,7 @@ export default function Notificationmanagementscreen() {
                                             </div>
 
                                             <br />
-                                            <br />
-
+                                            <h6><span class="badge bg-secondary">* ! important maximum word limit 100</span></h6>
 
                                             <div class="form-floating">
                                                 <textarea
@@ -487,7 +494,7 @@ export default function Notificationmanagementscreen() {
                                                     placeholder="type body..."
                                                     class="form-control"
                                                     id="exampleFormControlTextarea1"
-                                                    rows="5"
+                                                    rows="3"
                                                     value={notificationOneBody}
                                                     onChange={(e) => { updatenotiOneBody(e.target.value) }}
                                                 />
@@ -505,8 +512,7 @@ export default function Notificationmanagementscreen() {
                                             <div class="form-floating">
                                                 <input
                                                     required="true"
-                                                    type="text"
-                                                    placeholder="YYYY-MM-DD"
+                                                    type="Date"
                                                     class="form-control"
                                                     id="exampleFormControlInput1"
                                                     value={notificationOneDate}
@@ -524,34 +530,20 @@ export default function Notificationmanagementscreen() {
 
 
                                             {/* <div class="center p-3">
-                                                <div className='p-2'> <button class="btn" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Notification 2</button></div>
-                                                
-                                              
-                                                <div className='p-2'> <button class="btn" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" data-bs-dismiss="modal">Notification 3</button></div>
-                                              
+                                            <div className='p-2'> <button class="btn" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Notification 2</button></div>
+                                            
+                                          
+                                            <div className='p-2'> <button class="btn" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" data-bs-dismiss="modal">Notification 3</button></div>
+                                          
 
-                                                <div className='p-2'>  <button class="btn" data-bs-target="#exampleModalToggle4" data-bs-toggle="modal" data-bs-dismiss="modal">Notification 4</button></div>
-                                              
+                                            <div className='p-2'>  <button class="btn" data-bs-target="#exampleModalToggle4" data-bs-toggle="modal" data-bs-dismiss="modal">Notification 4</button></div>
+                                          
 
-                                            </div> */}
-
-
+                                        </div> */}
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-                                            <br />
 
                                         </div>
 
@@ -559,34 +551,71 @@ export default function Notificationmanagementscreen() {
 
 
 
-                                            {/* <div class="card h-100 shadow ">
+                                            {notificationsArray.notificationOneHeader === 'empty' ? (
+                                                <div class="card shadow" aria-hidden="true">
+                                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWAgICQdD0xAAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" class="card-img-top" alt="..." />
+                                                    <div class="card-body">
+                                                        <h5 class="card-title placeholder-glow">
+                                                            <span class="placeholder col-6"></span>
+                                                        </h5>
+                                                        <p class="card-text placeholder-glow">
+                                                            <span class="placeholder col-7"></span>
+                                                            <span class="placeholder col-4"></span>
+                                                            <span class="placeholder col-4"></span>
+                                                            <span class="placeholder col-6"></span>
+                                                            <span class="placeholder col-8"></span>
+                                                        </p>
+                                                        <a href="#" tabindex="-1" class="btn  disabled placeholder col-6"></a>
+                                                    </div>
+                                                </div>
 
-                                                <img src={notificationsArray.notificationOneImage} class="card-img-top" alt="..." />
-                                                <div class="card-body">
-                                                    <h5 class="card-title"><span class="badge bg-dark">Preview </span> {notificationsArray.notificationOneHeader}</h5>
-                                                    <p class="card-text">{notificationsArray.notificationOneBody}</p>
-                                                </div>
-                                                <div class="card-footer">
-                                                    <small class="text-muted"><i class="fa fa-calendar" aria-hidden="true"></i><> </>{notificationsArray.notificationOneDate}</small>
-                                                </div>
-                                            </div> */}
+                                            ) : (
 
-                                            <div class="card" aria-hidden="true">
-                                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWAgICQdD0xAAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" class="card-img-top" alt="..." />
-                                                <div class="card-body">
-                                                    <h5 class="card-title placeholder-glow">
-                                                        <span class="placeholder col-6"></span>
-                                                    </h5>
-                                                    <p class="card-text placeholder-glow">
-                                                        <span class="placeholder col-7"></span>
-                                                        <span class="placeholder col-4"></span>
-                                                        <span class="placeholder col-4"></span>
-                                                        <span class="placeholder col-6"></span>
-                                                        <span class="placeholder col-8"></span>
-                                                    </p>
-                                                    <a href="#" tabindex="-1" class="btn  disabled placeholder col-6"></a>
-                                                </div>
-                                            </div>
+                                                <>
+                                                    {notificationsArray.notificationOneHeader ? (
+
+
+                                                        <div class="card h-100 shadow ">
+
+                                                            <img src={notificationsArray.notificationOneImage} class="card-img-top" alt="..." />
+                                                            <div class="card-body">
+                                                                <h5 class="card-title"><span class="badge bg-dark">Preview </span> {notificationsArray.notificationOneHeader}</h5>
+                                                                <p class="card-text" style={{ fontSize: '13px', color: 'gray' }}>{notificationsArray.notificationOneBody}</p>
+                                                            </div>
+                                                            <div class="card-footer">
+                                                                <small class="text-muted"><i class="fa fa-calendar" aria-hidden="true"></i><> </>{notificationsArray.notificationOneDate}</small>
+                                                            </div>
+                                                        </div>
+
+                                                    ) : (
+
+                                                        <div class="card shadow" aria-hidden="true">
+                                                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWAgICQdD0xAAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" class="card-img-top" alt="..." />
+                                                            <div class="card-body">
+                                                                <h5 class="card-title placeholder-glow">
+                                                                    <span class="placeholder col-6"></span>
+                                                                </h5>
+                                                                <p class="card-text placeholder-glow">
+                                                                    <span class="placeholder col-7"></span>
+                                                                    <span class="placeholder col-4"></span>
+                                                                    <span class="placeholder col-4"></span>
+                                                                    <span class="placeholder col-6"></span>
+                                                                    <span class="placeholder col-8"></span>
+                                                                </p>
+                                                                <a href="#" tabindex="-1" class="btn  disabled placeholder col-6"></a>
+                                                            </div>
+                                                        </div>
+                                                    )}
+
+
+
+                                                </>
+                                            )}
+
+
+
+
+
                                         </div>
 
                                     </div>
@@ -606,71 +635,71 @@ export default function Notificationmanagementscreen() {
 
 
 
-                                <div class="mb-3" >
-                                    <label for="exampleFormControlInput1" class="form-label">Image URL</label>
-                                    <input
-                                        required="true"
-                                        type="text"
-                                        class="form-control"
-                                        id="exampleFormControlInput1"
-                                        value={notificationOneImage}
-                                        onChange={(e) => { updatenotiOneImage(e.target.value) }}
-                                    />
-
-                                </div>
-
-
-                                <div class="mb-3">
-
-                                    <label for="exampleFormControlInput1" class="form-label">Header</label>
-                                    <input
-                                        required="true"
-                                        class="form-control"
-                                        id="exampleFormControlInput1"
-                                        value={notificationOneHeader}
-                                        onChange={(e) => { updatenotiOneHeader(e.target.value) }}
-                                    />
-
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="exampleFormControlTextarea1" class="form-label">Notification Body</label>
-                                    <textarea
-                                        required="true"
-                                        class="form-control"
-                                        id="exampleFormControlTextarea1"
-                                        rows="3"
-                                        value={notificationOneBody}
-                                        onChange={(e) => { updatenotiOneBody(e.target.value) }}
-                                    >
-
-                                    </textarea>
-                                </div>
-
-
-                                <div class="mb-3">
-                                    <label for="exampleFormControlInput1" class="form-label">Date</label>
-                                    <input
-                                        required="true"
-                                        type="text"
-                                        placeholder="YYYY-MM-DD"
-                                        class="form-control"
-                                        id="exampleFormControlInput1"
-                                        value={notificationOneDate}
-                                        onChange={(e) => { updatenotiOneDate(e.target.value) }}
-                                    />
-
-                                </div>
+                            <div class="mb-3" >
+                                <label for="exampleFormControlInput1" class="form-label">Image URL</label>
+                                <input
+                                    required="true"
+                                    type="text"
+                                    class="form-control"
+                                    id="exampleFormControlInput1"
+                                    value={notificationOneImage}
+                                    onChange={(e) => { updatenotiOneImage(e.target.value) }}
+                                />
 
                             </div>
-                            <div class="modal-footer">
-                                <button  type="button" class="btn ">Update</button>
-                                <button onClick={() => { updateNotificationOne(userId, 'empty') }} type="button" class="btn ">Remove</button>
-                                <button class="btn" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Notification 2</button>
-                                <button class="btn" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" data-bs-dismiss="modal">Notification 3</button>
-                                <button class="btn" data-bs-target="#exampleModalToggle4" data-bs-toggle="modal" data-bs-dismiss="modal">Notification 4</button>
 
-                            </div> */}
+
+                            <div class="mb-3">
+
+                                <label for="exampleFormControlInput1" class="form-label">Header</label>
+                                <input
+                                    required="true"
+                                    class="form-control"
+                                    id="exampleFormControlInput1"
+                                    value={notificationOneHeader}
+                                    onChange={(e) => { updatenotiOneHeader(e.target.value) }}
+                                />
+
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="exampleFormControlTextarea1" class="form-label">Notification Body</label>
+                                <textarea
+                                    required="true"
+                                    class="form-control"
+                                    id="exampleFormControlTextarea1"
+                                    rows="3"
+                                    value={notificationOneBody}
+                                    onChange={(e) => { updatenotiOneBody(e.target.value) }}
+                                >
+
+                                </textarea>
+                            </div>
+
+
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Date</label>
+                                <input
+                                    required="true"
+                                    type="text"
+                                    placeholder="YYYY-MM-DD"
+                                    class="form-control"
+                                    id="exampleFormControlInput1"
+                                    value={notificationOneDate}
+                                    onChange={(e) => { updatenotiOneDate(e.target.value) }}
+                                />
+
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button  type="button" class="btn ">Update</button>
+                            <button onClick={() => { updateNotificationOne(userId, 'empty') }} type="button" class="btn ">Remove</button>
+                            <button class="btn" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Notification 2</button>
+                            <button class="btn" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" data-bs-dismiss="modal">Notification 3</button>
+                            <button class="btn" data-bs-target="#exampleModalToggle4" data-bs-toggle="modal" data-bs-dismiss="modal">Notification 4</button>
+
+                        </div> */}
                             </div>
 
                         </div>
@@ -1022,6 +1051,8 @@ export default function Notificationmanagementscreen() {
 
             </div>
 
-        </div>
+
+
+        </div >
     )
 }
