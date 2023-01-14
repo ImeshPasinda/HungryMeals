@@ -35,22 +35,65 @@ export default function Notificationmanagementscreen() {
     function updateNotificationOne(userId, val) {
 
 
-        console.log(userId, val)
+
+        console.log(userId)
 
         const updateNotificationOne = {
 
             notificationOneImage,
-            notificationOneHeader: val,
+            notificationOneHeader,
             notificationOneBody,
             notificationOneDate
 
         }
 
         console.log(updateNotificationOne, userId)
+
+        if (notificationOneHeader.trim().length !== 0) {
+
+            dispatch(updateNotificationOneAction(updateNotificationOne, userId))
+        } else {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 1500,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon: 'error',
+                title: 'Please fill out Header filed!'
+            })
+        }
+
+
+
+
+
+    }
+
+    function resetNotificationOne(userId) {
+
+
+
+        console.log(userId)
+
+        const updateNotificationOne = {
+
+            notificationOneImage: 'https://img.freepik.com/free-vector/character-illustration-people-with-internet-message-icons_53876-66149.jpg?w=900&t=st=1672323497~exp=1672324097~hmac=8f1145a507dba8e09043821090e0b1a0681a94cd1d95ce7f2459d0cb08ef4fe3',
+            notificationOneHeader: 'empty',
+            notificationOneBody: 'empty',
+            notificationOneDate: 'empty',
+
+        }
+
+        console.log(updateNotificationOne, userId)
         dispatch(updateNotificationOneAction(updateNotificationOne, userId))
-
-
-
 
     }
 
@@ -262,7 +305,7 @@ export default function Notificationmanagementscreen() {
         },
         {
             name: "Update",
-            cell: row => <button onClick={() => { getCurrentNotifications(userId = row._id) }} className="btn" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Update</button>
+            cell: row => <button onClick={() => { getCurrentNotifications(userId = row._id) }} className="btn" data-bs-toggle="modal" href="#staticBackdrop" role="button">Update</button>
 
         },
         // {
@@ -332,7 +375,7 @@ export default function Notificationmanagementscreen() {
 
                     <DataTable
 
-                        title='Custom Notifications'
+                        title= <h1>Custom Notifications <span class="badge bg-success">Added in v1.0.0</span></h1>
                         columns={columns}
                         data={filterdUsers}
                         pagination
@@ -366,113 +409,188 @@ export default function Notificationmanagementscreen() {
 
 
 
-                <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+
+
+
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-lg">
                         <div class="modal-content">
 
-                            <div class="modal-body">
-                                <div class="container-fluid">
-                                    <div class="row">
-                                        <div class="col-md-6">
-
-                                            <div className="alert alert-primary" role="alert">
-                                                This is a primary alert—check it out!
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4 ml-auto">
-
-                                            <div class="form-outline">
-                                                <input type="text" id="form12" class="form-control" />
-                                                <label class="form-label" for="form12">Example label</label>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
 
 
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalToggleLabel">Notification 1</h5>
+                           
+                                <h5 class="modal-title" id="exampleModalToggleLabel">Notification <span class="badge bg-dark">1</span>
+                                    <> </><span class="btn badge bg-secondary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal" >2</span>
+                                    <> </><span class="badge bg-secondary">3</span>
+                                    <> </><span class="badge bg-secondary">4</span>
+
+                                </h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
 
 
+
+
+
                             <div class="modal-body">
 
-                                <form onSubmit={() => updateNotificationOne(userId, notificationOneHeader)} >
-                                    <div class="col-md-4">
-                                        <label for="validationCustom01" class="form-label">Header</label>
-                                        <input 
-                                        type="text"
-                                        class="form-control"
-                                        id="exampleFormControlInput1"
-                                        value={notificationOneHeader}
-                                        onChange={(e) => { updatenotiOneHeader(e.target.value) }} 
-                                        required />
 
-                                    
-                                    </div>
-                                    {/* <div class="col-md-4">
-                                        <label for="validationCustom02" class="form-label">Last name</label>
-                                        <input type="text" class="form-control" id="validationCustom02" value="Otto" required />
-                                        <div class="valid-feedback">
-                                            Looks good!
+                                <div class="container">
+                                    <div class="row justify-content-center">
+                                        <div class="col-md">
+
+
+
+
+                                            <div class="form-floating">
+                                                <input
+                                                    required="true"
+                                                    type="text"
+                                                    placeholder="https://..."
+                                                    class="form-control"
+                                                    id="exampleFormControlInput1"
+                                                    value={notificationOneImage}
+                                                    onChange={(e) => { updatenotiOneImage(e.target.value) }}
+                                                />
+
+
+                                                <label for="floatingInputGrid">Image URL</label>
+                                            </div>
+
+
+                                            <br />
+                                            <h6><span class="badge bg-secondary bg-success">Header Required</span></h6>
+                                            <div class="form-floating">
+                                                <input
+                                                    required="true"
+                                                    type="text"
+                                                    class="form-control"
+                                                    placeholder="type header..."
+                                                    id="exampleFormControlInput1"
+                                                    value={notificationOneHeader}
+                                                    onChange={(e) => { updatenotiOneHeader(e.target.value) }}
+                                                />
+
+
+                                                <label for="floatingInputGrid">Header</label>
+                                            </div>
+
+                                            <br />
+                                            <br />
+
+
+                                            <div class="form-floating">
+                                                <textarea
+                                                    required="true"
+                                                    type="text"
+                                                    placeholder="type body..."
+                                                    class="form-control"
+                                                    id="exampleFormControlTextarea1"
+                                                    rows="5"
+                                                    value={notificationOneBody}
+                                                    onChange={(e) => { updatenotiOneBody(e.target.value) }}
+                                                />
+
+
+                                                <label for="floatingInputGrid">Body</label>
+                                            </div>
+
+
+
+
+
+
+
+                                            <div class="form-floating">
+                                                <input
+                                                    required="true"
+                                                    type="text"
+                                                    placeholder="YYYY-MM-DD"
+                                                    class="form-control"
+                                                    id="exampleFormControlInput1"
+                                                    value={notificationOneDate}
+                                                    onChange={(e) => { updatenotiOneDate(e.target.value) }}
+                                                />
+
+
+                                                <label for="floatingInputGrid">Date</label>
+                                            </div>
+
+                                            <div className='p-5'>
+                                                <button onClick={() => updateNotificationOne(userId, notificationOneHeader)} type="button" class="btn ">Update</button><> </>
+                                                <button onClick={() => { resetNotificationOne(userId) }} type="button" class="btn ">Remove</button>
+                                            </div>
+
+
+                                            {/* <div class="center p-3">
+                                                <div className='p-2'> <button class="btn" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Notification 2</button></div>
+                                                
+                                              
+                                                <div className='p-2'> <button class="btn" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" data-bs-dismiss="modal">Notification 3</button></div>
+                                              
+
+                                                <div className='p-2'>  <button class="btn" data-bs-target="#exampleModalToggle4" data-bs-toggle="modal" data-bs-dismiss="modal">Notification 4</button></div>
+                                              
+
+                                            </div> */}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                            <br />
+
                                         </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label for="validationCustomUsername" class="form-label">Username</label>
-                                        <div class="input-group has-validation">
-                                            <span class="input-group-text" id="inputGroupPrepend">@</span>
-                                            <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required />
-                                            <div class="invalid-feedback">
-                                                Please choose a username.
+
+                                        <div class="col-md m-2">
+
+
+
+                                            {/* <div class="card h-100 shadow ">
+
+                                                <img src={notificationsArray.notificationOneImage} class="card-img-top" alt="..." />
+                                                <div class="card-body">
+                                                    <h5 class="card-title"><span class="badge bg-dark">Preview </span> {notificationsArray.notificationOneHeader}</h5>
+                                                    <p class="card-text">{notificationsArray.notificationOneBody}</p>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <small class="text-muted"><i class="fa fa-calendar" aria-hidden="true"></i><> </>{notificationsArray.notificationOneDate}</small>
+                                                </div>
+                                            </div> */}
+
+                                            <div class="card" aria-hidden="true">
+                                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWAgICQdD0xAAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" class="card-img-top" alt="..." />
+                                                <div class="card-body">
+                                                    <h5 class="card-title placeholder-glow">
+                                                        <span class="placeholder col-6"></span>
+                                                    </h5>
+                                                    <p class="card-text placeholder-glow">
+                                                        <span class="placeholder col-7"></span>
+                                                        <span class="placeholder col-4"></span>
+                                                        <span class="placeholder col-4"></span>
+                                                        <span class="placeholder col-6"></span>
+                                                        <span class="placeholder col-8"></span>
+                                                    </p>
+                                                    <a href="#" tabindex="-1" class="btn  disabled placeholder col-6"></a>
+                                                </div>
                                             </div>
                                         </div>
+
                                     </div>
-                                    <div class="col-md-6">
-                                        <label for="validationCustom03" class="form-label">City</label>
-                                        <input type="text" class="form-control" id="validationCustom03" required />
-                                        <div class="invalid-feedback">
-                                            Please provide a valid city.
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <label for="validationCustom04" class="form-label">State</label>
-                                        <select class="form-select" id="validationCustom04" required>
-                                            <option selected disabled value="">Choose...</option>
-                                            <option>...</option>
-                                        </select>
-                                        <div class="invalid-feedback">
-                                            Please select a valid state.
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <label for="validationCustom05" class="form-label">Zip</label>
-                                        <input type="text" class="form-control" id="validationCustom05" required />
-                                        <div class="invalid-feedback">
-                                            Please provide a valid zip.
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required />
-                                            <label class="form-check-label" for="invalidCheck">
-                                                Agree to terms and conditions
-                                            </label>
-                                            <div class="invalid-feedback">
-                                                You must agree before submitting.
-                                            </div>
-                                        </div>
-                                    </div> */}
-                                     <div class="col-12">
-                                        <button  class="btn " type="submit">Submit form</button>
-                                    </div>
-                                </form>
-                               
-
-
-                            </div>
+                                </div>
 
 
 
@@ -481,7 +599,9 @@ export default function Notificationmanagementscreen() {
 
 
 
-                            {/* <div class="modal-body">
+
+
+                                {/* <div class="modal-body">
 
 
 
@@ -544,13 +664,14 @@ export default function Notificationmanagementscreen() {
 
                             </div>
                             <div class="modal-footer">
-                                <button onClick={() => updateNotificationOne(userId, notificationOneHeader)} type="button" class="btn ">Update</button>
+                                <button  type="button" class="btn ">Update</button>
                                 <button onClick={() => { updateNotificationOne(userId, 'empty') }} type="button" class="btn ">Remove</button>
                                 <button class="btn" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Notification 2</button>
                                 <button class="btn" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" data-bs-dismiss="modal">Notification 3</button>
                                 <button class="btn" data-bs-target="#exampleModalToggle4" data-bs-toggle="modal" data-bs-dismiss="modal">Notification 4</button>
 
                             </div> */}
+                            </div>
 
                         </div>
                     </div>
