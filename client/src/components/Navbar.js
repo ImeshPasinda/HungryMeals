@@ -40,29 +40,12 @@ export default function Navbar() {
     const dispatch = useDispatch()
 
 
+
+
     
 
-    function getCurrentNotifications(userId) {
 
 
-
-        axios.get(`http://localhost:8070/api/users/getcurrentuser/${userId}`).then((res) => {
-            setUsers(res.data)
-
-
-            NotificationArray = res.data
-
-
-
-        }).catch((error) => {
-            console.log(error)
-
-
-        })
-    }
-
-
-   
 
     useEffect(() => {
 
@@ -110,13 +93,55 @@ export default function Navbar() {
         publiccount = 1;
     }
 
-    console.log(publiccount)
+
+
+    function getCurrentNotifications(userId) {
 
 
 
+        axios.get(`http://localhost:8070/api/users/getcurrentuser/${userId}`).then((res) => {
+            setUsers(res.data)
 
-    tot = notificationOnecount + notificationTwocount + notificationThreecount + notificationFourcount + publiccount;
-    console.log(tot)
+
+            NotificationArray = res.data
+
+            if (NotificationArray.notificationOneHeader === 'empty') {
+                notificationOnecount = 0;
+            } else {
+                notificationOnecount = 1;
+            }
+
+            if (NotificationArray.notificationTwoHeader === 'empty') {
+                notificationTwocount = 0;
+            } else {
+                notificationTwocount = 1;
+            }
+
+            if (NotificationArray.notificationThreeHeader === 'empty') {
+                notificationThreecount = 0;
+            } else {
+                notificationThreecount = 1;
+            }
+
+            if (NotificationArray.notificationFourHeader === 'empty') {
+                notificationFourcount = 0;
+            } else {
+                notificationFourcount = 1;
+            }
+                
+           
+            console.log(notificationTwocount)
+
+            tot = notificationOnecount + notificationTwocount + notificationThreecount + notificationFourcount + publiccount;
+            console.log("Notification count :",tot )
+
+
+        }).catch((error) => {
+            console.log(error)
+
+
+        })
+    }
 
     return (
         <div>
@@ -141,7 +166,7 @@ export default function Navbar() {
                                         Hi, {currentUser.name} <img src='https://static.wixstatic.com/media/618c8c_5f176f88792f40609c74309e7f6f2eb2~mv2.png' style={{ height: '30px', height: '30px' }} />
                                     </a>
 
-                                    <ul class="dropdown-menu text-center" style={{minWidth: '0rem '}} aria-labelledby="dropdownMenuButton1">
+                                    <ul class="dropdown-menu text-center" style={{ minWidth: '0rem ' }} aria-labelledby="dropdownMenuButton1">
 
                                         <li><a className="dropdown-item" href="/profile">Profile</a></li>
                                         <li><a className="dropdown-item" href="/orders">Orders</a></li>
@@ -168,7 +193,7 @@ export default function Navbar() {
 
 
 
-                                    <ul class="dropdown-menu text-center" style={{minWidth: '7rem '}} aria-labelledby="dropdownMenuButton1">
+                                    <ul class="dropdown-menu text-center" style={{ minWidth: '7rem ' }} aria-labelledby="dropdownMenuButton1">
 
                                         <li><a className="dropdown-item" href="/admin">Profile</a></li>
 
@@ -221,14 +246,14 @@ export default function Navbar() {
                                 <div class="dropdown">
                                     <li className="nav-item p-1">
                                         <a className="nav-link" >
-                                            <i onClick={() => { getCurrentNotifications(userId = currentUser._id) }} className="fas fa-bell dropdown-toggles" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" style={{ color: 'white' , fontSize : '17px' }}></i>
-                                            <span class="badge rounded-pill badge-notification " style={{ fontSize: '11px', color: 'white', backgroundColor: 'red' }} >{tot}</span>
+                                            <i onClick={() => { getCurrentNotifications(userId = currentUser._id) }} className="fas fa-bell dropdown-toggles" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" style={{ color: 'white', fontSize: '17px' }}></i>
+                                            <span class="badge rounded-pill badge-notification " style={{ fontSize: '11px', color: 'white', backgroundColor: 'red' }} ></span>
 
 
 
                                             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-star" aria-labelledby="dropdownMenuLink">
 
-
+                                            <span class="badge rounded-pill m-2" style={{ fontSize: '11px', color: 'white', backgroundColor: 'red' }} >{tot}<> Notification </><i class="fa fas fa-bell " style={{ fontSize: '8px', color: 'white' }} ></i></span>
 
 
 
@@ -270,7 +295,7 @@ export default function Navbar() {
                                                             <p class=" mb-2 text-muted" style={{ fontSize: '9px' }}>{NotificationDate} <i class="fa fas fa-bell " style={{ fontSize: '8px', color: 'red' }} ></i></p>
 
 
-                                                            <p class="mb-2 " style={{ fontSize: '13px'}}> {NotificationBody}</p>
+                                                            <p class="mb-2 " style={{ fontSize: '13px' }}> {NotificationBody}</p>
 
                                                             {/* <img src="https://static.toiimg.com/thumb/56933159.cms?imgsize=686279&width=800&height=800" alt="" width="200" height="120" style={{ borderRadius: '15px' }} /> */}
 
@@ -423,7 +448,7 @@ export default function Navbar() {
                             <li className="nav-item mt-1">
                                 <a className="nav-link" href="/cart">
 
-                                    <i class="fa fa-shopping-cart" style={{ color: 'white' ,fontSize : '96%' }} aria-hidden="true"></i>
+                                    <i class="fa fa-shopping-cart" style={{ color: 'white', fontSize: '96%' }} aria-hidden="true"></i>
 
                                     <span style={{ color: 'white' }}> {cartState.cartItems.length}</span>
                                 </a>

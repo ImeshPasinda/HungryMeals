@@ -324,7 +324,7 @@ body {
 .dropdown-menu {
  
   --bs-dropdown-link-active-bg: red !important;
-  --bs-dropdown-min-width: 11rem !important;
+  --bs-dropdown-min-width: 14rem !important;
 }
 
 

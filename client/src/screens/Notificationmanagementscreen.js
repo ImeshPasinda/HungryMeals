@@ -13,6 +13,7 @@ import Swal from 'sweetalert2';
 
 let userId;
 var val;
+var notificationsArray = new Array();
 
 export default function Notificationmanagementscreen() {
 
@@ -218,6 +219,7 @@ export default function Notificationmanagementscreen() {
             axios.get("http://localhost:8070/api/users/getAllusers").then((res) => {
                 setUsers(res.data);
                 setFilterdUsers(res.data);
+
             }).catch((err) => {
                 console.log(err.message)
             })
@@ -260,7 +262,7 @@ export default function Notificationmanagementscreen() {
         },
         {
             name: "Update",
-            cell: row => <button onClick={() => { (userId = row._id) }} className="btn" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Update</button>
+            cell: row => <button onClick={() => { getCurrentNotifications(userId = row._id) }} className="btn" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Update</button>
 
         },
         // {
@@ -284,6 +286,26 @@ export default function Notificationmanagementscreen() {
     }, [search]);
 
 
+
+
+    function getCurrentNotifications(userId) {
+
+
+
+        axios.get(`http://localhost:8070/api/users/getcurrentuser/${userId}`).then((res) => {
+            setUsers(res.data)
+
+
+            notificationsArray = res.data
+            console.log(notificationsArray.notificationOneHeader)
+
+
+        }).catch((error) => {
+            console.log(error)
+
+
+        })
+    }
 
 
 
@@ -345,16 +367,129 @@ export default function Notificationmanagementscreen() {
 
 
                 <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-                    <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-dialog modal-dialog-centered modal-lg">
                         <div class="modal-content">
+
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-md-6">
+
+                                            <div className="alert alert-primary" role="alert">
+                                                This is a primary alert—check it out!
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 ml-auto">
+
+                                            <div class="form-outline">
+                                                <input type="text" id="form12" class="form-control" />
+                                                <label class="form-label" for="form12">Example label</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
                             <div class="modal-header">
                                 <h5 class="modal-title" id="exampleModalToggleLabel">Notification 1</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
+
+
                             <div class="modal-body">
-                                <div class="mb-3">
+
+                                <form onSubmit={() => updateNotificationOne(userId, notificationOneHeader)} >
+                                    <div class="col-md-4">
+                                        <label for="validationCustom01" class="form-label">Header</label>
+                                        <input 
+                                        type="text"
+                                        class="form-control"
+                                        id="exampleFormControlInput1"
+                                        value={notificationOneHeader}
+                                        onChange={(e) => { updatenotiOneHeader(e.target.value) }} 
+                                        required />
+
+                                    
+                                    </div>
+                                    {/* <div class="col-md-4">
+                                        <label for="validationCustom02" class="form-label">Last name</label>
+                                        <input type="text" class="form-control" id="validationCustom02" value="Otto" required />
+                                        <div class="valid-feedback">
+                                            Looks good!
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="validationCustomUsername" class="form-label">Username</label>
+                                        <div class="input-group has-validation">
+                                            <span class="input-group-text" id="inputGroupPrepend">@</span>
+                                            <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required />
+                                            <div class="invalid-feedback">
+                                                Please choose a username.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="validationCustom03" class="form-label">City</label>
+                                        <input type="text" class="form-control" id="validationCustom03" required />
+                                        <div class="invalid-feedback">
+                                            Please provide a valid city.
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="validationCustom04" class="form-label">State</label>
+                                        <select class="form-select" id="validationCustom04" required>
+                                            <option selected disabled value="">Choose...</option>
+                                            <option>...</option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Please select a valid state.
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="validationCustom05" class="form-label">Zip</label>
+                                        <input type="text" class="form-control" id="validationCustom05" required />
+                                        <div class="invalid-feedback">
+                                            Please provide a valid zip.
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required />
+                                            <label class="form-check-label" for="invalidCheck">
+                                                Agree to terms and conditions
+                                            </label>
+                                            <div class="invalid-feedback">
+                                                You must agree before submitting.
+                                            </div>
+                                        </div>
+                                    </div> */}
+                                     <div class="col-12">
+                                        <button  class="btn " type="submit">Submit form</button>
+                                    </div>
+                                </form>
+                               
+
+
+                            </div>
+
+
+
+
+
+
+
+
+                            {/* <div class="modal-body">
+
+
+
+
+                                <div class="mb-3" >
                                     <label for="exampleFormControlInput1" class="form-label">Image URL</label>
                                     <input
+                                        required="true"
                                         type="text"
                                         class="form-control"
                                         id="exampleFormControlInput1"
@@ -363,11 +498,13 @@ export default function Notificationmanagementscreen() {
                                     />
 
                                 </div>
-                            </div>
-                            <div class="modal-body">
+
+
                                 <div class="mb-3">
+
                                     <label for="exampleFormControlInput1" class="form-label">Header</label>
                                     <input
+                                        required="true"
                                         class="form-control"
                                         id="exampleFormControlInput1"
                                         value={notificationOneHeader}
@@ -379,6 +516,7 @@ export default function Notificationmanagementscreen() {
                                 <div class="mb-3">
                                     <label for="exampleFormControlTextarea1" class="form-label">Notification Body</label>
                                     <textarea
+                                        required="true"
                                         class="form-control"
                                         id="exampleFormControlTextarea1"
                                         rows="3"
@@ -389,21 +527,21 @@ export default function Notificationmanagementscreen() {
                                     </textarea>
                                 </div>
 
-                                <div class="modal-body">
-                                    <div class="mb-3">
-                                        <label for="exampleFormControlInput1" class="form-label">Date</label>
-                                        <input
-                                            required
-                                            type="text"
-                                            placeholder="YYYY-MM-DD"
-                                            class="form-control"
-                                            id="exampleFormControlInput1"
-                                            value={notificationOneDate}
-                                            onChange={(e) => { updatenotiOneDate(e.target.value) }}
-                                        />
 
-                                    </div>
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput1" class="form-label">Date</label>
+                                    <input
+                                        required="true"
+                                        type="text"
+                                        placeholder="YYYY-MM-DD"
+                                        class="form-control"
+                                        id="exampleFormControlInput1"
+                                        value={notificationOneDate}
+                                        onChange={(e) => { updatenotiOneDate(e.target.value) }}
+                                    />
+
                                 </div>
+
                             </div>
                             <div class="modal-footer">
                                 <button onClick={() => updateNotificationOne(userId, notificationOneHeader)} type="button" class="btn ">Update</button>
@@ -411,7 +549,9 @@ export default function Notificationmanagementscreen() {
                                 <button class="btn" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Notification 2</button>
                                 <button class="btn" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" data-bs-dismiss="modal">Notification 3</button>
                                 <button class="btn" data-bs-target="#exampleModalToggle4" data-bs-toggle="modal" data-bs-dismiss="modal">Notification 4</button>
-                            </div>
+
+                            </div> */}
+
                         </div>
                     </div>
                 </div>
@@ -657,28 +797,28 @@ export default function Notificationmanagementscreen() {
                             </div>
 
 
-                           <br/>
+                            <br />
 
-                                <div className='container'> 
+                            <div className='container'>
 
-                                    <div class="card text-center shadow">
-                                        <div class="card-header">
-                                            {currentNotifications[0].notificationType}
-                                        </div>
-                                        <div class="card-body">
-                                            <h5 class="card-title">{currentNotifications[0].notificationHeader}</h5>
-                                            <p class="card-text">{currentNotifications[0].notificationBody}</p>
-                                            <a href={currentNotifications[0].notificationButton} class="btn">Go somewhere</a>
-                                        </div>
-                                        <div class="card-footer text-muted">
-                                            {currentNotifications[0].notificationDate}
-                                        </div>
+                                <div class="card text-center shadow">
+                                    <div class="card-header">
+                                        {currentNotifications[0].notificationType}
                                     </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">{currentNotifications[0].notificationHeader}</h5>
+                                        <p class="card-text">{currentNotifications[0].notificationBody}</p>
+                                        <a href={currentNotifications[0].notificationButton} class="btn">Go somewhere</a>
+                                    </div>
+                                    <div class="card-footer text-muted">
+                                        {currentNotifications[0].notificationDate}
+                                    </div>
+                                </div>
 
                             </div>
 
-                            <br/>
-                            <hr/>
+                            <br />
+                            <hr />
                             <div class="modal-body">
                                 <div class="mb-3">
                                     <label for="exampleFormControlInput1" class="form-label">Notification Type</label>
@@ -750,7 +890,7 @@ export default function Notificationmanagementscreen() {
                                 </div>
                             </div>
                             <div class="modal-footer">
-                            <button onClick={() => { updateNotification('empty') }} type="button" class="btn ">Remove</button>
+                                <button onClick={() => { updateNotification('empty') }} type="button" class="btn ">Remove</button>
                                 <button onClick={() => updateNotification(notificationHeader)} type="button" class="btn ">Update</button>
 
                             </div>

@@ -157,8 +157,9 @@ export const updateNotificationOneAction = (updateNotificationOne, userId) => as
     
 
     try {
+       
         const response = await axios.put(`/api/users/update/notificationOne/${userId}`, updateNotificationOne)
-
+       
         if (updateNotificationOne.notificationOneHeader === 'empty') {
             const Toast = Swal.mixin({
                 toast: true,

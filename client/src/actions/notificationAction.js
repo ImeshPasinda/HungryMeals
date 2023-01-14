@@ -93,6 +93,6 @@ export const updateNotificationAction = (updateNotification) => async dispatch =
             title: 'Operation failed'
         })
 
-        dispatch({ type: 'NOTIFICATION_FOUR_OPERATION_FAILED', payload: error })
+        dispatch({ type: 'PUBLIC_NOTIFICATION_FAILED', payload: error })
     }
 }
