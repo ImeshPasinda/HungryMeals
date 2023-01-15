@@ -2,42 +2,31 @@ const express = require("express");
 const router = express.Router();
 const Notification = require("../models/notificationModel")
 
-// router.post("/post", async (req, res) => {
-
-//     const { notificationType, notificationHeader, notificationBody, notificationButton, notificationDate } = req.body
 
 
 
-//     try {
+router.post("/post/", async (req, res) => {
 
-//         const currentNotifications = {
-
-
-//             notificationType: notificationType,
-//             notificationHeader: notificationHeader,
-//             notificationBody: notificationBody,
-//             notificationButton: notificationButton,
-//             notificationDate: notificationDate,
+    const { notificationImage, notificationHeader, notificationBody, notificationDate } = req.body
 
 
 
-//         }
-//         res.send(currentNotifications);
+    try {
+
+
+        const newPubNoti = new Notification({ notificationImage, notificationHeader, notificationBody, notificationDate })
+        newPubNoti.save()
+        res.send('Public Notification Posted Successfully')
+
+
+    } catch (error) {
+
+        return res.status(400).json({ message: error });
+    }
+});
 
 
 
-//         const newNotification = new Notification({ notificationType, notificationHeader, notificationBody ,notificationButton, notificationDate })
-//         newNotification.save()
-//         // localStorage.setItem('currentNotification', JSON.stringify(newNotification))
-//         res.send('Notification Posted Successfully')
-
-
-
-//     } catch (error) {
-
-//         return res.status(400).json({ message: error });
-//     }
-// });
 
 router.get("/getnotifications", async (req, res) => {
 
@@ -57,14 +46,13 @@ router.get("/getnotifications", async (req, res) => {
 router.put("/update/notification/:id", async (req, res) => {
 
     let userId = req.params.id;
-    const { notificationType, notificationHeader, notificationBody, notificationButton, notificationDate } = req.body;
+    const { notificationImage, notificationHeader, notificationBody, notificationDate } = req.body;
 
     const updateNotification = {
 
-        notificationType,
+        notificationImage,
         notificationHeader,
         notificationBody,
-        notificationButton,
         notificationDate
     }
 

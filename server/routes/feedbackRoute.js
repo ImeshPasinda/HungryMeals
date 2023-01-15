@@ -5,17 +5,17 @@ const Feedback = require("../models/feedbackModel")
 
 router.post("/post/", async (req, res) => {
 
-    const { name, email, subject ,message , isDisplayed} = req.body
+    const { name, email, subject, message, isDisplayed } = req.body
 
-    
+
 
     try {
 
-       
-            const newFeedback = new Feedback({ name, email, subject ,message, isDisplayed })
-            newFeedback.save()
-            res.send('Feedback send Successfully')
-        
+
+        const newFeedback = new Feedback({ name, email, subject, message, isDisplayed })
+        newFeedback.save()
+        res.send('Feedback send Successfully')
+
 
     } catch (error) {
 

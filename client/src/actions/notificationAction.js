@@ -8,7 +8,7 @@ export const setNotification = () => async dispatch => {
     try {
         const response = await axios.get('/api/notifications/getnotifications')
         console.log(response);
-        localStorage.setItem('currentNotifications', JSON.stringify(response.data))
+        // localStorage.setItem('currentNotifications', JSON.stringify(response.data))
         dispatch({ type: 'USER_PUBLIC_NOTIFICATION_SUCCESS', payload: response.data })
        
 
@@ -23,7 +23,7 @@ export const updateNotificationAction = (updateNotification) => async dispatch =
     
 
     try {
-        const response = await axios.put('/api/notifications/update/notification/63b1287fc4ccec1ca9913e1c', updateNotification)
+        const response = await axios.put('/api/notifications/update/notification/63c378651e3467b26e947c1c', updateNotification)
 
         if (updateNotification.notificationHeader === 'empty') {
             const Toast = Swal.mixin({
