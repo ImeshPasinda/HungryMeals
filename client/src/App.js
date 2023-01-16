@@ -9,7 +9,7 @@ import Cartscreen from './screens/Cartscreen';
 import Loginscreen from './screens/Loginscreen';
 import Registerscreen from './screens/Registerscreen';
 import Ordersscreen from './screens/Ordersscreen';
-import UserProfilescreen from './screens/UserProfilescreen';
+import Profilescreen from './screens/user/Profilescreen';
 import FeedbackScreen from './screens/Feedbackscreen';
 import Footer from './components/Footer';
 import AdminProfilescreen from './screens/AdminProfilescreen';
@@ -21,6 +21,8 @@ import AboutScreen from './screens/Aboutscreen';
 import FAQScreen from './screens/FAQscreen';
 import Customermanagementscreen from './screens/Customermanagementscreen';
 import Feedbackmanagementscreen from './screens/Feedbackmanagementscreen';
+import Detailsscreen from './screens/user/Detailsscreen';
+
 
 function App() {
 
@@ -80,8 +82,9 @@ function App() {
 
           )}
 
-
-          <Route path="/profile" exact element={<UserProfilescreen />} />
+         
+          <Route path="/profile" exact element={<Profilescreen />} />
+          <Route path="/profile/details" exact element={<Detailsscreen />} />
           <Route path="/admin" exact element={<AdminProfilescreen />} />
           <Route path="/about" exact element={<AboutScreen />} />
           <Route path="/faq" exact element={<FAQScreen />} />

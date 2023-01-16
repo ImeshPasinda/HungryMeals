@@ -251,9 +251,9 @@ export default function Navbar() {
 
 
 
-                                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-star" aria-labelledby="dropdownMenuLink">
+                                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-star" style={{ minWidth: '17rem ' }} aria-labelledby="dropdownMenuLink">
 
-                                            <span class="badge rounded-pill m-2" style={{ fontSize: '11px', color: 'white', backgroundColor: 'red' }} >{tot}<> Notification </><i class="fa fas fa-bell " style={{ fontSize: '8px', color: 'white' }} ></i></span>
+                                            <span class="badge rounded-pill m-3" style={{ fontSize: '11px', color: 'white', backgroundColor: 'red' }} >{tot}<> Notification </><i class="fa fas fa-bell " style={{ fontSize: '8px', color: 'white' }} ></i></span>
 
 
 
@@ -292,7 +292,7 @@ export default function Navbar() {
                                                     <li>
 
                                                         <div class="row justify-content-center p-0 m-1">
-                                                            <p class=" mb-2 text-muted" style={{ fontSize: '9px' }}>{NotificationDate} <i class="fa fas fa-bell " style={{ fontSize: '8px', color: 'red' }} ></i></p>
+                                                            <p class=" mb-2 text-muted" style={{ fontSize: '9px' }}>{NotificationDate} <i class="fa fas fa-bell " style={{ fontSize: '8px', color: 'black' }} ></i></p>
 
 
                                                             <p class="mb-2 " style={{ fontSize: '13px' }}> {NotificationBody}</p>

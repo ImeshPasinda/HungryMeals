@@ -175,7 +175,7 @@ export const updateNotificationOneAction = (updateNotificationOne, userId) => as
     
             Toast.fire({
                 icon: 'success',
-                title: 'Notification One remove successfully'
+                title: 'Notification Deleted!'
             })
             setTimeout(function () {
                 window.location.reload('/admin/notifications');
@@ -259,7 +259,7 @@ export const updateNotificationTwoAction = (updateNotificationTwo, userId) => as
     
             Toast.fire({
                 icon: 'success',
-                title: 'Notification Two remove successfully'
+                title: 'Notification Deleted!'
             })
             setTimeout(function () {
                 window.location.reload('/admin/notifications');
@@ -341,7 +341,7 @@ export const updateNotificationThreeAction = (updateNotificationThree, userId) =
     
             Toast.fire({
                 icon: 'success',
-                title: 'Notification Three remove successfully'
+                title: 'Notification Deleted!'
             })
             setTimeout(function () {
                 window.location.reload('/admin/notifications');
@@ -364,7 +364,7 @@ export const updateNotificationThreeAction = (updateNotificationThree, userId) =
     
             Toast.fire({
                 icon: 'success',
-                title: 'Notification Three updated successfully'
+                title: 'Notification Deleted!'
             })
             setTimeout(function () {
                 window.location.reload('/admin/notifications');
@@ -423,7 +423,7 @@ export const updateNotificationFourAction = (updateNotificationFour, userId) => 
     
             Toast.fire({
                 icon: 'success',
-                title: 'Notification Four remove successfully'
+                title: 'Notification Deleted!'
             })
             setTimeout(function () {
                 window.location.reload('/admin/notifications');
@@ -446,7 +446,7 @@ export const updateNotificationFourAction = (updateNotificationFour, userId) => 
     
             Toast.fire({
                 icon: 'success',
-                title: 'Notification Four updated successfully'
+                title: 'Notification Deleted!'
             })
             setTimeout(function () {
                 window.location.reload('/admin/notifications');
