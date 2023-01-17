@@ -73,7 +73,7 @@ export default function AdminProfilescreen() {
                 <div class="card col-md-4 m-4 shadow p-3 mb-5 bg-white" style={{ width: '18rem' , borderRadius: '15px'}}>
                     <img src="https://img.freepik.com/free-vector/people-ordering-food-cafe-online_74855-5913.jpg?w=996&t=st=1672324604~exp=1672325204~hmac=529755ba63bdfa1b037ddba4d350aaa4d2d177bf57fec2d01767f3daf5af4ce8" class="card-img-top" alt="..." />
                     <div class="card-body">
-                        <h5 class="card-title">Customer Management</h5>
+                        <h5 class="card-title">User Management</h5>
                         <p class="card-text">-Manage all customers(their customer profiles,activities)<br></br>
                             -Report about most engaged customers
                         </p>
