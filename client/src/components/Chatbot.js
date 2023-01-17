@@ -56,7 +56,7 @@ export default function chatbot() {
           {
             id: '8',
             component: (
-               <a href='/feedbacks'>Click here!</a>
+               <a href='/feedback'>Click here!</a>
             ),
             end: true,
           },
