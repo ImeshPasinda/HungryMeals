@@ -45,8 +45,41 @@ function Customermanagementscreen() {
                 email,
                 password
             }
-            console.log(user)
-            dispatch(addUser(user))
+            //console.log(user)
+            //dispatch(addUser(user))
+            
+            if (name.trim().length !== 0 &&  email.trim().length !== 0)
+            {
+    
+                dispatch(addUser(user))
+    
+            } 
+            else {
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 1500,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+    
+                Toast.fire({
+                    icon: 'error',
+                    title: 'Please fill out required fields !'
+                })
+            }
+
+
+
+
+
+
+
+
         }
     }
 
@@ -263,8 +296,32 @@ function addAdministrator() {
             AdminEmail,
             AdminPassword
         }
-        // console.log(admin)
-        dispatch(addAdmin(admin))
+      
+
+        if (AdminName.trim().length !== 0 &&  AdminEmail.trim().length !== 0)
+        {
+
+            dispatch(addAdmin(admin))
+
+        } 
+        else {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 1500,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon: 'error',
+                title: 'Please fill out required fields !'
+            })
+        }
     }
 }
 
@@ -668,9 +725,9 @@ function addAdministrator() {
                                 </div>
                                 <div class="modal-body">
 
-                                    {loading && <Loading />}
+                                    {/* {loading && <Loading />}
                                     {success && <Success success='Customer Added Successfully' />}
-                                    {error && (<Error error='Email already registered' />)}
+                                    {error && (<Error error='Email already registered' />)} */}
                                     <form>
 
 
