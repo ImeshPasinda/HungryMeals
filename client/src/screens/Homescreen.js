@@ -99,7 +99,7 @@ export default function Homescreen() {
     return (
 
         <div>
-             
+
             <br />
             <br />
             <br />
@@ -548,17 +548,19 @@ export default function Homescreen() {
                     placement={placement}
                     overlay={
 
-                        <div className="fixed-bottom" style={{ paddingBottom: '50px', paddingRight: '30px' }}><Chatbottheme /></div>
+
+
+                        <div className="fixed-bottom" style={{ paddingBottom: '60px', paddingRight: '20px' }}><Chatbottheme /></div>
 
                     }
                 >
                     <div className="position-fixed bottom-0 end-0" style={{ paddingBottom: '50px', paddingRight: '25px' }}>
 
-                        <button className="btn rounded-circle shadow" data-bs-toggle="modal" data-bs-target="#exampleModall" style={{
-                            width: '70px',
-                            height: '70px',
-                            borderRadius: '70px'
-                        }} ><i className="fas fa-robot" style={{ fontSize: '30px' }} ></i></button>
+                        <button className="btn rounded-circle shadow-lg" data-bs-toggle="modal" data-bs-target="#exampleModall" style={{
+                            width: '60px',
+                            height: '60px',
+                            borderRadius: '60px'
+                        }} ><i className="fas fa-robot" style={{ fontSize: '25px' }} ></i></button>
                     </div>
                 </OverlayTrigger>
             ))}
@@ -570,7 +572,7 @@ export default function Homescreen() {
 
 
 
-           
+
 
 
 

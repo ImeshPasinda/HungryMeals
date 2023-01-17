@@ -8,7 +8,7 @@ const theme = {
   fontFamily: 'Montserrat',
   headerBgColor: '#000000',
   headerFontColor: '#fff',
-  headerFontSize: '18px',
+  headerFontSize: '20px',
   botBubbleColor: '#000000',
   botFontColor: '#fff',
   userBubbleColor: '#fff',
