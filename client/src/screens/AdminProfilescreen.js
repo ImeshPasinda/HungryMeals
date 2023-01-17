@@ -40,8 +40,8 @@ export default function AdminProfilescreen() {
 
 
                     <div>
-                        <h2 style={{ fontSize: '30px' }}>{currentAdmin.name} <i className="fa fa-edit" style={{ fontSize: '15px' }} type="button" data-bs-toggle="modal" data-bs-target="#updatename" data-bs-whatever="@mdo" ></i></h2>
-                        <p>{currentAdmin.email} <i className="fa fa-edit" style={{ fontSize: '13px' }} type="button" data-bs-toggle="modal" data-bs-target="#updateemail" data-bs-whatever="@mdo" ></i></p>
+                        <h2 style={{ fontSize: '30px' }}>{currentAdmin.AdminName} <i className="fa fa-edit" style={{ fontSize: '15px' }} type="button" data-bs-toggle="modal" data-bs-target="#updatename" data-bs-whatever="@mdo" ></i></h2>
+                        <p>{currentAdmin.AdminEmail} <i className="fa fa-edit" style={{ fontSize: '13px' }} type="button" data-bs-toggle="modal" data-bs-target="#updateemail" data-bs-whatever="@mdo" ></i></p>
 
                     </div>
 
@@ -58,7 +58,7 @@ export default function AdminProfilescreen() {
                     </p>
                     <div class="collapse" id="collapseExample">
                         <div class="card card-body">
-                            Welcome Back ! {currentAdmin.name}
+                            Welcome Back ! {currentAdmin.AdminName}
                         </div>
                     </div>
                 </div>

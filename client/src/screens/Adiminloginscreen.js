@@ -10,8 +10,8 @@ import Loading from "../components/Loading";
 export default function Adminloginscreen() {
 
 
-    const [email, setemail] = useState('')
-    const [password, setpassword] = useState('')
+    const [AdminEmail, setemail] = useState('')
+    const [AdminPassword, setpassword] = useState('')
     const adminloginstate = useSelector(state => state.adminloginReducer)
     const { loading, error } = adminloginstate
     const dispatch = useDispatch()
@@ -27,7 +27,7 @@ export default function Adminloginscreen() {
 
     function login() {
 
-        const admin = { email, password }
+        const admin = { AdminEmail,AdminPassword }
         dispatch(loginAdmin(admin))
         dispatch(setNotification())
     }
@@ -59,7 +59,7 @@ export default function Adminloginscreen() {
                             type="email"
                             placeholder="email"
                             className="form-control"
-                            value={email}
+                            value={AdminEmail}
                             onChange={(e) => { setemail(e.target.value) }}
 
                         />
@@ -69,7 +69,7 @@ export default function Adminloginscreen() {
                             type="password"
                             placeholder="password"
                             className="form-control"
-                            value={password}
+                            value={AdminPassword}
                             onChange={(e) => { setpassword(e.target.value) }}
 
                         />

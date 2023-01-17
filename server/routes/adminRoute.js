@@ -5,21 +5,21 @@ const Admin = require("../models/adminModel")
 
 router.post("/login", async (req, res) => {
 
-    const { email, password } = req.body
+    const { AdminEmail, AdminPassword } = req.body
 
     try {
 
-        const admin = await Admin.find({ email, password })
+        const admin = await Admin.find({ AdminEmail, AdminPassword })
 
         if (admin.length > 0) {
 
-            const currentUser = {
-                name: admin[0].name,
-                email: admin[0].email,
+            const currentAdmin = {
+                AdminName: admin[0].AdminName,
+                AdminEmail: admin[0].AdminEmail,
                 isAdmin: admin[0].isAdmin,
                 _id: admin[0]._id
             }
-            res.send(currentUser);
+            res.send(currentAdmin);
 
         }
         else {
