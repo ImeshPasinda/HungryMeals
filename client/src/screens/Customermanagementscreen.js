@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import { deleteCustomerAction, addUser } from '../actions/CustomerAction';
+import { addAdmin } from '../actions/adminActions';
 import { updateCustomerName, updateCustomerEmail, updateCustomerPassword, updateCustomerVerification } from '../actions/CustomerAction';
 import Loading from "../components/Loading"
 import Success from "../components/Success"
@@ -19,6 +20,8 @@ let totalVerifiedUsers = 0
 const VerifiedUsers = new Array();
 let VerifiedPercentage;
 let VerifiedPercentageRate;
+
+let adminID;
 
 
 function Customermanagementscreen() {
@@ -47,7 +50,7 @@ function Customermanagementscreen() {
         }
     }
 
-
+    
 
 
 
@@ -55,11 +58,13 @@ function Customermanagementscreen() {
     const [filterdUsers, setFilterdUsers] = useState([]);
     const [search, setSearch] = useState("");
 
-    
+
 
 
     useEffect(() => {
         function getUsers() {
+
+            //get all users from database
             axios.get("http://localhost:8070/api/users/getAllusers").then((res) => {
                 setUsers(res.data);
                 // console.log(res.data)
@@ -95,9 +100,9 @@ function Customermanagementscreen() {
     }, [])
 
 
-    VerifiedPercentage=(totalVerifiedUsers/usersCount)*100;
+    VerifiedPercentage = (totalVerifiedUsers / usersCount) * 100;
     VerifiedPercentageRate = VerifiedPercentage.toFixed(2)
-    
+
 
 
     // search button
@@ -126,7 +131,7 @@ function Customermanagementscreen() {
     const [email, updateCEmail] = useState('')
     const [password, updateCPassword] = useState('')
 
-    //update name
+    //update customer name
     function updatename(userId) {
 
         const updateCName = {
@@ -149,7 +154,7 @@ function Customermanagementscreen() {
 
             email
         }
-        
+
 
         for (let index = 0; index <= usersCount; index++) {
 
@@ -196,7 +201,7 @@ function Customermanagementscreen() {
         }
     }
 
-
+//update customer password
     function updatepassword(userId) {
 
         const updateCPassword = {
@@ -212,7 +217,7 @@ function Customermanagementscreen() {
 
     }
 
-
+//update verified users
     const [isVerified, updateCisVerified] = useState('')
 
     function updateverification(userId, val) {
@@ -229,6 +234,46 @@ function Customermanagementscreen() {
 
 
     }
+
+
+
+// administrator
+
+const [AdminName, setAdminName] = useState('')
+const [AdminEmail, setAdminEmail] = useState('')
+const [AdminPassword, setAdminPassword] = useState('')
+const [AdRePassword, setAdRepassword] = useState('')
+
+
+
+
+
+//function for add admins to Database
+function addAdministrator() {
+
+    if (AdminPassword != AdRePassword) {
+
+        alert("passwords not matched")
+
+    } else {
+
+        const admin = {
+
+            AdminName,
+            AdminEmail,
+            AdminPassword
+        }
+        // console.log(admin)
+        dispatch(addAdmin(admin))
+    }
+}
+
+
+
+
+
+
+
 
 
 
@@ -289,7 +334,7 @@ function Customermanagementscreen() {
 
                     <DataTable
 
-                        title='Customer Management'
+                        title='User Management - Customers'
                         columns={columns}
                         data={filterdUsers}
                         pagination
@@ -316,7 +361,14 @@ function Customermanagementscreen() {
                     <br />
                     <br />
                     <div className='modal-footer'>
+                    <div className='p-1'>
                         <button class="btn" data-bs-target="#addnewcustomer" data-bs-toggle="modal" data-bs-dismiss="modal"><i style={{ fontSize: '15px', color: 'white' }} class="fa fa-plus" aria-hidden="true"></i>Add Customer</button>
+                        </div>
+                        {/* enter new admin to the system */}
+
+                        <button class="btn" data-bs-target="#addnewadmin" data-bs-toggle="modal" data-bs-dismiss="modal"><i style={{ fontSize: '15px', color: 'white' }} class="fa fa-plus" aria-hidden="true"></i>Add New Admin</button>
+                    
+                        {/* generate report button */}
                         <div className='p-1'><button class="btn" data-bs-target="#exampleModalToggleReport" data-bs-toggle="modal" data-bs-dismiss="modal"><i style={{ fontSize: '15px', color: 'white' }} class="fa fa-file" aria-hidden="true"></i> Generate Customer Report</button>
                         </div>
                     </div>
@@ -409,10 +461,10 @@ function Customermanagementscreen() {
                                                         <div class="card">
                                                             <div class="card-body shadow">
                                                                 <p class="text-uppercase small mb-2">
-                                                                    <strong>BOUNCE LIVE RATE <i class="fa-solid fa-circle fa-fade" style={{ fontSize: '13px', color: 'red' }}></i></strong>
+                                                                    <strong>Deleted User Accounts <i class="fa-solid fa-circle fa-fade" style={{ fontSize: '13px', color: 'red' }}></i></strong>
                                                                 </p>
                                                                 <h5 class="mb-0">
-                                                                    <strong>00.00%</strong>
+                                                                    <strong>0</strong>
                                                                     <small class="text-danger ms-2">
                                                                         <i class="fas fa-arrow-down fa-sm pe-1"></i></small>
                                                                 </h5>
@@ -606,6 +658,7 @@ function Customermanagementscreen() {
                     </div>
 
 
+                    {/* modal for add new customer by admin */}
                     <div class="modal fade" id="addnewcustomer" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -691,6 +744,90 @@ function Customermanagementscreen() {
                     </div>
 
 
+
+                    {/* modal register new addmin */}
+
+
+                    <div class="modal fade" id="addnewadmin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="updateemailLabel">Register New Administrators</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+
+                                    <form>
+
+
+                                        <div class="mb-3">
+                                            <label for="customer-name" class="col-form-label">Name:</label>
+                                            <input
+
+                                                required
+                                                type="text"
+                                                class="form-control"
+                                                id="customer-name"
+                                                value={AdminName}
+                                                onChange={(e) => {setAdminName (e.target.value) }}
+
+                                            />
+                                        </div>
+
+
+                                        <div class="mb-3">
+                                            <label for="customer-email" class="col-form-label">Email:</label>
+                                            <input
+
+                                                required
+                                                type="text"
+                                                class="form-control"
+                                                id="customer-email"
+                                                value={AdminEmail}
+                                                onChange={(e) => { setAdminEmail(e.target.value) }}
+
+                                            />
+                                        </div>
+
+
+                                        <div class="mb-3">
+                                            <label for="customer-password" class="col-form-label">Password:</label>
+                                            <input
+
+                                                required
+                                                type="password"
+                                                class="form-control"
+                                                id="customer-password"
+                                                value={AdminPassword}
+                                                onChange={(e) => {setAdminPassword(e.target.value) }}
+
+                                            />
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="customer-cpassword" class="col-form-label">ReType - Password:</label>
+                                            <input
+
+                                                required
+                                                type="password"
+                                                class="form-control"
+                                                id="customer-cpassword"
+                                                value={AdRePassword}
+                                                onChange={(e) => { setAdRepassword(e.target.value) }}
+
+                                            />
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+
+                                    <button onClick={addAdministrator} type="button" class="btn ">Register</button>
+                                    <button type="button" class="btn " data-bs-dismiss="modal">Close</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
             </div>

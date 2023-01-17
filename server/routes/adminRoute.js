@@ -34,4 +34,33 @@ router.post("/login", async (req, res) => {
     }
 })
 
+//register new admin
+router.post("/addAdmin", async (req, res) => {
+
+    const { AdminName, AdminEmail, AdminPassword } = req.body
+
+    try {
+
+        const adminExit = await Admin.findOne({ AdminEmail })
+
+        if (adminExit) {
+
+            return res.status(400).json({ message: error });
+
+        } else {
+
+            const newAdmin = new Admin({ AdminName, AdminEmail, AdminPassword })
+            newAdmin.save()
+            res.send('New Administrator Registration Successful !!!')
+        }
+
+    } catch (error) {
+
+        return res.status(400).json({ message: error });
+    }
+
+})
+
+
+
 module.exports = router;
