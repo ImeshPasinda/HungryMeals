@@ -5,6 +5,14 @@ import { getAllPizzas } from '../actions/pizzaAction'
 import Loading from "../components/Loading";
 import Error from "../components/Error";
 import axios from "axios";
+import Chatbottheme from "../components/Chatbottheme";
+import Chatbot from "../components/Chatbot";
+
+import Button from 'react-bootstrap/Button';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Popover from 'react-bootstrap/Popover';
+
+
 
 
 
@@ -20,6 +28,7 @@ var feedbackThreeMesssage;
 var feedbackThreeName;
 
 export default function Homescreen() {
+
 
 
     const dispatch = useDispatch()
@@ -85,10 +94,12 @@ export default function Homescreen() {
 
     console.log(feedbackArray.length)
 
+
+
     return (
 
         <div>
-
+             
             <br />
             <br />
             <br />
@@ -324,9 +335,9 @@ export default function Homescreen() {
 
                                         </div>
                                     </div>
-                                </div> 
+                                </div>
 
-                            ):(<></>) && feedbackArray.length === 2 ? (
+                            ) : (<></>) && feedbackArray.length === 2 ? (
 
                                 <div>
 
@@ -423,7 +434,7 @@ export default function Homescreen() {
                                 </div>
 
 
-                            ) :(<></>) && feedbackArray.length === 1 ? (
+                            ) : (<></>) && feedbackArray.length === 1 ? (
 
                                 <div>
 
@@ -476,35 +487,35 @@ export default function Homescreen() {
                             ) : (
                                 <div>
 
-                                <div class="carousel-item active">
-                                    <img src="https://static.wixstatic.com/media/618c8c_66b85eea9a4e44308771a5947da637c1~mv2.png" class="d-block w-100" alt="..." />
-                                    <div class="carousel-caption" style={{ postition: 'absolute' }}>
+                                    <div class="carousel-item active">
+                                        <img src="https://static.wixstatic.com/media/618c8c_66b85eea9a4e44308771a5947da637c1~mv2.png" class="d-block w-100" alt="..." />
+                                        <div class="carousel-caption" style={{ postition: 'absolute' }}>
 
-                                        <div class="row text-center">
-                                            <div class="col-md-4 mb-5 mb-md-0">
+                                            <div class="row text-center">
+                                                <div class="col-md-4 mb-5 mb-md-0">
 
+                                                </div>
+                                                <div class="col-md-4 mb-5 mb-md-0">
+
+                                                </div>
+                                                <div class="col-md-4 mb-0">
+
+
+                                                    <p class="px-xl-3" >
+                                                        <i class="fas fa-quote-left pe-2"></i>Hurry Up Foodies!!! Give Us  Your Valuable Feedback...
+                                                    </p>
+
+                                                </div>
                                             </div>
-                                            <div class="col-md-4 mb-5 mb-md-0">
-
-                                            </div>
-                                            <div class="col-md-4 mb-0">
 
 
-                                                <p class="px-xl-3" >
-                                                    <i class="fas fa-quote-left pe-2"></i>Hurry Up Foodies!!! Give Us  Your Valuable Feedback... 
-                                                </p>
-                                                
-                                            </div>
                                         </div>
 
 
+
                                     </div>
-
-
-
                                 </div>
-                            </div>
-                            
+
                             )}
 
 
@@ -520,15 +531,135 @@ export default function Homescreen() {
                         </button>
                     </div>
 
+
+
                 </div>
             </div>
 
+
+
+
+
+
+            {['auto-start'].map((placement) => (
+                <OverlayTrigger
+                    trigger="click"
+                    key={placement}
+                    placement={placement}
+                    overlay={
+
+                        <div className="fixed-bottom" style={{ paddingBottom: '50px', paddingRight: '30px' }}><Chatbottheme /></div>
+
+                    }
+                >
+                    <div className="position-fixed bottom-0 end-0" style={{ paddingBottom: '50px', paddingRight: '25px' }}>
+
+                        <button className="btn rounded-circle shadow" data-bs-toggle="modal" data-bs-target="#exampleModall" style={{
+                            width: '70px',
+                            height: '70px',
+                            borderRadius: '70px'
+                        }} ><i className="fas fa-robot" style={{ fontSize: '30px' }} ></i></button>
+                    </div>
+                </OverlayTrigger>
+            ))}
+
+
+
+
+
+
+
+
+           
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            {/* <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel"><h1>ChatBot <sup><span class="badge bg-success">Added in v1.2</span></sup></h1></h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+
+                        <div class="modal-body">
+
+
+                            <div class="container">
+
+
+                                <div class="row justify-content-center">
+                                    <div class="col-md">
+
+
+                                        <div className="center">
+
+                                            <Chatbottheme />
+                                        </div>
+
+                                    </div>
+
+
+
+                                    <div class="col-md m-2">
+
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div> */}
+
+
+
+
+
+
         </div>
-
-
-
-
-
 
     )
 

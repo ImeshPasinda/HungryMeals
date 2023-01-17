@@ -24,6 +24,7 @@ import Feedbackmanagementscreen from './screens/Feedbackmanagementscreen';
 import Detailsscreen from './screens/user/Detailsscreen';
 
 
+
 function App() {
 
   const userstate = useSelector(state => state.loginUserReducer)
@@ -37,10 +38,11 @@ function App() {
 
       <Navbar />
 
-
+      
       <BrowserRouter>
         <Routes>
 
+          
 
           <Route path="/" exact element={<Homescreen />} />
           <Route path="/cart" exact element={<Cartscreen />} />
@@ -82,7 +84,7 @@ function App() {
 
           )}
 
-         
+
           <Route path="/profile" exact element={<Profilescreen />} />
           <Route path="/profile/details" exact element={<Detailsscreen />} />
           <Route path="/admin" exact element={<AdminProfilescreen />} />
