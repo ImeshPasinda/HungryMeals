@@ -500,14 +500,16 @@ function Customermanagementscreen() {
 
 
                     />
-
-                    <div className='p-1'>
-                        <button class="btn" data-bs-target="#addnewcustomer" data-bs-toggle="modal" data-bs-dismiss="modal"><i style={{ fontSize: '15px', color: 'white' }} class="fa fa-plus" aria-hidden="true"></i>Add Customer</button>
+                    <br />
+                    <br />
+                    <div className='modal-footer'>
+                        <div className='p-1'>
+                            <button class="btn" data-bs-target="#addnewcustomer" data-bs-toggle="modal" data-bs-dismiss="modal"><i style={{ fontSize: '15px', color: 'white' }} class="fa fa-plus" aria-hidden="true"></i>Add Customer</button>
+                        </div>
+                        {/* generate report button */}
+                        <div className='p-1'><button class="btn" data-bs-target="#exampleModalToggleReport" data-bs-toggle="modal" data-bs-dismiss="modal"><i style={{ fontSize: '15px', color: 'white' }} class="fa fa-file" aria-hidden="true"></i> Generate Customer Report</button>
+                        </div>
                     </div>
-                    {/* generate report button */}
-                    <div className='p-1'><button class="btn" data-bs-target="#exampleModalToggleReport" data-bs-toggle="modal" data-bs-dismiss="modal"><i style={{ fontSize: '15px', color: 'white' }} class="fa fa-file" aria-hidden="true"></i> Generate Customer Report</button>
-                    </div>
-
                     <br />
                     <br />
                     <br />
@@ -545,14 +547,14 @@ function Customermanagementscreen() {
                     />
                     <br />
                     <br />
-                   <div className='modal-footer'> 
+                    <div className='modal-footer'>
 
-                    {/* enter new admin to the system */}
+                        {/* enter new admin to the system */}
 
-                    <button class="btn" data-bs-target="#addnewadmin" data-bs-toggle="modal" data-bs-dismiss="modal"><i style={{ fontSize: '15px', color: 'white' }} class="fa fa-plus" aria-hidden="true"></i>Add New Admin</button>
-                    {/* generate report button */}
-                    <div className='p-1'><button class="btn" data-bs-target="#exampleModalToggleReportAdmin" data-bs-toggle="modal" data-bs-dismiss="modal"><i style={{ fontSize: '15px', color: 'white' }} class="fa fa-file" aria-hidden="true"></i> Generate Admin Details Report</button>
-                    </div>
+                        <button class="btn" data-bs-target="#addnewadmin" data-bs-toggle="modal" data-bs-dismiss="modal"><i style={{ fontSize: '15px', color: 'white' }} class="fa fa-plus" aria-hidden="true"></i>Add New Admin</button>
+                        {/* generate report button */}
+                        <div className='p-1'><button class="btn" data-bs-target="#exampleModalToggleReportAdmin" data-bs-toggle="modal" data-bs-dismiss="modal"><i style={{ fontSize: '15px', color: 'white' }} class="fa fa-file" aria-hidden="true"></i> Generate Admin Details Report</button>
+                        </div>
 
                     </div>
 
