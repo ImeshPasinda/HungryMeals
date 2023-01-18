@@ -254,6 +254,7 @@ export default function Navbar() {
                                             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-star" style={{ minWidth: '17rem ' }} aria-labelledby="dropdownMenuLink">
 
                                             <span class="badge rounded-pill m-3" style={{ fontSize: '11px', color: 'white', backgroundColor: 'red' }} >{tot}<> Notification </><i class="fa fas fa-bell " style={{ fontSize: '8px', color: 'white' }} ></i></span>
+                                            
 
 
 
@@ -292,8 +293,9 @@ export default function Navbar() {
                                                     <li>
 
                                                         <div class="row justify-content-center p-0 m-1">
+                                                        <a href='/profile'><div><span class="btn badge bg-success" style={{ fontSize: '10px', position: 'absolute', right: '25px' }}>View</span></div></a>
                                                             <p class=" mb-2 text-muted" style={{ fontSize: '9px' }}>{NotificationDate} <i class="fa fas fa-bell " style={{ fontSize: '8px', color: 'black' }} ></i></p>
-
+                                                           
 
                                                             <p class="mb-2 " style={{ fontSize: '13px' }}> {NotificationBody}</p>
 
@@ -318,9 +320,9 @@ export default function Navbar() {
                                                     <li>
 
                                                         <div class="row justify-content-center p-0 m-1">
-
+                                                        <a href='/profile'><div><span class="btn badge bg-success" style={{ fontSize: '10px', position: 'absolute', right: '25px' }}>View</span></div></a>
                                                             <p class=" mb-2 text-muted" style={{ fontSize: '9px' }}>{NotificationArray.notificationOneDate}</p>
-
+                                                            
 
                                                             <p class="mb-2 " style={{ fontSize: '13px' }}>{NotificationArray.notificationOneBody}</p>
 
@@ -343,6 +345,7 @@ export default function Navbar() {
                                                     <li>
 
                                                         <div class="row justify-content-center p-0 m-1">
+                                                        <a href='/profile'><div><span class="btn badge bg-success" style={{ fontSize: '10px', position: 'absolute', right: '25px' }}>View</span></div></a>
                                                             <p class=" mb-2 text-muted" style={{ fontSize: '9px' }}>{NotificationArray.notificationTwoDate}</p>
 
 
@@ -368,6 +371,7 @@ export default function Navbar() {
                                                     <li>
 
                                                         <div class="row justify-content-center p-0 m-1">
+                                                        <a href='/profile'><div><span class="btn badge bg-success" style={{ fontSize: '10px', position: 'absolute', right: '25px' }}>View</span></div></a>
                                                             <p class=" mb-2 text-muted" style={{ fontSize: '9px' }}>{NotificationArray.notificationThreeDate}</p>
 
 
@@ -392,8 +396,9 @@ export default function Navbar() {
                                                     <li>
 
                                                         <div class="row justify-content-center p-0 m-1">
+                                                        <a href='/profile'><div><span class="btn badge bg-success" style={{ fontSize: '10px', position: 'absolute', right: '25px' }}>View</span></div></a>
                                                             <p class=" mb-2 text-muted" style={{ fontSize: '9px' }}>{NotificationArray.notificationFourDate}</p>
-
+                               
 
                                                             <p class="mb-2 " style={{ fontSize: '13px' }}> {NotificationArray.notificationFourBody}</p>
 

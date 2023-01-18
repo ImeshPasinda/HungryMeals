@@ -6,7 +6,7 @@ export default function chatbot() {
     <div>
 
       <ChatBot
-        botAvatar="https://static.wixstatic.com/media/618c8c_fc861cd26f2f442fbbc4a1141f564777~mv2.png"
+        botAvatar="https://static.wixstatic.com/media/618c8c_b185b378c6c24542b51061fcc4e9874f~mv2.png"
         userAvatar= "https://static.wixstatic.com/media/618c8c_5f176f88792f40609c74309e7f6f2eb2~mv2.png"
         enableMobileAutoFocus 
        

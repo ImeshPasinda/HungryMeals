@@ -573,6 +573,22 @@ export default function Homescreen() {
 
 
 
+            <a href="/feedback"><div className="position-fixed bottom-0 end-1" style={{ paddingBottom: '50px', paddingLeft: '25px' }}>
+
+                <button className="btn rounded-circle shadow-lg "  style={{
+                    width: '60px',
+                    height: '60px',
+                    borderRadius: '60px'
+                }} ><i className="fas fa-pen" style={{ fontSize: '25px' }} ></i></button>
+            </div></a>
+
+
+
+
+
+
+
+
 
 
 
