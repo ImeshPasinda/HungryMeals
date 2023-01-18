@@ -22,6 +22,7 @@ import FAQScreen from './screens/FAQscreen';
 import Customermanagementscreen from './screens/Customermanagementscreen';
 import Feedbackmanagementscreen from './screens/Feedbackmanagementscreen';
 import Detailsscreen from './screens/user/Detailsscreen';
+import Ordermanagementscreen from './screens/Ordermanagementscreen';
 
 
 
@@ -38,11 +39,11 @@ function App() {
 
       <Navbar />
 
-      
+
       <BrowserRouter>
         <Routes>
 
-          
+
 
           <Route path="/" exact element={<Homescreen />} />
           <Route path="/cart" exact element={<Cartscreen />} />
@@ -72,6 +73,12 @@ function App() {
             <Route path="/error" exact element={<Errorscreen />} />
 
           )}
+          {currentAdmin ? (<Route path="admin/orders" exact element={<Ordermanagementscreen />} />) : (
+
+            <Route path="/error" exact element={<Errorscreen />} />
+
+          )}
+
 
           {currentAdmin ? (<Route path="admin/customers" exact element={<Customermanagementscreen />} />) : (
 
