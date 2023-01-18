@@ -4,6 +4,9 @@ import DataTable from "react-data-table-component"
 import Swal from 'sweetalert2';
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux'
+import { deleteOrderAction } from '../actions/orderActions';
+
+let OrderID 
 
 export default function Ordermanagementscreen() {
 
@@ -58,7 +61,7 @@ export default function Ordermanagementscreen() {
 
     {
       name: "Delete",
-      cell: row => <button className="btn">Delete</button>
+      cell: row => <button onClick={() => { deleteOrder(row._id) }} className="btn">Delete</button>
 
 
     },
@@ -73,6 +76,15 @@ export default function Ordermanagementscreen() {
 
       setFilterdOrders(results);
   }, [searchOrders]);
+
+  const dispatch = useDispatch();
+
+    function deleteOrder(OrderId) {
+
+        dispatch(deleteOrderAction(OrderId));
+
+
+    }
 
 
 

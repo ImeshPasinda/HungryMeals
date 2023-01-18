@@ -87,4 +87,22 @@ router.get("/getallorders", async (req, res) => {
     }
 });
 
+router.delete("/delete/Order/:id", async (req, res) => {
+
+    let OrderID = req.params.id;
+
+    try {
+        await Order.findByIdAndDelete(OrderID)
+
+        res.send('Order Deleted Successfully')
+    }
+
+    catch (error) {
+
+
+        return res.status(400).json({ message: error });
+    }
+});
+
+
 module.exports = router
