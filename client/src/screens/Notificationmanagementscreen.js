@@ -347,7 +347,7 @@ export default function Notificationmanagementscreen() {
                 title: 'Please fill out Header filed!'
             })
         }
-        
+
 
 
     }
@@ -525,33 +525,33 @@ export default function Notificationmanagementscreen() {
 
 
 
-                <div className='col-md-9 m-3   p-0 ' >
+                <div className='col-md-9 m-3   p-0' >
+                    
+                        <DataTable
 
-                    <DataTable
+                            title=<h1>Custom & Public Notifications <sup><span class="badge bg-success">Added in v1.2</span></sup></h1>
+                            columns={columns}
+                            data={filterdUsers}
+                            pagination
+                            fixedHeader
+                            fixedHeaderScrollHeight="450px"
+                            selectableRows
+                            selectableRowsHighlight
+                            subHeader
+                            subHeaderComponent={
+                                <input
 
-                        title=<h1>Custom & Public Notifications <sup><span class="badge bg-success">Added in v1.2</span></sup></h1>
-                        columns={columns}
-                        data={filterdUsers}
-                        pagination
-                        fixedHeader
-                        fixedHeaderScrollHeight="450px"
-                        selectableRows
-                        selectableRowsHighlight
-                        subHeader
-                        subHeaderComponent={
-                            <input
+                                    type="text"
+                                    placeholder="Search here..."
+                                    className='w-25 form-control'
+                                    value={search}
+                                    onChange={(e) => setSearch(e.target.value)}
 
-                                type="text"
-                                placeholder="Search here..."
-                                className='w-25 form-control'
-                                value={search}
-                                onChange={(e) => setSearch(e.target.value)}
+                                />
+                            }
 
-                            />
-                        }
-
-                    />
-
+                        />
+                  
 
                     <br />
                     <br />
@@ -1579,7 +1579,7 @@ onChange={(e) => { updatenotiOneDate(e.target.value) }}
 
                                             <div className='p-5'>
                                                 <button onClick={() => updateNotification()} type="button" class="btn ">Update</button><> </>
-                                                <button onClick={() => resetNotification() } type="button" class="btn ">Remove</button>
+                                                <button onClick={() => resetNotification()} type="button" class="btn ">Remove</button>
                                             </div>
 
                                         </div>

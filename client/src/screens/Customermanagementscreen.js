@@ -545,7 +545,7 @@ function Customermanagementscreen() {
                     />
                     <br />
                     <br />
-                    {/* <div className='modal-footer'> */}
+                   <div className='modal-footer'> 
 
                     {/* enter new admin to the system */}
 
@@ -554,7 +554,7 @@ function Customermanagementscreen() {
                     <div className='p-1'><button class="btn" data-bs-target="#exampleModalToggleReportAdmin" data-bs-toggle="modal" data-bs-dismiss="modal"><i style={{ fontSize: '15px', color: 'white' }} class="fa fa-file" aria-hidden="true"></i> Generate Admin Details Report</button>
                     </div>
 
-                    {/* </div> */}
+                    </div>
 
                     {/* report model */}
 
