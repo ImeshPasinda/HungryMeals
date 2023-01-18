@@ -11,7 +11,7 @@ import Chatbot from "../components/Chatbot";
 import Button from 'react-bootstrap/Button';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
-
+import Tooltip from 'react-bootstrap/Tooltip';
 
 
 
@@ -28,6 +28,27 @@ var feedbackThreeMesssage;
 var feedbackThreeName;
 
 export default function Homescreen() {
+
+
+
+
+    const renderTooltip = (props) => (
+        <Tooltip id="button-tooltip" {...props}>
+            Give feedback!
+        </Tooltip>
+    );
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -568,19 +589,33 @@ export default function Homescreen() {
 
 
 
+<a href="/feedback"><div className="position-fixed bottom-0 end-1" style={{ paddingBottom: '50px', paddingLeft: '25px' }}>
+            <OverlayTrigger
+                placement="right"
+                delay={{ show: 250, hide: 400 }}
+                overlay={renderTooltip}
+            >
+               
+
+                    <button  className="btn rounded-circle shadow-lg " variant="success" style={{
+                        width: '60px',
+                        height: '60px',
+                        borderRadius: '60px'
+                    }} ><i className="fa-solid fa-pizza-slice" style={{ fontSize: '25px' }} ></i></button>
+                
+                
+            </OverlayTrigger>
+            </div></a>
 
 
+            {/* <a href="/feedback"><div className="position-fixed bottom-0 end-1" style={{ paddingBottom: '50px', paddingLeft: '25px' }}>
 
-
-
-            <a href="/feedback"><div className="position-fixed bottom-0 end-1" style={{ paddingBottom: '50px', paddingLeft: '25px' }}>
-
-                <button className="btn rounded-circle shadow-lg "  style={{
+                <button className="btn rounded-circle shadow-lg " variant="success" style={{
                     width: '60px',
                     height: '60px',
                     borderRadius: '60px'
-                }} ><i className="fas fa-pen" style={{ fontSize: '25px' }} ></i></button>
-            </div></a>
+                }} ><i className="fa-solid fa-pizza-slice" style={{ fontSize: '25px' }} ></i></button>
+            </div></a> */}
 
 
 
