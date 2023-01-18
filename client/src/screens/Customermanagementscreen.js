@@ -5,8 +5,9 @@ import Swal from 'sweetalert2';
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import { deleteCustomerAction, addUser } from '../actions/CustomerAction';
-import { addAdmin } from '../actions/adminActions';
+import { addAdmin, deleteAdminAction } from '../actions/adminActions';
 import { updateCustomerName, updateCustomerEmail, updateCustomerPassword, updateCustomerVerification } from '../actions/CustomerAction';
+
 import Loading from "../components/Loading"
 import Success from "../components/Success"
 import Error from "../components/Error"
@@ -22,7 +23,8 @@ let VerifiedPercentage;
 let VerifiedPercentageRate;
 
 let adminID;
-
+let adminCount;
+let adminArray;
 
 function Customermanagementscreen() {
 
@@ -31,13 +33,15 @@ function Customermanagementscreen() {
     const { error, loading, success } = customeraddstate
 
 
+    //add new customer by admin
     function addcustomer() {
 
         if (password != cpassword) {
 
             alert("passwords not matched")
 
-        } else {
+        }
+        else {
 
             const user = {
 
@@ -45,15 +49,13 @@ function Customermanagementscreen() {
                 email,
                 password
             }
-            //console.log(user)
-            //dispatch(addUser(user))
-            
-            if (name.trim().length !== 0 &&  email.trim().length !== 0)
-            {
-    
+
+
+            if (name.trim().length !== 0 && email.trim().length !== 0) {
+
                 dispatch(addUser(user))
-    
-            } 
+
+            }
             else {
                 const Toast = Swal.mixin({
                     toast: true,
@@ -66,24 +68,17 @@ function Customermanagementscreen() {
                         toast.addEventListener('mouseleave', Swal.resumeTimer)
                     }
                 })
-    
+
                 Toast.fire({
                     icon: 'error',
                     title: 'Please fill out required fields !'
                 })
             }
 
-
-
-
-
-
-
-
         }
     }
 
-    
+
 
 
 
@@ -132,9 +127,6 @@ function Customermanagementscreen() {
 
     }, [])
 
-
-    VerifiedPercentage = (totalVerifiedUsers / usersCount) * 100;
-    VerifiedPercentageRate = VerifiedPercentage.toFixed(2)
 
 
 
@@ -234,7 +226,7 @@ function Customermanagementscreen() {
         }
     }
 
-//update customer password
+    //update customer password
     function updatepassword(userId) {
 
         const updateCPassword = {
@@ -250,7 +242,7 @@ function Customermanagementscreen() {
 
     }
 
-//update verified users
+    //update verified users
     const [isVerified, updateCisVerified] = useState('')
 
     function updateverification(userId, val) {
@@ -270,71 +262,8 @@ function Customermanagementscreen() {
 
 
 
-// administrator
 
-const [AdminName, setAdminName] = useState('')
-const [AdminEmail, setAdminEmail] = useState('')
-const [AdminPassword, setAdminPassword] = useState('')
-const [AdRePassword, setAdRepassword] = useState('')
-
-
-
-
-
-//function for add admins to Database
-function addAdministrator() {
-
-    if (AdminPassword != AdRePassword) {
-
-        alert("passwords not matched")
-
-    } else {
-
-        const admin = {
-
-            AdminName,
-            AdminEmail,
-            AdminPassword
-        }
-      
-
-        if (AdminName.trim().length !== 0 &&  AdminEmail.trim().length !== 0)
-        {
-
-            dispatch(addAdmin(admin))
-
-        } 
-        else {
-            const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 1500,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.addEventListener('mouseenter', Swal.stopTimer)
-                    toast.addEventListener('mouseleave', Swal.resumeTimer)
-                }
-            })
-
-            Toast.fire({
-                icon: 'error',
-                title: 'Please fill out required fields !'
-            })
-        }
-    }
-}
-
-
-
-
-
-
-
-
-
-
-    //create data table
+    //create data table customers
     const columns = [
         {
             name: "Name",
@@ -375,6 +304,161 @@ function addAdministrator() {
 
     ]
 
+    //calculations for report
+    VerifiedPercentage = (totalVerifiedUsers / usersCount) * 100;
+    VerifiedPercentageRate = VerifiedPercentage.toFixed(2)
+
+
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    // administrator section
+
+    const [AdminName, setAdminName] = useState('')
+    const [AdminEmail, setAdminEmail] = useState('')
+    const [AdminPassword, setAdminPassword] = useState('')
+    const [AdRePassword, setAdRepassword] = useState('')
+
+    const [admins, setAdmins] = useState([]);
+    const [filterdAdmins, setFilterdAdmins] = useState([]);
+    const [searchAdmin, setSearchAdmin] = useState("");
+
+    useEffect(() => {
+        function getAdmins() {
+
+            //get all users from database
+            axios.get("http://localhost:8070/api/admins/getalladmins").then((res) => {
+                setAdmins(res.data);
+                console.log(res.data)
+
+
+                adminArray = res.data;
+                adminCount = adminArray.length;
+                console.log("admin Count " + adminCount);
+
+
+                setFilterdAdmins(res.data);
+
+
+            }).catch((err) => {
+                console.log(err.message)
+
+            })
+        }
+        getAdmins();
+
+    }, [])
+
+
+
+    //function for add admins to Database
+    function addAdministrator() {
+
+        if (AdminPassword != AdRePassword) {
+
+            alert("passwords not matched")
+
+        } else {
+
+            const admin = {
+
+                AdminName,
+                AdminEmail,
+                AdminPassword
+            }
+
+
+            if (AdminName.trim().length !== 0 && AdminEmail.trim().length !== 0) {
+
+                dispatch(addAdmin(admin))
+
+            }
+            else {
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 1500,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+
+                Toast.fire({
+                    icon: 'error',
+                    title: 'Please fill out required fields !'
+                })
+            }
+        }
+    }
+
+    // search button
+    useEffect(() => {
+        const results = admins.filter(admins => {
+            return admins.AdminName.toLowerCase().match(searchAdmin.toLowerCase());
+        });
+
+        setFilterdAdmins(results);
+    }, [searchAdmin]);
+
+
+    //delete function
+
+    function deleteAdmin(adminID) {
+
+        dispatch(deleteAdminAction(adminID));
+
+    }
+
+
+
+    //create data table admins
+    const columnsAdmin = [
+        {
+            name: "Name",
+            selector: (row) => row.AdminName,
+            sortable: true,
+        },
+        {
+            name: "Email",
+            selector: (row) => row.AdminEmail,
+        },
+        {
+            name: "Password",
+            selector: (row) => row.AdminPassword,
+        },
+
+
+
+        // {
+        //     name: "Update",
+        //     cell: row => <button onClick={() => { (adminID = row._id) }} className="btn" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Update</button>
+
+        // },
+        {
+            name: "Delete",
+            cell: row => <button onClick={() => { deleteAdmin(row._id) }} className="btn" role="button">Delete</button>
+
+
+        },
+
+    ]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     return (
@@ -389,6 +473,7 @@ function addAdministrator() {
             <div className='row justify-content-center'>
                 <div className='col-md-9 m-3   p-0 ' >
 
+                    {/* Data table for customer details */}
                     <DataTable
 
                         title='User Management - Customers'
@@ -415,20 +500,61 @@ function addAdministrator() {
 
 
                     />
-                    <br />
-                    <br />
-                    <div className='modal-footer'>
+
                     <div className='p-1'>
                         <button class="btn" data-bs-target="#addnewcustomer" data-bs-toggle="modal" data-bs-dismiss="modal"><i style={{ fontSize: '15px', color: 'white' }} class="fa fa-plus" aria-hidden="true"></i>Add Customer</button>
-                        </div>
-                        {/* enter new admin to the system */}
-
-                        <button class="btn" data-bs-target="#addnewadmin" data-bs-toggle="modal" data-bs-dismiss="modal"><i style={{ fontSize: '15px', color: 'white' }} class="fa fa-plus" aria-hidden="true"></i>Add New Admin</button>
-                    
-                        {/* generate report button */}
-                        <div className='p-1'><button class="btn" data-bs-target="#exampleModalToggleReport" data-bs-toggle="modal" data-bs-dismiss="modal"><i style={{ fontSize: '15px', color: 'white' }} class="fa fa-file" aria-hidden="true"></i> Generate Customer Report</button>
-                        </div>
                     </div>
+                    {/* generate report button */}
+                    <div className='p-1'><button class="btn" data-bs-target="#exampleModalToggleReport" data-bs-toggle="modal" data-bs-dismiss="modal"><i style={{ fontSize: '15px', color: 'white' }} class="fa fa-file" aria-hidden="true"></i> Generate Customer Report</button>
+                    </div>
+
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+
+
+
+
+                    {/* Data Table for admin details */}
+                    <DataTable
+
+                        title='User Management - Administrators'
+                        columns={columnsAdmin}
+                        data={filterdAdmins}
+                        pagination
+                        fixedHeader
+                        fixedHeaderScrollHeight="450px"
+                        selectableRows
+                        selectableRowsHighlight
+                        subHeader
+                        subHeaderComponent={
+                            <input
+
+                                type="text"
+                                placeholder="Search here..."
+                                className='w-25 form-control'
+                                value={searchAdmin}
+                                onChange={(e) => setSearchAdmin(e.target.value)}
+
+                            />
+
+                        }
+
+
+                    />
+                    <br />
+                    <br />
+                    {/* <div className='modal-footer'> */}
+
+                    {/* enter new admin to the system */}
+
+                    <button class="btn" data-bs-target="#addnewadmin" data-bs-toggle="modal" data-bs-dismiss="modal"><i style={{ fontSize: '15px', color: 'white' }} class="fa fa-plus" aria-hidden="true"></i>Add New Admin</button>
+                    {/* generate report button */}
+                    <div className='p-1'><button class="btn" data-bs-target="#exampleModalToggleReportAdmin" data-bs-toggle="modal" data-bs-dismiss="modal"><i style={{ fontSize: '15px', color: 'white' }} class="fa fa-file" aria-hidden="true"></i> Generate Admin Details Report</button>
+                    </div>
+
+                    {/* </div> */}
 
                     {/* report model */}
 
@@ -826,7 +952,7 @@ function addAdministrator() {
                                                 class="form-control"
                                                 id="customer-name"
                                                 value={AdminName}
-                                                onChange={(e) => {setAdminName (e.target.value) }}
+                                                onChange={(e) => { setAdminName(e.target.value) }}
 
                                             />
                                         </div>
@@ -856,7 +982,7 @@ function addAdministrator() {
                                                 class="form-control"
                                                 id="customer-password"
                                                 value={AdminPassword}
-                                                onChange={(e) => {setAdminPassword(e.target.value) }}
+                                                onChange={(e) => { setAdminPassword(e.target.value) }}
 
                                             />
                                         </div>

@@ -63,4 +63,49 @@ router.post("/addAdmin", async (req, res) => {
 
 
 
+router.get("/getcurrentadmin/:id", async (req, res) => {
+
+    let adminID = req.params.id;
+    try {
+
+        const currentAdmin = await Admin.findById(adminID)
+        res.send(currentAdmin)
+
+    } catch (error) {
+        return res.status(400).json({ message: error });
+    }
+
+})
+
+router.get("/getalladmins", async (req, res) => {
+
+
+    try {
+
+        const admin = await Admin.find()
+        res.send(admin)
+
+    } catch (error) {
+        return res.status(400).json({ message: error });
+    }
+});
+
+
+router.delete("/delete/admin/:id", async (req, res) => {
+
+    let adminID = req.params.id;
+
+    try {
+        await Admin.findByIdAndDelete(adminID)
+
+        res.send('Admin Deleted Successfully')
+    }
+
+    catch (error) {
+
+
+        return res.status(400).json({ message: error });
+    }
+});
+
 module.exports = router;

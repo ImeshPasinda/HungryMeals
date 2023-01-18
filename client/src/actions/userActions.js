@@ -15,6 +15,8 @@ export const registerUser = (user) => async dispatch => {
     }
 }
 
+
+//login action
 export const loginUser = (user) => async dispatch => {
 
     dispatch({ type: 'USER_LOGIN_REQUEST' })
@@ -40,7 +42,7 @@ export const logoutUser = () => dispatch => {
 }
 
 
-
+//update actions
 
 export const updateUserName = (updatename, id) => async dispatch => {
 
