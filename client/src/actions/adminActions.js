@@ -83,3 +83,68 @@ export const addAdmin = (admin) => async dispatch => {
         dispatch({ type: 'ADMIN_ADDED_FAILED', payload: error })
     }
 }
+
+////////////////////////////////////////////
+
+
+
+export const deleteAdminAction = (adminID) => async dispatch => {
+
+    dispatch({ type: 'ADMIN_DELETE_REQUEST' })
+
+
+    try {
+        const response = await axios.delete(`/api/admins/delete/admin/${adminID}`)
+
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1500,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
+        Toast.fire({
+            icon: 'success',
+            title: 'Admin deleted successfully'
+        })
+
+        setTimeout(function () {
+            window.location.reload('/admin/customers');
+        }, 1500);
+
+
+
+        console.log(response);
+        dispatch({ type: 'DELETE_ADMIN_SUCCESS' })
+
+
+
+
+    } catch (error) {
+
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1500,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
+        Toast.fire({
+            icon: 'error',
+            title: 'Unsuccessful Operation'
+        })
+
+
+        dispatch({ type: 'DELETE_OPERATION_FAILED', payload: error })
+    }
+}
