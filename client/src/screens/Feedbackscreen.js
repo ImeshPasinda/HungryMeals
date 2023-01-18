@@ -6,7 +6,7 @@ import { feedbackReducer } from "../reducers/feedbackReducer";
 import Loading from "../components/Loading"
 import Success from "../components/Success"
 import Error from "../components/Error"
-
+import Swal from "sweetalert2";
 
 export default function FeedbackScreen() {
 
@@ -21,9 +21,44 @@ export default function FeedbackScreen() {
 
     function feedback() {
 
-        const newFeedback = { name, email, subject, message }
-        console.log(newFeedback)
-        dispatch(UserFeedBack(newFeedback))
+        const newFeedback = { 
+            name, 
+            email, 
+            subject, 
+            message 
+        }
+
+        // console.log(newFeedback)
+        // dispatch(UserFeedBack(newFeedback))
+
+
+        if (name.trim().length !== 0 &&  email.trim().length !== 0 && subject.trim().length !== 0 && message.trim().length !== 0)
+        {
+
+            dispatch(UserFeedBack(newFeedback))
+
+        } 
+        else {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 1500,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon: 'error',
+                title: 'Please fill out required fields !'
+            })
+        }
+
+
+
     }
 
     return (
