@@ -19,7 +19,7 @@ export default function Ordermanagementscreen() {
     function getOrders() {
 
       //get all users from database
-      axios.get("http://localhost:8070/api/orders/getallorders").then((res) => {
+      axios.get("/api/orders/getallorders").then((res) => {
         setOrders(res.data);
         console.log(res.data)
 

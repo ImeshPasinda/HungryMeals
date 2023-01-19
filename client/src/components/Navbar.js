@@ -54,7 +54,7 @@ export default function Navbar() {
 
         function getPublicNotifications() {
 
-            axios.get('http://localhost:8070/api/notifications/getnotifications').then((res) => {
+            axios.get('/api/notifications/getnotifications').then((res) => {
 
 
                 setNotifications(res.data);
@@ -99,7 +99,7 @@ export default function Navbar() {
 
 
 
-        axios.get(`http://localhost:8070/api/users/getcurrentuser/${userId}`).then((res) => {
+        axios.get(`/api/users/getcurrentuser/${userId}`).then((res) => {
             setUsers(res.data)
 
 

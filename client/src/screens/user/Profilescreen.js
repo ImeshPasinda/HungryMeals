@@ -49,7 +49,7 @@ export default function Profilescreen() {
 
         function getCurrentUser() {
 
-            axios.get(`http://localhost:8070/api/users/getcurrentuser/${currentUser._id}`).then((res) => {
+            axios.get(`/api/users/getcurrentuser/${currentUser._id}`).then((res) => {
 
 
                 setUsers(res.data);
@@ -79,7 +79,7 @@ export default function Profilescreen() {
 
         function getPublicNotifications() {
 
-            axios.get('http://localhost:8070/api/notifications/getnotifications').then((res) => {
+            axios.get('/api/notifications/getnotifications').then((res) => {
 
 
                 setNotifications(res.data);

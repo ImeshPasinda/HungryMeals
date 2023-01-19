@@ -38,7 +38,7 @@ function Feedbackmanagementscreen() {
 
   useEffect(() => {
     function getFeedbacks() {
-      axios.get("http://localhost:8070/api/feedback/getallfeedbacks").then((res) => {
+      axios.get("/api/feedback/getallfeedbacks").then((res) => {
 
         setUsers(res.data);
         setFilterdUsers(res.data);
@@ -59,7 +59,7 @@ function Feedbackmanagementscreen() {
   }, [])
 
 
-  axios.get("http://localhost:8070/api/users/getAllusers").then((res) => {
+  axios.get("/api/users/getAllusers").then((res) => {
     setUsersforfeedback(res.data);
     // console.log(res.data)
 
@@ -79,7 +79,7 @@ function Feedbackmanagementscreen() {
   function feedbacks(userId) {
 
 
-    axios.get("http://localhost:8070/api/feedback/getallfeedbacks").then((res) => {
+    axios.get("/api/feedback/getallfeedbacks").then((res) => {
 
       setUsers(res.data);
       console.log(userId)

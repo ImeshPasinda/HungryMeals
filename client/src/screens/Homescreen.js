@@ -70,7 +70,7 @@ export default function Homescreen() {
 
     useEffect(() => {
         function getFeedbacks() {
-            axios.get("http://localhost:8070/api/feedback/getallfeedbacks").then((res) => {
+            axios.get("/api/feedback/getallfeedbacks").then((res) => {
                 setFeedbacks(res.data)
 
 
