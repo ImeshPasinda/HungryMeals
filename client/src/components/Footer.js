@@ -80,7 +80,7 @@ export default function Footer() {
                     <div>
                     
                        <hr/>
-                        <p className='text-end'>© 2022 Hungry Meals, Inc. All rights reserved.</p>
+                        <p className='text-end'>© 2023 Hungry Meals, Inc. All rights reserved.</p>
                        
                     </div>
                     {/* <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">

@@ -247,7 +247,7 @@ export default function Navbar() {
                                     <li className="nav-item p-1">
                                         <a className="nav-link" >
                                             <i onClick={() => { getCurrentNotifications(userId = currentUser._id) }} className="fas fa-bell dropdown-toggles" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" style={{ color: 'white', fontSize: '17px' }}></i>
-                                            <span class="badge rounded-pill badge-notification " style={{ fontSize: '11px', color: 'white', backgroundColor: 'red' }} ></span>
+                                            <span class=" badge-notification " style={{ fontSize: '11px', color: 'white', backgroundColor: 'red' }} ></span><sup><i class="fa fa-circle" aria-hidden="true" style={{ fontSize: '9px', color: 'red' }} ></i></sup>
 
 
 
