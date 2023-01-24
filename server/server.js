@@ -19,9 +19,6 @@ app.use(cors());
 
 
 
-
-
-
 const pizzaRoute = require('./routes/pizzasRoute')
 const userRoute = require('./routes/userRoute')
 const adminRoute = require('./routes/adminRoute')
@@ -37,8 +34,9 @@ app.use('/api/feedback/', feedbackRoute)
 app.use('/api/users/', userRoute)
 app.use('/api/admins/', adminRoute)
 app.use('/api/orders/', ordersRoute)
-app.use('/api/notifications/', notificationRoute)
 app.use('/api/delivery/', deliveryRoute)
+app.use('/api/notifications/', notificationRoute)
+
 
 app.get("/", (req, res) => {
 

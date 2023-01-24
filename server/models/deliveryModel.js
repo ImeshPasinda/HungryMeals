@@ -13,5 +13,5 @@ const userRiderSchema = mongoose.Schema({
 })
 
 const Rider = mongoose.model('riders', userRiderSchema)
-
+ 
 module.exports = Rider
