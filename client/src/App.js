@@ -23,6 +23,7 @@ import Customermanagementscreen from './screens/Customermanagementscreen';
 import Feedbackmanagementscreen from './screens/Feedbackmanagementscreen';
 import Detailsscreen from './screens/user/Detailsscreen';
 import Ordermanagementscreen from './screens/Ordermanagementscreen';
+import Riderloginscreen from './screens/rider/Riderloginscreen';
 
 
 
@@ -49,6 +50,7 @@ function App() {
           <Route path="/cart" exact element={<Cartscreen />} />
           <Route path="/login" exact element={<Loginscreen />} />
           <Route path="/admin/login" exact element={<Adminloginscreen />} />
+          <Route path="/delivery/login" exact element={<Riderloginscreen />} />
           <Route path="/register" exact element={<Registerscreen />} />
           <Route path="/orders" exact element={<Ordersscreen />} />
 

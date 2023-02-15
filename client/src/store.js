@@ -11,6 +11,7 @@ import { loginUserReducer, registerUserReducer ,addCustomerReducer } from './red
 import { adminloginReducer} from './reducers/adminReducer'
 import { feedbackReducer } from './reducers/feedbackReducer'
 import { placeOrderReducer, getUserOrdersReducer } from './reducers/orderReducer'
+import { riderloginReducer } from './reducers/riderReducer'
 
 const finalReducer = combineReducers({
 
@@ -22,7 +23,9 @@ const finalReducer = combineReducers({
     placeOrderReducer: placeOrderReducer , 
     feedbackReducer : feedbackReducer,
     getUserOrdersReducer : getUserOrdersReducer,
-    addCustomerReducer : addCustomerReducer
+    addCustomerReducer : addCustomerReducer,
+    riderloginReducer : riderloginReducer
+    
 })
 
 const cartItems = localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : []
@@ -30,6 +33,8 @@ const cartItems = localStorage.getItem('cartItems') ? JSON.parse(localStorage.ge
 const currentUser = localStorage.getItem('currentUser') ? JSON.parse(localStorage.getItem('currentUser')) : null
 
 const currentAdmin = localStorage.getItem('currentAdmin') ? JSON.parse(localStorage.getItem('currentAdmin')) : null
+
+const currentRider = localStorage.getItem('currentRider') ? JSON.parse(localStorage.getItem('currentRider')) : null
 
 const currentNotifications = localStorage.getItem('currentNotifications') ? JSON.parse(localStorage.getItem('currentNotifications')) : null
 
@@ -48,6 +53,11 @@ const initialState = {
     adminloginReducer: {
         currentAdmin: currentAdmin,
         currentNotifications: currentNotifications,
+        
+    },
+    riderloginReducer: {
+        currentRider: currentRider,
+        
         
     }
    
