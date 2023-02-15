@@ -24,6 +24,7 @@ import Feedbackmanagementscreen from './screens/Feedbackmanagementscreen';
 import Detailsscreen from './screens/user/Detailsscreen';
 import Ordermanagementscreen from './screens/Ordermanagementscreen';
 import Riderloginscreen from './screens/rider/Riderloginscreen';
+import Ticketsscreen from './screens/user/ticketsScreen';
 
 
 
@@ -53,6 +54,7 @@ function App() {
           <Route path="/delivery/login" exact element={<Riderloginscreen />} />
           <Route path="/register" exact element={<Registerscreen />} />
           <Route path="/orders" exact element={<Ordersscreen />} />
+          
 
 
           {currentUser ? (
@@ -66,6 +68,22 @@ function App() {
           ) && currentAdmin ? (<Route path="/error" exact element={<Errorscreen />} />) : (
 
             <Route path="/feedback" exact element={<FeedbackScreen />} />
+
+
+          )}
+
+
+          {currentUser ? (
+            <Route path="/tickets" exact element={<Ticketsscreen />} />
+
+          ) : (
+
+
+            <Route path="/error" exact element={<Errorscreen />} />
+
+          ) && currentAdmin ? (<Route path="/error" exact element={<Errorscreen />} />) : (
+
+            <Route path="/error" exact element={<Errorscreen />} />
 
 
           )}

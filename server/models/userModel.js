@@ -27,6 +27,9 @@ const userSchema = mongoose.Schema({
     notificationFourBody: { type: String, require, default: 'empty' },
     notificationFourDate: { type: String, require, default: '0000-00-00' },
 
+    ticketHeader: { type: String, require , default: 'empty'},
+    ticketSubject: { type: String, require , default: 'empty'},
+
 }, {
 
     timestamps: true,

@@ -26,6 +26,7 @@ const ordersRoute = require('./routes/ordersRoute')
 const feedbackRoute = require('./routes/feedbackRoute')
 const notificationRoute = require('./routes/notificationRoute')
 const deliveryRoute = require('./routes/deliveryRoute')
+const ticketRoute = require('./routes/ticketRoute')
 
 
 
@@ -35,6 +36,7 @@ app.use('/api/users/', userRoute)
 app.use('/api/admins/', adminRoute)
 app.use('/api/orders/', ordersRoute)
 app.use('/api/delivery/', deliveryRoute)
+app.use('/api/tickets/', ticketRoute)
 app.use('/api/notifications/', notificationRoute)
 
 
