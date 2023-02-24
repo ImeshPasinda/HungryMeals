@@ -25,6 +25,7 @@ import Detailsscreen from './screens/user/Detailsscreen';
 import Ordermanagementscreen from './screens/Ordermanagementscreen';
 import Riderloginscreen from './screens/rider/Riderloginscreen';
 import Ticketsscreen from './screens/user/ticketsScreen';
+import SelectionFN from './screens/SelectionFN';
 
 
 
@@ -54,7 +55,7 @@ function App() {
           <Route path="/delivery/login" exact element={<Riderloginscreen />} />
           <Route path="/register" exact element={<Registerscreen />} />
           <Route path="/orders" exact element={<Ordersscreen />} />
-          
+
 
 
           {currentUser ? (
@@ -94,6 +95,21 @@ function App() {
 
           )}
           {currentAdmin ? (<Route path="admin/orders" exact element={<Ordermanagementscreen />} />) : (
+
+            <Route path="/error" exact element={<Errorscreen />} />
+
+          )}
+
+          {currentAdmin ? (<Route path="admin/notifications" exact element={<Notificationmanagementscreen />} />) : (
+
+            <Route path="/error" exact element={<Errorscreen />} />
+
+          )}
+
+
+          {currentAdmin ? (<Route path="admin/selectionfn" exact element={<SelectionFN />} />) 
+          
+          : (
 
             <Route path="/error" exact element={<Errorscreen />} />
 

@@ -8,7 +8,10 @@ export default function Errorscreen() {
             <br/>
             <br/>
             <br/>
-            <h1>404</h1>
+            <br/>
+            <br/>
+            <p style={{fontSize:'150px'}}>404</p>
+            
         </div>
     )
 }

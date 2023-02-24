@@ -156,7 +156,7 @@ export default function AdminProfilescreen() {
                             <br />
 
 
-                            <a href="/admin/notifications" class="btn">See More</a>
+                            <a href="/admin/selectionfn" class="btn">See More</a>
                         </div>
                     </div>
 
