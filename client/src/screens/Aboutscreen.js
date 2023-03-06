@@ -40,7 +40,7 @@ function AboutScreen() {
                                         Over the past 24 years, Hungry Meals has grown from strength to strength.
                                         At Hungry Meals, we believe in delighting the senses of each and every customer.
                                         This is why all dine-in outlets offer a unique family friendly dine-in experience whilst effectively capturing the gastronomic palate of the Sri Lankan consumer with innovative additions to its menu.
-                                        Currently Hungry Meals serves a wide range of pizza toppings with an exciting selection of special crusts as well as appetizers, pastas, rice, desserts and beverages.</p>
+                                        Currently Hungry Meals serves a wide range of pizza toppings with an exciting selection of special crusts as well as appetizers, pastas, rice, desserts and beverages. </p>
 
                                 </div>
                                
