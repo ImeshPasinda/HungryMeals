@@ -27,6 +27,7 @@ import Riderloginscreen from './screens/rider/Riderloginscreen';
 import Ticketsscreen from './screens/user/ticketsScreen';
 import SelectionFN from './screens/SelectionFN';
 import Foodcataloguescreen from './screens/Foodcataloguescreen';
+import UploadImage from './screens/Uploadscreen';
 
 
 
@@ -144,6 +145,8 @@ function App() {
           <Route path="/admin" exact element={<AdminProfilescreen />} />
           <Route path="/about" exact element={<AboutScreen />} />
           <Route path="/faq" exact element={<FAQScreen />} />
+          <Route path="/upload" exact element={<UploadImage />} />
+
 
 
 

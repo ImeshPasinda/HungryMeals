@@ -1,6 +1,14 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const multer = require('multer');
+const mongoose = require('mongoose');
+
+
+
+const upload = multer({ dest: 'uploads/' }); // Destination folder for uploaded files
+
+
 
 const Pizza = require('./models/PizzaModel')
 const User = require('./models/userModel')
@@ -38,6 +46,8 @@ app.use('/api/orders/', ordersRoute)
 app.use('/api/delivery/', deliveryRoute)
 app.use('/api/tickets/', ticketRoute)
 app.use('/api/notifications/', notificationRoute)
+
+
 
 
 app.get("/", (req, res) => {
