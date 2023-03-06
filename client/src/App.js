@@ -27,8 +27,6 @@ import Riderloginscreen from './screens/rider/Riderloginscreen';
 import Ticketsscreen from './screens/user/ticketsScreen';
 import SelectionFN from './screens/SelectionFN';
 import Foodcataloguescreen from './screens/Foodcataloguescreen';
-import SelectionUserAndCareer from './screens/SelectionUserAndCareer';
-
 
 
 
@@ -117,13 +115,7 @@ function App() {
             <Route path="/error" exact element={<Errorscreen />} />
 
           )}
-          {currentAdmin ? (<Route path="admin/selectionUC" exact element={<SelectionUserAndCareer />} />) 
           
-          : (
-
-            <Route path="/error" exact element={<Errorscreen />} />
-
-          )}
           {currentAdmin ? (<Route path="admin/addfoodcatalogue" exact element={<Foodcataloguescreen />} />) 
           
           : (
@@ -152,8 +144,6 @@ function App() {
           <Route path="/admin" exact element={<AdminProfilescreen />} />
           <Route path="/about" exact element={<AboutScreen />} />
           <Route path="/faq" exact element={<FAQScreen />} />
-         
-
 
 
 
