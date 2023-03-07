@@ -27,6 +27,7 @@ import Riderloginscreen from './screens/rider/Riderloginscreen';
 import Ticketsscreen from './screens/user/ticketsScreen';
 import SelectionFN from './screens/SelectionFN';
 import Foodcataloguescreen from './screens/Foodcataloguescreen';
+import SalesFinanceScreen from './screens/SalesFinanceScreen';
 
 
 
@@ -138,12 +139,20 @@ function App() {
 
           )}
 
+          {currentAdmin ? (<Route path="admin/salesnfinance" exact element={<SalesFinanceScreen />} />) : (
+
+            <Route path="/error" exact element={<Errorscreen />} />
+
+          )}
+
 
           <Route path="/profile" exact element={<Profilescreen />} />
           <Route path="/profile/details" exact element={<Detailsscreen />} />
           <Route path="/admin" exact element={<AdminProfilescreen />} />
           <Route path="/about" exact element={<AboutScreen />} />
           <Route path="/faq" exact element={<FAQScreen />} />
+          
+
 
 
 
