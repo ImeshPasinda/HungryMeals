@@ -35,8 +35,8 @@ export default function SalesFinanceScreen() {
 
     const columnsOrders = [
         {
-            name: "Email",
-            selector: (row) => row.email,
+            name: "Transaction ID",
+            selector: (row) => row.transactionId,
             sortable: true
         },
 
@@ -45,9 +45,28 @@ export default function SalesFinanceScreen() {
             selector: (row) => row._id,
             sortable: true
         },
+
         {
-            name: "Amount",
+            name: "Customer ID",
+            selector: (row) => row.userid,
+            sortable: true
+        },
+
+        {
+            name: "Email",
+            selector: (row) => row.email,
+            sortable: true
+        },
+
+        {
+            name: "Amount(LKR)",
             selector: (row) => row.orderAmount,
+            sortable: true
+        },
+
+        {
+            name: "Date",
+            selector: (row) => row.createdAt.substring(0,10),
             sortable: true
         },
 
@@ -55,13 +74,13 @@ export default function SalesFinanceScreen() {
 
 
         {
-            name: "Order Details",
+            name: "Trasaction Details",
             cell: row => <button className="btn">View</button>
 
         },
 
         {
-            name: "Delete",
+            name: "Status",
             cell: row => <button className="btn">Delete</button>
 
 
@@ -93,7 +112,7 @@ export default function SalesFinanceScreen() {
                     {/* Data table for customer details */}
                     <DataTable
 
-                        title='Order Management - Customers'
+                        title='Sales and Finance Management'
                         columns={columnsOrders}
                         data={filterdOrders}
                         pagination
