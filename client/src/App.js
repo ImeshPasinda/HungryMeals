@@ -28,7 +28,7 @@ import Ticketsscreen from './screens/user/ticketsScreen';
 import SelectionFN from './screens/SelectionFN';
 import Foodcataloguescreen from './screens/Foodcataloguescreen';
 import SalesFinanceScreen from './screens/SalesFinanceScreen';
-import SelectionUserAndCareer from './screens/SelectionUserAndCareer';
+
 
 
 function App() {
@@ -157,6 +157,7 @@ function App() {
           <Route path="/admin" exact element={<AdminProfilescreen />} />
           <Route path="/about" exact element={<AboutScreen />} />
           <Route path="/faq" exact element={<FAQScreen />} />
+          <Route path="/newsfeed" exact element={<Newsfeed />} />
           
 
 

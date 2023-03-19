@@ -8,6 +8,7 @@ const Admin = require('./models/adminModel')
 const Feedback = require('./models/feedbackModel')
 const Notification = require('./models/notificationModel')
 const Rider = require('./models/deliveryModel')
+const News = require('./models/newsfeedModel')
 
 
 const app = express();
@@ -27,6 +28,7 @@ const feedbackRoute = require('./routes/feedbackRoute')
 const notificationRoute = require('./routes/notificationRoute')
 const deliveryRoute = require('./routes/deliveryRoute')
 const ticketRoute = require('./routes/ticketRoute')
+const newsfeedRoute = require('./routes/newsfeedRoute')
 
 
 
@@ -38,6 +40,7 @@ app.use('/api/orders/', ordersRoute)
 app.use('/api/delivery/', deliveryRoute)
 app.use('/api/tickets/', ticketRoute)
 app.use('/api/notifications/', notificationRoute)
+app.use('/api/newsfeed/', newsfeedRoute)
 
 
 app.get("/", (req, res) => {
