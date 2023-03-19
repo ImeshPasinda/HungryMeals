@@ -11,7 +11,7 @@ export default function Newsfeedscreen() {
     const dispatch = useDispatch()
 
     const newsstate = useSelector(state => state.getAllNewsReducer)
-    
+
     const { news, error, loading } = newsstate
 
 
@@ -24,6 +24,25 @@ export default function Newsfeedscreen() {
 
     return (
         <div>
+
+            <br />
+            <br />
+            <br />
+
+
+
+            <div class="jumbotron img-jmbo" >
+                <div class="container p-5">
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <h1 style={{color:"white"}}>News & Events</h1>
+                    <p>Your content goes here.</p>
+                </div>
+            </div>
+
+
 
 
             {loading ? (<Loading />) : error ? (<Error error='Something went wrong' />) : (
