@@ -36,7 +36,7 @@ export default function Newsfeedscreen() {
                     <br />
                     <br />
                    
-                    <h1 style={{color:"white"}}>News & Events</h1>
+                    <h1 style={{fontSize:"10px" ,color:"white"}}>News & Events</h1>
                     <p>Your content goes here.</p>
                     <br />
                     <br />
