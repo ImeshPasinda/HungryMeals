@@ -12,6 +12,7 @@ import { adminloginReducer} from './reducers/adminReducer'
 import { feedbackReducer } from './reducers/feedbackReducer'
 import { placeOrderReducer, getUserOrdersReducer } from './reducers/orderReducer'
 import { riderloginReducer } from './reducers/riderReducer'
+import { getAllNewsReducer } from './reducers/newsfeedReducer'
 
 const finalReducer = combineReducers({
 
@@ -24,7 +25,8 @@ const finalReducer = combineReducers({
     feedbackReducer : feedbackReducer,
     getUserOrdersReducer : getUserOrdersReducer,
     addCustomerReducer : addCustomerReducer,
-    riderloginReducer : riderloginReducer
+    riderloginReducer : riderloginReducer,
+    getAllNewsReducer: getAllNewsReducer,
     
 })
 
