@@ -35,10 +35,12 @@ export default function Newsfeedscreen() {
                 <div class="container p-5">
                     <br />
                     <br />
-                    <br />
-                    <br />
+                   
                     <h1 style={{color:"white"}}>News & Events</h1>
                     <p>Your content goes here.</p>
+                    <br />
+                    <br />
+                   
                 </div>
             </div>
 
