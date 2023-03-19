@@ -5,7 +5,7 @@ import Error from "../components/Error";
 import News from "../components/News";
 import { getAllNews } from "../actions/newsfeedAtion";
 
-export default function Newsfeed() {
+export default function Newsfeedscreen() {
 
 
     const dispatch = useDispatch()
