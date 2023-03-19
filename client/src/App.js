@@ -28,8 +28,6 @@ import Ticketsscreen from './screens/user/ticketsScreen';
 import SelectionFN from './screens/SelectionFN';
 import Foodcataloguescreen from './screens/Foodcataloguescreen';
 import SalesFinanceScreen from './screens/SalesFinanceScreen';
-import Newsfeed from './screens/Newsfeed';
-
 
 
 
@@ -118,7 +116,13 @@ function App() {
             <Route path="/error" exact element={<Errorscreen />} />
 
           )}
+           {currentAdmin ? (<Route path="admin/selectionUC" exact element={<SelectionUserAndCareer />} />) 
           
+          : (
+
+            <Route path="/error" exact element={<Errorscreen />} />
+
+          )}
           {currentAdmin ? (<Route path="admin/addfoodcatalogue" exact element={<Foodcataloguescreen />} />) 
           
           : (

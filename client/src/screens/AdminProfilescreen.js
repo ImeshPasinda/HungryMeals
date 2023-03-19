@@ -73,8 +73,8 @@ export default function AdminProfilescreen() {
                 <div class="card col-md-4 m-4 shadow p-3 mb-5 bg-white" style={{ width: '18rem', borderRadius: '15px' }}>
                     <img src="https://img.freepik.com/free-vector/people-ordering-food-cafe-online_74855-5913.jpg?w=996&t=st=1672324604~exp=1672325204~hmac=529755ba63bdfa1b037ddba4d350aaa4d2d177bf57fec2d01767f3daf5af4ce8" class="card-img-top" alt="..." />
                     <div class="card-body">
-                        <h5 class="card-title">User Management</h5>
-                        <p class="card-text">-Manage all customers and admininstrators( User Registration, Logins & profiles activities)<br />
+                        <h5 class="card-title">User and CareerFeed Management</h5>
+                        <p class="card-text">-Manage all users and CarrerFeed section by publishing Job Vacancies( User Registration, Logins & profiles activities)<br />
                             - Generate Detailed Reports  <br></br>
                         </p>
                         <br />
@@ -82,7 +82,7 @@ export default function AdminProfilescreen() {
                         <br />
                         <br />
                         <br />
-                        <a href="/admin/customers" class="btn">See More</a>
+                        <a href="/admin/selectionUC" class="btn">See More</a>
                     </div>
                 </div>
 
@@ -150,7 +150,7 @@ export default function AdminProfilescreen() {
                     <div class="card col-md-4 m-4 shadow p-3 mb-5 bg-white " style={{ width: '18rem', borderRadius: '15px' }}>
                         <img src="https://img.freepik.com/free-vector/character-illustration-people-with-internet-message-icons_53876-66149.jpg?w=900&t=st=1672323497~exp=1672324097~hmac=8f1145a507dba8e09043821090e0b1a0681a94cd1d95ce7f2459d0cb08ef4fe3" class="card-img-top" alt="..." />
                         <div class="card-body">
-                            <h5 class="card-title">Notification Management
+                            <h5 class="card-title">Food Catalogue and NewsFeed Management
                             </h5>
                             <p class="card-text">-Manage all types of notification & Notify users through public notifications and custom notifications </p>
                             <br />
