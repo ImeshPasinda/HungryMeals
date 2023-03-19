@@ -31,16 +31,17 @@ export default function Newsfeedscreen() {
 
 
 
+
             <div class="jumbotron img-jmbo" >
-                <div class="container p-5">
+                <div class="container p-3">
                     <br />
                     <br />
-                   
-                    <h1 style={{fontSize:"10px" ,color:"white"}}>News & Events</h1>
+                    <br />
+                    <br />
+                    <p style={{ fontSize: "50px", color: "white" }}>News & Events</p>
                     <p>Your content goes here.</p>
-                    <br />
-                    <br />
-                   
+
+
                 </div>
             </div>
 
