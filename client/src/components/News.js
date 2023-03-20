@@ -16,7 +16,7 @@ export default function News({ news }) {
                 <div class="col-md-4 mb-4">
                     <div class="bg-image hover-overlay ripple shadow-2-strong rounded-5" data-mdb-ripple-color="light">
                         
-                        <img src={news.image} class="img-fluid  shadow-lg" style={{ borderRadius: '25px' , height: '500px' ,width: '400px' }} />
+                        <img src={news.image} class="img-fluid  shadow-lg" style={{ borderRadius: '25px' }} />
 
                     </div>
                 </div>
