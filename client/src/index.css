@@ -327,8 +327,21 @@ body {
   --bs-dropdown-min-width: 14rem !important;
 }
 .img-jmbo{
-background-image: url('https://raw.githubusercontent.com/ImeshPasinda/HungryMeals/main/client/public/NewsBG.jpg?token=GHSAT0AAAAAAB7SP7NGPBR4LMMOBH6EKZDCZAXFTYQ');
+background-image: url('https://static.wixstatic.com/media/618c8c_d0fbd952ba41475a9f08ae4833ef0f77~mv2.jpg');
 background-size: 100%,100%;
+}
+h10 {
+  font-family: "Baloo", cursive;
+  font-weight: bold;
+  color: #670001;
+ 
+}
+p10 {
+  
+  line-height: 1.5;
+  font-family: "Mukta", sans-serif
+  
+ 
 }
 
 

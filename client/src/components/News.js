@@ -7,43 +7,60 @@ export default function News({ news }) {
 
 
     return (
-        
-       
-        <div className="shadow-lg p-3 m-4 bg-white" style={{borderRadius: '15px'}}>
 
 
-           
+        <div className="shadow-lg p-4 m-4 bg-white" style={{ borderRadius: '25px' ,textAlign : "left" }}>
 
-            <div className="flex-container">
 
-                <div className='w-100 m-1'>
-                    <p>{news.name}</p>
-                    
+            <div class="row gx-5">
+                <div class="col-md-4 mb-4">
+                    <div class="bg-image hover-overlay ripple shadow-2-strong rounded-5" data-mdb-ripple-color="light">
+                        
+                        <img src={news.image} class="img-fluid  shadow-lg" style={{ borderRadius: '25px' , height: '500px' ,width: '400px' }} />
+
+                    </div>
                 </div>
 
-                <div className='w-100 m-1'>
-                    <p>Quantity</p>
+                <div class="col-md-6 mb-4">
+                    <span class="badge bg-danger px-2 py-1 shadow-1-strong mb-3"><i class="fa fa-clock" aria-hidden="true"></i> {news.createdAt.substring(0, 10)}</span>
+                    <> </>
+                    <span class="badge bg-success px-2 py-1 shadow-1-strong mb-3"><i class="fa fa-bell" aria-hidden="true"></i> {news.category}</span>
+                    <br></br>
+                    <h10  style={{ fontSize: "20px"}}>{news.header}</h10>
                     
-
+                    <p10 class="text-muted "><br></br><br></br>
+                        {news.description}
+                    </p10>
+                   
                 </div>
-
-
             </div>
 
-            <div className="flex-container">
 
-               
 
-            </div>
 
-          
+
+
+
+
+
+
+
+         
+
+
+
+
+
+
+
+
 
 
 
 
 
         </div>
-        
+
 
     )
 }

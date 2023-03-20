@@ -2,12 +2,10 @@ const mongoose = require("mongoose");
 
 const newsfeedSchema = mongoose.Schema({
 
-    name: { type: String, require },
-    varients: [],
-    prices: [],
-    category: { type: String, require },
     image: { type: String, require },
-    description: { type: String, require }
+    header: { type: String, require },
+    category: { type: String, require ,default: 'News'},
+    description: { type: String, require}
 
 }, {
 

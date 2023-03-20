@@ -14,6 +14,8 @@ export default function Newsfeedscreen() {
 
     const { news, error, loading } = newsstate
 
+    news.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+
 
 
     useEffect(() => {
@@ -36,36 +38,45 @@ export default function Newsfeedscreen() {
                 <div class="container p-3">
                     <br />
                     <br />
-                    <br />
-                    <br />
-                    <p style={{ fontSize: "50px", color: "white" }}>News & Events</p>
-                    <p>Your content goes here.</p>
+                    
+                    
 
+                    <h10 style={{ fontSize: "40px", color: "white" }}>NEWS & EVENTS</h10>
+                    <p style={{ fontSize: "15px", color: "white" }} >Discover the latest food delivery news and events</p>
+                   
+                    <br />
+                    <br />
 
                 </div>
             </div>
 
+            <br />
+            <br />
 
 
 
-            {loading ? (<Loading />) : error ? (<Error error='Something went wrong' />) : (
+            <div className='row justify-content-center'>
 
-                news.map(news => {
+                {loading ? (<Loading />) : error ? (<Error error='Something went wrong' />) : (
+
+                    news.map(news => {
 
 
-                    return <div className='col-md-3 m-3' key={news._id}>
+                        return <div className='col-md-8 m-8' key={news._id}>
 
-                        <div>
-                            <News news={news} />
+                            <div>
+                                <News news={news} />
+                            </div>
+
                         </div>
 
-                    </div>
-
-                })
+                    })
 
 
 
-            )}
+                )}
+            </div>
         </div>
     )
 }
+
