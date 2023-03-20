@@ -9,13 +9,13 @@ export default function News({ news }) {
     return (
 
 
-        <div className="shadow-lg p-4 m-4 bg-white" style={{ borderRadius: '25px' ,textAlign : "left" }}>
-
+        // <div className="shadow-lg p-4 m-4 bg-white" style={{ borderRadius: '25px', textAlign: "left" }}>
+            <div className="p-4 m-4" style={{ borderRadius: '25px', textAlign: "left" }}>
 
             <div class="row gx-5">
                 <div class="col-md-4 mb-4">
                     <div class="bg-image hover-overlay ripple shadow-2-strong rounded-5" data-mdb-ripple-color="light">
-                        
+
                         <img src={news.image} class="img-fluid  shadow-lg" style={{ borderRadius: '25px' }} />
 
                     </div>
@@ -26,12 +26,12 @@ export default function News({ news }) {
                     <> </>
                     <span class="badge bg-success px-2 py-1 shadow-1-strong mb-3"><i class="fa fa-bell" aria-hidden="true"></i> {news.category}</span>
                     <br></br>
-                    <h10  style={{ fontSize: "20px"}}>{news.header}</h10>
-                    
+                    <h10 style={{ fontSize: "20px" }}>{news.header}</h10>
+
                     <p10 class="text-muted "><br></br><br></br>
                         {news.description}
                     </p10>
-                   
+
                 </div>
             </div>
 
@@ -45,7 +45,7 @@ export default function News({ news }) {
 
 
 
-         
+
 
 
 

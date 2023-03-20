@@ -339,7 +339,9 @@ h10 {
 p10 {
   
   line-height: 1.5;
-  font-family: "Mukta", sans-serif
+  font-family: "Mukta", calibri;
+  font-style: italic;
+  font-size: 110%;
   
  
 }
