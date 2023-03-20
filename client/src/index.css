@@ -330,8 +330,22 @@ body {
 background-image: url('https://static.wixstatic.com/media/618c8c_d0fbd952ba41475a9f08ae4833ef0f77~mv2.jpg');
 background-size: 100%,100%;
 }
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Crushed&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Crushed&family=Signika+Negative:wght@500&display=swap');
+
+
 h10 {
-  font-family: "Baloo", cursive;
+  font-family: 'Crushed', cursive;
+  font-weight: bold;
+  color: #670001;
+ 
+}
+
+h9 {
+  font-family: 'Signika Negative', sans-serif;
   font-weight: bold;
   color: #670001;
  

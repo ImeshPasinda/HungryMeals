@@ -38,14 +38,18 @@ export default function Newsfeedscreen() {
                 <div class="container p-3">
                     <br />
                     <br />
+                    <br />
                     
                     
 
-                    <h10 style={{ fontSize: "40px", color: "white" }}>NEWS & EVENTS</h10>
-                    <p style={{ fontSize: "15px", color: "white" }} >Discover the latest food delivery news and events</p>
+                    <h10  style={{ fontSize: "45px", color: "white" }}>News & Events <i class="fa fa-pepper-hot" aria-hidden="true"></i></h10>
+                    <p style={{ fontSize: "10px", color: "white" }} >Discover the latest food delivery news and events</p> 
                    
                     <br />
                     <br />
+                    <br />
+                   
+                   
 
                 </div>
             </div>

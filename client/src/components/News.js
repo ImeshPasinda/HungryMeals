@@ -26,7 +26,7 @@ export default function News({ news }) {
                     <> </>
                     <span class="badge bg-success px-2 py-1 shadow-1-strong mb-3"><i class="fa fa-bell" aria-hidden="true"></i> {news.category}</span>
                     <br></br>
-                    <h10 style={{ fontSize: "20px" }}>{news.header}</h10>
+                    <h9 style={{ fontSize: "23px" }}>{news.header}</h9>
 
                     <p10 class="text-muted "><br></br><br></br>
                         {news.description}
