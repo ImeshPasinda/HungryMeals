@@ -32,8 +32,17 @@ export default function Newsfeedscreen() {
                 newsItem.description.toLowerCase().includes(searchQuery.toLowerCase())
         );
         setFilteredNews(filtered);
-        setSearchQuery("");
     };
+    // const searchNews = () => {
+    //     const filtered = sortedNews.filter(
+    //         (newsItem) =>
+    //             newsItem.header.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    //             newsItem.description.toLowerCase().includes(searchQuery.toLowerCase())
+    //     );
+    //     setFilteredNews(filtered);
+    //     setSearchQuery("");
+    // };
+    
 
     useEffect(() => {
         dispatch(getAllNews());
@@ -47,6 +56,11 @@ export default function Newsfeedscreen() {
         const newSortOrder = sortOrder === "desc" ? "asc" : "desc";
         setSortOrder(newSortOrder);
     };
+    const handleKeyDown = (e) => {
+        if (e.key === "Enter") {
+          searchNews();
+        }
+      };
 
     return (
         <div>
@@ -76,6 +90,7 @@ export default function Newsfeedscreen() {
                                 value={searchQuery}
                                 className="form-control"
                                 onChange={(e) => setSearchQuery(e.target.value)}
+                                onKeyDown={handleKeyDown}
                             />
                             <button onClick={() => searchNews()} class="btn">
                                 Search
