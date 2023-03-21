@@ -32,6 +32,7 @@ export default function Newsfeedscreen() {
                 newsItem.description.toLowerCase().includes(searchQuery.toLowerCase())
         );
         setFilteredNews(filtered);
+        setSearchQuery("");
     };
 
     useEffect(() => {
@@ -79,6 +80,7 @@ export default function Newsfeedscreen() {
                             <button onClick={() => searchNews()} class="btn">
                                 Search
                             </button>
+                           
 
                         </div>
 
@@ -92,8 +94,8 @@ export default function Newsfeedscreen() {
             <div class="row">
                 <div class="col-md-6"> </div>
                 <div class="col-md-6"> <h9 onClick={() => handleSort()}>
-                        <i class="fa fa-sort" aria-hidden="true"></i> {sortOrder === "desc" ? "Oldest" : "Newest"}
-                    </h9></div>
+                    <i class="fa fa-sort" aria-hidden="true"></i> {sortOrder === "desc" ? "Oldest" : "Newest"}
+                </h9></div>
             </div>
 
 
@@ -102,6 +104,8 @@ export default function Newsfeedscreen() {
                     <Loading />
                 ) : error ? (
                     <Error error="Something went wrong" />
+                ) : filteredNews.length === 0 ? (
+                    <p>No results found for "{searchQuery}".</p>
                 ) : (
                     filteredNews.map((newsItem) => (
                         <div className="col-md-8 m-8" key={newsItem._id}>
@@ -110,6 +114,7 @@ export default function Newsfeedscreen() {
                     ))
                 )}
             </div>
+
         </div>
     );
 }
