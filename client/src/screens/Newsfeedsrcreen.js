@@ -6,6 +6,23 @@ import News from "../components/News";
 import { getAllNews } from "../actions/newsfeedAtion";
 
 export default function Newsfeedscreen() {
+
+
+
+
+
+    const [time, setTime] = useState(new Date().toLocaleTimeString());
+
+    useEffect(() => {
+      const timer = setInterval(() => {
+        setTime(new Date().toLocaleTimeString());
+      }, 1000);
+  
+      return () => clearInterval(timer);
+    }, []);
+  
+
+
     const dispatch = useDispatch();
 
     const newsstate = useSelector((state) => state.getAllNewsReducer);
@@ -62,6 +79,11 @@ export default function Newsfeedscreen() {
         }
       };
 
+
+      const newsCount = news.length;
+
+
+
     return (
         <div>
             <br />
@@ -74,6 +96,7 @@ export default function Newsfeedscreen() {
                     <br />
                     <h10 style={{ fontSize: "45px", color: "white" }}>
                         News & Events <i class="fa fa-pepper-hot" aria-hidden="true"></i>
+                        <h1>Current Time: {time}</h1>
                     </h10>
                     <p style={{ fontSize: "10px", color: "white" }}>Discover the latest food delivery news and events</p>
                     <br />
@@ -107,7 +130,7 @@ export default function Newsfeedscreen() {
 
 
             <div class="row">
-                <div class="col-md-6"> </div>
+                <div class="col-md-6"><h9>"{newsCount}" Posts</h9></div>
                 <div class="col-md-6"> <h9 onClick={() => handleSort()}>
                     <i class="fa fa-sort" aria-hidden="true"></i> {sortOrder === "desc" ? "Oldest" : "Newest"}
                 </h9></div>
