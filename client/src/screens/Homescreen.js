@@ -51,7 +51,6 @@ export default function Homescreen() {
 
 
 
-
     const dispatch = useDispatch()
 
     const pizzasstate = useSelector(state => state.getAllPizzasReducer)
@@ -65,6 +64,28 @@ export default function Homescreen() {
     }, [])
 
 
+    const [searchQuery, setSearchQuery] = useState('')
+    const [selectedOption, setSelectedOption] = useState('all')
+
+
+
+    const filteredPizzas = pizzas.filter(pizza => {
+        if (selectedOption === 'vegetarian') {
+            return pizza.name.toLowerCase().includes(searchQuery.toLowerCase()) && pizza.isVegetarian
+        } else if (selectedOption === 'nonvegetarian') {
+            return pizza.name.toLowerCase().includes(searchQuery.toLowerCase()) && !pizza.isVegetarian
+        } else {
+            return pizza.name.toLowerCase().includes(searchQuery.toLowerCase())
+        }
+    })
+
+    const handleSearch = (e) => {
+        setSearchQuery(e.target.value)
+    }
+
+    const handleOptionChange = (e) => {
+        setSelectedOption(e.target.value)
+    }
 
 
 
@@ -179,25 +200,73 @@ export default function Homescreen() {
 
 
 
+                <div >
+
+                    <div class="container p-5">
+                        <div class="row justify-content-center">
+                            <div class="col-md-6">
+                                <div class="search">
+                                    <i class="fa fa-search"></i>
+                                    <input
+                                        type="text"
+                                        placeholder="Search Pizzas..."
+                                        value={searchQuery}
+                                        className="form-control"
+                                        onChange={handleSearch}
+
+                                    />
 
 
-                {loading ? (<Loading />) : error ? (<Error error='Something went wrong' />) : (
 
-                    pizzas.map(pizza => {
+                                </div>
 
+                                <div>
 
-                        return <div className='col-md-3 m-3' key={pizza._id}>
-
-                            <div>
-                                <Pizza pizza={pizza} />
+                                    <div class="p-3" >
+                                        <label className="p-2">
+                                            <input type="radio" value="all" checked={selectedOption === 'all'} onChange={handleOptionChange} />
+                                            <> </><h9 style = {{ fontSize: "20px"}}>All</h9>
+                                        </label>
+                                        <label className="p-2">
+                                            <input type="radio" value="vegetarian" checked={selectedOption === 'vegetarian'} onChange={handleOptionChange} />
+                                            <> </><h9 style = {{ fontSize: "20px"}}>Vegetarian</h9>
+                                        </label>
+                                        <label className="p-2">
+                                            <input type="radio" value="nonvegetarian" checked={selectedOption === 'nonvegetarian'} onChange={handleOptionChange} />
+                                            <> </><h9 style = {{ fontSize: "20px"}}>Non-Vegetarian</h9>
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
+
 
                         </div>
 
-                    })
+                    </div>
 
 
 
+
+                </div>
+
+
+
+
+
+
+
+                {loading ? (<Loading />) : error ? (<Error error='Something went wrong' />) : (
+                    filteredPizzas.length > 0 ? (
+                        filteredPizzas.map(pizza => {
+                            return <div className='col-md-3 m-3' key={pizza._id}>
+                                <div>
+                                    <Pizza pizza={pizza} />
+                                </div>
+                            </div>
+                        })
+                    ) : (
+                        <p10>No pizzas found...</p10>
+                    )
                 )}
 
 
@@ -589,22 +658,22 @@ export default function Homescreen() {
 
 
 
-<a href="/feedback"><div className="position-fixed bottom-0 end-1" style={{ paddingBottom: '50px', paddingLeft: '25px' }}>
-            <OverlayTrigger
-                placement="right"
-                delay={{ show: 250, hide: 400 }}
-                overlay={renderTooltip}
-            >
-               
+            <a href="/feedback"><div className="position-fixed bottom-0 end-1" style={{ paddingBottom: '50px', paddingLeft: '25px' }}>
+                <OverlayTrigger
+                    placement="right"
+                    delay={{ show: 250, hide: 400 }}
+                    overlay={renderTooltip}
+                >
 
-                    <button  className="btn rounded-circle shadow-lg " variant="success" style={{
+
+                    <button className="btn rounded-circle shadow-lg " variant="success" style={{
                         width: '60px',
                         height: '60px',
                         borderRadius: '60px'
                     }} ><i className="fa-solid fa-pizza-slice" style={{ fontSize: '25px' }} ></i></button>
-                
-                
-            </OverlayTrigger>
+
+
+                </OverlayTrigger>
             </div></a>
 
 
