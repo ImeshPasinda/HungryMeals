@@ -366,6 +366,16 @@ h16 {
 
  
 }
+
+
+h20 {
+  font-family: 'Signika Negative', sans-serif;
+  font-weight: bold;
+  color: #000000;
+  
+  
+}
+
 p10 {
   
   line-height: 1.5;
@@ -438,9 +448,11 @@ p10 {
        }
 
 
-
-
-
+      
+       .react-data-table-component {
+        font-size: 54px;
+      }
+      
 
 
 

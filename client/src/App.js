@@ -31,6 +31,7 @@ import SalesFinanceScreen from './screens/SalesFinanceScreen';
 import Newsfeedscreen from './screens/Newsfeedsrcreen';
 import SelectionUserAndCareer from './screens/SelectionUserAndCareer';
 import Beveragesscreen from './screens/Beveragesscreen';
+import Newsfeedmanagement from './screens/NewsfeedManagement';
 
 
 
@@ -114,27 +115,27 @@ function App() {
           )}
 
 
-          {currentAdmin ? (<Route path="admin/selectionfn" exact element={<SelectionFN />} />) 
-          
-          : (
+          {currentAdmin ? (<Route path="admin/selectionfn" exact element={<SelectionFN />} />)
 
-            <Route path="/error" exact element={<Errorscreen />} />
+            : (
 
-          )}
-           {currentAdmin ? (<Route path="admin/selectionUC" exact element={<SelectionUserAndCareer/>} />) 
-          
-          : (
+              <Route path="/error" exact element={<Errorscreen />} />
 
-            <Route path="/error" exact element={<Errorscreen />} />
+            )}
+          {currentAdmin ? (<Route path="admin/selectionUC" exact element={<SelectionUserAndCareer />} />)
 
-          )}
-          {currentAdmin ? (<Route path="admin/addfoodcatalogue" exact element={<Foodcataloguescreen />} />) 
-          
-          : (
+            : (
 
-            <Route path="/error" exact element={<Errorscreen />} />
+              <Route path="/error" exact element={<Errorscreen />} />
 
-          )}
+            )}
+          {currentAdmin ? (<Route path="admin/addfoodcatalogue" exact element={<Foodcataloguescreen />} />)
+
+            : (
+
+              <Route path="/error" exact element={<Errorscreen />} />
+
+            )}
 
 
 
@@ -156,14 +157,20 @@ function App() {
 
           )}
 
+          {currentAdmin ? (<Route path="admin/newsfeedmanagement" exact element={<Newsfeedmanagement />} />) : (
+
+            <Route path="/error" exact element={<Errorscreen />} />
+
+          )}
+
 
           <Route path="/profile" exact element={<Profilescreen />} />
           <Route path="/profile/details" exact element={<Detailsscreen />} />
           <Route path="/admin" exact element={<AdminProfilescreen />} />
           <Route path="/about" exact element={<AboutScreen />} />
           <Route path="/faq" exact element={<FAQScreen />} />
-          <Route path="/newsfeed" exact element={<Newsfeedscreen/>} />
-          
+          <Route path="/newsfeed" exact element={<Newsfeedscreen />} />
+
 
 
 
