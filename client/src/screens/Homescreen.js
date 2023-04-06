@@ -65,19 +65,26 @@ export default function Homescreen() {
 
 
     const [searchQuery, setSearchQuery] = useState('')
-    const [selectedOption, setSelectedOption] = useState('all')
+    const [selectedOption, setSelectedOption] = useState('pizza')
+
 
 
 
     const filteredPizzas = pizzas.filter(pizza => {
-        if (selectedOption === 'vegetarian') {
-            return pizza.name.toLowerCase().includes(searchQuery.toLowerCase()) && pizza.isVegetarian
-        } else if (selectedOption === 'nonvegetarian') {
-            return pizza.name.toLowerCase().includes(searchQuery.toLowerCase()) && !pizza.isVegetarian
+        if (selectedOption === 'nonvegetarian') {
+            return pizza.name.toLowerCase().includes(searchQuery.toLowerCase()) && !pizza.isVegetarian && pizza.isNonVeg;
+        } else if (selectedOption === 'vegetarian') {
+            return pizza.name.toLowerCase().includes(searchQuery.toLowerCase()) && pizza.isVegetarian;
+        } else if (selectedOption === 'pizza') {
+            return pizza.name.toLowerCase().includes(searchQuery.toLowerCase()) && pizza.isPizza;
+        } else if (selectedOption === 'beverage') {
+            return pizza.name.toLowerCase().includes(searchQuery.toLowerCase()) && pizza.isBeverage;
         } else {
-            return pizza.name.toLowerCase().includes(searchQuery.toLowerCase())
+            return pizza.name.toLowerCase().includes(searchQuery.toLowerCase());
         }
     })
+    
+
 
     const handleSearch = (e) => {
         setSearchQuery(e.target.value)
@@ -86,6 +93,7 @@ export default function Homescreen() {
     const handleOptionChange = (e) => {
         setSelectedOption(e.target.value)
     }
+
 
 
 
@@ -209,7 +217,7 @@ export default function Homescreen() {
                                     <i class="fa fa-search"></i>
                                     <input
                                         type="text"
-                                        placeholder="Search Pizzas..."
+                                        placeholder="Search Pizza..."
                                         value={searchQuery}
                                         className="form-control"
                                         onChange={handleSearch}
@@ -224,17 +232,23 @@ export default function Homescreen() {
 
                                     <div class="p-3" >
                                         <label className="p-2">
-                                            <input type="radio" value="all" checked={selectedOption === 'all'} onChange={handleOptionChange} />
-                                            <> </><h9 style = {{ fontSize: "20px"}}>All</h9>
+                                            <input type="radio" value="pizza" checked={selectedOption === 'pizza'} onChange={handleOptionChange} />
+                                            <> </><h9 style={{ fontSize: "20px" }}>All</h9>
                                         </label>
                                         <label className="p-2">
                                             <input type="radio" value="vegetarian" checked={selectedOption === 'vegetarian'} onChange={handleOptionChange} />
-                                            <> </><h9 style = {{ fontSize: "20px"}}>Vegetarian</h9>
+                                            <> </><h9 style={{ fontSize: "20px" }}>Vegetarian</h9>
                                         </label>
                                         <label className="p-2">
                                             <input type="radio" value="nonvegetarian" checked={selectedOption === 'nonvegetarian'} onChange={handleOptionChange} />
-                                            <> </><h9 style = {{ fontSize: "20px"}}>Non-Vegetarian</h9>
+                                            <> </><h9 style={{ fontSize: "20px" }}>Non-Vegetarian</h9>
                                         </label>
+                                        <label className="p-2">
+                                            <input type="radio" value="beverage" checked={selectedOption === 'beverage'} onChange={handleOptionChange} />
+                                            <> </><h9 style={{ fontSize: "20px" }}>Beverages</h9>
+                                        </label>
+
+
                                     </div>
                                 </div>
                             </div>

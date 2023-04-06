@@ -350,6 +350,22 @@ h9 {
   color: #670001;
  
 }
+h15 {
+  font-family: 'Signika Negative', sans-serif;
+  font-weight: bold;
+  color: #ffffff;
+
+ 
+}
+h16 {
+  font-family: 'Signika Negative', sans-serif;
+  font-weight: bold;
+  color: #ffffff;
+  
+  
+
+ 
+}
 p10 {
   
   line-height: 1.5;
@@ -394,13 +410,13 @@ p10 {
        }
 
 
-       /* .search input:focus{
+       .search input:focus{
 
         box-shadow: none;
-        border: 2px solid red;
+        border: 2px solid #000000;
 
 
-       } */
+       } 
 
        .search .fa-search{
 

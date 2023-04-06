@@ -42,7 +42,7 @@ export default function Navbar() {
 
 
 
-    
+
 
 
 
@@ -128,12 +128,12 @@ export default function Navbar() {
             } else {
                 notificationFourcount = 1;
             }
-                
-           
+
+
             console.log(notificationTwocount)
 
             tot = notificationOnecount + notificationTwocount + notificationThreecount + notificationFourcount + publiccount;
-            console.log("Notification count :",tot )
+            console.log("Notification count :", tot)
 
 
         }).catch((error) => {
@@ -157,20 +157,31 @@ export default function Navbar() {
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav ms-auto">
 
+                            
+                                <a className="nav-link " href="/">
+                                    <i class="fa-solid fa-pizza-slice fa-beat" style={{ fontSize: '15px', color: 'white' }} ></i><> </><h16>Pizzas</h16>
+                                </a>
+                         
+                          
+                                <a className="nav-link " href="/beverages">
+                                <i class="fas fa-cocktail fa-beat" style={{ fontSize: '18px', color: 'white' , paddingLeft:"0px" }} ></i><> </><h16 style = {{paddingRight: "0px"}}>Beverages</h16>
+                                </a>
+                          
+
                             {currentUser ? (
 
                                 <div className="dropdown m-2">
 
 
                                     <a style={{ color: 'white' }} className="dropdown-toggles" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Hi, {currentUser.name} <img src='https://static.wixstatic.com/media/618c8c_5f176f88792f40609c74309e7f6f2eb2~mv2.png' style={{ height: '30px', height: '30px' }} />
+                                        <h15>Hi, {currentUser.name}</h15> <img src='https://static.wixstatic.com/media/618c8c_5f176f88792f40609c74309e7f6f2eb2~mv2.png' style={{ height: '30px', height: '30px' }} />
                                     </a>
 
                                     <ul class="dropdown-menu text-center" style={{ minWidth: '0rem ' }} aria-labelledby="dropdownMenuButton1">
 
-                                        <li><a className="dropdown-item" href="/profile">Profile</a></li>
-                                        <li><a className="dropdown-item" href="/orders">Orders</a></li>
-                                        <li><a className="dropdown-item" href="#" onClick={() => { dispatch(logoutUser()) }}><li>Logout</li></a></li>
+                                        <li><a className="dropdown-item" href="/profile"><h9>Profile</h9></a></li>
+                                        <li><a className="dropdown-item" href="/orders"><h9>Orders</h9></a></li>
+                                        <li><a className="dropdown-item" href="#" onClick={() => { dispatch(logoutUser()) }}><li><h9>Logout</h9></li></a></li>
                                     </ul>
                                 </div>
 
@@ -178,7 +189,7 @@ export default function Navbar() {
 
                                 <li className="nav-item mt-1">
                                     <a className="nav-link" href="/login">
-                                        Login
+                                        <h15>Login</h15>
                                     </a>
                                 </li>
                             ) &&
@@ -188,16 +199,16 @@ export default function Navbar() {
                                 <div className="dropdown m-2">
 
                                     <a style={{ color: 'white', width: '120px' }} className="dropdown-toggles" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Hi, {currentAdmin.AdminName} <img src='https://static.wixstatic.com/media/618c8c_5f176f88792f40609c74309e7f6f2eb2~mv2.png' style={{ height: '30px', height: '30px' }} />
+                                        <h15>Hi, {currentAdmin.AdminName}</h15> <img src='https://static.wixstatic.com/media/618c8c_5f176f88792f40609c74309e7f6f2eb2~mv2.png' style={{ height: '30px', height: '30px' }} />
                                     </a>
 
 
 
                                     <ul class="dropdown-menu text-center" style={{ minWidth: '7rem ' }} aria-labelledby="dropdownMenuButton1">
 
-                                        <li><a className="dropdown-item" href="/admin">Profile</a></li>
+                                        <li><a className="dropdown-item" href="/admin"><h9>Profile</h9></a></li>
 
-                                        <li><a className="dropdown-item" href="#" onClick={() => { dispatch(logoutAdmin()) }}><li>Logout</li></a></li>
+                                        <li><a className="dropdown-item" href="#" onClick={() => { dispatch(logoutAdmin()) }}><li><h9>Logout</h9></li></a></li>
                                     </ul>
 
                                 </div>
@@ -205,7 +216,7 @@ export default function Navbar() {
 
                                 <li className="nav-item mt-1">
                                     <a className="nav-link " href="/login">
-                                        Login
+                                        <h15>Login</h15>
                                     </a>
                                 </li>
                             )}
@@ -253,8 +264,8 @@ export default function Navbar() {
 
                                             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-star" style={{ minWidth: '17rem ' }} aria-labelledby="dropdownMenuLink">
 
-                                            <span class="badge rounded-pill m-3" style={{ fontSize: '11px', color: 'white', backgroundColor: 'red' }} >{tot}<> Notification </><i class="fa fas fa-bell " style={{ fontSize: '8px', color: 'white' }} ></i></span>
-                                            
+                                                <span class="badge rounded-pill m-3" style={{ fontSize: '11px', color: 'white', backgroundColor: 'red' }} >{tot}<> Notification </><i class="fa fas fa-bell " style={{ fontSize: '8px', color: 'white' }} ></i></span>
+
 
 
 
@@ -293,9 +304,9 @@ export default function Navbar() {
                                                     <li>
 
                                                         <div class="row justify-content-center p-0 m-1">
-                                                        <a href='/profile'><div><span class="btn badge bg-success" style={{ fontSize: '10px', position: 'absolute', right: '25px' }}>View</span></div></a>
+                                                            <a href='/profile'><div><span class="btn badge bg-success" style={{ fontSize: '10px', position: 'absolute', right: '25px' }}>View</span></div></a>
                                                             <p class=" mb-2 text-muted" style={{ fontSize: '9px' }}>{NotificationDate} <i class="fa fas fa-bell " style={{ fontSize: '8px', color: 'black' }} ></i></p>
-                                                           
+
 
                                                             <p class="mb-2 " style={{ fontSize: '13px' }}> {NotificationBody}</p>
 
@@ -320,9 +331,9 @@ export default function Navbar() {
                                                     <li>
 
                                                         <div class="row justify-content-center p-0 m-1">
-                                                        <a href='/profile'><div><span class="btn badge bg-success" style={{ fontSize: '10px', position: 'absolute', right: '25px' }}>View</span></div></a>
+                                                            <a href='/profile'><div><span class="btn badge bg-success" style={{ fontSize: '10px', position: 'absolute', right: '25px' }}>View</span></div></a>
                                                             <p class=" mb-2 text-muted" style={{ fontSize: '9px' }}>{NotificationArray.notificationOneDate}</p>
-                                                            
+
 
                                                             <p class="mb-2 " style={{ fontSize: '13px' }}>{NotificationArray.notificationOneBody}</p>
 
@@ -345,7 +356,7 @@ export default function Navbar() {
                                                     <li>
 
                                                         <div class="row justify-content-center p-0 m-1">
-                                                        <a href='/profile'><div><span class="btn badge bg-success" style={{ fontSize: '10px', position: 'absolute', right: '25px' }}>View</span></div></a>
+                                                            <a href='/profile'><div><span class="btn badge bg-success" style={{ fontSize: '10px', position: 'absolute', right: '25px' }}>View</span></div></a>
                                                             <p class=" mb-2 text-muted" style={{ fontSize: '9px' }}>{NotificationArray.notificationTwoDate}</p>
 
 
@@ -371,7 +382,7 @@ export default function Navbar() {
                                                     <li>
 
                                                         <div class="row justify-content-center p-0 m-1">
-                                                        <a href='/profile'><div><span class="btn badge bg-success" style={{ fontSize: '10px', position: 'absolute', right: '25px' }}>View</span></div></a>
+                                                            <a href='/profile'><div><span class="btn badge bg-success" style={{ fontSize: '10px', position: 'absolute', right: '25px' }}>View</span></div></a>
                                                             <p class=" mb-2 text-muted" style={{ fontSize: '9px' }}>{NotificationArray.notificationThreeDate}</p>
 
 
@@ -396,9 +407,9 @@ export default function Navbar() {
                                                     <li>
 
                                                         <div class="row justify-content-center p-0 m-1">
-                                                        <a href='/profile'><div><span class="btn badge bg-success" style={{ fontSize: '10px', position: 'absolute', right: '25px' }}>View</span></div></a>
+                                                            <a href='/profile'><div><span class="btn badge bg-success" style={{ fontSize: '10px', position: 'absolute', right: '25px' }}>View</span></div></a>
                                                             <p class=" mb-2 text-muted" style={{ fontSize: '9px' }}>{NotificationArray.notificationFourDate}</p>
-                               
+
 
                                                             <p class="mb-2 " style={{ fontSize: '13px' }}> {NotificationArray.notificationFourBody}</p>
 

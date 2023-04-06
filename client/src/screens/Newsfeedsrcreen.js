@@ -143,7 +143,7 @@ export default function Newsfeedscreen() {
                 ) : error ? (
                     <Error error="Something went wrong" />
                 ) : filteredNews.length === 0 ? (
-                    <p>No results found for "{searchQuery}".</p>
+                    <p10>No results found for "{searchQuery}".</p10>
                 ) : (
                     filteredNews.map((newsItem) => (
                         <div className="col-md-8 m-8" key={newsItem._id}>

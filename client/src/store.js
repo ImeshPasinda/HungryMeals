@@ -14,6 +14,7 @@ import { placeOrderReducer, getUserOrdersReducer } from './reducers/orderReducer
 import { riderloginReducer } from './reducers/riderReducer'
 import { getAllNewsReducer } from './reducers/newsfeedReducer'
 
+
 const finalReducer = combineReducers({
 
     getAllPizzasReducer: getAllPizzasReducer,

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Modal } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux'
-import { addToCart } from "../actions/cartAction";
+
 
 export default function News({ news }) {
 

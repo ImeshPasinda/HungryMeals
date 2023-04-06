@@ -7,6 +7,8 @@ const pizzaSchema = mongoose.Schema({
     prices: [],
     category: { type: String, require },
     image: { type: String, require },
+    isPizza: {type: Boolean, require , default : false},
+    isBeverage: {type: Boolean, require , default : false},
     isVegetarian: {type: Boolean, require , default : false},
     description: { type: String, require }
 

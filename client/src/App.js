@@ -30,6 +30,7 @@ import Foodcataloguescreen from './screens/Foodcataloguescreen';
 import SalesFinanceScreen from './screens/SalesFinanceScreen';
 import Newsfeedscreen from './screens/Newsfeedsrcreen';
 import SelectionUserAndCareer from './screens/SelectionUserAndCareer';
+import Beveragesscreen from './screens/Beveragesscreen';
 
 
 
@@ -55,6 +56,7 @@ function App() {
 
           <Route path="/" exact element={<Homescreen />} />
           <Route path="/cart" exact element={<Cartscreen />} />
+          <Route path="/beverages" exact element={<Beveragesscreen />} />
           <Route path="/login" exact element={<Loginscreen />} />
           <Route path="/admin/login" exact element={<Adminloginscreen />} />
           <Route path="/delivery/login" exact element={<Riderloginscreen />} />

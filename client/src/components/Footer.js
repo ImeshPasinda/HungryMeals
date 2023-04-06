@@ -51,6 +51,7 @@ export default function Footer() {
                             <h5>Section</h5>
                             <ul class="nav flex-column">
                                 <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Promos</a></li>
+                                <li class="nav-item mb-2"><a href="/newsfeed" class="nav-link p-0 text-muted">News & Events</a></li>
                                 <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Careers</a></li>
                                 <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Terms & Conditions</a></li>
                                
