@@ -229,7 +229,7 @@ export default function Newsfeedmanagement() {
 
                     <DataTable
 
-                        title=<div style={{ paddingTop: '25px' }}><h20>Newsfeed Management <sup><span class="badge bg-danger">Not Completed</span></sup></h20></div>
+                        title=<div style={{ paddingTop: '25px' }}><h20>Newsfeed Management <sup><span class="badge bg-danger">Not Completed 70%</span></sup></h20></div>
                         columns={columns}
                         data={filterdNews}
                         pagination
