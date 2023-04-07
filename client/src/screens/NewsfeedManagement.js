@@ -129,20 +129,19 @@ export default function Newsfeedmanagement() {
 
     function createnews() {
 
-        const newNews = { 
+        const newNews = {
             newImage,
             newHeader,
             newCategory,
-            newDescription 
+            newDescription
         }
 
 
-        if (newHeader.trim().length !== 0 &&  newCategory.trim().length !== 0 && newDescription.trim().length !== 0)
-        {
+        if (newHeader.trim().length !== 0 && newCategory.trim().length !== 0 && newDescription.trim().length !== 0) {
 
             dispatch(createNewsAction(newNews))
 
-        } 
+        }
         else {
             const Toast = Swal.mixin({
                 toast: true,
@@ -168,9 +167,10 @@ export default function Newsfeedmanagement() {
 
 
     //update news
-    const [image, updatenewsImage] = useState('')
-    const [header, updatenewsHeader] = useState('')
-    const [description, updatenewsDescription] = useState('')
+    const [image, updatenewsImage] = useState(news.image)
+    const [header, updatenewsHeader] = useState(news.header)
+    const [category, updatenewsCategory] = useState(news.category)
+    const [description, updatenewsDescription] = useState(news.description)
 
 
     function updateforNews(newsId) {
@@ -180,32 +180,14 @@ export default function Newsfeedmanagement() {
 
             image,
             header,
+            category,
             description
 
         }
 
-        if (header.trim().length !== 0 && description.trim().length !== 0) {
-
             console.log(updateNews, newsId)
             dispatch(updateNewsAction(updateNews, newsId))
-        } else {
-            const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 1500,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.addEventListener('mouseenter', Swal.stopTimer)
-                    toast.addEventListener('mouseleave', Swal.resumeTimer)
-                }
-            })
-
-            Toast.fire({
-                icon: 'error',
-                title: 'Please fill out empty fileds!'
-            })
-        }
+       
 
 
 
@@ -359,6 +341,7 @@ export default function Newsfeedmanagement() {
                     </div>
                 </div>
             </div>
+
             {/* Model 2 - Update */}
             <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -395,7 +378,7 @@ export default function Newsfeedmanagement() {
                                     <div class="col-md-4 mb-4">
                                         <div class="bg-image hover-overlay ripple shadow-2-strong rounded-5" data-mdb-ripple-color="light">
 
-                                            <img src={news.image} class="img-fluid  shadow-lg" style={{ borderRadius: '25px' }} />
+                                            <img src={image || news.image} class="img-fluid  shadow-lg" style={{ borderRadius: '25px' }} />
 
                                             <div class="form-group">
                                                 <br></br>
@@ -404,7 +387,8 @@ export default function Newsfeedmanagement() {
                                                     class="form-control"
                                                     id="exampleFormControlTextarea1"
                                                     rows="10"
-                                                    defaultValue={news.image}
+                                                    placeholder='Enter image src'
+                                                    value={image || news.image}
                                                     onChange={(e) => { updatenewsImage(e.target.value) }}
                                                     style={{ fontSize: '16px', fontFamily: 'Mukta, calibri', color: "#6c757d", fontStyle: "italic", fontSize: "15px" }}
                                                 >
@@ -422,15 +406,31 @@ export default function Newsfeedmanagement() {
                                         <span
                                             className={`badge bg-${news.category === "News" ? "success" : "success"}`}
                                         >
-                                            {news.category}
+                                             {category || news.category}
                                         </span>
+                                        <br></br>
+                                        <div class="form-group">
+                                            <input
+                                                class="form-control"
+                                                id="exampleFormControlTextarea1"
+                                                rows="1"
+                                                placeholder='Enter Category News or Event'
+                                                value={category || news.category}
+                                                onChange={(e) => { updatenewsCategory(e.target.value) }}
+                                                style={{ fontFamily: 'Mukta, calibri', color: "#6c757d", fontStyle: "italic", fontSize: "15px" }}
+                                            >
+
+                                            </input>
+
+                                        </div>
                                         <br></br>
                                         <div class="form-group">
                                             <textarea
                                                 class="form-control"
                                                 id="exampleFormControlTextarea1"
                                                 rows="3"
-                                                defaultValue={news.header}
+                                                placeholder='Enter Header'
+                                                value={header || news.header}
                                                 onChange={(e) => { updatenewsHeader(e.target.value) }}
                                                 style={{ fontSize: '20px', fontFamily: 'Signika Negative,sans-serif', color: "#670001", fontWeight: "bold" }}
                                             >
@@ -443,7 +443,8 @@ export default function Newsfeedmanagement() {
                                                 class="form-control"
                                                 id="exampleFormControlTextarea1"
                                                 rows="20"
-                                                defaultValue={news.description}
+                                                placeholder='Enter Description'
+                                                value={description || news.description}
                                                 onChange={(e) => { updatenewsDescription(e.target.value) }}
                                                 style={{ fontFamily: 'Mukta, calibri', color: "#6c757d", fontStyle: "italic", fontSize: "15px" }}
                                             >
@@ -477,7 +478,6 @@ export default function Newsfeedmanagement() {
                 </div>
 
             </div>
-
 
             {/* Model 3 - Create News */}
             <div class="modal fade" id="staticBackdrop3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -516,7 +516,7 @@ export default function Newsfeedmanagement() {
                                         <div class="bg-image hover-overlay ripple shadow-2-strong rounded-5" data-mdb-ripple-color="light">
 
                                             <img src={newImage} class="img-fluid  shadow-lg" style={{ borderRadius: '25px' }} />
-                                            
+
                                             <div class="form-group">
                                                 <br></br>
                                                 {/* <label for="exampleFormControlTextarea1"><h20>Image Link</h20></label> */}
@@ -543,7 +543,7 @@ export default function Newsfeedmanagement() {
                                         <span
                                             className={`badge bg-${news.category === "News" ? "success" : "success"}`}
                                         >
-                                            {news.category}
+                                             {newCategory}
                                         </span>
                                         <br></br>
                                         <div class="form-group">
@@ -590,7 +590,7 @@ export default function Newsfeedmanagement() {
 
                                         </div>
 
-                                        
+
 
 
 

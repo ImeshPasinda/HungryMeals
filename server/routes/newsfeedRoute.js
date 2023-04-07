@@ -27,12 +27,13 @@ router.post("/post/news", async (req, res) => {
 router.put("/update/news/:id", async (req, res) => {
 
     let newsId = req.params.id;
-    const { image, header, description } = req.body;
+    const { image, header,category, description } = req.body;
 
     const updateNews = {
 
         image,
         header,
+        category,
         description
     }
 
