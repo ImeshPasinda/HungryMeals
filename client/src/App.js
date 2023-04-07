@@ -32,7 +32,10 @@ import Newsfeedscreen from './screens/Newsfeedsrcreen';
 import SelectionUserAndCareer from './screens/SelectionUserAndCareer';
 import Beveragesscreen from './screens/Beveragesscreen';
 import Newsfeedmanagement from './screens/NewsfeedManagement';
-
+import JobPortalscreen from './screens/JobPortalscreen';
+import JobportalManagementScreen from './screens/JobportalManagementScreen';
+import JobApplicantsManagementScreen from './screens/JobApplicantsManagementScreen';
+import JobApplyScreen from './screens/JobApplyScreen';
 
 
 
@@ -63,6 +66,8 @@ function App() {
           <Route path="/delivery/login" exact element={<Riderloginscreen />} />
           <Route path="/register" exact element={<Registerscreen />} />
           <Route path="/orders" exact element={<Ordersscreen />} />
+          <Route path="/jobportal" exact element={<JobPortalscreen />} />
+          <Route path="/jobapply" exact element={<JobApplyScreen />} />
 
 
 
@@ -158,6 +163,16 @@ function App() {
           )}
 
           {currentAdmin ? (<Route path="admin/newsfeedmanagement" exact element={<Newsfeedmanagement />} />) : (
+
+            <Route path="/error" exact element={<Errorscreen />} />
+
+          )}
+          {currentAdmin ? (<Route path="admin/jobportalManage" exact element={<JobportalManagementScreen />} />) : (
+
+            <Route path="/error" exact element={<Errorscreen />} />
+
+          )}
+          {currentAdmin ? (<Route path="admin/jobApplicantManage" exact element={<JobApplicantsManagementScreen />} />) : (
 
             <Route path="/error" exact element={<Errorscreen />} />
 

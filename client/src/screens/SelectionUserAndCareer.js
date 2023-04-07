@@ -19,7 +19,7 @@ function SelectionUserAndCareer() {
              
               <h5 class="card-title"> Users Management</h5>
               <p class="card-text"></p>
-              <a href="#" class="btn">Click Here</a>
+              <a href="customers" class="btn">Click Here</a>
             </div>
         </div>
 
@@ -27,9 +27,9 @@ function SelectionUserAndCareer() {
           <img class="card-img-top" src="https://img.freepik.com/free-vector/tiny-people-searching-business-opportunities_74855-19928.jpg?w=1060&t=st=1677854394~exp=1677854994~hmac=9a7936ccb95ccb8ec6345497e4863966b976f75232191cf824616fbc28aff44d" alt="Card image cap"/>
             <div class="card-body">
               <br/>
-              <h5 class="card-title">Career Management</h5>
+              <h5 class="card-title">CareerFeed Management</h5>
               <br/>
-              <a href="#" class="btn">Click Here</a>
+              <a href="jobportalManage" class="btn">Click Here</a>
             </div>
         </div>
 

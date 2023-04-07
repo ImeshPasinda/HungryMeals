@@ -13,11 +13,13 @@ import { feedbackReducer } from './reducers/feedbackReducer'
 import { placeOrderReducer, getUserOrdersReducer } from './reducers/orderReducer'
 import { riderloginReducer } from './reducers/riderReducer'
 import { getAllNewsReducer } from './reducers/newsfeedReducer'
+import { getAllJobsReducer } from './reducers/jobsReducer'
 
 
 const finalReducer = combineReducers({
 
     getAllPizzasReducer: getAllPizzasReducer,
+    getAllJobsReducer:getAllJobsReducer,
     cartReducer: cartReducer,
     registerUserReducer: registerUserReducer,
     loginUserReducer: loginUserReducer,

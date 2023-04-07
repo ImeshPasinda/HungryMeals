@@ -521,7 +521,7 @@ function Customermanagementscreen() {
                     {/* Data Table for admin details */}
                     <DataTable
 
-                        title='User Management - Administrators'
+                        title='Managers Details'
                         columns={columnsAdmin}
                         data={filterdAdmins}
                         pagination
