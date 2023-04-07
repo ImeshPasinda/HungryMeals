@@ -25,7 +25,7 @@ export default function News({ news }) {
                     <span class="badge bg-danger px-2 py-1 shadow-1-strong mb-3"><i class="fa fa-clock" aria-hidden="true"></i> {news.createdAt.substring(0, 10)}</span>
                     <> </>
                     <span
-                        className={`badge bg-${news.category === "News" ? "success" : "dark"}`}
+                        className={`badge bg-${news.category === "News" ? "success" : "success"}`}
                     >
                         {news.category}
                     </span>
