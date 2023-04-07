@@ -491,7 +491,7 @@ export default function Newsfeedmanagement() {
 
 
                             <h5 class="modal-title" id="exampleModalToggleLabel">
-                                <h20>{news.category === "News" ? "Edit News" : "Edit Event"}</h20>
+                                <h20>Add News & Events</h20>
 
 
                             </h5>
