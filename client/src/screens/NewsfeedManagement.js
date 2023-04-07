@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import Swal from 'sweetalert2';
 import truncate from 'lodash/truncate';
-import { deleteNewskAction, updateNewsAction } from '../actions/newsfeedAtion';
+import { createNewsAction, deleteNewskAction, updateNewsAction } from '../actions/newsfeedAtion';
 
 
 
@@ -119,7 +119,55 @@ export default function Newsfeedmanagement() {
 
 
 
+    //create news
+    const [newImage, setnewsImage] = useState('')
+    const [newHeader, setnewsHeader] = useState('')
+    const [newCategory, setnewsCategory] = useState('')
+    const [newDescription, setnewsDescription] = useState('')
 
+
+
+    function createnews() {
+
+        const newNews = { 
+            newImage,
+            newHeader,
+            newCategory,
+            newDescription 
+        }
+
+
+        if (newHeader.trim().length !== 0 &&  newCategory.trim().length !== 0 && newDescription.trim().length !== 0)
+        {
+
+            dispatch(createNewsAction(newNews))
+
+        } 
+        else {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 1500,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon: 'error',
+                title: 'Please fill out required fields !'
+            })
+        }
+
+
+
+    }
+
+
+    //update news
     const [image, updatenewsImage] = useState('')
     const [header, updatenewsHeader] = useState('')
     const [description, updatenewsDescription] = useState('')
@@ -165,12 +213,19 @@ export default function Newsfeedmanagement() {
     }
 
 
-
+    //delete news
     function deleteNews(newsId) {
 
         dispatch(deleteNewskAction(newsId));
 
     }
+
+
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0'); // add leading zero if needed
+    const day = String(today.getDate()).padStart(2, '0'); // add leading zero if needed
+    const formattedDate = `${year}-${month}-${day}`;
 
 
     return (
@@ -220,8 +275,8 @@ export default function Newsfeedmanagement() {
                     <br />
                     <br />
                     <div className='modal-footer'>
-                        <button class="btn" data-bs-target="#staticBackdropPublicNotification" data-bs-toggle="modal" data-bs-dismiss="modal"><i class="fa-solid fa-plus fa-beat" style ={{"color": "white"}}></i> Add News & Events</button>
-                        <div className='p-1'><button class="btn" data-bs-target="#" data-bs-toggle="modal" data-bs-dismiss="modal"><i style={{ fontSize: '15px', color: 'white' }} class="fa fa-file" aria-hidden="true"></i> Generate Customer Report</button></div>
+                        <button class="btn" data-bs-target="#staticBackdrop3" data-bs-toggle="modal" data-bs-dismiss="modal"><i class="fa-solid fa-plus fa-beat" style={{ "color": "white" }}></i> Add News & Events</button>
+                        <div className='p-1'><button class="btn" data-bs-target="#" data-bs-toggle="modal" data-bs-dismiss="modal"><i style={{ fontSize: '15px', color: 'white' }} class="fa fa-file" aria-hidden="true"></i> Generate Newsfeed Report</button></div>
                     </div>
                 </div>
 
@@ -229,7 +284,7 @@ export default function Newsfeedmanagement() {
             </div>
 
 
-            {/* Model 1 */}
+            {/* Model 1 - Preview */}
             <div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-lg">
                     <div class="modal-content">
@@ -241,7 +296,7 @@ export default function Newsfeedmanagement() {
 
                             <h5 class="modal-title" id="exampleModalToggleLabel">
                                 <h20>{news.category === "News" ? "News Preview" : "Event Preview"}</h20>
-                                
+
 
                             </h5>
 
@@ -304,7 +359,7 @@ export default function Newsfeedmanagement() {
                     </div>
                 </div>
             </div>
-            {/* Model 2 */}
+            {/* Model 2 - Update */}
             <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-lg">
 
@@ -413,6 +468,146 @@ export default function Newsfeedmanagement() {
 
                         <div class="modal-footer">
                             <button onClick={() => updateforNews(newsId, updateforNews)} type="button" class="btn ">Update</button>
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+
+            </div>
+
+
+            {/* Model 3 - Create News */}
+            <div class="modal fade" id="staticBackdrop3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+
+                    <div class="modal-content">
+
+
+
+                        <div class="modal-header">
+
+
+                            <h5 class="modal-title" id="exampleModalToggleLabel">
+                                <h20>{news.category === "News" ? "Edit News" : "Edit Event"}</h20>
+
+
+                            </h5>
+
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+
+
+                        </div>
+
+
+
+
+
+                        <div class="modal-body">
+
+
+                            <div className="p-4 m-4" style={{ borderRadius: '25px', textAlign: "left" }}>
+
+                                <div class="row gx-5">
+                                    <div class="col-md-4 mb-4">
+                                        <div class="bg-image hover-overlay ripple shadow-2-strong rounded-5" data-mdb-ripple-color="light">
+
+                                            <img src={newImage} class="img-fluid  shadow-lg" style={{ borderRadius: '25px' }} />
+                                            
+                                            <div class="form-group">
+                                                <br></br>
+                                                {/* <label for="exampleFormControlTextarea1"><h20>Image Link</h20></label> */}
+                                                <textarea
+                                                    class="form-control"
+                                                    id="exampleFormControlTextarea1"
+                                                    rows="10"
+                                                    placeholder='Enter image src'
+                                                    value={newImage}
+                                                    onChange={(e) => { setnewsImage(e.target.value) }}
+                                                    style={{ fontSize: '16px', fontFamily: 'Mukta, calibri', color: "#6c757d", fontStyle: "italic", fontSize: "15px" }}
+                                                >
+
+                                                </textarea>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 mb-4">
+                                        <span class="badge bg-danger px-2 py-1 shadow-1-strong mb-3"><i class="fa fa-clock" aria-hidden="true"></i> {formattedDate}
+                                        </span>
+                                        <> </>
+                                        <span
+                                            className={`badge bg-${news.category === "News" ? "success" : "success"}`}
+                                        >
+                                            {news.category}
+                                        </span>
+                                        <br></br>
+                                        <div class="form-group">
+                                            <input
+                                                class="form-control"
+                                                id="exampleFormControlTextarea1"
+                                                rows="1"
+                                                placeholder='Enter Category News or Event'
+                                                value={newCategory}
+                                                onChange={(e) => { setnewsCategory(e.target.value) }}
+                                                style={{ fontFamily: 'Mukta, calibri', color: "#6c757d", fontStyle: "italic", fontSize: "15px" }}
+                                            >
+
+                                            </input>
+
+                                        </div>
+                                        <br></br>
+                                        <div class="form-group">
+                                            <textarea
+                                                class="form-control"
+                                                id="exampleFormControlTextarea1"
+                                                rows="3"
+                                                placeholder='Enter Header'
+                                                value={newHeader}
+                                                onChange={(e) => { setnewsHeader(e.target.value) }}
+                                                style={{ fontSize: '20px', fontFamily: 'Signika Negative,sans-serif', color: "#670001", fontWeight: "bold" }}
+                                            >
+
+                                            </textarea>
+                                        </div>
+                                        <br></br>
+                                        <div class="form-group">
+                                            <textarea
+                                                class="form-control"
+                                                id="exampleFormControlTextarea1"
+                                                rows="20"
+                                                placeholder='Enter Description'
+                                                value={newDescription}
+                                                onChange={(e) => { setnewsDescription(e.target.value) }}
+                                                style={{ fontFamily: 'Mukta, calibri', color: "#6c757d", fontStyle: "italic", fontSize: "15px" }}
+                                            >
+
+                                            </textarea>
+
+                                        </div>
+
+                                        
+
+
+
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+
+
+
+
+                        </div>
+
+                        <div class="modal-footer">
+                            <button onClick={createnews} type="button" class="btn ">Post</button>
                         </div>
 
                     </div>

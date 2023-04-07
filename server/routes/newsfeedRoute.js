@@ -5,36 +5,35 @@ const News = require('../models/newsfeedModel')
 
 //add news for newsfeed
 router.post("/post/news", async (req, res) => {
-
-    const { image, header,category, description } = req.body
-
-
+    const { newImage, newHeader, newCategory, newDescription } = req.body;
 
     try {
+        const news = new News({
+            image: newImage,
+            header: newHeader,
+            category: newCategory,
+            description: newDescription,
+        });
 
-
-        const newNews = new News({ image, header,category,description })
-        newNews.save()
-        res.send('News posted successfully!')
-
-
+        await news.save();
+        res.send('News posted successfully!');
     } catch (error) {
-
         return res.status(400).json({ message: error });
     }
 });
+
 
 //update newsfeed
 router.put("/update/news/:id", async (req, res) => {
 
     let newsId = req.params.id;
-    const { image, header, description  } = req.body;
+    const { image, header, description } = req.body;
 
     const updateNews = {
 
-        image, 
+        image,
         header,
-        description 
+        description
     }
 
     try {
