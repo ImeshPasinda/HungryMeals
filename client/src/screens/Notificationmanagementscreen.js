@@ -563,6 +563,7 @@ export default function Notificationmanagementscreen() {
 
 
 
+.
 
                 {/*Notification Model 1*/}
                 <div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

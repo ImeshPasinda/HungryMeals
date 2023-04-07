@@ -62,4 +62,20 @@ router.get("/getallnews", async (req, res) => {
 });
 
 
+//get current news
+router.get("/getcurrentnews/:id", async (req, res) => {
+
+    let newsId = req.params.id;
+    try {
+
+        const currentnews = await News.findById(newsId)
+        res.send(currentnews)
+
+    } catch (error) {
+        return res.status(400).json({ message: error });
+    }
+
+})
+
+
 module.exports = router;

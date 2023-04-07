@@ -10,7 +10,7 @@ export default function News({ news }) {
 
 
         // <div className="shadow-lg p-4 m-4 bg-white" style={{ borderRadius: '25px', textAlign: "left" }}>
-            <div className="p-4 m-4" style={{ borderRadius: '25px', textAlign: "left" }}>
+        <div className="p-4 m-4" style={{ borderRadius: '25px', textAlign: "left" }}>
 
             <div class="row gx-5">
                 <div class="col-md-4 mb-4">
@@ -24,7 +24,11 @@ export default function News({ news }) {
                 <div class="col-md-6 mb-4">
                     <span class="badge bg-danger px-2 py-1 shadow-1-strong mb-3"><i class="fa fa-clock" aria-hidden="true"></i> {news.createdAt.substring(0, 10)}</span>
                     <> </>
-                    <span class="badge bg-success px-2 py-1 shadow-1-strong mb-3"><i class="fa fa-bell" aria-hidden="true"></i> {news.category}</span>
+                    <span
+                        className={`badge bg-${news.category === "News" ? "success" : "dark"}`}
+                    >
+                        {news.category}
+                    </span>
                     <br></br>
                     <h9 style={{ fontSize: "23px" }}>{news.header}</h9>
 

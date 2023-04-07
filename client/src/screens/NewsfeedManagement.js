@@ -8,7 +8,7 @@ import truncate from 'lodash/truncate';
 
 
 
-
+let newsId;
 
 export default function Newsfeedmanagement() {
 
@@ -33,6 +33,27 @@ export default function Newsfeedmanagement() {
 
     }, [])
 
+
+
+    function getCurrentNews(newsId) {
+
+        axios.get(`/api/newsfeed/getcurrentnews/${newsId}`).then((res) => {
+
+
+            setNews(res.data);
+            news = res.data
+
+
+        }).catch((error) => {
+            console.log(error)
+
+
+        })
+    }
+
+
+
+
     function ShortenedDataTableHeader({ row }) {
         const maxLength = 25; // Set the maximum length for the header
         const shortenedHeader = truncate(row.header, { length: maxLength }); // Use the truncate function to shorten the header
@@ -48,22 +69,22 @@ export default function Newsfeedmanagement() {
         {
             name: "Preview",
             selector: (row) => <img width={75} height={75} src={row.image} />,
-            
+
         },
 
         {
             name: "Category",
             selector: (row) => {
-              return (
-                <span
-                  className={`badge bg-${row.category === "News" ? "success" : "danger"}`}
-                >
-                  {row.category}
-                </span>
-              );
+                return (
+                    <span
+                        className={`badge bg-${row.category === "News" ? "success" : "success"}`}
+                    >
+                        {row.category}
+                    </span>
+                );
             },
-          },
-          
+        },
+
         {
             name: "Date",
             selector: (row) => row.createdAt.substring(0, 10),
@@ -72,7 +93,7 @@ export default function Newsfeedmanagement() {
 
         {
             name: "Details",
-            cell: row => <button className="btn" data-bs-toggle="modal" href="#staticBackdrop1" role="button">Edit <i class="fas fa-edit" style={{ "color": "white" }}></i></button>
+            cell: row => <button onClick={() => { getCurrentNews(newsId = row._id) }} className="btn" data-bs-toggle="modal" href="#staticBackdrop1" role="button">Edit <i class="fas fa-edit" style={{ "color": "white" }}></i></button>
 
         },
         {
@@ -153,13 +174,78 @@ export default function Newsfeedmanagement() {
                 </div>
 
 
-
-
-
-
-
             </div>
 
+
+            {/* Model */}
+            <div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+
+
+
+                        <div class="modal-header">
+
+
+                            <h5 class="modal-title" id="exampleModalToggleLabel">
+                                <h20>{news.category === "News" ? "News Preview" : "Event Preview"}</h20>
+                            </h5>
+
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+
+
+                        </div>
+
+
+
+
+
+                        <div class="modal-body">
+
+
+                            <div className="p-4 m-4" style={{ borderRadius: '25px', textAlign: "left" }}>
+
+                                <div class="row gx-5">
+                                    <div class="col-md-4 mb-4">
+                                        <div class="bg-image hover-overlay ripple shadow-2-strong rounded-5" data-mdb-ripple-color="light">
+
+                                            <img src={news.image} class="img-fluid  shadow-lg" style={{ borderRadius: '25px' }} />
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 mb-4">
+                                        <span class="badge bg-danger px-2 py-1 shadow-1-strong mb-3"><i class="fa fa-clock" aria-hidden="true"></i> {news.createdAt && news.createdAt.toString().substring(0, 10)}
+                                        </span>
+                                        <> </>
+                                        <span
+                                            className={`badge bg-${news.category === "News" ? "success" : "success"}`}
+                                        >
+                                            {news.category}
+                                        </span>
+                                        <br></br>
+                                        <h9 style={{ fontSize: "23px" }}>{news.header}</h9>
+
+                                        <p10 class="text-muted "><br></br><br></br>
+                                            {news.description}
+                                        </p10>
+
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+
+
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
 
 
         </div >
