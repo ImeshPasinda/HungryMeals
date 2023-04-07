@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import Swal from 'sweetalert2';
 import truncate from 'lodash/truncate';
+import { deleteNewskAction, updateNewsAction } from '../actions/newsfeedAtion';
 
 
 
@@ -98,7 +99,7 @@ export default function Newsfeedmanagement() {
         },
         {
             name: "Delete",
-            cell: row => <button type="button" class="btn ">Delete <i class="fas fa-trash-alt"></i></button>
+            cell: row => <button onClick={() => { deleteNews(row._id) }} type="button" class="btn ">Delete <i class="fas fa-trash-alt"></i></button>
 
         }
 
@@ -119,6 +120,57 @@ export default function Newsfeedmanagement() {
 
 
 
+    const [image, updatenewsImage] = useState('')
+    const [header, updatenewsHeader] = useState('')
+    const [description, updatenewsDescription] = useState('')
+
+
+    function updateforNews(newsId) {
+
+
+        const updateNews = {
+
+            image,
+            header,
+            description
+
+        }
+
+        if (header.trim().length !== 0 && description.trim().length !== 0) {
+
+            console.log(updateNews, newsId)
+            dispatch(updateNewsAction(updateNews, newsId))
+        } else {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 1500,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon: 'error',
+                title: 'Please fill out empty fileds!'
+            })
+        }
+
+
+
+
+    }
+
+
+
+    function deleteNews(newsId) {
+
+        dispatch(deleteNewskAction(newsId));
+
+    }
 
 
     return (
@@ -168,7 +220,7 @@ export default function Newsfeedmanagement() {
                     <br />
                     <br />
                     <div className='modal-footer'>
-                        <button class="btn" data-bs-target="#staticBackdropPublicNotification" data-bs-toggle="modal" data-bs-dismiss="modal"><i style={{ fontSize: '15px', color: 'white' }} class="fa fa-paper-plane" aria-hidden="true"></i> Public Notifications</button>
+                        <button class="btn" data-bs-target="#staticBackdropPublicNotification" data-bs-toggle="modal" data-bs-dismiss="modal"><i class="fa-solid fa-plus fa-beat" style ={{"color": "white"}}></i> Add News & Events</button>
                         <div className='p-1'><button class="btn" data-bs-target="#" data-bs-toggle="modal" data-bs-dismiss="modal"><i style={{ fontSize: '15px', color: 'white' }} class="fa fa-file" aria-hidden="true"></i> Generate Customer Report</button></div>
                     </div>
                 </div>
@@ -177,7 +229,7 @@ export default function Newsfeedmanagement() {
             </div>
 
 
-            {/* Model */}
+            {/* Model 1 */}
             <div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-lg">
                     <div class="modal-content">
@@ -189,6 +241,8 @@ export default function Newsfeedmanagement() {
 
                             <h5 class="modal-title" id="exampleModalToggleLabel">
                                 <h20>{news.category === "News" ? "News Preview" : "Event Preview"}</h20>
+                                
+
                             </h5>
 
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -224,6 +278,7 @@ export default function Newsfeedmanagement() {
                                         >
                                             {news.category}
                                         </span>
+
                                         <br></br>
                                         <h9 style={{ fontSize: "23px" }}>{news.header}</h9>
 
@@ -242,11 +297,131 @@ export default function Newsfeedmanagement() {
 
 
                         </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn " data-bs-target="#staticBackdrop2" data-bs-toggle="modal" data-bs-dismiss="modal">Edit <i class="fas fa-edit" style={{ "color": "white" }}></i></button>
+                        </div>
 
                     </div>
                 </div>
             </div>
+            {/* Model 2 */}
+            <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
 
+                    <div class="modal-content">
+
+
+
+                        <div class="modal-header">
+
+
+                            <h5 class="modal-title" id="exampleModalToggleLabel">
+                                <h20>{news.category === "News" ? "Edit News" : "Edit Event"}</h20>
+
+
+                            </h5>
+
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+
+
+                        </div>
+
+
+
+
+
+                        <div class="modal-body">
+
+
+                            <div className="p-4 m-4" style={{ borderRadius: '25px', textAlign: "left" }}>
+
+                                <div class="row gx-5">
+                                    <div class="col-md-4 mb-4">
+                                        <div class="bg-image hover-overlay ripple shadow-2-strong rounded-5" data-mdb-ripple-color="light">
+
+                                            <img src={news.image} class="img-fluid  shadow-lg" style={{ borderRadius: '25px' }} />
+
+                                            <div class="form-group">
+                                                <br></br>
+                                                {/* <label for="exampleFormControlTextarea1"><h20>Image Link</h20></label> */}
+                                                <textarea
+                                                    class="form-control"
+                                                    id="exampleFormControlTextarea1"
+                                                    rows="10"
+                                                    defaultValue={news.image}
+                                                    onChange={(e) => { updatenewsImage(e.target.value) }}
+                                                    style={{ fontSize: '16px', fontFamily: 'Mukta, calibri', color: "#6c757d", fontStyle: "italic", fontSize: "15px" }}
+                                                >
+
+                                                </textarea>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 mb-4">
+                                        <span class="badge bg-danger px-2 py-1 shadow-1-strong mb-3"><i class="fa fa-clock" aria-hidden="true"></i> {news.createdAt && news.createdAt.toString().substring(0, 10)}
+                                        </span>
+                                        <> </>
+                                        <span
+                                            className={`badge bg-${news.category === "News" ? "success" : "success"}`}
+                                        >
+                                            {news.category}
+                                        </span>
+                                        <br></br>
+                                        <div class="form-group">
+                                            <textarea
+                                                class="form-control"
+                                                id="exampleFormControlTextarea1"
+                                                rows="3"
+                                                defaultValue={news.header}
+                                                onChange={(e) => { updatenewsHeader(e.target.value) }}
+                                                style={{ fontSize: '20px', fontFamily: 'Signika Negative,sans-serif', color: "#670001", fontWeight: "bold" }}
+                                            >
+
+                                            </textarea>
+                                        </div>
+                                        <br></br>
+                                        <div class="form-group">
+                                            <textarea
+                                                class="form-control"
+                                                id="exampleFormControlTextarea1"
+                                                rows="20"
+                                                defaultValue={news.description}
+                                                onChange={(e) => { updatenewsDescription(e.target.value) }}
+                                                style={{ fontFamily: 'Mukta, calibri', color: "#6c757d", fontStyle: "italic", fontSize: "15px" }}
+                                            >
+
+                                            </textarea>
+                                        </div>
+
+
+
+
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+
+
+
+
+                        </div>
+
+                        <div class="modal-footer">
+                            <button onClick={() => updateforNews(newsId, updateforNews)} type="button" class="btn ">Update</button>
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+
+            </div>
 
         </div >
     )

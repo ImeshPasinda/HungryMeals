@@ -27,20 +27,19 @@ router.post("/post/news", async (req, res) => {
 //update newsfeed
 router.put("/update/news/:id", async (req, res) => {
 
-    let userId = req.params.id;
-    const { image, header,category, description  } = req.body;
+    let newsId = req.params.id;
+    const { image, header, description  } = req.body;
 
     const updateNews = {
 
         image, 
         header,
-        category, 
         description 
     }
 
     try {
 
-        await News.findByIdAndUpdate(userId, updateNews)
+        await News.findByIdAndUpdate(newsId, updateNews)
         res.send('News updated successfully!')
 
     } catch (error) {
@@ -76,6 +75,24 @@ router.get("/getcurrentnews/:id", async (req, res) => {
     }
 
 })
+
+//Delete News
+router.delete("/delete/news/:id", async (req, res) => {
+
+    let newsId = req.params.id;
+
+    try {
+        await News.findByIdAndDelete(newsId)
+
+        res.send('News Deleted Successfully')
+    }
+
+    catch (error) {
+
+
+        return res.status(400).json({ message: error });
+    }
+});
 
 
 module.exports = router;
