@@ -35,8 +35,8 @@ export default function Adminloginscreen() {
             <br />
             <br />
             <div className='row justify-content-center'>
-                <div className="col-md-5 mt-5 text-start shadow p-4 mb-7 bg-white rounded">
-                    <h2 className="text-center m-4" style={{ fontSize: '35px' }}>Admininstrator/ Manager Login</h2>
+                <div className="col-md-5 mt-4 text-start shadow p-4 mb-7 bg-white rounded">
+                    <h2 className="text-center m-3" style={{ fontSize: '30px' }}>Admininstrator/ Manager Login</h2>
                     <br />
                             <br />
                     {loading && (<Loading />)}
@@ -53,7 +53,7 @@ export default function Adminloginscreen() {
                                 onChange={(e) => { setemail(e.target.value) }}
                                 style={{fontSize: "18px"}}
                             />
-                            <br />
+                            
                             
                             <input
                                 required
@@ -64,11 +64,11 @@ export default function Adminloginscreen() {
                                 onChange={(e) => { setpassword(e.target.value) }}
                                 style={{fontSize: "18px", marginTop: "10px"}}
                             />
-                            <br />
+                            
                             
 
                             <button onClick={login} className="btn mt-3 mb-3 " >LOGIN</button>
-                            <br />
+                            
                             {/* <a style={{ color: 'black' }} className='text-start' href="/register">Click Here To Register</a> */}
                         </div>
                         <div className="justify-content-end" style={{width: "50%"}}>
