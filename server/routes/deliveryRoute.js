@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const Rider = require("../models/deliveryModel")
+const Driver = require("../models/deliveryModel")
 
 
-router.post("/login", async (req, res) => {
+/*router.post("/login", async (req, res) => {
 
     const { RiderEmail, RiderPassword } = req.body
 
@@ -32,23 +32,51 @@ router.post("/login", async (req, res) => {
         return res.status(400).json({ message: 'Something went wrong' });
     }
 })
+*/
+
+router.post("/login", async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    // Find a driver with the given email and password
+    const driver = await Driver.findOne({ email, password });
+
+    if (driver) {
+      // Create a response object with the driver's name, email, and ID
+      const currentDriver = {
+        name: driver.name,
+        email: driver.email,
+        _id: driver._id,
+      };
+
+      // Send the response object back to the client
+      res.send(currentDriver);
+    } else {
+      // If no driver was found, send an error message
+      res.status(401).json({ message: "Invalid email or password" });
+    }
+  } catch (error) {
+    // If an error occurred, send a generic error message
+    res.status(500).json({ message: "Something went wrong" });
+  }
+});
 
 //register new Rider
-router.post("/addrider", async (req, res) => {
+router.post("/addDriver", async (req, res) => {
 
-    const { riderName, riderEmail, riderPassword } = req.body
+    const { riderName, riderEmail,riderPhone, riderPassword } = req.body
 
     try {
 
-        const riderExit = await Rider.findOne({ riderEmail })
+        const riderExist = await Driver.findOne({ email })
 
-        if (riderExit) {
+        if (riderExist) {
 
             return res.status(400).json({ message: error });
 
         } else {
 
-            const newRider = new Rider({ riderName, riderEmail, riderPassword })
+            const newRider = new Driver({ riderName, riderEmail,riderPhone, riderPassword })
             newRider.save()
             res.send('New Rider Registration Successful !!!')
         }
