@@ -157,16 +157,16 @@ export default function Navbar() {
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav ms-auto">
 
-                            
+                            <li className="nav-item mt-1">
                                 <a className="nav-link " href="/">
                                     <i class="fa-solid fa-pizza-slice fa-beat" style={{ fontSize: '15px', color: 'white' }} ></i><> </><h16>Pizzas</h16>
                                 </a>
-                         
-                          
+                            </li>
+                            <li className="nav-item mt-1">
                                 <a className="nav-link " href="/beverages">
-                                <i class="fas fa-cocktail fa-beat" style={{ fontSize: '18px', color: 'white' , paddingLeft:"0px" }} ></i><> </><h16 style = {{paddingRight: "0px"}}>Beverages</h16>
+                                    <i class="fas fa-cocktail fa-beat" style={{ fontSize: '18px', color: 'white', paddingLeft: "0px" }} ></i><> </><h16 style={{ paddingRight: "0px" }}>Beverages</h16>
                                 </a>
-                          
+                            </li>
 
                             {currentUser ? (
 
