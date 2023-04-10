@@ -60,7 +60,7 @@ export default function Foodcataloguescreen() {
       if (filterType === "vegetarian") {
         return catalogue.isVegetarian;
       } else if (filterType === "nonvegetarian") {
-        return !catalogue.isVegetarian && !catalogue.isBeverage;
+        return catalogue.isNonVeg;
       } else if (filterType === "beverage") {
         return catalogue.isBeverage;
       } else {
@@ -69,6 +69,7 @@ export default function Foodcataloguescreen() {
     }).filter(catalogue => catalogue.name.toLowerCase().includes(searchCatalogues.toLowerCase()));
     setFilteredCatalogues(results);
   }, [filterType, catalogues, searchCatalogues]);
+  
 
 
   const columnsOrders = [
@@ -251,7 +252,7 @@ export default function Foodcataloguescreen() {
                   <div class="col-md-4 mb-4">
 
 
-                  <div className="shadow p-3 m-1 bg-white" style={{ borderRadius: '15px', border: '1px solid black', width: '300px', textAlign: 'center' }}>
+                    <div className="shadow p-3 m-1 bg-white" style={{ borderRadius: '15px', border: '1px solid black', width: '300px', textAlign: 'center' }}>
 
 
 
@@ -289,7 +290,8 @@ export default function Foodcataloguescreen() {
                       <div className="flex-container">
 
                         <div className='m-1 w-100'>
-                          <h1 className='m-1'>Price: {foods.prices[0][varient] * quantity} LKR</h1>
+                          {foods.prices && foods.prices[0] && <h1 className='m-1'>Price: {foods.prices[0][varient] * quantity} LKR</h1>}
+
                         </div>
 
                         <div className='m-1 w-100'>

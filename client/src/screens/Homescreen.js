@@ -76,13 +76,14 @@ export default function Homescreen() {
         } else if (selectedOption === 'vegetarian') {
             return pizza.name.toLowerCase().includes(searchQuery.toLowerCase()) && pizza.isVegetarian;
         } else if (selectedOption === 'pizza') {
-            return pizza.name.toLowerCase().includes(searchQuery.toLowerCase()) && pizza.isPizza;
+            return pizza.name.toLowerCase().includes(searchQuery.toLowerCase()) && !pizza.isBeverage;
         } else if (selectedOption === 'beverage') {
             return pizza.name.toLowerCase().includes(searchQuery.toLowerCase()) && pizza.isBeverage;
         } else {
             return pizza.name.toLowerCase().includes(searchQuery.toLowerCase());
         }
     })
+    
     
 
 
