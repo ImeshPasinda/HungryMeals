@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteOrderAction } from '../actions/orderActions';
 import { addToCart } from "../actions/cartAction";
+import { updateFoodsAction } from '../actions/pizzaAction';
 
 
 let foodId;
@@ -69,7 +70,7 @@ export default function Foodcataloguescreen() {
     }).filter(catalogue => catalogue.name.toLowerCase().includes(searchCatalogues.toLowerCase()));
     setFilteredCatalogues(results);
   }, [filterType, catalogues, searchCatalogues]);
-  
+
 
 
   const columnsOrders = [
@@ -116,6 +117,48 @@ export default function Foodcataloguescreen() {
     dispatch(addToCart(catalogues, quantity, varient))
   }
 
+
+
+  //update news
+  const [name, updatefoodName] = useState(foods.name);
+  const [image, updatefoodImage] = useState(foods.image);
+  const [description, updatefoodDescription] = useState(foods.description);
+  const [varients, updatefoodVarients] = useState([]);
+  const [prices, updatefoodPrices] = useState([]);
+  const [isBeverage, updateIsBeverage] = useState(false);
+  const [isVegetarian, updateIsVegetarian] = useState(false);
+  const [isNonVeg, updateIsNonVeg] = useState(false);
+
+  useEffect(() => {
+    // Check the value of the respective fields and update the state accordingly
+    updateIsBeverage(foods.isBeverage);
+    updateIsVegetarian(foods.isVegetarian);
+    updateIsNonVeg(foods.isNonVeg);
+  }, [foods]);
+
+  function updateforfood(foodId) {
+
+
+    const updateFoods = {
+      name,
+      image,
+      isBeverage,
+      isVegetarian,
+      isNonVeg,
+      description,
+      varients,
+      prices,
+    }
+
+
+    dispatch(updateFoodsAction(updateFoods, foodId))
+
+
+
+
+
+  }
+
   return (
     <div>
       <br />
@@ -137,8 +180,9 @@ export default function Foodcataloguescreen() {
             selectableRows
             selectableRowsHighlight
             subHeader
+            noDataComponent={<div className="text-center"><p10>No foods available...</p10></div>}
             subHeaderComponent={
-              <div className="text-center">
+              <div className="p-3">
                 <input
                   type="text"
                   placeholder="Search Foods..."
@@ -147,65 +191,57 @@ export default function Foodcataloguescreen() {
                   onChange={(e) => setSearchCatalogues(e.target.value)}
                 />
 
-                <div className="mt-2">
-                  <div className="form-check form-check-inline">
-                    <input
-                      className="form-check-input"
-                      type="radio"
-                      name="filterType"
-                      id="allFilter"
-                      value=""
-                      onChange={(e) => setFilterType(e.target.value)}
-                      checked={filterType === ""}
-                    />
-                    <label className="form-check-label" htmlFor="allFilter">
-                      <h9>All</h9>
-                    </label>
-                  </div>
-                  <div className="form-check form-check-inline">
-                    <input
-                      className="form-check-input"
-                      type="radio"
-                      name="filterType"
-                      id="vegetarianFilter"
-                      value="vegetarian"
-                      onChange={(e) => setFilterType(e.target.value)}
-                      checked={filterType === "vegetarian"}
-                    />
-                    <label className="form-check-label" htmlFor="vegetarianFilter">
-                      <h9>Vegetarian</h9>
-                    </label>
-                  </div>
-                  <div className="form-check form-check-inline">
-                    <input
-                      className="form-check-input"
-                      type="radio"
-                      name="filterType"
-                      id="nonvegetarianFilter"
-                      value="nonvegetarian"
-                      onChange={(e) => setFilterType(e.target.value)}
-                      checked={filterType === "nonvegetarian"}
-                    />
-                    <label className="form-check-label" htmlFor="nonvegetarianFilter">
-                      <h9>Non-Vegetarian</h9>
-                    </label>
-                  </div>
-                  <div className="form-check form-check-inline">
-                    <input
-                      className="form-check-input"
-                      type="radio"
-                      name="filterType"
-                      id="beverageFilter"
-                      value="beverage"
-                      onChange={(e) => setFilterType(e.target.value)}
-                      checked={filterType === "beverage"}
-                    />
-                    <label className="form-check-label" htmlFor="beverageFilter">
-                      <h9>Beverages</h9>
-                    </label>
-                  </div>
-                </div>
+                <label className="p-2">
+                  <input
+                    className="form-check-input"
+                    type="radio"
+                    name="filterType"
+                    id="allFilter"
+                    value=""
+                    onChange={(e) => setFilterType(e.target.value)}
+                    checked={filterType === ""}
+                  />
+                  <> </><h9 style={{ fontSize: "18px" }}>All</h9>
+                </label>
+                <label className="p-2">
+                  <input
+                    className="form-check-input"
+                    type="radio"
+                    name="filterType"
+                    id="vegetarianFilter"
+                    value="vegetarian"
+                    onChange={(e) => setFilterType(e.target.value)}
+                    checked={filterType === "vegetarian"}
+                  />
+                  <> </><h9 style={{ fontSize: "18px" }}>Vegetarian</h9>
+                </label>
+                <label className="p-2">
+                  <input
+                    className="form-check-input"
+                    type="radio"
+                    name="filterType"
+                    id="nonvegetarianFilter"
+                    value="nonvegetarian"
+                    onChange={(e) => setFilterType(e.target.value)}
+                    checked={filterType === "nonvegetarian"}
+                  />
+                  <> </><h9 style={{ fontSize: "18px" }}>Non-Vegetarian</h9>
+                </label>
+                <label className="p-2">
+                  <input
+                    className="form-check-input"
+                    type="radio"
+                    name="filterType"
+                    id="beverageFilter"
+                    value="beverage"
+                    onChange={(e) => setFilterType(e.target.value)}
+                    checked={filterType === "beverage"}
+                  />
+                  <> </><h9 style={{ fontSize: "18px" }}>Beverages</h9>
+                </label>
+
               </div>
+
             }
           />
 
@@ -246,100 +282,136 @@ export default function Foodcataloguescreen() {
             <div class="modal-body">
 
 
-              <div className="p-4 m-4" style={{ borderRadius: '25px', textAlign: "left" }}>
-
-                <div class="row gx-5">
-                  <div class="col-md-4 mb-4">
-
-
-                    <div className="shadow p-3 m-1 bg-white" style={{ borderRadius: '15px', border: '1px solid black', width: '300px', textAlign: 'center' }}>
+              <div class="container p-4">
+                <div class="row">
+                  <div class="col">
+                    <div className='row justify-content center'>
+                      <div className="shadow p-3 m-1 bg-white" style={{ borderRadius: '15px', border: '1px solid black', width: '350px', textAlign: 'center' }}>
 
 
 
-                      <div onClick={handleShow}>
+                        <div onClick={handleShow}>
 
-                        <h1>{foods.name}</h1>
-                        <img src={foods.image} className="img-fluid" style={{ height: '200px', width: '200px' }} />
+                          <h1>{foods.name}</h1>
+                          <img src={foods.image} className="img-fluid" style={{ height: '200px', width: '200px' }} />
+
+                        </div>
+
+                        <div className="flex-container">
+
+                          <div className='w-100 m-1'>
+                            <p>Varients</p>
+                            <select className='form-control' value={varient} onChange={(e) => { setvarient(e.target.value) }}>
+                              {foods.varients && foods.varients.map(varient => {
+                                return <option value={varient}>{varient}</option>
+                              })}
+                            </select>
+                          </div>
+
+                          <div className='w-100 m-1'>
+                            <p>Quantity</p>
+                            <select className='form-control' value={quantity} onChange={(e) => { setquantity(e.target.value) }}>
+                              {Array(10).keys() && [...Array(10).keys()].map((x, i) => {
+                                return <option value={i + 1}>{i + 1}</option>
+                              })}
+                            </select>
+                          </div>
+
+
+
+                        </div>
+
+                        <div className="flex-container">
+
+                          <div className='m-1 w-100'>
+                            {foods.prices && foods.prices[0] && <h1 className='m-1'>Price: {foods.prices[0][varient] * quantity} LKR</h1>}
+
+                          </div>
+
+                          <div className='m-1 w-100'>
+                            <button className="btn"  >ADD TO CART</button>
+                          </div>
+
+                        </div>
+
+
+
+
+
 
                       </div>
-
-                      <div className="flex-container">
-
-                        <div className='w-100 m-1'>
-                          <p>Varients</p>
-                          <select className='form-control' value={varient} onChange={(e) => { setvarient(e.target.value) }}>
-                            {foods.varients && foods.varients.map(varient => {
-                              return <option value={varient}>{varient}</option>
-                            })}
-                          </select>
-                        </div>
-
-                        <div className='w-100 m-1'>
-                          <p>Quantity</p>
-                          <select className='form-control' value={quantity} onChange={(e) => { setquantity(e.target.value) }}>
-                            {Array(10).keys() && [...Array(10).keys()].map((x, i) => {
-                              return <option value={i + 1}>{i + 1}</option>
-                            })}
-                          </select>
-                        </div>
-
-
-
-                      </div>
-
-                      <div className="flex-container">
-
-                        <div className='m-1 w-100'>
-                          {foods.prices && foods.prices[0] && <h1 className='m-1'>Price: {foods.prices[0][varient] * quantity} LKR</h1>}
-
-                        </div>
-
-                        <div className='m-1 w-100'>
-                          <button className="btn"  >ADD TO CART</button>
-                        </div>
-
-                      </div>
-
-
-
-
-
-
                     </div>
 
-                  </div>
-
-
-                  <div class="col-md-6 mb-4">
-                    {/* <span class="badge bg-danger px-2 py-1 shadow-1-strong mb-3"><i class="fa fa-clock" aria-hidden="true"></i> {news.createdAt && news.createdAt.toString().substring(0, 10)}
-                    </span>
-                    <> </>
-                    <span
-                      className={`badge bg-${news.category === "News" ? "success" : "success"}`}
-                    >
-                      {news.category}
-                    </span>
-
-                    <br></br>
-                    <h9 style={{ fontSize: "23px" }}>{news.header}</h9>
-
-                    <p10 class="text-muted "><br></br><br></br>
-                      {news.description}
-                    </p10> */}
 
                   </div>
+                  <div class="col">
+
+                    <div class="p-3" >
+                      <label className="p-2">
+                        <input
+                          type="radio"
+                          name="foodType"
+                          value="vegetarian"
+                          checked={isVegetarian}
+                          onChange={() => {
+                            updateIsVegetarian(true);
+                            updateIsNonVeg(false);
+                            updateIsBeverage(false);
+                          }}
+                        />
+                        <> </>
+                        <h9 style={{ fontSize: "20px" }}>Vegetarian</h9>
+                      </label>
+                      <label className="p-2">
+                        <input
+                          type="radio"
+                          name="foodType"
+                          value="nonVeg"
+                          checked={isNonVeg}
+                          onChange={() => {
+                            updateIsNonVeg(true);
+                            updateIsVegetarian(false);
+                            updateIsBeverage(false);
+                          }}
+                        />
+                        <> </>
+                        <h9 style={{ fontSize: "20px" }}>Non-Vegetarian</h9>
+                      </label>
+                      <label className="p-2">
+                        <input
+                          type="radio"
+                          name="foodType"
+                          value="beverage"
+                          checked={isBeverage}
+                          onChange={() => {
+                            updateIsBeverage(true);
+                            updateIsVegetarian(false);
+                            updateIsNonVeg(false);
+                          }}
+                        />
+                        <> </>
+                        <h9 style={{ fontSize: "20px" }}>Beverages</h9>
+                      </label>
+                    </div>
+                  </div>
+
                 </div>
-
-
-
               </div>
 
-
-
-
             </div>
+
+
+
+
+
+
+
+
+
+
+
             <div class="modal-footer">
-              <button type="button" class="btn " data-bs-target="#staticBackdrop2" data-bs-toggle="modal" data-bs-dismiss="modal">Edit <i class="fas fa-edit" style={{ "color": "white" }}></i></button>
+              <button onClick={() => updateforfood(foodId, updateforfood)} type="button" class="btn " >Update</button>
             </div>
 
           </div>

@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Pizza = require('../models/PizzaModel')
 
+//get all foods
 router.get("/getallpizzas", async (req, res) => {
 
     try {
@@ -28,5 +29,30 @@ router.get("/getcurrentfood/:id", async (req, res) => {
     }
 
 })
+
+//update foods
+router.put("/update/food/:id", async (req, res) => {
+    const foodId = req.params.id;
+    const { name, varients, prices, image, isBeverage, isVegetarian, isNonVeg, description } = req.body;
+  
+    try {
+      const updateFoods = {
+        name,
+        image,
+        isBeverage,
+        isVegetarian,
+        isNonVeg,
+        description,
+        varients,
+        prices,
+      };
+      await Pizza.findByIdAndUpdate(foodId, updateFoods);
+      res.send('Foods updated successfully!');
+    } catch (error) {
+      return res.status(400).json({ message: error });
+    }
+  });
+  
+  
 
 module.exports = router;

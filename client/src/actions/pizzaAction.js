@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import Swal from "sweetalert2";
 
 export const getAllPizzas = () => async dispatch => {
 
@@ -16,5 +16,61 @@ export const getAllPizzas = () => async dispatch => {
 
         dispatch({ type: 'GET_PIZZAS_FAILED', payload : error })
     }
+    
 
+}
+
+//Update Foods
+export const updateFoodsAction = (updatefoods, id) => async dispatch => {
+
+    dispatch({ type: 'UPDATE_FOODS_REQUEST' })
+
+    try {
+    
+        const response = await axios.put(`/api/pizzas/update/food/${id}`, updatefoods)
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1500,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
+        Toast.fire({
+            icon: 'success',
+            title: 'Foods updated successfully!'
+        })
+       
+        setTimeout(function () {
+            window.location.reload('/admin/addfoodcatalogue');
+        }, 1500);
+        console.log(response);
+        
+        dispatch({ type: 'UPDATE_FOODS_SUCCESS' })
+
+
+    } catch (error) {
+
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
+        Toast.fire({
+            icon: 'error',
+            title: 'Foods updated unsuccessfully!'
+        })
+        dispatch({ type: 'UPDATE_FOODS_FAILED', payload: error })
+    }
 }
