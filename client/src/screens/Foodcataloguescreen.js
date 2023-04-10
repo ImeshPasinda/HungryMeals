@@ -26,7 +26,6 @@ export default function Foodcataloguescreen() {
       //get all catalogues from database
       axios.get("/api/pizzas/getallpizzas").then((res) => {
         setCatalogues(res.data);
-        console.log(res.data);
         setFilteredCatalogues(res.data);
       }).catch((err) => {
         console.log(err.message);
@@ -44,8 +43,8 @@ export default function Foodcataloguescreen() {
     axios.get(`/api/pizzas/getcurrentfood/${foodId}`).then((res) => {
 
       setFoods(res.data);
-      foods = res.data
-      console.log(foods.name)
+      const foods = res.data
+      console.log(foods.prices[0].small)
 
     }).catch((error) => {
       console.log(error)
@@ -137,8 +136,6 @@ export default function Foodcataloguescreen() {
   }, [foods]);
 
   function updateforfood(foodId) {
-
-
     const updateFoods = {
       name,
       image,
@@ -146,18 +143,17 @@ export default function Foodcataloguescreen() {
       isVegetarian,
       isNonVeg,
       description,
-      varients,
+      varients: [
+        "small",
+        "medium",
+        "large"
+      ],
       prices,
     }
-
-
-    dispatch(updateFoodsAction(updateFoods, foodId))
-
-
-
-
-
+  
+    dispatch(updateFoodsAction(updateFoods, foodId));
   }
+  
 
   return (
     <div>
@@ -255,7 +251,7 @@ export default function Foodcataloguescreen() {
 
       {/* Model 1 - Preview */}
       <div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
           <div class="modal-content">
 
 
@@ -281,72 +277,67 @@ export default function Foodcataloguescreen() {
 
             <div class="modal-body">
 
-
-              <div class="container p-4">
+              <div class="container">
                 <div class="row">
-                  <div class="col">
-                    <div className='row justify-content center'>
-                      <div className="shadow p-3 m-1 bg-white" style={{ borderRadius: '15px', border: '1px solid black', width: '350px', textAlign: 'center' }}>
+                  <div class="col order-last">
 
 
-
-                        <div onClick={handleShow}>
-
-                          <h1>{foods.name}</h1>
-                          <img src={foods.image} className="img-fluid" style={{ height: '200px', width: '200px' }} />
-
+                    <div class="container text-center">
+                      <div class="row">
+                        <label style={{ display: 'block', marginBottom: '10px' }}><h9 style={{ fontSize: "15px", color: 'black' }}>Food Price List</h9></label>
+                        <div class="col">
+                          <div style={{ alignItems: 'center' }}>
+                            <span class="badge bg-secondary">Small</span>
+                            <input
+                              type="text"
+                              id="foodName"
+                              className="form-control"
+                              value={prices || foods.prices[0].small}
+                              onChange={(e) => { updatefoodPrices(e.target.value) }}
+                              style={{ fontFamily: 'Signika Negative ,sans-serif', color: "black", fontSize: "20px" }}
+                            />
+                          </div>
+                          <br></br>
                         </div>
-
-                        <div className="flex-container">
-
-                          <div className='w-100 m-1'>
-                            <p>Varients</p>
-                            <select className='form-control' value={varient} onChange={(e) => { setvarient(e.target.value) }}>
-                              {foods.varients && foods.varients.map(varient => {
-                                return <option value={varient}>{varient}</option>
-                              })}
-                            </select>
+                        <div class="col">
+                          <div style={{ alignItems: 'center' }}>
+                            <span class="badge bg-danger">Medium</span>
+                            <input
+                              type="text"
+                              id="foodName"
+                              className="form-control"
+                              value={prices || foods.prices[0].medium}
+                              onChange={(e) => { updatefoodPrices(e.target.value) }}
+                              style={{ fontFamily: 'Signika Negative ,sans-serif', color: "black", fontSize: "20px" }}
+                            />
                           </div>
-
-                          <div className='w-100 m-1'>
-                            <p>Quantity</p>
-                            <select className='form-control' value={quantity} onChange={(e) => { setquantity(e.target.value) }}>
-                              {Array(10).keys() && [...Array(10).keys()].map((x, i) => {
-                                return <option value={i + 1}>{i + 1}</option>
-                              })}
-                            </select>
-                          </div>
-
-
-
+                          <br></br>
                         </div>
-
-                        <div className="flex-container">
-
-                          <div className='m-1 w-100'>
-                            {foods.prices && foods.prices[0] && <h1 className='m-1'>Price: {foods.prices[0][varient] * quantity} LKR</h1>}
-
+                        <div class="col">
+                          <div style={{ alignItems: 'center' }}>
+                            <span class="badge bg-success">Large</span>
+                            <input
+                              type="text"
+                              id="foodName"
+                              className="form-control"
+                              value={prices || foods.prices[0].large}
+                              onChange={(e) => { updatefoodPrices(e.target.value) }}
+                              style={{ fontFamily: 'Signika Negative ,sans-serif', color: "black", fontSize: "20px" }}
+                            />
                           </div>
-
-                          <div className='m-1 w-100'>
-                            <button className="btn"  >ADD TO CART</button>
-                          </div>
-
                         </div>
-
-
-
-
-
-
                       </div>
                     </div>
 
 
+
+                    <br></br>
+                    <br></br>
                   </div>
                   <div class="col">
+                    <label><h9 style={{ fontSize: "15px", color: 'black' }}>Food Type</h9></label>
+                    <div class="p-1" >
 
-                    <div class="p-3" >
                       <label className="p-2">
                         <input
                           type="radio"
@@ -392,20 +383,136 @@ export default function Foodcataloguescreen() {
                         <> </>
                         <h9 style={{ fontSize: "20px" }}>Beverages</h9>
                       </label>
+                      <br></br>
+                      <br></br>
+
+                      <div className="form-group">
+                        <label htmlFor="foodName"><h9 style={{ fontSize: "15px", color: 'black' }}>Food Name</h9></label>
+                        <input
+                          type="text"
+                          id="foodName"
+                          className="form-control"
+                          value={name || foods.name}
+                          onChange={(e) => { updatefoodName(e.target.value) }}
+                          style={{ fontFamily: 'Mukta, calibri', color: "black", fontStyle: "italic", fontSize: "15px" }}
+                        />
+                      </div>
+                      <br></br>
+                      <div class="form-group">
+                        <label htmlFor="foodDescription" style={{ display: 'block', marginBottom: '10px' }}><h9 style={{ fontSize: "15px", color: 'black' }}>Food Description</h9></label>
+
+                        <textarea
+                          class="form-control"
+                          id="foodDescription"
+                          rows="15"
+                          placeholder='Enter Description'
+                          value={description || foods.description}
+                          onChange={(e) => { updatefoodDescription(e.target.value) }}
+                          style={{ fontFamily: 'Mukta, calibri', color: "#6c757d", fontStyle: "italic", fontSize: "15px" }}
+                        >
+
+                        </textarea>
+                      </div>
+
                     </div>
+
                   </div>
 
+                  <div class="col order-first">
+
+                    <div className='row justify-content center'>
+
+                      <div className="shadow p-3 m-1 bg-white" style={{ borderRadius: '15px', border: '1px solid black', width: '350px', textAlign: 'center' }}>
+
+
+
+                        <div onClick={handleShow}>
+
+                          <h1>{name || foods.name}</h1>
+                          <img src={image || foods.image} className="img-fluid" style={{ height: '200px', width: '200px' }} />
+
+                        </div>
+
+                        <div className="flex-container">
+
+                          <div className='w-100 m-1'>
+                            <p>Varients</p>
+                            <select className='form-control' value={varient} onChange={(e) => { setvarient(e.target.value) }}>
+                              {foods.varients && foods.varients.map(varient => {
+                                return <option value={varient}>{varient}</option>
+                              })}
+                            </select>
+                          </div>
+
+                          <div className='w-100 m-1'>
+                            <p>Quantity</p>
+                            <select className='form-control' value={quantity} onChange={(e) => { setquantity(e.target.value) }}>
+                              {Array(10).keys() && [...Array(10).keys()].map((x, i) => {
+                                return <option value={i + 1}>{i + 1}</option>
+                              })}
+                            </select>
+                          </div>
+
+
+
+
+                        </div>
+
+                        <div className="flex-container">
+
+                          <div className='m-1 w-100'>
+                            {foods.prices && foods.prices[0] && <h1 className='m-1'>Price: {foods.prices[0][varient] * quantity} LKR</h1>}
+
+                          </div>
+
+                          <div className='m-1 w-100'>
+                            <button className="btn"  >ADD TO CART</button>
+                          </div>
+
+                        </div>
+
+
+
+
+
+
+                      </div>
+
+                      <label htmlFor="foodImage" style={{ display: 'block', marginBottom: '10px' }}>
+                        <br></br>
+                        <h9 style={{ fontSize: '15px', color: 'black' }}>Food Image</h9>
+                      </label>
+                      <textarea
+                        class="form-control"
+                        id="foodImage"
+                        rows="3"
+                        placeholder='Enter image src'
+                        value={image || foods.image}
+                        onChange={(e) => { updatefoodImage(e.target.value) }}
+                        style={{
+                          display: 'block',
+                          width: '100%',
+                          padding: '10px',
+                          fontSize: '16px',
+                          fontFamily: 'Mukta, calibri',
+                          color: '#6c757d',
+                          fontStyle: 'italic'
+                        }}
+                      ></textarea>
+
+
+
+
+                    </div>
+                    <br></br>
+                  </div>
                 </div>
               </div>
 
+
+
+
             </div>
-
-
-
-
-
-
-
 
 
 
@@ -416,7 +523,7 @@ export default function Foodcataloguescreen() {
 
           </div>
         </div>
-      </div>
+      </div >
 
 
     </div >
