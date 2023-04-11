@@ -10,6 +10,7 @@ import { updateFoodsAction } from '../actions/pizzaAction';
 
 
 let foodId;
+let x;
 
 export default function Foodcataloguescreen() {
 
@@ -27,6 +28,7 @@ export default function Foodcataloguescreen() {
       axios.get("/api/pizzas/getallpizzas").then((res) => {
         setCatalogues(res.data);
         setFilteredCatalogues(res.data);
+
       }).catch((err) => {
         console.log(err.message);
       })
@@ -44,7 +46,7 @@ export default function Foodcataloguescreen() {
 
       setFoods(res.data);
       const foods = res.data
-      console.log(foods.prices[0].small)
+
 
     }).catch((error) => {
       console.log(error)
@@ -116,17 +118,25 @@ export default function Foodcataloguescreen() {
     dispatch(addToCart(catalogues, quantity, varient))
   }
 
-
+  // setInitialPrices({
+  //   small: 500,
+  //   medium: 222,
+  //   large: 522
+  // });
 
   //update news
+
+
+
   const [name, updatefoodName] = useState(foods.name);
   const [image, updatefoodImage] = useState(foods.image);
   const [description, updatefoodDescription] = useState(foods.description);
   const [varients, updatefoodVarients] = useState([]);
-  const [prices, updatefoodPrices] = useState([]);
+  const [prices, updatefoodPrices] = useState(foods.prices ? foods.prices[0] : { small: '', medium: '', large: '' });
   const [isBeverage, updateIsBeverage] = useState(false);
   const [isVegetarian, updateIsVegetarian] = useState(false);
   const [isNonVeg, updateIsNonVeg] = useState(false);
+
 
   useEffect(() => {
     // Check the value of the respective fields and update the state accordingly
@@ -135,7 +145,33 @@ export default function Foodcataloguescreen() {
     updateIsNonVeg(foods.isNonVeg);
   }, [foods]);
 
+
+
+  function updateFoodPrices(size, value) {
+    value = parseInt(value, 10) || 0; // use 0 if value is falsy
+    updatefoodPrices(prevPrices => ({
+      ...prevPrices,
+      [size]: value || foods.prices[0][size]
+    }));
+  }
+  
+  
+  
+  
+
+  // function updateFoodVarients(size, value) {
+  //   updatefoodVarients(prevVarients => {
+  //     const newVarients = [...prevVarients];
+  //     newVarients[size] = value !== '' ? value : foods.varients[size];
+  //     return newVarients;
+  //   });
+  // }
+
+
+
   function updateforfood(foodId) {
+
+
     const updateFoods = {
       name,
       image,
@@ -150,10 +186,10 @@ export default function Foodcataloguescreen() {
       ],
       prices,
     }
-  
+
     dispatch(updateFoodsAction(updateFoods, foodId));
   }
-  
+
 
   return (
     <div>
@@ -277,62 +313,119 @@ export default function Foodcataloguescreen() {
 
             <div class="modal-body">
 
-              <div class="container">
+              <div class="container p-4">
                 <div class="row">
                   <div class="col order-last">
 
 
-                    <div class="container text-center">
-                      <div class="row">
-                        <label style={{ display: 'block', marginBottom: '10px' }}><h9 style={{ fontSize: "15px", color: 'black' }}>Food Price List</h9></label>
-                        <div class="col">
-                          <div style={{ alignItems: 'center' }}>
-                            <span class="badge bg-secondary">Small</span>
-                            <input
-                              type="text"
-                              id="foodName"
-                              className="form-control"
-                              value={prices || foods.prices[0].small}
-                              onChange={(e) => { updatefoodPrices(e.target.value) }}
-                              style={{ fontFamily: 'Signika Negative ,sans-serif', color: "black", fontSize: "20px" }}
-                            />
+                    <div className="container text-center">
+                      {foods.prices && (
+                        <div className="row">
+
+                          <label style={{ display: 'block', marginBottom: '10px' }}>
+                            <h9 style={{ fontSize: "15px", color: 'black' }}>Food Price List</h9>
+                          </label>
+                          <div className="col">
+                            <div style={{ alignItems: 'center' }}>
+                              <span className="badge bg-secondary">Small</span>
+                              <input
+                                type="text"
+                                id="small"
+                                className="form-control"
+                                value={prices.small || foods.prices[0].small}
+                                onChange={(e) => { updateFoodPrices('small', e.target.value) }}
+                                style={{ fontFamily: 'Signika Negative, sans-serif', color: "black", fontSize: "20px" }}
+                              />
+                            </div>
+                            <br />
                           </div>
-                          <br></br>
-                        </div>
-                        <div class="col">
-                          <div style={{ alignItems: 'center' }}>
-                            <span class="badge bg-danger">Medium</span>
-                            <input
-                              type="text"
-                              id="foodName"
-                              className="form-control"
-                              value={prices || foods.prices[0].medium}
-                              onChange={(e) => { updatefoodPrices(e.target.value) }}
-                              style={{ fontFamily: 'Signika Negative ,sans-serif', color: "black", fontSize: "20px" }}
-                            />
+                          <div className="col">
+                            <div style={{ alignItems: 'center' }}>
+                              <span className="badge bg-danger">Medium</span>
+                              <input
+                                type="text"
+                                id="medium"
+                                className="form-control"
+                                value={prices.medium || foods.prices[0].medium}
+                                onChange={(e) => { updateFoodPrices('medium', e.target.value) }}
+                                style={{ fontFamily: 'Signika Negative, sans-serif', color: "black", fontSize: "20px" }}
+                              />
+                            </div>
+                            <br />
                           </div>
-                          <br></br>
-                        </div>
-                        <div class="col">
-                          <div style={{ alignItems: 'center' }}>
-                            <span class="badge bg-success">Large</span>
-                            <input
-                              type="text"
-                              id="foodName"
-                              className="form-control"
-                              value={prices || foods.prices[0].large}
-                              onChange={(e) => { updatefoodPrices(e.target.value) }}
-                              style={{ fontFamily: 'Signika Negative ,sans-serif', color: "black", fontSize: "20px" }}
-                            />
+                          <div className="col">
+                            <div style={{ alignItems: 'center' }}>
+                              <span className="badge bg-success">Large</span>
+                              <input
+                                type="text"
+                                id="large"
+                                className="form-control"
+                                value={prices.large || foods.prices[0].large}
+                                onChange={(e) => { updateFoodPrices('large', e.target.value) }}
+                                style={{ fontFamily: 'Signika Negative, sans-serif', color: "black", fontSize: "20px" }}
+                              />
+                            </div>
+
+                          </div>
+
+                        </div>)}
+
+                      {/* {foods.varients !== undefined && (
+                        <div className="row">
+                          <label style={{ display: 'block', marginBottom: '10px' }}>
+                            <h9 style={{ fontSize: "15px", color: 'black' }}>Food Varients List</h9>
+                          </label>
+                          <div className="col">
+                            <div style={{ alignItems: 'center' }}>
+                              <span className="badge bg-secondary">Varient 01</span>
+                              <input
+                                type="text"
+                                id="small"
+                                className="form-control"
+                                value={(varients && varients[0]) || foods.varients[0]}
+                                onChange={(e) => { updateFoodVarients('0', e.target.value) }}
+                                style={{ fontFamily: 'Signika Negative, sans-serif', color: "black", fontSize: "20px" }}
+                              />
+                            </div>
+                            <br />
+                          </div>
+                          <div className="col">
+                            <div style={{ alignItems: 'center' }}>
+                              <span className="badge bg-danger">Varient 02</span>
+                              <input
+                                type="text"
+                                id="medium"
+                                className="form-control"
+                                value={(varients && varients[1]) || foods.varients[1]}
+                                onChange={(e) => { updateFoodVarients('1', e.target.value) }}
+                                style={{ fontFamily: 'Signika Negative, sans-serif', color: "black", fontSize: "20px" }}
+                              />
+                            </div>
+                            <br />
+                          </div>
+                          <div className="col">
+                            <div style={{ alignItems: 'center' }}>
+                              <span className="badge bg-success">Varient 03</span>
+                              <input
+                                type="text"
+                                id="large"
+                                className="form-control"
+                                value={(varients && varients[2]) || foods.varients[2]}
+                                onChange={(e) => { updateFoodVarients('2', e.target.value) }}
+                                style={{ fontFamily: 'Signika Negative, sans-serif', color: "black", fontSize: "20px" }}
+                              />
+                            </div>
                           </div>
                         </div>
-                      </div>
+                      )} */}
+
                     </div>
 
 
 
                     <br></br>
                     <br></br>
+
                   </div>
                   <div class="col">
                     <label><h9 style={{ fontSize: "15px", color: 'black' }}>Food Type</h9></label>
