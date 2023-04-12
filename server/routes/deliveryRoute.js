@@ -94,6 +94,7 @@ module.exports = router;
 const express = require("express");
 const router = express.Router();
 const { Driver } = require("../models/deliveryModel")
+const Delivery = require("../models/deliveryModel");
 
 router.post("/login", async (req, res) => {
   const { email, Password } = req.body;
@@ -146,5 +147,42 @@ router.post("/addDriver", async (req, res) => {
     return res.status(400).json({ message: error });
   }
 });
+
+// Update driver by id
+router.put('/driver/:id', async (req, res) => {
+  try {
+    const driver = await Driver.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!driver) {
+      return res.status(404).send({ error: 'Driver not found' });
+    }
+    res.send(driver);
+  } catch (error) {
+    res.status(500).send({ error: error.message });
+  }
+});
+
+// DELETE a driver by their ID
+router.delete("/drivers/:id", async (req, res) => {
+  try {
+    const driver = await Driver.findById(req.params.id);
+
+    if (!driver) {
+      return res.status(404).json({ message: "Driver not found" });
+    }
+
+    // Check if the driver is assigned to any deliveries
+    const assignedDeliveries = await Delivery.find({ driver: req.params.id });
+    if (assignedDeliveries.length > 0) {
+      return res.status(400).json({ message: "Driver is assigned to a delivery and cannot be deleted" });
+    }
+
+    await Driver.findByIdAndDelete(req.params.id);
+    res.json({ message: "Driver deleted" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server Error" });
+  }
+});
+
 
 module.exports = router;
