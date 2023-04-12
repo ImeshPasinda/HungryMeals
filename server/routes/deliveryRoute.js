@@ -1,9 +1,10 @@
-const express = require("express");
+
+/*const express = require("express");
 const router = express.Router();
 const Driver = require("../models/deliveryModel")
 
-
-/*router.post("/login", async (req, res) => {
+//
+router.post("/login", async (req, res) => {
 
     const { RiderEmail, RiderPassword } = req.body
 
@@ -32,7 +33,7 @@ const Driver = require("../models/deliveryModel")
         return res.status(400).json({ message: 'Something went wrong' });
     }
 })
-*/
+//
 
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
@@ -63,27 +64,87 @@ router.post("/login", async (req, res) => {
 
 //register new Rider
 router.post("/addDriver", async (req, res) => {
+  const { riderName, riderEmail, riderPhone, riderPassword } = req.body;
 
-    const { riderName, riderEmail,riderPhone, riderPassword } = req.body
+  try {
+    const driverExist = await Driver.findOne({ riderEmail });
 
-    try {
+    if (driverExist) {
+      return res.status(400).json({ message: "Driver already exists" });
+    } else {
+      const newDriver = new Driver({
+        riderName,
+        riderEmail,
+        riderPhone,
+        riderPassword,
+      });
 
-        const riderExist = await Driver.findOne({ email })
-
-        if (riderExist) {
-
-            return res.status(400).json({ message: error });
-
-        } else {
-
-            const newRider = new Driver({ riderName, riderEmail,riderPhone, riderPassword })
-            newRider.save()
-            res.send('New Rider Registration Successful !!!')
-        }
-
-    } catch (error) {
-
-        return res.status(400).json({ message: error });
+      await newDriver.save();
+      res.status(201).json({ message: "New driver created" });
     }
+  } catch (error) {
+    return res.status(400).json({ message: error });
+  }
+});
 
-})
+
+module.exports = router;
+*/
+
+const express = require("express");
+const router = express.Router();
+const { Driver } = require("../models/deliveryModel")
+
+router.post("/login", async (req, res) => {
+  const { email, Password } = req.body;
+
+  try {
+    // Find a driver with the given email and password
+    const driver = await Driver.findOne({ email, Password });
+
+    if (driver) {
+      // Create a response object with the driver's name, email, and ID
+      const currentDriver = {
+        name: driver.Name,
+        email: driver.email,
+        _id: driver._id,
+      };
+
+      // Send the response object back to the client
+      res.send(currentDriver);
+    } else {
+      // If no driver was found, send an error message
+      res.status(401).json({ message: "Invalid email or password" });
+    }
+  } catch (error) {
+    // If an error occurred, send a generic error message
+    res.status(500).json({ message: "Something went wrong" });
+  }
+});
+
+//register new Driver
+router.post("/addDriver", async (req, res) => {
+  const { name, email, phone, Password } = req.body;
+
+  try {
+    const driverExist = await Driver.findOne({ email });
+
+    if (driverExist) {
+      return res.status(400).json({ message: "Driver already exists" });
+    } else {
+      const newDriver = new Driver({
+        Name: name,
+        email,
+        phone,
+        Password,
+      });
+
+      await newDriver.save();
+      res.status(201).json({ message: "New driver created" });
+    }
+  } catch (error) {
+    return res.status(400).json({ message: error });
+  }
+});
+
+module.exports = router;
