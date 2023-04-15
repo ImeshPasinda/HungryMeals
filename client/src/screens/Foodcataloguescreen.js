@@ -596,10 +596,6 @@ export default function Foodcataloguescreen() {
                               })}
                             </select>
                           </div>
-
-
-
-
                         </div>
 
                         <div className="flex-container">
@@ -618,7 +614,7 @@ export default function Foodcataloguescreen() {
                         <Modal show={show} onHide={handleClose}>
 
                           <Modal.Header closeButton>
-                            <Modal.Title><h9>{foods.name ||newName}</h9></Modal.Title>
+                            <Modal.Title><h9>{foods.name || newName}</h9></Modal.Title>
                           </Modal.Header>
 
                           <Modal.Body>
@@ -883,10 +879,10 @@ export default function Foodcataloguescreen() {
 
                           <div className='w-100 m-1'>
                             <p>Varients</p>
-                            <select className='form-control' value={newVarients} onChange={(e) => { setfoodVarients(e.target.value) }}>
-                              {foods.newVarients && foods.newVarients.map(varient => {
-                                return <option value={newVarients}>{newVarients}</option>
-                              })}
+                            <select className='form-control' value={varient} onChange={(e) => { setvarient(e.target.value) }}>
+                              <option value='small'>small</option>
+                              <option value='medium'>medium</option>
+                              <option value='large'>large</option>
                             </select>
                           </div>
 
@@ -906,10 +902,12 @@ export default function Foodcataloguescreen() {
 
                         <div className="flex-container">
 
-                          <div className='m-1 w-100'>
-                            {foods.newPrices && foods.newPrices[0] && <h1 className='m-1'>Price: {foods.newPrices[0][varient] * quantity} LKR</h1>}
+                        <div className='m-1 w-100'>
+  {foods.newPrices && foods.newPrices[0] &&
+    <h1 className='m-1'>Price: {foods.newPrices[0][varient] * quantity} LKR</h1>
+  }
+</div>
 
-                          </div>
 
                           <div className='m-1 w-100'>
                             <button className="btn"  >ADD TO CART</button>
