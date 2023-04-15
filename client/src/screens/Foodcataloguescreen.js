@@ -4,9 +4,8 @@ import DataTable from "react-data-table-component";
 import Swal from 'sweetalert2';
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteOrderAction } from '../actions/orderActions';
 import { addToCart } from "../actions/cartAction";
-import { updateFoodsAction } from '../actions/pizzaAction';
+import { updateFoodsAction ,addFoodsAction } from '../actions/pizzaAction';
 
 
 let foodId;
@@ -118,20 +117,14 @@ export default function Foodcataloguescreen() {
     dispatch(addToCart(catalogues, quantity, varient))
   }
 
-  // setInitialPrices({
-  //   small: 500,
-  //   medium: 222,
-  //   large: 522
-  // });
-
-  //update news
 
 
+  //update foods
 
   const [name, updatefoodName] = useState(foods.name);
   const [image, updatefoodImage] = useState(foods.image);
   const [description, updatefoodDescription] = useState(foods.description);
-  const [varients, updatefoodVarients] = useState([]);
+  // const [varients, updatefoodVarients] = useState([]);
   const [prices, updatefoodPrices] = useState(foods.prices ? foods.prices[0] : { small: '', medium: '', large: '' });
   const [isBeverage, updateIsBeverage] = useState(false);
   const [isVegetarian, updateIsVegetarian] = useState(false);
@@ -189,6 +182,57 @@ export default function Foodcataloguescreen() {
 
     dispatch(updateFoodsAction(updateFoods, foodId));
   }
+
+
+
+    //add new foods
+
+    const [newName, setfoodName] = useState('');
+    const [newImage, setfoodImage] = useState('');
+    const [newDescription, setfoodDescription] = useState('');
+    const [newVarients, setfoodVarients] = useState([]);
+    const [newPrices, setfoodPrices] = useState(foods.prices ? foods.prices[0] : { small: '', medium: '', large: '' });
+    const [newIsBeverage, setIsBeverage] = useState(false);
+    const [newIsVegetarian, setIsVegetarian] = useState(false);
+    const [newIsNonVeg, setIsNonVeg] = useState(false);
+  
+  
+
+  
+    function setFoodPrices(size, value) {
+      value = parseInt(value, 10) || 0; // use 0 if value is falsy
+      setfoodPrices(prevPrices => ({
+        ...prevPrices,
+        [size]: value || foods.newPrices[0][size]
+      }));
+    }
+    
+    
+    
+
+  
+    function addnewfood() {
+  
+  
+      const addFoods = {
+        newName, 
+        newVarients: [
+          "small",
+          "medium",
+          "large"
+        ], 
+        newPrices, 
+        newImage, 
+        newIsBeverage, 
+        newIsVegetarian, 
+        newIsNonVeg, 
+        newDescription
+      
+        
+      }
+  
+      dispatch(addFoodsAction(addFoods));
+    }
 
 
   return (
@@ -277,6 +321,13 @@ export default function Foodcataloguescreen() {
             }
           />
 
+          <br />
+                    <br />
+                    <div className='modal-footer'>
+                        <button class="btn" data-bs-target="#staticBackdrop2" data-bs-toggle="modal" data-bs-dismiss="modal"><i class="fa-solid fa-plus fa-beat" style={{ "color": "white" }}></i> Add New Foods</button>
+                        <div className='p-1'><button class="btn" data-bs-target="#" data-bs-toggle="modal" data-bs-dismiss="modal"><i style={{ fontSize: '15px', color: 'white' }} class="fa fa-file" aria-hidden="true"></i> Generate Newsfeed Report</button></div>
+                    </div>
+
 
 
 
@@ -285,7 +336,7 @@ export default function Foodcataloguescreen() {
       </div>
 
 
-      {/* Model 1 - Preview */}
+      {/* Model 1 - Preview & Edit Foods */}
       <div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-xl">
           <div class="modal-content">
@@ -617,6 +668,292 @@ export default function Foodcataloguescreen() {
           </div>
         </div>
       </div >
+
+       {/* Model 1 - Add Foods */}
+       <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+          <div class="modal-content">
+
+
+
+            <div class="modal-header">
+
+
+              <h5 class="modal-title" id="exampleModalToggleLabel">
+                <h20>Add New Foods</h20>
+
+
+              </h5>
+
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+
+
+            </div>
+
+
+
+
+
+            <div class="modal-body">
+
+              <div class="container p-4">
+                <div class="row">
+                  <div class="col order-last">
+
+
+                    <div className="container text-center">
+                     
+                        <div className="row">
+
+                          <label style={{ display: 'block', marginBottom: '10px' }}>
+                            <h9 style={{ fontSize: "15px", color: 'black' }}>Food Price List</h9>
+                          </label>
+                          <div className="col">
+                            <div style={{ alignItems: 'center' }}>
+                              <span className="badge bg-secondary">Small</span>
+                              <input
+                                type="text"
+                                id="small"
+                                className="form-control"
+                                value={newPrices.small }
+                                onChange={(e) => { setFoodPrices('small', e.target.value) }}
+                                style={{ fontFamily: 'Signika Negative, sans-serif', color: "black", fontSize: "20px" }}
+                              />
+                            </div>
+                            <br />
+                          </div>
+                          <div className="col">
+                            <div style={{ alignItems: 'center' }}>
+                              <span className="badge bg-danger">Medium</span>
+                              <input
+                                type="text"
+                                id="medium"
+                                className="form-control"
+                                value={newPrices.medium }
+                                onChange={(e) => { setFoodPrices('medium', e.target.value) }}
+                                style={{ fontFamily: 'Signika Negative, sans-serif', color: "black", fontSize: "20px" }}
+                              />
+                            </div>
+                            <br />
+                          </div>
+                          <div className="col">
+                            <div style={{ alignItems: 'center' }}>
+                              <span className="badge bg-success">Large</span>
+                              <input
+                                type="text"
+                                id="large"
+                                className="form-control"
+                                value={newPrices.large }
+                                onChange={(e) => { setFoodPrices('large', e.target.value) }}
+                                style={{ fontFamily: 'Signika Negative, sans-serif', color: "black", fontSize: "20px" }}
+                              />
+                            </div>
+
+                          </div>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <br></br>
+                    <br></br>
+
+                  </div>
+                  <div class="col">
+                    <label><h9 style={{ fontSize: "15px", color: 'black' }}>Food Type</h9></label>
+                    <div class="p-1" >
+
+                      <label className="p-2">
+                        <input
+                          type="radio"
+                          name="foodType"
+                          value="vegetarian"
+                          checked={newIsVegetarian}
+                          onChange={() => {
+                            setIsVegetarian(true);
+                            setIsNonVeg(false);
+                            setIsBeverage(false);
+                          }}
+                        />
+                        <> </>
+                        <h9 style={{ fontSize: "20px" }}>Vegetarian</h9>
+                      </label>
+                      <label className="p-2">
+                        <input
+                          type="radio"
+                          name="foodType"
+                          value="nonVeg"
+                          checked={newIsNonVeg}
+                          onChange={() => {
+                            setIsNonVeg(true);
+                            setIsVegetarian(false);
+                            setIsBeverage(false);
+                          }}
+                        />
+                        <> </>
+                        <h9 style={{ fontSize: "20px" }}>Non-Vegetarian</h9>
+                      </label>
+                      <label className="p-2">
+                        <input
+                          type="radio"
+                          name="foodType"
+                          value="beverage"
+                          checked={newIsBeverage}
+                          onChange={() => {
+                            setIsBeverage(true);
+                            setIsVegetarian(false);
+                            setIsNonVeg(false);
+                          }}
+                        />
+                        <> </>
+                        <h9 style={{ fontSize: "20px" }}>Beverages</h9>
+                      </label>
+                      <br></br>
+                      <br></br>
+
+                      <div className="form-group">
+                        <label htmlFor="foodName"><h9 style={{ fontSize: "15px", color: 'black' }}>Food Name</h9></label>
+                        <input
+                          type="text"
+                          id="foodName"
+                          className="form-control"
+                          value={newName}
+                          onChange={(e) => { setfoodName(e.target.value) }}
+                          style={{ fontFamily: 'Mukta, calibri', color: "black", fontStyle: "italic", fontSize: "15px" }}
+                        />
+                      </div>
+                      <br></br>
+                      <div class="form-group">
+                        <label htmlFor="foodDescription" style={{ display: 'block', marginBottom: '10px' }}><h9 style={{ fontSize: "15px", color: 'black' }}>Food Description</h9></label>
+
+                        <textarea
+                          class="form-control"
+                          id="foodDescription"
+                          rows="15"
+                          placeholder='Enter Description'
+                          value={newDescription}
+                          onChange={(e) => { setfoodDescription(e.target.value) }}
+                          style={{ fontFamily: 'Mukta, calibri', color: "#6c757d", fontStyle: "italic", fontSize: "15px" }}
+                        >
+
+                        </textarea>
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                  <div class="col order-first">
+
+                    <div className='row justify-content center'>
+
+                      <div className="shadow p-3 m-1 bg-white" style={{ borderRadius: '15px', border: '1px solid black', width: '350px', textAlign: 'center' }}>
+
+
+
+                        <div onClick={handleShow}>
+
+                          <h1>{newName || foods.newName}</h1>
+                          <img src={newImage || foods.newImage} className="img-fluid" style={{ height: '200px', width: '200px' }} />
+
+                        </div>
+
+                        <div className="flex-container">
+
+                          <div className='w-100 m-1'>
+                            <p>Varients</p>
+                            <select className='form-control' value={newVarients} onChange={(e) => { setfoodVarients(e.target.value) }}>
+                              {foods.newVarients && foods.newVarients.map(varient => {
+                                return <option value={newVarients}>{newVarients}</option>
+                              })}
+                            </select>
+                          </div>
+
+                          <div className='w-100 m-1'>
+                            <p>Quantity</p>
+                            <select className='form-control' value={quantity} onChange={(e) => { setquantity(e.target.value) }}>
+                              {Array(10).keys() && [...Array(10).keys()].map((x, i) => {
+                                return <option value={i + 1}>{i + 1}</option>
+                              })}
+                            </select>
+                          </div>
+
+
+
+
+                        </div>
+
+                        <div className="flex-container">
+
+                          <div className='m-1 w-100'>
+                            {foods.newPrices && foods.newPrices[0] && <h1 className='m-1'>Price: {foods.newPrices[0][varient] * quantity} LKR</h1>}
+
+                          </div>
+
+                          <div className='m-1 w-100'>
+                            <button className="btn"  >ADD TO CART</button>
+                          </div>
+
+                        </div>
+
+
+
+
+
+
+                      </div>
+
+                      <label htmlFor="foodImage" style={{ display: 'block', marginBottom: '10px' }}>
+                        <br></br>
+                        <h9 style={{ fontSize: '15px', color: 'black' }}>Food Image</h9>
+                      </label>
+                      <textarea
+                        class="form-control"
+                        id="foodImage"
+                        rows="3"
+                        placeholder='Enter image src'
+                        value={newImage || foods.newImage}
+                        onChange={(e) => { setfoodImage(e.target.value) }}
+                        style={{
+                          display: 'block',
+                          width: '100%',
+                          padding: '10px',
+                          fontSize: '16px',
+                          fontFamily: 'Mukta, calibri',
+                          color: '#6c757d',
+                          fontStyle: 'italic'
+                        }}
+                      ></textarea>
+
+
+
+
+                    </div>
+                    <br></br>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+            </div>
+
+
+
+
+            <div class="modal-footer">
+              <button onClick={() => addnewfood( addnewfood)} type="button" class="btn " >Update</button>
+            </div>
+
+          </div>
+        </div>
+      </div >
+
 
 
     </div >

@@ -1,22 +1,23 @@
 const mongoose = require("mongoose");
 
 const pizzaSchema = mongoose.Schema({
-
-    name: { type: String, require },
-    varients: [],
-    prices: [],
-    image: { type: String, require },
-    isBeverage: { type: Boolean, require, default: false },
-    isVegetarian: { type: Boolean, require, default: false },
-    isNonVeg: { type: Boolean, require, default: false },
-    description: { type: String, require }
-
+    name: { type: String, required: true },
+    varients: [String],
+    prices: [
+        {
+            size: String,
+            price: Number,
+        },
+    ],
+    image: { type: String, required: true },
+    isBeverage: { type: Boolean, default: false },
+    isVegetarian: { type: Boolean, default: false },
+    isNonVeg: { type: Boolean, default: false },
+    description: { type: String },
 }, {
-
     timestamps: true,
+});
 
-})
+const Pizza = mongoose.model("Pizza", pizzaSchema);
 
-const pizzaModel = mongoose.model('pizzas', pizzaSchema)
-
-module.exports = pizzaModel
+module.exports = Pizza;

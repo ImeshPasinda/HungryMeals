@@ -2,6 +2,31 @@ const express = require("express");
 const router = express.Router();
 const Pizza = require('../models/PizzaModel')
 
+
+//add new foods
+router.post("/add/food", async (req, res) => {
+  const { newName, newVarients, newPrices, newImage, newIsBeverage, newIsVegetarian, newIsNonVeg, newDescription } = req.body;
+
+  try {
+      const foods = new Pizza({
+        name : newName,
+        image : newVarients,
+        isBeverage : newPrices,
+        isVegetarian : newImage,
+        isNonVeg : newIsBeverage,
+        description : newIsVegetarian,
+        varients : newIsNonVeg,
+        prices : newDescription,
+      });
+
+      await foods.save();
+      res.send('Food added successfully!');
+  } catch (error) {
+      return res.status(400).json({ message: error });
+  }
+});
+
+
 //get all foods
 router.get("/getallpizzas", async (req, res) => {
 
