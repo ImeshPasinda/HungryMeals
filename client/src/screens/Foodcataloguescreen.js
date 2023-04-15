@@ -1,11 +1,11 @@
 import React from 'react';
 import axios from 'axios';
 import DataTable from "react-data-table-component";
-import Swal from 'sweetalert2';
+import { Modal } from 'react-bootstrap';
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { addToCart } from "../actions/cartAction";
-import { updateFoodsAction ,addFoodsAction } from '../actions/pizzaAction';
+import { updateFoodsAction, addFoodsAction } from '../actions/pizzaAction';
 
 
 let foodId;
@@ -147,10 +147,10 @@ export default function Foodcataloguescreen() {
       [size]: value || foods.prices[0][size]
     }));
   }
-  
-  
-  
-  
+
+
+
+
 
   // function updateFoodVarients(size, value) {
   //   updatefoodVarients(prevVarients => {
@@ -185,54 +185,54 @@ export default function Foodcataloguescreen() {
 
 
 
-    //add new foods
+  //add new foods
 
-    const [newName, setfoodName] = useState('');
-    const [newImage, setfoodImage] = useState('');
-    const [newDescription, setfoodDescription] = useState('');
-    const [newVarients, setfoodVarients] = useState([]);
-    const [newPrices, setfoodPrices] = useState(foods.prices ? foods.prices[0] : { small: '', medium: '', large: '' });
-    const [newIsBeverage, setIsBeverage] = useState(false);
-    const [newIsVegetarian, setIsVegetarian] = useState(false);
-    const [newIsNonVeg, setIsNonVeg] = useState(false);
-  
-  
+  const [newName, setfoodName] = useState('');
+  const [newImage, setfoodImage] = useState('');
+  const [newDescription, setfoodDescription] = useState('');
+  const [newVarients, setfoodVarients] = useState([]);
+  const [newPrices, setfoodPrices] = useState(foods.prices ? foods.prices[0] : { small: '', medium: '', large: '' });
+  const [newIsBeverage, setIsBeverage] = useState(false);
+  const [newIsVegetarian, setIsVegetarian] = useState(false);
+  const [newIsNonVeg, setIsNonVeg] = useState(false);
 
-  
-    function setFoodPrices(size, value) {
-      value = parseInt(value, 10) || 0; // use 0 if value is falsy
-      setfoodPrices(prevPrices => ({
-        ...prevPrices,
-        [size]: value || foods.newPrices[0][size]
-      }));
+
+
+
+  function setFoodPrices(size, value) {
+    value = parseInt(value, 10) || 0; // use 0 if value is falsy
+    setfoodPrices(prevPrices => ({
+      ...prevPrices,
+      [size]: value || foods.newPrices[0][size]
+    }));
+  }
+
+
+
+
+
+  function addnewfood() {
+
+
+    const addFoods = {
+      newName,
+      newVarients: [
+        "small",
+        "medium",
+        "large"
+      ],
+      newPrices,
+      newImage,
+      newIsBeverage,
+      newIsVegetarian,
+      newIsNonVeg,
+      newDescription
+
+
     }
-    
-    
-    
 
-  
-    function addnewfood() {
-  
-  
-      const addFoods = {
-        newName, 
-        newVarients: [
-          "small",
-          "medium",
-          "large"
-        ], 
-        newPrices, 
-        newImage, 
-        newIsBeverage, 
-        newIsVegetarian, 
-        newIsNonVeg, 
-        newDescription
-      
-        
-      }
-  
-      dispatch(addFoodsAction(addFoods));
-    }
+    dispatch(addFoodsAction(addFoods));
+  }
 
 
   return (
@@ -322,11 +322,11 @@ export default function Foodcataloguescreen() {
           />
 
           <br />
-                    <br />
-                    <div className='modal-footer'>
-                        <button class="btn" data-bs-target="#staticBackdrop2" data-bs-toggle="modal" data-bs-dismiss="modal"><i class="fa-solid fa-plus fa-beat" style={{ "color": "white" }}></i> Add New Foods</button>
-                        <div className='p-1'><button class="btn" data-bs-target="#" data-bs-toggle="modal" data-bs-dismiss="modal"><i style={{ fontSize: '15px', color: 'white' }} class="fa fa-file" aria-hidden="true"></i> Generate Newsfeed Report</button></div>
-                    </div>
+          <br />
+          <div className='modal-footer'>
+            <button class="btn" data-bs-target="#staticBackdrop2" data-bs-toggle="modal" data-bs-dismiss="modal"><i class="fa-solid fa-plus fa-beat" style={{ "color": "white" }}></i> Add New Foods</button>
+            <div className='p-1'><button class="btn" data-bs-target="#" data-bs-toggle="modal" data-bs-dismiss="modal"><i style={{ fontSize: '15px', color: 'white' }} class="fa fa-file" aria-hidden="true"></i> Generate Newsfeed Report</button></div>
+          </div>
 
 
 
@@ -615,6 +615,23 @@ export default function Foodcataloguescreen() {
 
                         </div>
 
+                        <Modal show={show} onHide={handleClose}>
+
+                          <Modal.Header closeButton>
+                            <Modal.Title><h9>{foods.name ||newName}</h9></Modal.Title>
+                          </Modal.Header>
+
+                          <Modal.Body>
+                            <img src={foods.image || newImage} className="img-fluid" style={{ height: '470px', width: '500px', marginBottom: '20px' }} />
+                            <p10 style={{ marginTop: '20px' }}>{foods.description || newDescription}</p10>
+                          </Modal.Body>
+
+
+                          <Modal.Footer>
+                            <button className="btn" onClick={handleClose}>CLOSE</button>
+                          </Modal.Footer>
+                        </Modal>
+
 
 
 
@@ -669,8 +686,8 @@ export default function Foodcataloguescreen() {
         </div>
       </div >
 
-       {/* Model 1 - Add Foods */}
-       <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      {/* Model 1 - Add Foods */}
+      <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-xl">
           <div class="modal-content">
 
@@ -703,56 +720,56 @@ export default function Foodcataloguescreen() {
 
 
                     <div className="container text-center">
-                     
-                        <div className="row">
 
-                          <label style={{ display: 'block', marginBottom: '10px' }}>
-                            <h9 style={{ fontSize: "15px", color: 'black' }}>Food Price List</h9>
-                          </label>
-                          <div className="col">
-                            <div style={{ alignItems: 'center' }}>
-                              <span className="badge bg-secondary">Small</span>
-                              <input
-                                type="text"
-                                id="small"
-                                className="form-control"
-                                value={newPrices.small }
-                                onChange={(e) => { setFoodPrices('small', e.target.value) }}
-                                style={{ fontFamily: 'Signika Negative, sans-serif', color: "black", fontSize: "20px" }}
-                              />
-                            </div>
-                            <br />
-                          </div>
-                          <div className="col">
-                            <div style={{ alignItems: 'center' }}>
-                              <span className="badge bg-danger">Medium</span>
-                              <input
-                                type="text"
-                                id="medium"
-                                className="form-control"
-                                value={newPrices.medium }
-                                onChange={(e) => { setFoodPrices('medium', e.target.value) }}
-                                style={{ fontFamily: 'Signika Negative, sans-serif', color: "black", fontSize: "20px" }}
-                              />
-                            </div>
-                            <br />
-                          </div>
-                          <div className="col">
-                            <div style={{ alignItems: 'center' }}>
-                              <span className="badge bg-success">Large</span>
-                              <input
-                                type="text"
-                                id="large"
-                                className="form-control"
-                                value={newPrices.large }
-                                onChange={(e) => { setFoodPrices('large', e.target.value) }}
-                                style={{ fontFamily: 'Signika Negative, sans-serif', color: "black", fontSize: "20px" }}
-                              />
-                            </div>
+                      <div className="row">
 
+                        <label style={{ display: 'block', marginBottom: '10px' }}>
+                          <h9 style={{ fontSize: "15px", color: 'black' }}>Food Price List</h9>
+                        </label>
+                        <div className="col">
+                          <div style={{ alignItems: 'center' }}>
+                            <span className="badge bg-secondary">Small</span>
+                            <input
+                              type="text"
+                              id="small"
+                              className="form-control"
+                              value={newPrices.small}
+                              onChange={(e) => { setFoodPrices('small', e.target.value) }}
+                              style={{ fontFamily: 'Signika Negative, sans-serif', color: "black", fontSize: "20px" }}
+                            />
+                          </div>
+                          <br />
+                        </div>
+                        <div className="col">
+                          <div style={{ alignItems: 'center' }}>
+                            <span className="badge bg-danger">Medium</span>
+                            <input
+                              type="text"
+                              id="medium"
+                              className="form-control"
+                              value={newPrices.medium}
+                              onChange={(e) => { setFoodPrices('medium', e.target.value) }}
+                              style={{ fontFamily: 'Signika Negative, sans-serif', color: "black", fontSize: "20px" }}
+                            />
+                          </div>
+                          <br />
+                        </div>
+                        <div className="col">
+                          <div style={{ alignItems: 'center' }}>
+                            <span className="badge bg-success">Large</span>
+                            <input
+                              type="text"
+                              id="large"
+                              className="form-control"
+                              value={newPrices.large}
+                              onChange={(e) => { setFoodPrices('large', e.target.value) }}
+                              style={{ fontFamily: 'Signika Negative, sans-serif', color: "black", fontSize: "20px" }}
+                            />
                           </div>
 
                         </div>
+
+                      </div>
 
 
                     </div>
@@ -947,7 +964,7 @@ export default function Foodcataloguescreen() {
 
 
             <div class="modal-footer">
-              <button onClick={() => addnewfood( addnewfood)} type="button" class="btn " >Update</button>
+              <button onClick={() => addnewfood(addnewfood)} type="button" class="btn " >Update</button>
             </div>
 
           </div>

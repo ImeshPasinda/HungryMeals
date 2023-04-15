@@ -22,9 +22,9 @@ export default function Pizza({ pizza }) {
 
 
     return (
-        
-       
-        <div className="shadow-lg p-3 m-4 bg-white" style={{borderRadius: '15px'}}>
+
+
+        <div className="shadow-lg p-3 m-4 bg-white" style={{ borderRadius: '15px' }}>
 
 
             <div onClick={handleShow}>
@@ -73,13 +73,14 @@ export default function Pizza({ pizza }) {
             <Modal show={show} onHide={handleClose}>
 
                 <Modal.Header closeButton>
-                    <Modal.Title>{pizza.name}</Modal.Title>
+                    <Modal.Title><h9>{pizza.name}</h9></Modal.Title>
                 </Modal.Header>
 
                 <Modal.Body>
-                    <img src={pizza.image} className="img-fluid" style={{ height: '470px' ,width: '500px' }} />
-                    <p>{pizza.description}</p>
+                    <img src={pizza.image} className="img-fluid" style={{ height: '470px', width: '500px', marginBottom: '20px' }} />
+                    <p10 style={{ marginTop: '20px' }}>{pizza.description}</p10>
                 </Modal.Body>
+
 
                 <Modal.Footer>
                     <button className="btn" onClick={handleClose}>CLOSE</button>
@@ -91,7 +92,7 @@ export default function Pizza({ pizza }) {
 
 
         </div>
-        
+
 
     )
 }

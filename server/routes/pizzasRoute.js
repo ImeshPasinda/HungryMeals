@@ -10,13 +10,13 @@ router.post("/add/food", async (req, res) => {
   try {
       const foods = new Pizza({
         name : newName,
-        image : newVarients,
-        isBeverage : newPrices,
-        isVegetarian : newImage,
-        isNonVeg : newIsBeverage,
-        description : newIsVegetarian,
-        varients : newIsNonVeg,
-        prices : newDescription,
+        image : newImage,
+        isBeverage : newIsBeverage,
+        isVegetarian : newIsVegetarian,
+        isNonVeg : newIsNonVeg,
+        description : newDescription,
+        varients : newVarients,
+        prices : newPrices,
       });
 
       await foods.save();
