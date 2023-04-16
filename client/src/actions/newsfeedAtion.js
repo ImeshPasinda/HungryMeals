@@ -130,9 +130,9 @@ export const updateNewsAction = (updatenews, id) => async dispatch => {
 
 
 //Delete News
-export const deleteNewskAction = (newsId) => async dispatch => {
+export const deleteNewsAction = (newsId) => async dispatch => {
 
-    dispatch({ type: 'FEEDBACK_DELETE_REQUEST' })
+    dispatch({ type: 'NEWS_DELETE_REQUEST' })
 
 
     try {

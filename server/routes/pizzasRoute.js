@@ -77,6 +77,25 @@ router.put("/update/food/:id", async (req, res) => {
       return res.status(400).json({ message: error });
     }
   });
+
+
+  //Delete foods
+router.delete("/delete/food/:id", async (req, res) => {
+
+  let foodId = req.params.id;
+
+  try {
+      await Pizza.findByIdAndDelete(foodId)
+
+      res.send('Food Deleted Successfully')
+  }
+
+  catch (error) {
+
+
+      return res.status(400).json({ message: error });
+  }
+});
   
   
 

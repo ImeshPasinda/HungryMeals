@@ -5,7 +5,7 @@ import { Modal } from 'react-bootstrap';
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { addToCart } from "../actions/cartAction";
-import { updateFoodsAction, addFoodsAction } from '../actions/pizzaAction';
+import { updateFoodsAction, addFoodsAction, deleteFoodsAction } from '../actions/pizzaAction';
 
 
 let foodId;
@@ -95,7 +95,7 @@ export default function Foodcataloguescreen() {
     },
     {
       name: "Delete",
-      cell: row => <button type="button" class="btn ">Delete <i class="fas fa-trash-alt"></i></button>
+      cell: row => <button onClick={() => { deleteFoods(row._id) }} type="button" class="btn ">Delete <i class="fas fa-trash-alt"></i></button>
 
     }
   ];
@@ -203,9 +203,10 @@ export default function Foodcataloguescreen() {
     value = parseInt(value, 10) || 0; // use 0 if value is falsy
     setfoodPrices(prevPrices => ({
       ...prevPrices,
-      [size]: value || foods.newPrices[0][size]
+      [size]: value || prevPrices[size]
     }));
   }
+  
 
 
 
@@ -232,6 +233,13 @@ export default function Foodcataloguescreen() {
     }
 
     dispatch(addFoodsAction(addFoods));
+  }
+
+  //delete foods
+  function deleteFoods(foodId) {
+
+    dispatch(deleteFoodsAction(foodId));
+
   }
 
 
@@ -833,6 +841,7 @@ export default function Foodcataloguescreen() {
                         <input
                           type="text"
                           id="foodName"
+                          placeholder='Enter Food Name'
                           className="form-control"
                           value={newName}
                           onChange={(e) => { setfoodName(e.target.value) }}
@@ -902,11 +911,11 @@ export default function Foodcataloguescreen() {
 
                         <div className="flex-container">
 
-                        <div className='m-1 w-100'>
-  {foods.newPrices && foods.newPrices[0] &&
-    <h1 className='m-1'>Price: {foods.newPrices[0][varient] * quantity} LKR</h1>
-  }
-</div>
+                          <div className='m-1 w-100'>
+                            {/* {foods.newPrices && foods.newPrices[0] &&
+                              <h1 className='m-1'>Price: {foods.newPrices[0][varient] * quantity} LKR</h1>
+                            } */}
+                          </div>
 
 
                           <div className='m-1 w-100'>

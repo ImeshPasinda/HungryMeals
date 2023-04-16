@@ -98,7 +98,7 @@ export default function Newsfeedscreen() {
                         News & Events <i class="fa fa-pepper-hot" aria-hidden="true"></i>
                         {/* <h1>Current Time: {time}</h1> */}
                     </h10>
-                    <p style={{ fontSize: "10px", color: "white" }}>Discover the latest food delivery news and events</p>
+                    <p style={{ fontSize: "12px", color: "white", fontFamily: "Mukta, calibri", fontStyle: "italic" }}>Discover the latest food delivery news and events</p>
                     <br />
                 </div>
             </div>

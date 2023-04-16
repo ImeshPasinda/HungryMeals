@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import Swal from 'sweetalert2';
 import truncate from 'lodash/truncate';
-import { createNewsAction, deleteNewskAction, updateNewsAction } from '../actions/newsfeedAtion';
+import { createNewsAction, deleteNewsAction, updateNewsAction } from '../actions/newsfeedAtion';
 
 
 
@@ -198,7 +198,7 @@ export default function Newsfeedmanagement() {
     //delete news
     function deleteNews(newsId) {
 
-        dispatch(deleteNewskAction(newsId));
+        dispatch(deleteNewsAction(newsId));
 
     }
 

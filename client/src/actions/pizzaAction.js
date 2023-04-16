@@ -131,3 +131,65 @@ export const updateFoodsAction = (updatefoods, id) => async dispatch => {
         dispatch({ type: 'UPDATE_FOODS_FAILED', payload: error })
     }
 }
+
+//Delete Foods
+export const deleteFoodsAction = (foodId) => async dispatch => {
+
+    dispatch({ type: 'FOOD_DELETE_REQUEST' })
+
+
+    try {
+        const response = await axios.delete(`/api/pizzas/delete/food/${foodId}`)
+
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1500,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
+        Toast.fire({
+            icon: 'success',
+            title: 'Food deleted successfully!'
+        })
+
+        setTimeout(function () {
+            window.location.reload('/admin/newsfeedmanagement');
+        }, 1500);
+
+
+
+        console.log(response);
+        dispatch({ type: 'DELETE_FOOD_SUCCESS' })
+
+
+
+
+    } catch (error) {
+
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1500,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
+        Toast.fire({
+            icon: 'error',
+            title: 'Unsuccessful Operation'
+        })
+
+
+        dispatch({ type: 'DELETE_OPERATION_FAILED', payload: error })
+    }
+}
