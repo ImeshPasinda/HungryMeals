@@ -9,11 +9,40 @@ export const UserFeedBack = (newFeedback) => async dispatch => {
     try {
         const response = await axios.post('/api/feedback/post',newFeedback )
        
+        // console.log(response);
+        // dispatch({ type: 'USER_FEEDBACK_SUCCESS' })
+        // setTimeout(function(){
+        //     window.location.reload();
+        //  }, 1500);
+
+        
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3500,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
+        
+
+        Toast.fire({
+            icon: 'success',
+            title: 'Feedback Added Successfully. Thankyou for your valuble feedback'
+        })
+
+        setTimeout(function () {
+            window.location.reload('/admin/customers');
+        }, 3500);
+
+
+
         console.log(response);
-        dispatch({ type: 'USER_FEEDBACK_SUCCESS' })
-        setTimeout(function(){
-            window.location.reload();
-         }, 1500);
+        dispatch({ type: 'DELETE_CUSTOMER_SUCCESS' })
 
     } catch (error) {
         dispatch({ type: 'USER_FEEDBACK_FAILED' + error, payload: error })
@@ -33,7 +62,7 @@ export const deletefeedbackAction = (userId) => async dispatch => {
             toast: true,
             position: 'top-end',
             showConfirmButton: false,
-            timer: 1500,
+            timer: 3500,
             timerProgressBar: true,
             didOpen: (toast) => {
                 toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -48,7 +77,7 @@ export const deletefeedbackAction = (userId) => async dispatch => {
 
         setTimeout(function () {
             window.location.reload('/admin/feedback');
-        }, 1500);
+        }, 3500);
 
 
 
@@ -64,7 +93,7 @@ export const deletefeedbackAction = (userId) => async dispatch => {
             toast: true,
             position: 'top-end',
             showConfirmButton: false,
-            timer: 1500,
+            timer: 3500,
             timerProgressBar: true,
             didOpen: (toast) => {
                 toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -99,7 +128,7 @@ export const updateDisplayFeedback = (updateDisplayFeedback, userId, val) => asy
                 toast: true,
                 position: 'top-end',
                 showConfirmButton: false,
-                timer: 1500,
+                timer: 3500,
                 timerProgressBar: true,
                 didOpen: (toast) => {
                     toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -113,7 +142,7 @@ export const updateDisplayFeedback = (updateDisplayFeedback, userId, val) => asy
             })
             setTimeout(function () {
                 window.location.reload('/admin/customers');
-            }, 1500);
+            }, 3500);
            
 
             console.log(response);
@@ -125,7 +154,7 @@ export const updateDisplayFeedback = (updateDisplayFeedback, userId, val) => asy
                 toast: true,
                 position: 'top-end',
                 showConfirmButton: false,
-                timer: 3000,
+                timer: 5000,
                 timerProgressBar: true,
                 didOpen: (toast) => {
                     toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -150,7 +179,7 @@ export const updateDisplayFeedback = (updateDisplayFeedback, userId, val) => asy
                 toast: true,
                 position: 'top-end',
                 showConfirmButton: false,
-                timer: 1500,
+                timer: 3500,
                 timerProgressBar: true,
                 didOpen: (toast) => {
                     toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -177,7 +206,7 @@ export const updateDisplayFeedback = (updateDisplayFeedback, userId, val) => asy
                 toast: true,
                 position: 'top-end',
                 showConfirmButton: false,
-                timer: 3000,
+                timer: 5000,
                 timerProgressBar: true,
                 didOpen: (toast) => {
                     toast.addEventListener('mouseenter', Swal.stopTimer)
