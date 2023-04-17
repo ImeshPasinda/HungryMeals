@@ -104,5 +104,20 @@ router.delete("/delete/Order/:id", async (req, res) => {
     }
 });
 
+//get current order
+router.get("/getcurrentorders/:id", async (req, res) => {
+
+    let orderId = req.params.id;
+    try {
+
+        const currentorder = await Order.findById(orderId)
+        res.send(currentorder)
+
+    } catch (error) {
+        return res.status(400).json({ message: error });
+    }
+
+})
+
 
 module.exports = router
