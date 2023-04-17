@@ -103,6 +103,32 @@ export default function Ordermanagementscreen() {
       selector: (row) => row.orderAmount,
       sortable: true,
     },
+    {
+      name: "Order Status",
+      selector: (row) =>
+        row.isDelivered ? (
+          <span className="badge bg-success">Approved</span>
+        ) : (
+          <div>
+            <span className="badge bg-warning">Pending</span>
+            {row.orderStatus && (
+              <span className="badge bg-danger mx-2">Refund</span>
+            )}
+          </div>
+        ),
+      sortable: true,
+      sortFunction: (a, b) => {
+        if (a.orderStatus && !b.orderStatus) {
+          return -1;
+        } else if (!a.orderStatus && b.orderStatus) {
+          return 1;
+        } else {
+          return 0;
+        }
+      },
+    },
+    
+    
 
     {
       name: "Order Details",
@@ -251,13 +277,20 @@ export default function Ordermanagementscreen() {
                       >
                         Order Details
                       </MDBTypography>
+                      {orders.orderStatus && (
+                        <div>
+                           <span className="ml-3">Customer requested to cancel the order</span><> </>
+                          <button className="btn">Request</button>
+                         
+                        </div>
+                      )}
+
                       <MDBTypography
                         tag="h5"
                         className="modal-title text-uppercase mb-5"
                         id="exampleModalLabel"
                       >
-                       <h9 class ="text-muted">Name : </h9> {orders.name}
-                        
+                        <h9 class="text-muted">Name : </h9> {orders.name}
                       </MDBTypography>
                       <MDBTypography
                         tag="h9"
@@ -265,14 +298,17 @@ export default function Ordermanagementscreen() {
                         id="exampleModalLabel"
                       >
                         <div className="d-flex justify-content-between">
-                        <p className="small mb-0">Location : </p>
-                        <p className="small mb-0">{orders.shippingAddress && orders.shippingAddress.street + ',' +orders.shippingAddress.city}</p>
-
-                      </div>
-                        
+                          <p className="small mb-0">Location : </p>
+                          <p className="small mb-0">
+                            {orders.shippingAddress &&
+                              orders.shippingAddress.street +
+                                "," +
+                                orders.shippingAddress.city}
+                          </p>
+                        </div>
                       </MDBTypography>
                       <p className="mb-0" style={{ color: "#35558a" }}>
-                      <br></br> Order summary
+                        <br></br> Order summary
                       </p>
                       <hr
                         className="mt-2 mb-4"
@@ -302,11 +338,7 @@ export default function Ordermanagementscreen() {
                             </div>
                           )}
                         </p>
-                        
                       </div>
-
-                     
-
 
                       <div className="d-flex justify-content-between">
                         <h3 className="fw-bold">Total</h3>
@@ -335,5 +367,3 @@ export default function Ordermanagementscreen() {
     </div>
   );
 }
-
-

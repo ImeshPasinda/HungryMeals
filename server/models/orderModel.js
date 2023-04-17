@@ -9,6 +9,8 @@ const orderSchemma = mongoose.Schema({
     shippingAddress : {type: Object},
     orderAmount : {type: String , require},
     isDelivered : {type: Boolean , default : false},
+    orderStatus : {type: Boolean , default : false},
+    refundRequestStatus : {type: Boolean , default : false},
     transactionId : {type: String , require},
 },{
     
