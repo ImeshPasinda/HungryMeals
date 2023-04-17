@@ -112,7 +112,7 @@ export default function Ordermanagementscreen() {
           <div>
             <span className="badge bg-warning">Pending</span>
             {row.orderStatus && (
-              <span className="badge bg-danger mx-2">Refund</span>
+              <span className="badge bg-danger mx-2">Refund Process</span>
             )}
           </div>
         ),
