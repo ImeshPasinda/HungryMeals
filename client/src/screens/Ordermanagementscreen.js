@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   deleteOrderAction,
   updateOrderDeliveryAction,
+  updaterefundrequestAction,
 } from "../actions/orderActions";
 
 import {
@@ -108,17 +109,30 @@ export default function Ordermanagementscreen() {
     },
     {
       name: "Order Status",
-      selector: (row) =>
-        row.isDelivered ? (
-          <span className="badge bg-success">Approved</span>
-        ) : (
-          <div>
+      selector: (row) => {
+        if (row.sendrefundStatus) {
+          return (
+            <div>
+              <span className="badge bg-secondary">Refund Requested</span>
+            </div>
+          );
+        } else if (row.isDelivered) {
+          return (
+            <span className="badge bg-success">Approved</span>
+          );
+        } else if (row.orderStatus) {
+          return (
+            <div>
+              <span className="badge bg-warning">Pending</span>
+              <span className="badge bg-danger mx-2">Refund Process</span>
+            </div>
+          );
+        } else {
+          return (
             <span className="badge bg-warning">Pending</span>
-            {row.orderStatus && (
-              <span className="badge bg-danger mx-2">Refund Process7</span>
-            )}
-          </div>
-        ),
+          );
+        }
+      },
       sortable: true,
       sortFunction: (a, b) => {
         if (a.orderStatus && !b.orderStatus) {
@@ -129,7 +143,7 @@ export default function Ordermanagementscreen() {
           return 0;
         }
       },
-    },
+    },  
 
     {
       name: "Order Details",
@@ -186,6 +200,17 @@ export default function Ordermanagementscreen() {
     };
     console.log(orderId, val);
     dispatch(updateOrderDeliveryAction(updateisDeliverd, orderId));
+  }
+
+  //update sendrefundStatus orders
+  const [sendrefundStatus, updatesendrefundStatus] = useState("");
+
+  function updateRefundRequest(orderId, val) {
+    const updatesendrefundStatus = {
+      sendrefundStatus: val,
+    };
+    console.log(orderId, val);
+    dispatch(updaterefundrequestAction(updatesendrefundStatus, orderId));
   }
 
   return (
@@ -288,15 +313,6 @@ export default function Ordermanagementscreen() {
                       >
                         Order Details
                       </MDBTypography>
-                      {orders.orderStatus && (
-                        <div>
-                          <span className="ml-3">
-                            Customer requested to cancel the order
-                          </span>
-                          <> </>
-                          <button className="btn">Request</button>
-                        </div>
-                      )}
 
                       <MDBTypography
                         tag="h5"
@@ -364,20 +380,39 @@ export default function Ordermanagementscreen() {
                     <MDBModalFooter className="d-flex justify-content-center border-top-0 py-4">
                       {orders.isDelivered === true &&
                       orders.orderStatus === false ? (
-
                         <span className="badge bg-success">Approved</span>
-                        
                       ) : orders.orderStatus === true ? (
-                        <span className="badge bg-danger">Can't Approve</span>
+                        <>{orders.orderStatus && (
+                          <div>
+                            {orders.sendrefundStatus ? (
+                              <span className="badge bg-success">Refund Requested</span>
+                            ) : (
+                              <>
+                                <span className="ml-3">
+                                  Customer requested to cancel the order
+                                </span>
+                                <> </>
+                                <button
+                                  className="btn"
+                                  onClick={() =>
+                                    updateRefundRequest(orders._id, true)
+                                  }
+                                >
+                                  Request
+                                </button>
+                              </>
+                            )}
+                          </div>
+                        )}</>
                       ) : (
                         <button
-                        className="btn"
-                        onClick={() => {
-                          updateOrderDelivery(orders._id, true);
-                        }}
-                      >
-                        Approve
-                      </button>
+                          className="btn"
+                          onClick={() => {
+                            updateOrderDelivery(orders._id, true);
+                          }}
+                        >
+                          Approve
+                        </button>
                       )}
                     </MDBModalFooter>
                   </MDBModalContent>

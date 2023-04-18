@@ -11,6 +11,7 @@ const orderSchemma = mongoose.Schema({
     isDelivered : {type: Boolean , default : false},
     orderStatus : {type: Boolean , default : false},
     refundRequestStatus : {type: Boolean , default : false},
+    sendrefundStatus : {type: Boolean , default : false},
     transactionId : {type: String , require},
 },{
     

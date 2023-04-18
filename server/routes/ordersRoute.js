@@ -139,7 +139,28 @@ router.put("/update/order/status/:id", async (req, res) => {
     } catch (error) {
         return res.status(400).json({ message: error });
     }
+});router.put("/update/order/refund/request/:id", async (req, res) => {
+
+    let orderId = req.params.id;
+    const { sendrefundStatus } = req.body;
+
+    const updatesendrefundStatus = {
+
+        sendrefundStatus,
+
+    }
+
+    try {
+
+        await Order.findByIdAndUpdate(orderId, updatesendrefundStatus)
+        res.send('Order refund request Successfully')
+
+    } catch (error) {
+        return res.status(400).json({ message: error });
+    }
 });
+
+
 
 
 
