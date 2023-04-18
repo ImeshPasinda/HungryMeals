@@ -104,3 +104,63 @@ export const deleteOrderAction = (OrderID) => async dispatch => {
         dispatch({ type: 'DELETE_OPERATION_FAILED', payload: error })
     }
 }
+export const updateOrderDeliveryAction = (updateisDeliverd, orderId) => async dispatch => {
+
+    dispatch({ type: 'UPDATE_ORDER_DELIVERY_VERIFICATION_REQUEST' })
+
+
+        try {
+            const response = await axios.put(`/api/orders/update/order/status/${orderId}`, updateisDeliverd)
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 1500,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon: 'success',
+                title: 'Order approved successfully!'
+            })
+            setTimeout(function () {
+                window.location.reload('/admin/orders');
+            }, 1500);
+           
+
+            console.log(response);
+            dispatch({ type: 'UPDATE_ORDER_DELIVERY_VERIFICATION_SUCCESS' })
+
+
+        } catch (error) {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon: 'error',
+                title: 'Order approved unsuccessfully'
+            })
+
+            dispatch({ type: 'UPDATE_ORDER_DELIVERY_VERIFICATION_FAILED', payload: error })
+        }
+
+
+    
+
+
+}
+
+

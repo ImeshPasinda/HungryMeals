@@ -120,4 +120,27 @@ router.get("/getcurrentorders/:id", async (req, res) => {
 })
 
 
+router.put("/update/order/status/:id", async (req, res) => {
+
+    let orderId = req.params.id;
+    const { isDelivered } = req.body;
+
+    const updateisDelivered = {
+
+        isDelivered,
+
+    }
+
+    try {
+
+        await Order.findByIdAndUpdate(orderId, updateisDelivered)
+        res.send('Order deliver request Successfully')
+
+    } catch (error) {
+        return res.status(400).json({ message: error });
+    }
+});
+
+
+
 module.exports = router

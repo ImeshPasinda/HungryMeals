@@ -4,7 +4,10 @@ import DataTable from "react-data-table-component";
 import Swal from "sweetalert2";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteOrderAction } from "../actions/orderActions";
+import {
+  deleteOrderAction,
+  updateOrderDeliveryAction,
+} from "../actions/orderActions";
 
 import {
   MDBBtn,
@@ -21,7 +24,7 @@ import {
   MDBTypography,
 } from "mdb-react-ui-kit";
 
-let OrderID;
+let OrderId;
 var Items, Amount, name;
 
 export default function Ordermanagementscreen() {
@@ -112,7 +115,7 @@ export default function Ordermanagementscreen() {
           <div>
             <span className="badge bg-warning">Pending</span>
             {row.orderStatus && (
-              <span className="badge bg-danger mx-2">Refund Process</span>
+              <span className="badge bg-danger mx-2">Refund Process7</span>
             )}
           </div>
         ),
@@ -127,8 +130,6 @@ export default function Ordermanagementscreen() {
         }
       },
     },
-    
-    
 
     {
       name: "Order Details",
@@ -174,6 +175,17 @@ export default function Ordermanagementscreen() {
 
   function deleteOrder(OrderId) {
     dispatch(deleteOrderAction(OrderId));
+  }
+
+  //update isDeliverd orders
+  const [isDeliverd, updateisDeliverd] = useState("");
+
+  function updateOrderDelivery(orderId, val) {
+    const updateisDeliverd = {
+      isDelivered: val,
+    };
+    console.log(orderId, val);
+    dispatch(updateOrderDeliveryAction(updateisDeliverd, orderId));
   }
 
   return (
@@ -257,7 +269,6 @@ export default function Ordermanagementscreen() {
                 </div>
               </div>
             </div>
-                      
           </div>
         </div>
       </div>
@@ -279,9 +290,11 @@ export default function Ordermanagementscreen() {
                       </MDBTypography>
                       {orders.orderStatus && (
                         <div>
-                           <span className="ml-3">Customer requested to cancel the order</span><> </>
+                          <span className="ml-3">
+                            Customer requested to cancel the order
+                          </span>
+                          <> </>
                           <button className="btn">Request</button>
-                         
                         </div>
                       )}
 
@@ -349,13 +362,23 @@ export default function Ordermanagementscreen() {
                     </MDBModalBody>
 
                     <MDBModalFooter className="d-flex justify-content-center border-top-0 py-4">
-                      <MDBBtn
-                        size="lg"
-                        style={{ backgroundColor: "#35558a" }}
-                        className="mb-1"
+                      {orders.isDelivered === true &&
+                      orders.orderStatus === false ? (
+
+                        <span className="badge bg-success">Approved</span>
+                        
+                      ) : orders.orderStatus === true ? (
+                        <span className="badge bg-danger">Can't Approve</span>
+                      ) : (
+                        <button
+                        className="btn"
+                        onClick={() => {
+                          updateOrderDelivery(orders._id, true);
+                        }}
                       >
-                        Track your order
-                      </MDBBtn>
+                        Approve
+                      </button>
+                      )}
                     </MDBModalFooter>
                   </MDBModalContent>
                 </MDBModalDialog>
