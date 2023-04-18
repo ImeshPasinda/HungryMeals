@@ -34,7 +34,7 @@ const ticketRoute = require('./routes/ticketRoute')
 const newsfeedRoute = require('./routes/newsfeedRoute')
 const jobsRoute=require('./routes/jobsRoute')
 const JobApplyRoute=require('./routes/JobApplyRoute')
-
+const Tickets=require('./models/ticketsModel')
 
 
 

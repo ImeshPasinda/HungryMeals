@@ -4,108 +4,100 @@ import DataTable from "react-data-table-component"
 import Swal from 'sweetalert2';
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux'
-import { deleteApplicantAction } from '../actions/jobApplicantAction';
+import { deleteTicketAction } from '../actions/ticketsActions';
 
-function JobApplicantsManagementScreen() {
-
-
+function TicketsManagementScreen() {
 
 
-
-
-
-
-
-  const [applicants, setApplicants] = useState([]);
-  const [filterdApplicants, setFilterdApplicants] = useState([]);
-  const [searchApplicant, setSearchApplicant] = useState("");
+    const [tickets, setTickets] = useState([]);
+    const [filterdTickets, setFilterdTickets] = useState([]);
+    const [searchTicket, setSearchTicket] = useState("");
 
 
 
 
-  useEffect(() => {
+    useEffect(() => {
 
-    function getJobs() {
+        function getTickets() {
 
-      axios.get("/api/jobapply/getallApplications").then((res) => {
-        setApplicants(res.data);
-        console.log(res.data)
-
-
-        setFilterdApplicants(res.data);
+            axios.get("/api/tickets/getallTickets").then((res) => {
+                setTickets(res.data);
+                console.log(res.data)
 
 
-      }).catch((err) => {
-        console.log(err.message)
-
-      })
-    }
-
-    getJobs();
-
-  }, [])
+                setFilterdTickets(res.data);
 
 
+            }).catch((err) => {
+                console.log(err.message)
 
-  const columns = [
-    {
-      name: "Applicant ID",
-      selector: (row) => row._id,
-      sortable: true
-    },
+            })
+        }
 
-    {
-      name: "Name",
-      selector: (row) => row.name,
-      sortable: true,
-    },
-    {
-      name: "Email",
-      selector: (row) => row.email,
+        getTickets();
 
-    },
-    {
-      name: "Address",
-      selector: (row) => row.address,
-
-    },
-    {
-      name: "Phone No",
-      selector: (row) => row.phoneNo,
-
-    },
-    {
-      name: "Job Category",
-      selector: (row) => row.jobCategory,
-
-    },
-    {
-      name: "Delete",
-      cell: row => <button onClick={() => { deleteApplicant(row._id) }} className="btn" role="button">Delete</button>
-
-
-    },
-
-
-  ]
+    }, [])
 
 
 
-  // search button
-  useEffect(() => {
-    const results = applicants.filter(applicants => {
-      return applicants._id.toLowerCase().match(searchApplicant.toLowerCase());
-    });
+    const columns = [
+        {
+            name: "Ticket ID",
+            selector: (row) => row._id,
+            sortable: true
+        },
 
-    setFilterdApplicants(results);
-  }, [searchApplicant]);
+        {
+            name: "Ticket Title",
+            selector: (row) => row.tickettitle,
+            sortable: true,
+        },
+        {
+            name: "Category",
+            selector: (row) => row.category,
+
+        },
+        {
+            name: "Description",
+            selector: (row) => row.description,
+
+        },
+        {
+            name: "Email",
+            selector: (row) => row.email,
+
+        },
+        {
+            name: "Telephone",
+            selector: (row) => row.telephone,
+
+        },
+        {
+            name: "Delete",
+             cell: row => <button onClick={() => { deleteTicket(row._id) }} className="btn" role="button">Delete</button>
+
+
+        },
+
+
+    ]
+
+    // search button
+    useEffect(() => {
+        const results = tickets.filter(tickets => {
+            return tickets._id.toLowerCase().match(searchTicket.toLowerCase());
+        });
+
+        setFilterdTickets(results);
+    }, [searchTicket]);
+
 
   //delete
   const dispatch = useDispatch();
 
-  function deleteApplicant(ApplicantId) {
+  function deleteTicket(TicketId) {
 
-    dispatch(deleteApplicantAction(ApplicantId));
+    dispatch(deleteTicketAction(TicketId));
 
 
   }
@@ -114,75 +106,59 @@ function JobApplicantsManagementScreen() {
 
 
 
-
-
-  return (
-
-
-
-    <div>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <div className='row justify-content-center'>
-        <div className='col-md-9 m-3   p-0 ' >
-          <DataTable
-
-            title='Job Applicants Management'
-            columns={columns}
-            data={filterdApplicants}
-            pagination
-            fixedHeader
-            fixedHeaderScrollHeight="450px"
-            selectableRows
-            selectableRowsHighlight
-            subHeader
-            subHeaderComponent={
-              <input
-
-                type="text"
-                placeholder="Search here..."
-                className='w-25 form-control'
-                value={searchApplicant}
-                onChange={(e) => setSearchApplicant(e.target.value)}
-
-              />
-
-            }
-
-
-          />
-          <br />
-          <br />
-          <div className='modal-footer'>
-            {/* <div className='p-1'>
-                            <button class="btn" data-bs-target="#addnewjob" data-bs-toggle="modal" data-bs-dismiss="modal"><i style={{ fontSize: '15px', color: 'white' }} class="fa fa-plus" aria-hidden="true"></i>Create a New Job</button>
-                        </div> */}
-
-            {/* generate report button */}
-            <div className='p-1'><button class="btn" data-bs-target="#exampleModalToggleReport" data-bs-toggle="modal" data-bs-dismiss="modal"><i style={{ fontSize: '15px', color: 'white' }} class="fa fa-file" aria-hidden="true"></i> Generate  Report</button>
-            </div>
+    return (
+        <div>
             <br />
-            <div className='p-1'>
-              <a href="/admin/jobportalManage" className="btn">
-                <i style={{ fontSize: '15px', color: 'white' }} aria-hidden="true"></i>Go to Job Lists
-              </a>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <div className='row justify-content-center'>
+                <div className='col-md-9 m-3   p-0 ' >
+                    <DataTable
+
+                        title='Tickets Management'
+                        columns={columns}
+                        data={filterdTickets}
+                        pagination
+                        fixedHeader
+                        fixedHeaderScrollHeight="450px"
+                        selectableRows
+                        selectableRowsHighlight
+                        subHeader
+                        subHeaderComponent={
+                            <input
+
+                                type="text"
+                                placeholder="Search here..."
+                                className='w-25 form-control'
+                                value={searchTicket}
+                                onChange={(e) => setSearchTicket(e.target.value)}
+
+                            />
+
+                        }
+
+
+                    />
+                    <br />
+                    <br />
+
+                    {/* generate report button */}
+                    <div className='p-1'><button class="btn" data-bs-target="#exampleModalToggleReport" data-bs-toggle="modal" data-bs-dismiss="modal"><i style={{ fontSize: '15px', color: 'white' }} class="fa fa-file" aria-hidden="true"></i> Generate  Report</button>
+                    </div>
+
+                </div>
             </div>
 
-          </div>
-        </div>
-      </div>
+ {/* generate report */}
 
-      {/* generate report */}
-
-      <div class="modal fade" id="exampleModalToggleReport" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+ <div class="modal fade" id="exampleModalToggleReport" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
                 <div class="modal-dialog modal-lg modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalToggleLabel"> Detailed Report about Job Applicants</h5>
+                            <h5 class="modal-title" id="exampleModalToggleLabel"> Detailed Report -Tcket Management</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -197,7 +173,7 @@ function JobApplicantsManagementScreen() {
                                                 <div class="card">
                                                     <div class="card-body shadow shadow" >
                                                         <p class="text-uppercase small mb-2">
-                                                            <strong>Total Job Applicants <i class="fa-solid fa-circle fa-fade" style={{ fontSize: '13px', color: 'red' }} ></i></strong>
+                                                            <strong>Total Tickets <i class="fa-solid fa-circle fa-fade" style={{ fontSize: '13px', color: 'red' }} ></i></strong>
                                                         </p>
                                                         <h5 class="mb-0">
                                                             <strong>{ }</strong>
@@ -361,8 +337,12 @@ function JobApplicantsManagementScreen() {
             </div>
 
 
-    </div>
-  )
+
+
+
+
+        </div>
+    )
 }
 
-export default JobApplicantsManagementScreen
+export default TicketsManagementScreen

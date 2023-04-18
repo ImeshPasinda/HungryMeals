@@ -4,11 +4,20 @@ import DataTable from "react-data-table-component"
 import Swal from 'sweetalert2';
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux'
-
+import { updateJobsAction } from './../actions/jobportalAction';
 import { addJob, deleteJobAction, getAllJobs } from './../actions/jobportalAction';
 
-var jobDescriptions,jobsalary,joblocation;
+var jobDescriptions, jobsalary, joblocation;
+let jobId;
+let jobCount;
+let jobsArray;
+
+
 function JobportalManagementScreen() {
+
+
+
+
 
 
     const [jobs, setJobs] = useState([]);
@@ -54,6 +63,9 @@ function JobportalManagementScreen() {
                 setJobs(res.data);
                 console.log(res.data)
 
+                //calculations
+                jobsArray = res.data;
+                jobCount = jobsArray.length;
 
                 setFilterdJobs(res.data);
 
@@ -73,37 +85,50 @@ function JobportalManagementScreen() {
 
 
         axios.get("/api/jobportal/getalljobs").then((res) => {
-    
-          setJobs(res.data);
-          console.log(JobId)
-          //console.log(res.data)
-    
-    
-          for (let index = 0; index < res.data.length; index++) {
-    
-            if (res.data[index]._id === JobId) {
-              //console.log(res.data[index].subject)
-    
-              //console.log(res.data[index].message)
-              jobDescriptions = res.data[index].description
-              jobsalary = res.data[index].salary
-              joblocation = res.data[index].location
 
+            setJobs(res.data);
+            console.log(JobId)
+            //console.log(res.data)
+
+
+            for (let index = 0; index < res.data.length; index++) {
+
+                if (res.data[index]._id === JobId) {
+                    //console.log(res.data[index].subject)
+
+                    //console.log(res.data[index].message)
+                    jobDescriptions = res.data[index].description
+                    jobsalary = res.data[index].salary
+                    joblocation = res.data[index].location
+
+                }
             }
-          }
-    
-    
-    
+
+
+
         }).catch((err) => {
-          console.log(err.message)
-    
+            console.log(err.message)
+
         })
-      }
+    }
 
 
+    function getCurrentJobs(jobId) {
+
+        axios.get(`/api/jobportal/getcurrentjobs/${jobId}`).then((res) => {
 
 
+            setJobs(res.data);
+            jobs = res.data
+            console.log(jobs)
 
+
+        }).catch((error) => {
+            console.log(error)
+
+
+        })
+    }
 
 
     //create data table
@@ -124,21 +149,7 @@ function JobportalManagementScreen() {
             selector: (row) => row.category,
 
         },
-        // {
-        //     name: "Description",
-        //     selector: (row) => row.description,
-        // },
-
-        // {
-        //     name: "Salary",
-        //     selector: (row) => row.salary,
-
-        // },
-        // {
-        //     name: "Location",
-        //     selector: (row) => row.location,
-
-        // },
+      
         // {
         //     name: "Job Details",
         //     cell: row => <button  className="btn" data-bs-toggle="modal" href="#exampleModal" role="button">View</button>
@@ -151,7 +162,7 @@ function JobportalManagementScreen() {
         },
         {
             name: "Update",
-            cell: row => <button className="btn" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Update</button>
+            cell: row => <button onClick={() => { getCurrentJobs(jobId = row._id) }}  className="btn" data-bs-toggle="modal" href="#exampleModalToggleUpdate" role="button">Update</button>
 
         },
         {
@@ -192,10 +203,34 @@ function JobportalManagementScreen() {
     const [Location, setLocation] = useState('')
     const [Category, setCategory] = useState('')
 
+    const [jobtitle, updateJobtitile] = useState(jobs.jobtitle)
+    const [category, updateCategory] = useState(jobs.category)
+    const [description, updateDescription] = useState(jobs.description)
+    const [salary, updateSalary] = useState(jobs.salary)
+    const [location, updateLocation] = useState(jobs.location)
+
+
+    function updateforJobs(jobId) {
+
+
+        const updateJobs = {
+
+            jobtitle, 
+        category, 
+        description,
+        salary,
+        location 
+
+        }
+
+           
+            dispatch(updateJobsAction(updateJobs, jobId))
+       
 
 
 
 
+    }
 
 
 
@@ -247,8 +282,11 @@ function JobportalManagementScreen() {
                         </div>
                         <br />
                         <div className='p-1'>
-                            <button class="btn" a href="admin/jobApplicantManage"><i style={{ fontSize: '15px', color: 'white' }} aria-hidden="true"></i>Go to Job Applicants page</button>
+                            <a href="/admin/jobApplicantManage" class="btn">
+                                <i style={{ fontSize: '15px', color: 'white' }} aria-hidden="true"></i>Go to Job Applicants page
+                            </a>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -285,10 +323,10 @@ function JobportalManagementScreen() {
 
                                 <div class="mb-3">
                                     <label for="desc" class="col-form-label">Description:</label>
-                                    <input
+                                    <textarea
 
                                         required
-                                        type="text"
+
                                         class="form-control"
                                         id="desc"
                                         value={JobDescription}
@@ -329,16 +367,18 @@ function JobportalManagementScreen() {
 
                                 <div class="mb-3">
                                     <label for="category" class="col-form-label">Category:</label>
-                                    <input
+                                    <select id="inputState"
 
-                                        required
-                                        type="text"
-                                        class="form-control"
-                                        id="category"
+                                        class="form-select"
                                         value={Category}
-                                        onChange={(e) => { setCategory(e.target.value) }}
+                                        onChange={(e) => setCategory(e.target.value)}>
+                                        <option selected>Choose...</option>
+                                        <option value="Administrative">Administrative</option>
+                                        <option value="General">General</option>
+                                        <option value="Inventory">Inventory</option>
+                                    </select>
 
-                                    />
+
                                 </div>
                             </form>
                         </div>
@@ -353,10 +393,6 @@ function JobportalManagementScreen() {
             </div>
 
 
-
-
-
-
             {/* view job details model */}
 
 
@@ -369,170 +405,292 @@ function JobportalManagementScreen() {
                         </div>
                         <div class="modal-body">
                             <p>Job Description</p>
-
                             <p className='text-muted'>{jobDescriptions}</p>
-
                             <p>Salary</p>
-
-                            <p className='text-muted'>{ jobsalary}</p>
+                            <p className='text-muted'>{jobsalary}</p>
 
                             <p>Location</p>
 
-                            <p className='text-muted'>{ joblocation}</p>
+                            <p className='text-muted'>{joblocation}</p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn " data-bs-dismiss="modal">Close</button>
 
-                        </div>
+                        </div> 
                     </div>
                 </div>
             </div>
 
 
-{/* update modal */}
+            {/* Model 2 - Update */}
+            <div class="modal fade" id="exampleModalToggleUpdate" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+
+                    <div class="modal-content">
+
+
+
+                        <div class="modal-header">
+
+
+                            <h5 class="modal-title" id="exampleModalToggleLabel">
+                                <h20>Edit Job Portal</h20>
+
+
+                            </h5>
+
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+
+
+                        </div>
 
 
 
 
 
+                        <div class="modal-body">
+
+
+                            <div className="p-4 m-4" style={{ borderRadius: '25px', textAlign: "left" }}>
+
+                                <div class="row gx-5">
+                                    <div class="col-md-4 mb-4">
+                                        <div class="bg-image hover-overlay ripple shadow-2-strong rounded-5" data-mdb-ripple-color="light">
+
+                                           
+
+                                            <div class="form-group">
+                                                <br></br>
+                                                {/* <label for="exampleFormControlTextarea1"><h20>Image Link</h20></label> */}
+                                                <textarea
+                                                    class="form-control"
+                                                    id="exampleFormControlTextarea1"
+                                                    rows="10"
+                                                    placeholder='Enter Title'
+                                                    value={jobtitle || jobs.jobtitle}
+                                                    onChange={(e) => { updateJobtitile(e.target.value) }}
+                                                    style={{ fontSize: '16px', fontFamily: 'Mukta, calibri', color: "#6c757d", fontStyle: "italic", fontSize: "15px" }}
+                                                >
+
+                                                </textarea>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 mb-4">
+                                       
+                                        <> </>
+                                      
+                                        <br></br>
+                                        <div class="form-group">
+                                            <label>Edit Job Category</label>
+                                            <input
+                                                class="form-control"
+                                                id="exampleFormControlTextarea1"
+                                                rows="1"
+                                                placeholder='Enter Category'
+                                                value={category || jobs.category}
+                                                onChange={(e) => { updateCategory(e.target.value) }}
+                                                style={{ fontFamily: 'Mukta, calibri', color: "#6c757d", fontStyle: "italic", fontSize: "15px" }}
+                                            >
+
+                                            </input>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <br/>
+                                        <label>Edit Location</label>
+
+                                            <input
+                                                class="form-control"
+                                                id="exampleFormControlTextarea1"
+                                                rows="1"
+                                                placeholder='Enter Location'
+                                                value={location || jobs.location}
+                                                onChange={(e) => { updateLocation(e.target.value) }}
+                                                style={{ fontFamily: 'Mukta, calibri', color: "#6c757d", fontStyle: "italic", fontSize: "15px" }}
+                                            >
+
+                                            </input>
+
+                                        </div>
+                                        <br></br>
+                                        <div class="form-group">
+                                            <textarea
+                                                class="form-control"
+                                                id="exampleFormControlTextarea1"
+                                                rows="3"
+                                                placeholder='Enter Salary'
+                                                value={salary || jobs.salary}
+                                                onChange={(e) => { updateSalary(e.target.value) }}
+                                                style={{ fontSize: '20px', fontFamily: 'Signika Negative,sans-serif', color: "#670001", fontWeight: "bold" }}
+                                            >
+
+                                            </textarea>
+                                        </div>
+                                        <br></br>
+                                        <div class="form-group">
+                                            <textarea
+                                                class="form-control"
+                                                id="exampleFormControlTextarea1"
+                                                rows="20"
+                                                placeholder='Enter Description'
+                                                value={description || jobs.description}
+                                                onChange={(e) => { updateDescription(e.target.value) }}
+                                                style={{ fontFamily: 'Mukta, calibri', color: "#6c757d", fontStyle: "italic", fontSize: "15px" }}
+                                            >
+
+                                            </textarea>
+                                        </div>
 
 
 
 
-
-
-
-
-
-
-
-
-
-{/* generate report */}
-
-<div class="modal fade" id="exampleModalToggleReport" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-                        <div class="modal-dialog modal-lg modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalToggleLabel">Job Portal Detailed Report</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
                                 </div>
-                                <div class="modal-body">
 
-                                    <div class="container my-4">
 
-                                        <div class="border p-5 mb-5">
 
-                                            <section>
-                                                <div class="row">
-                                                    <div class="col-lg-3 col-md-6 mb-4">
-                                                        <div class="card">
-                                                            <div class="card-body shadow shadow" >
-                                                                <p class="text-uppercase small mb-2">
-                                                                    <strong>ACTIVE JOB VACANCIES <i class="fa-solid fa-circle fa-fade" style={{ fontSize: '13px', color: 'red' }} ></i></strong>
-                                                                </p>
-                                                                <h5 class="mb-0">
-                                                                    <strong>{}</strong>
-                                                                    <small class="text-success ms-2">
-                                                                        <i class="fas fa-arrow-up fa-sm pe-1"></i></small>
-                                                                </h5>
+                            </div>
 
-                                                                <hr />
 
-                                                                <p class="text-uppercase text-muted small mb-2">
-                                                                    Previous period
-                                                                </p>
-                                                                {/* <h5 class="text-muted mb-0">11 467</h5> */}
-                                                            </div>
-                                                        </div>
 
-                                                    </div>
 
-                                                    <div class="col-lg-3 col-md-6 mb-4">
-                                                        <div class="card">
-                                                            <div class="card-body shadow">
-                                                                <p class="text-uppercase small mb-2">
-                                                                    <strong>EXPIRED JOB VACANCIES <i class="fa-solid fa-circle fa-fade" style={{ fontSize: '13px', color: 'red' }}></i></strong>
-                                                                </p>
-                                                                <h5 class="mb-0">
-                                                                    <strong>{}</strong>
-                                                                    <small class="text-success ms-2">
-                                                                        <i class="fas fa-arrow-up fa-sm pe-1"></i></small>
-                                                                </h5>
+                        </div>
 
-                                                                <hr />
-                                                                <p class="text-uppercase text-muted small mb-2">
-                                                                    Previous period
-                                                                </p>
+                        <div class="modal-footer">
+                            <button onClick={() => updateforJobs(jobId, updateforJobs)} type="button" class="btn ">Update</button>
+                        </div>
 
-                                                                {/* <h5 class="text-muted mb-0">38 454</h5> */}
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                    </div>
 
-                                                    <div class="col-lg-3 col-md-6 mb-4">
-                                                        <div class="card">
-                                                            <div class="card-body shadow">
-                                                                <p class="text-uppercase small mb-2">
-                                                                    <strong>Verified User Rate <i class="fa-solid fa-circle fa-fade" style={{ fontSize: '13px', color: 'red' }}></i></strong>
-                                                                </p>
-                                                                <h5 class="mb-0">
-                                                                    <strong>{}%</strong>
-                                                                    <small class="text-success ms-2">
-                                                                        <i class="fas fa-arrow-up fa-sm pe-1"></i></small>
-                                                                </h5>
 
-                                                                <hr />
-                                                                <p class="text-uppercase text-muted small mb-2">
-                                                                    Previous period
-                                                                </p>
 
-                                                                <h5 class="text-muted mb-0"></h5>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                </div>
 
-                                                    <div class="col-lg-3 col-md-6 mb-4">
-                                                        <div class="card">
-                                                            <div class="card-body shadow">
-                                                                <p class="text-uppercase small mb-2">
-                                                                    <strong>Deleted User Accounts <i class="fa-solid fa-circle fa-fade" style={{ fontSize: '13px', color: 'red' }}></i></strong>
-                                                                </p>
-                                                                <h5 class="mb-0">
-                                                                    <strong>0</strong>
-                                                                    <small class="text-danger ms-2">
-                                                                        <i class="fas fa-arrow-down fa-sm pe-1"></i></small>
-                                                                </h5>
+            </div>
 
-                                                                <hr />
 
-                                                                <p class="text-uppercase text-muted small mb-2">
-                                                                    Previous period
-                                                                </p>
-                                                                <h5 class="text-muted mb-0"></h5>
-                                                            </div>
-                                                        </div>
+            {/* generate report */}
+
+            <div class="modal fade" id="exampleModalToggleReport" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                <div class="modal-dialog modal-lg modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalToggleLabel">Job Portal Detailed Report</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+
+                            <div class="container my-4">
+
+                                <div class="border p-5 mb-5">
+
+                                    <section>
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-6 mb-4">
+                                                <div class="card">
+                                                    <div class="card-body shadow shadow" >
+                                                        <p class="text-uppercase small mb-2">
+                                                            <strong>ACTIVE JOB VACANCIES <i class="fa-solid fa-circle fa-fade" style={{ fontSize: '13px', color: 'red' }} ></i></strong>
+                                                        </p>
+                                                        <h5 class="mb-0">
+                                                            <strong>{jobCount }</strong>
+                                                            <small class="text-success ms-2">
+                                                                <i class="fas fa-arrow-up fa-sm pe-1"></i></small>
+                                                        </h5>
+
+                                                        <hr />
+                                                        <p class="text-uppercase text-muted small mb-2">Recent Updates </p>
+                                                       
                                                     </div>
                                                 </div>
-                                            </section>
 
-                                            <section>
-                                                <div class="row">
-                                                    <div class="col-md-8 mb-4">
-                                                        <div class="card">
-                                                            <div class="card-body shadow">
+                                            </div>
 
-                                                                <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
-                                                                    <li class="nav-item" role="presentation">
-                                                                        <a class="nav-link active" id="ex1-tab-1" data-mdb-toggle="pill" role="tab"
-                                                                            aria-controls="ex1-pills-1" aria-selected="true">Verified Users</a>
-                                                                    </li>
+                                            <div class="col-lg-3 col-md-6 mb-4">
+                                                <div class="card">
+                                                    <div class="card-body shadow">
+                                                        <p class="text-uppercase small mb-2">
+                                                            <strong>Expired Job Vacancies <i class="fa-solid fa-circle fa-fade" style={{ fontSize: '13px', color: 'red' }}></i></strong>
+                                                        </p>
+                                                        <h5 class="mb-0">
+                                                            <strong>{ }</strong>
+                                                            <small class="text-success ms-2">
+                                                                <i class="fas fa-arrow-up fa-sm pe-1"></i></small>
+                                                        </h5>
 
+                                                        <hr />
+                                                        <p class="text-uppercase text-muted small mb-2">
+                                                            Recent Updates
+                                                        </p>
 
+                                                        {/* <h5 class="text-muted mb-0">38 454</h5> */}
+                                                    </div>
+                                                </div>
+                                            </div>
 
-                                                                </ul>
+                                            <div class="col-lg-3 col-md-6 mb-4">
+                                                <div class="card">
+                                                    <div class="card-body shadow">
+                                                        <p class="text-uppercase small mb-2">
+                                                            <strong>Most popular Job Category<i class="fa-solid fa-circle fa-fade" style={{ fontSize: '13px', color: 'red' }}></i></strong>
+                                                        </p>
+                                                        <h5 class="mb-0">
+                                                            <strong>{ }%</strong>
+                                                            <small class="text-success ms-2">
+                                                                <i class="fas fa-arrow-up fa-sm pe-1"></i></small>
+                                                        </h5>
 
-                                                                {/* <div className=''> {VerifiedUsers.map((names) => (
+                                                        <hr />
+                                                        <p class="text-uppercase text-muted small mb-2">
+                                                        Recent Updates</p>
+
+                                                        <h5 class="text-muted mb-0"></h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-3 col-md-6 mb-4">
+                                                <div class="card">
+                                                    <div class="card-body shadow">
+                                                        <p class="text-uppercase small mb-2">
+                                                            <strong>Job Locations <i class="fa-solid fa-circle fa-fade" style={{ fontSize: '13px', color: 'red' }}></i></strong>
+                                                        </p>
+                                                        <h5 class="mb-0">
+                                                            <strong>0</strong>
+                                                            {/* <small class="text-danger ms-2">
+                                                                <i class="fas fa-arrow-down fa-sm pe-1"></i></small> */}
+                                                        </h5>
+
+                                                        <hr />
+
+                                                        <p class="text-uppercase text-muted small mb-2">Recent Updates
+                                                        </p>
+                                                        <h5 class="text-muted mb-0"></h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+
+                                    <section>
+                                        <div class="row">
+                                            <div class="col-md-8 mb-4">
+                                                <div class="card">
+                                                    <div class="card-body shadow">
+
+                                                        <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
+                                                            <li class="nav-item" role="presentation">
+                                                                <a class="nav-link active" id="ex1-tab-1" data-mdb-toggle="pill" role="tab"
+                                                                    aria-controls="ex1-pills-1" aria-selected="true">Job Categories </a>
+                                                            </li>
+
+                                                        </ul>
+
+                                                        {/* <div className=''> {VerifiedUsers.map((names) => (
                                                                     <ol>{names}<i class="fa fa-check-circle p-1" title="Verified Customer" style={{ fontSize: '14px', color: '#00b9ff' }} aria-hidden="true"></i></ol>
 
                                                                 ))}
@@ -540,65 +698,52 @@ function JobportalManagementScreen() {
 
 
 
-                                                                <div class="tab-content" id="ex1-content">
-                                                                    <div class="tab-pane fade show active" id="ex1-pills-1" role="tabpanel" aria-labelledby="ex1-tab-1">
-                                                                        <div id="chart-users"></div>
-                                                                    </div>
-                                                                    <div class="tab-pane fade" id="ex1-pills-2" role="tabpanel" aria-labelledby="ex1-tab-2">
-                                                                        <div id="chart-page-views"></div>
-                                                                    </div>
-                                                                    <div class="tab-pane fade" id="ex1-pills-3" role="tabpanel" aria-labelledby="ex1-tab-3">
-                                                                        <div id="chart-average-time"></div>
-                                                                    </div>
-                                                                    <div class="tab-pane fade" id="ex1-pills-4" role="tabpanel" aria-labelledby="ex1-tab-4">
-                                                                        <div id="chart-bounce-rate"></div>
-                                                                    </div>
-                                                                </div>
-
+                                                        <div class="tab-content" id="ex1-content">
+                                                            <div class="tab-pane fade show active" id="ex1-pills-1" role="tabpanel" aria-labelledby="ex1-tab-1">
+                                                                <div id="chart-users"></div>
                                                             </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-md-4 mb-4">
-                                                        <div class="card mb-4">
-                                                            <div class="card-body shadow">
-                                                                <p class="text-center"><strong>Current period</strong></p>
-                                                                <div id="pie-chart-current">0</div>
+                                                            <div class="tab-pane fade" id="ex1-pills-2" role="tabpanel" aria-labelledby="ex1-tab-2">
+                                                                <div id="chart-page-views"></div>
+                                                            </div>
+                                                            <div class="tab-pane fade" id="ex1-pills-3" role="tabpanel" aria-labelledby="ex1-tab-3">
+                                                                <div id="chart-average-time"></div>
+                                                            </div>
+                                                            <div class="tab-pane fade" id="ex1-pills-4" role="tabpanel" aria-labelledby="ex1-tab-4">
+                                                                <div id="chart-bounce-rate"></div>
                                                             </div>
                                                         </div>
 
-                                                        <div class="card">
-                                                            <div class="card-body shadow">
-                                                                <p class="text-center"><strong>Previous period</strong></p>
-                                                                <div id="pie-chart-previous">0</div>
-                                                            </div>
-                                                        </div>
                                                     </div>
                                                 </div>
-                                            </section>
+                                            </div>
 
+                                            <div class="col-md-4 mb-4">
+                                                <div class="card mb-4">
+                                                    <div class="card-body shadow">
+                                                        <p class="text-center"><strong>Listing update frequency-Last Updated on</strong></p>
+                                                        <div id="pie-chart-current">0</div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="card">
+                                                    <div class="card-body shadow">
+                                                        <p class="text-center"><strong>Salary range</strong></p>
+                                                        <div id="pie-chart-previous">0</div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-
-
-                                    </div>
-
-                                </div>
-
-                                <div class="modal-footer">
-                                    <button class="btn" onClick={() => window.print()} >Print</button>
-                                    <button class="btn" data-bs-toggle="modal">Close</button>
+                                    </section>
                                 </div>
                             </div>
                         </div>
+                        <div class="modal-footer">
+                            <button class="btn" onClick={() => window.print()} >Print</button>
+                            <button class="btn" data-bs-toggle="modal">Close</button>
+                        </div>
                     </div>
-
-
-
-
-
-
-
-
+                </div>
+            </div>
 
         </div>
     )

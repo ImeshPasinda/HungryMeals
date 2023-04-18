@@ -1,63 +1,55 @@
-import logo from './logo.svg';
-import './App.css';
-import bootstrap from '../node_modules/bootstrap/dist/css/bootstrap.min.css'
-import 'bootstrap'
-import { BrowserRouter, Route, Link, Switch, Routes } from 'react-router-dom'
-import Navbar from './components/Navbar';
-import Homescreen from './screens/Homescreen';
-import Cartscreen from './screens/Cartscreen';
-import Loginscreen from './screens/Loginscreen';
-import Registerscreen from './screens/Registerscreen';
-import Ordersscreen from './screens/Ordersscreen';
-import Profilescreen from './screens/user/Profilescreen';
-import FeedbackScreen from './screens/Feedbackscreen';
-import Footer from './components/Footer';
-import AdminProfilescreen from './screens/AdminProfilescreen';
-import Adminloginscreen from './screens/Adiminloginscreen';
-import { useSelector } from 'react-redux';
-import Notificationmanagementscreen from './screens/Notificationmanagementscreen';
-import Errorscreen from './screens/Errorscreen';
-import AboutScreen from './screens/Aboutscreen';
-import FAQScreen from './screens/FAQscreen';
-import Customermanagementscreen from './screens/Customermanagementscreen';
-import Feedbackmanagementscreen from './screens/Feedbackmanagementscreen';
-import Detailsscreen from './screens/user/Detailsscreen';
-import Ordermanagementscreen from './screens/Ordermanagementscreen';
-import Riderloginscreen from './screens/rider/Riderloginscreen';
-import Ticketsscreen from './screens/user/ticketsScreen';
-import SelectionFN from './screens/SelectionFN';
-import Foodcataloguescreen from './screens/Foodcataloguescreen';
-import SalesFinanceScreen from './screens/SalesFinanceScreen';
-import Newsfeedscreen from './screens/Newsfeedsrcreen';
-import SelectionUserAndCareer from './screens/SelectionUserAndCareer';
-import Beveragesscreen from './screens/Beveragesscreen';
-import Newsfeedmanagement from './screens/NewsfeedManagement';
-import JobPortalscreen from './screens/JobPortalscreen';
-import JobportalManagementScreen from './screens/JobportalManagementScreen';
-import JobApplicantsManagementScreen from './screens/JobApplicantsManagementScreen';
-import JobApplyScreen from './screens/JobApplyScreen';
-
-
+import logo from "./logo.svg";
+import "./App.css";
+import bootstrap from "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap";
+import { BrowserRouter, Route, Link, Switch, Routes } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Homescreen from "./screens/Homescreen";
+import Cartscreen from "./screens/Cartscreen";
+import Loginscreen from "./screens/Loginscreen";
+import Registerscreen from "./screens/Registerscreen";
+import Ordersscreen from "./screens/Ordersscreen";
+import Profilescreen from "./screens/user/Profilescreen";
+import FeedbackScreen from "./screens/Feedbackscreen";
+import Footer from "./components/Footer";
+import AdminProfilescreen from "./screens/AdminProfilescreen";
+import Adminloginscreen from "./screens/Adiminloginscreen";
+import { useSelector } from "react-redux";
+import Notificationmanagementscreen from "./screens/Notificationmanagementscreen";
+import Errorscreen from "./screens/Errorscreen";
+import AboutScreen from "./screens/Aboutscreen";
+import FAQScreen from "./screens/FAQscreen";
+import Customermanagementscreen from "./screens/Customermanagementscreen";
+import Feedbackmanagementscreen from "./screens/Feedbackmanagementscreen";
+import Detailsscreen from "./screens/user/Detailsscreen";
+import Ordermanagementscreen from "./screens/Ordermanagementscreen";
+import Riderloginscreen from "./screens/rider/Riderloginscreen";
+import Ticketsscreen from "./screens/user/ticketsScreen";
+import SelectionFN from "./screens/SelectionFN";
+import Foodcataloguescreen from "./screens/Foodcataloguescreen";
+import SalesFinanceScreen from "./screens/SalesFinanceScreen";
+import Newsfeedscreen from "./screens/Newsfeedsrcreen";
+import SelectionUserAndCareer from "./screens/SelectionUserAndCareer";
+import Beveragesscreen from "./screens/Beveragesscreen";
+import Newsfeedmanagement from "./screens/NewsfeedManagement";
+import JobPortalscreen from "./screens/JobPortalscreen";
+import JobportalManagementScreen from "./screens/JobportalManagementScreen";
+import JobApplicantsManagementScreen from "./screens/JobApplicantsManagementScreen";
+import JobApplyScreen from "./screens/JobApplyScreen";
+import TicketsManagementScreen from "./screens/TicketsManagementScreen";
 
 function App() {
-
-  const userstate = useSelector(state => state.loginUserReducer)
-  const { currentUser } = userstate
-  const adminloginstate = useSelector(state => state.adminloginReducer)
-  const { currentAdmin } = adminloginstate
+  const userstate = useSelector((state) => state.loginUserReducer);
+  const { currentUser } = userstate;
+  const adminloginstate = useSelector((state) => state.adminloginReducer);
+  const { currentAdmin } = adminloginstate;
 
   return (
     <div className="App">
-
-
       <Navbar />
-
 
       <BrowserRouter>
         <Routes>
-
-
-
           <Route path="/" exact element={<Homescreen />} />
           <Route path="/cart" exact element={<Cartscreen />} />
           <Route path="/beverages" exact element={<Beveragesscreen />} />
@@ -69,115 +61,143 @@ function App() {
           <Route path="/jobportal" exact element={<JobPortalscreen />} />
           <Route path="/jobapply" exact element={<JobApplyScreen />} />
 
-
-
           {currentUser ? (
             <Route path="/feedback" exact element={<FeedbackScreen />} />
-
+          ) : <Route path="/feedback" exact element={<FeedbackScreen />} /> &&
+            currentAdmin ? (
+            <Route path="/error" exact element={<Errorscreen />} />
           ) : (
-
-
             <Route path="/feedback" exact element={<FeedbackScreen />} />
-
-          ) && currentAdmin ? (<Route path="/error" exact element={<Errorscreen />} />) : (
-
-            <Route path="/feedback" exact element={<FeedbackScreen />} />
-
-
           )}
-
 
           {currentUser ? (
             <Route path="/tickets" exact element={<Ticketsscreen />} />
-
+          ) : <Route path="/error" exact element={<Errorscreen />} /> &&
+            currentAdmin ? (
+            <Route path="/error" exact element={<Errorscreen />} />
           ) : (
-
-
             <Route path="/error" exact element={<Errorscreen />} />
-
-          ) && currentAdmin ? (<Route path="/error" exact element={<Errorscreen />} />) : (
-
-            <Route path="/error" exact element={<Errorscreen />} />
-
-
           )}
 
-          {currentAdmin ? (<Route path="admin/notifications" exact element={<Notificationmanagementscreen />} />) : (
-
+          {currentAdmin ? (
+            <Route
+              path="admin/notifications"
+              exact
+              element={<Notificationmanagementscreen />}
+            />
+          ) : (
             <Route path="/error" exact element={<Errorscreen />} />
-
           )}
-          {currentAdmin ? (<Route path="admin/orders" exact element={<Ordermanagementscreen />} />) : (
-
+          {currentAdmin ? (
+            <Route
+              path="admin/orders"
+              exact
+              element={<Ordermanagementscreen />}
+            />
+          ) : (
             <Route path="/error" exact element={<Errorscreen />} />
-
-          )}
-
-          {currentAdmin ? (<Route path="admin/notifications" exact element={<Notificationmanagementscreen />} />) : (
-
-            <Route path="/error" exact element={<Errorscreen />} />
-
-          )}
-
-
-          {currentAdmin ? (<Route path="admin/selectionfn" exact element={<SelectionFN />} />)
-
-            : (
-
-              <Route path="/error" exact element={<Errorscreen />} />
-
-            )}
-          {currentAdmin ? (<Route path="admin/selectionUC" exact element={<SelectionUserAndCareer />} />)
-
-            : (
-
-              <Route path="/error" exact element={<Errorscreen />} />
-
-            )}
-          {currentAdmin ? (<Route path="admin/addfoodcatalogue" exact element={<Foodcataloguescreen />} />)
-
-            : (
-
-              <Route path="/error" exact element={<Errorscreen />} />
-
-            )}
-
-
-
-
-          {currentAdmin ? (<Route path="admin/customers" exact element={<Customermanagementscreen />} />) : (
-
-            <Route path="/error" exact element={<Errorscreen />} />
-
-          )}
-          {currentAdmin ? (<Route path="admin/feedback" exact element={<Feedbackmanagementscreen />} />) : (
-
-            <Route path="/error" exact element={<Errorscreen />} />
-
           )}
 
-          {currentAdmin ? (<Route path="admin/salesnfinance" exact element={<SalesFinanceScreen />} />) : (
-
+          {currentAdmin ? (
+            <Route
+              path="admin/notifications"
+              exact
+              element={<Notificationmanagementscreen />}
+            />
+          ) : (
             <Route path="/error" exact element={<Errorscreen />} />
-
           )}
 
-          {currentAdmin ? (<Route path="admin/newsfeedmanagement" exact element={<Newsfeedmanagement />} />) : (
-
+          {currentAdmin ? (
+            <Route path="admin/selectionfn" exact element={<SelectionFN />} />
+          ) : (
             <Route path="/error" exact element={<Errorscreen />} />
-
           )}
-          {currentAdmin ? (<Route path="admin/jobportalManage" exact element={<JobportalManagementScreen />} />) : (
-
+          {currentAdmin ? (
+            <Route
+              path="admin/selectionUC"
+              exact
+              element={<SelectionUserAndCareer />}
+            />
+          ) : (
             <Route path="/error" exact element={<Errorscreen />} />
-
           )}
-          {currentAdmin ? (<Route path="admin/jobApplicantManage" exact element={<JobApplicantsManagementScreen />} />) : (
-
+          {currentAdmin ? (
+            <Route
+              path="admin/addfoodcatalogue"
+              exact
+              element={<Foodcataloguescreen />}
+            />
+          ) : (
             <Route path="/error" exact element={<Errorscreen />} />
-
           )}
 
+          {currentAdmin ? (
+            <Route
+              path="admin/customers"
+              exact
+              element={<Customermanagementscreen />}
+            />
+          ) : (
+            <Route path="/error" exact element={<Errorscreen />} />
+          )}
+          {currentAdmin ? (
+            <Route
+              path="admin/feedback"
+              exact
+              element={<Feedbackmanagementscreen />}
+            />
+          ) : (
+            <Route path="/error" exact element={<Errorscreen />} />
+          )}
+
+          {currentAdmin ? (
+            <Route
+              path="admin/salesnfinance"
+              exact
+              element={<SalesFinanceScreen />}
+            />
+          ) : (
+            <Route path="/error" exact element={<Errorscreen />} />
+          )}
+
+          {currentAdmin ? (
+            <Route
+              path="admin/newsfeedmanagement"
+              exact
+              element={<Newsfeedmanagement />}
+            />
+          ) : (
+            <Route path="/error" exact element={<Errorscreen />} />
+          )}
+          {currentAdmin ? (
+            <Route
+              path="admin/jobportalManage"
+              exact
+              element={<JobportalManagementScreen />}
+            />
+          ) : (
+            <Route path="/error" exact element={<Errorscreen />} />
+          )}
+          {currentAdmin ? (
+            <Route
+              path="admin/jobApplicantManage"
+              exact
+              element={<JobApplicantsManagementScreen />}
+            />
+          ) : (
+            <Route path="/error" exact element={<Errorscreen />} />
+          )}
+
+          {currentAdmin ? (
+            <Route
+              path="admin/ticketsmanage"
+              exact
+              element={<TicketsManagementScreen />}
+            />
+          ) : (
+            <Route path="/error" exact element={<Errorscreen />} />
+          )}
 
           <Route path="/profile" exact element={<Profilescreen />} />
           <Route path="/profile/details" exact element={<Detailsscreen />} />
@@ -185,12 +205,6 @@ function App() {
           <Route path="/about" exact element={<AboutScreen />} />
           <Route path="/faq" exact element={<FAQScreen />} />
           <Route path="/newsfeed" exact element={<Newsfeedscreen />} />
-
-
-
-
-
-
         </Routes>
       </BrowserRouter>
       <Footer />

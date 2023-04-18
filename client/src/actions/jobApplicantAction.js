@@ -19,6 +19,25 @@ export const getallApplications = () => async dispatch => {
 
 }
 
+export const JobApplication = (newApplicant) => async dispatch => {
+
+    dispatch({ type: 'JOB_APPLICATION_SENDING' })
+
+    try {
+        const response = await axios.post('/api/jobapply/post',newApplicant )
+       
+        console.log(response);
+        dispatch({ type: 'JOB_APPLICATION_SUCCESS' })
+        setTimeout(function(){
+            window.location.reload();
+         }, 1500);
+
+    } catch (error) {
+        dispatch({ type: 'JOB_APPLICATION_FAILED' + error, payload: error })
+    }
+}
+
+
 export const deleteApplicantAction = (ApplicantID) => async dispatch => {
 
     dispatch({ type: 'APPLICANT_DELETE_REQUEST' })

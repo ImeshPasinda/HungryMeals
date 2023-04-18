@@ -1,203 +1,180 @@
-// import React, { useState, useEffect } from "react";
-// import { useDispatch, useSelector } from 'react-redux'
-// import { updatetickets } from "../../actions/ticketsActions";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux'
+import { updatetickets } from "../../actions/ticketsActions";
+import Swal from "sweetalert2";
+import { TicketForm } from "../../actions/ticketsActions";
+export default function TicketsScreen() {
 
-// export default function TicketsScreen() {
+    const dispatch = useDispatch()
 
-//     const dispatch = useDispatch()
+    const [tickettitle, setTitle] = useState('')
+    const [category, setCategory] = useState('')
+    const [description, setdescription] = useState('')
+    const [email, setemail] = useState('')
+    const [telephone, settelephone] = useState('')
 
-//     const [ticketHeader, setHeader] = useState('')
-//     const [ticketSubject, setSubject] = useState('')
-//     const userstate = useSelector(state => state.loginUserReducer)
-//     const { currentUser } = userstate
+    const userstate = useSelector(state => state.loginUserReducer)
+    const { currentUser } = userstate
 
-//     let userId = currentUser._id;
+    let userId = currentUser._id;
+
+
+
+    function updateTickets(userId) {
+        console.log(userId)
+
+        const updateTickets = {
+
+            tickettitle,
+            category,
+            description,
+            email,
+            telephone
+
+
+        }
+
+        console.log(updateTickets)
+        dispatch(updatetickets(updateTickets, userId))
+
+
+    }
+    function raiseTicket() {
+
+        const newTicket = {
+            tickettitle,
+            category,
+            description,
+            email,
+            telephone
+        }
+        if (tickettitle.trim().length !== 0 && category.trim().length !== 0 && description.trim().length !== 0 && email.trim().length !== 0) {
+    
+          dispatch(TicketForm(newTicket))
+    
+        }
+        else {
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1500,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+          })
+    
+          Toast.fire({
+            icon: 'error',
+            title: 'Please fill out required fields !'
+          })
+        }
     
     
-
-//     function updateTickets(userId) {
-//         console.log(userId)
-       
-//         const updateTickets = {
-
-//             ticketHeader,
-//             ticketSubject,
-//         }
-
-//         console.log(updateTickets)
-//         dispatch(updatetickets(updateTickets ,userId))
-
-
-//     }
+    
+    
+    
+      }
+    
 
 
 
 
 
 
+    return (
 
-//     return (
+        <div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <div className='row justify-content-center'>
+                <div className="col-md-5 mt-5 text-start shadow p-3 mb-5 bg-white rounded">
+                    <h9 style={{ fontSize: '35px' }}>Customer Support-Ticket Raising Form</h9>
+                    <br /><br />
+                    <form class="row g-3">
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">Type the Title here</label><br />
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="exampleFormControlInput1"
+                                placeholder=""
+                                value={tickettitle}
+                                onChange={(e) => { setTitle(e.target.value) }}
 
-//         <div>
-//             <br />
-//             <br />
-//             <br />
-//             <br />
-//             <br />
-//             <br />
-//             <br />
-//             <div className='row justify-content-center'>
-//                 <div className="col-md-5 mt-5 text-start shadow p-3 mb-5 bg-white rounded">
+                            />
+                        </div><br />
+                        <div class="col-md-4">
+                            <label for="inputState" class="form-label">Select Tickets Category</label><br />
+                            <select id="inputState" class="form-select" value={category} onChange={(e) => setCategory(e.target.value)}>
+                                <option selected>Choose...</option>
+                                <option value="Orders">Orders</option>
+                                <option value="Refunds">Refunds</option>
+                                <option value="Payments">Payments</option>
+                                <option value="Delivery">Delivery</option>
 
-                   
-//                         <div class="form-group">
-//                             <label for="exampleFormControlInput1">Ticket Header</label>
-//                             <input 
-//                             type="text" 
-//                             class="form-control" 
-//                             id="exampleFormControlInput1" 
-//                             placeholder="" 
-//                             value={ticketHeader}
-//                             onChange={(e) => { setHeader(e.target.value) }} 
-                            
-//                             />
-//                         </div>
-
-
-//                         <div class="form-group">
-//                             <label for="exampleFormControlTextarea1">Ticket Subject</label>
-//                             <textarea 
-//                             class="form-control" 
-//                             id="exampleFormControlTextarea1" 
-//                             rows="3"
-//                             value={ticketSubject}
-//                             onChange={(e) => { setSubject(e.target.value) }} 
-                            
-//                             ></textarea>
-//                         </div>
-
-//                         <button onClick={() => updateTickets(userId)} className="btn mt-3 mb-3 " >SUBMIT</button>
-                   
-
-//                 </div>
+                            </select>
 
 
-//             </div>
-//             <br />
+                        </div><br />
 
-//         </div>
-//     )
-// }
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Description</label><br />
+                            <textarea
+                                class="form-control"
+                                id="exampleFormControlTextarea1"
+                                rows="3"
+                                value={description}
+                                onChange={(e) => { setdescription(e.target.value) }}
+
+                            ></textarea>
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">Email</label><br />
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="exampleFormControlInput1"
+                                placeholder=""
+                                value={email}
+                                onChange={(e) => { setemail(e.target.value) }}
+
+                            />
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">Telephone</label><br />
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="exampleFormControlInput1"
+                                placeholder=""
+                                value={telephone}
+                                onChange={(e) => { settelephone(e.target.value) }}
+
+                            />
+                        </div>
+                    </form>
+                    <br />
+                    {/* <button onClick={() => updateTickets(userId)} className="btn mt-3 mb-3 " >SUBMIT</button> */}
+                    <div class="col-12">
+                        <button type="submit" onClick={raiseTicket} class="btn ">Submit</button>
+                    </div>
+
+                </div>
 
 
+            </div>
+            <br />
 
-import React, { useState } from "react";
-import {
-  MDBBtn,
-  MDBCol,
-  MDBContainer,
-  MDBIcon,
-  MDBModal,
-  MDBModalBody,
-  MDBModalContent,
-  MDBModalDialog,
-  MDBModalFooter,
-  MDBModalHeader,
-  MDBRow,
-  MDBTypography,
-} from "mdb-react-ui-kit";
-
-export default function Basic() {
-  const [basicModal, setBasicModal] = useState(false);
-
-  const toggleShow = () => setBasicModal(!basicModal);
-
-  return (
-    <>
-      <section className="vh-100" style={{ backgroundColor: "#35558a" }}>
-        <MDBContainer className="py-5 h-100">
-          <MDBRow className="justify-content-center align-items-center h-100 text-center">
-            <MDBCol>
-              <MDBBtn color="light" size="lg" onClick={toggleShow}>
-                <MDBIcon fas icon="info me-2" /> Get information
-              </MDBBtn>
-              <MDBModal show={basicModal} setShow={setBasicModal} tabIndex="-1">
-                <MDBModalDialog>
-                  <MDBModalContent>
-                    <MDBModalHeader className="border-bottom-0">
-                      <MDBBtn
-                        className="btn-close"
-                        color="none"
-                        onClick={toggleShow}
-                      ></MDBBtn>
-                    </MDBModalHeader>
-                    <MDBModalBody className="text-start text-black p-4">
-                      <MDBTypography
-                        tag="h5"
-                        className="modal-title text-uppercase mb-5"
-                        id="exampleModalLabel"
-                      >
-                        Johnatan Miller
-                      </MDBTypography>
-                      <MDBTypography
-                        tag="h4"
-                        className="mb-5"
-                        style={{ color: "#35558a" }}
-                      >
-                        Thanks for your order
-                      </MDBTypography>
-                      <p className="mb-0" style={{ color: "#35558a" }}>
-                        Payment summary
-                      </p>
-                      <hr
-                        className="mt-2 mb-4"
-                        style={{
-                          height: "0",
-                          backgroundColor: "transparent",
-                          opacity: ".75",
-                          borderTop: "2px dashed #9e9e9e",
-                        }}
-                      />
-
-                      <div className="d-flex justify-content-between">
-                        <p className="fw-bold mb-0">Ether Chair(Qty:1)</p>
-                        <p className="text-muted mb-0">$1750.00</p>
-                      </div>
-
-                      <div className="d-flex justify-content-between">
-                        <p className="small mb-0">Shipping</p>
-                        <p className="small mb-0">$175.00</p>
-                      </div>
-
-                      <div className="d-flex justify-content-between pb-1">
-                        <p className="small">Tax</p>
-                        <p className="small">$200.00</p>
-                      </div>
-
-                      <div className="d-flex justify-content-between">
-                        <p className="fw-bold">Total</p>
-                        <p className="fw-bold" style={{ color: "#35558a" }}>
-                          $2125.00
-                        </p>
-                      </div>
-                    </MDBModalBody>
-
-                    <MDBModalFooter className="d-flex justify-content-center border-top-0 py-4">
-                      <MDBBtn
-                        size="lg"
-                        style={{ backgroundColor: "#35558a" }}
-                        className="mb-1"
-                      >
-                        Track your order
-                      </MDBBtn>
-                    </MDBModalFooter>
-                  </MDBModalContent>
-                </MDBModalDialog>
-              </MDBModal>
-            </MDBCol>
-          </MDBRow>
-        </MDBContainer>
-      </section>
-    </>
-  );
+        </div>
+    )
 }

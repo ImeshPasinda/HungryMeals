@@ -75,6 +75,21 @@ router.delete("/delete/jobs/:id", async (req, res) => {
     }
 });
 
+//get current jobs
+router.get("/getcurrentjobs/:id", async (req, res) => {
+
+    let jobsId = req.params.id;
+    try {
+
+        const currentjobs = await Jobs.findById(jobsId)
+        res.send(currentjobs)
+
+    } catch (error) {
+        return res.status(400).json({ message: error });
+    }
+
+})
+
 
 
 

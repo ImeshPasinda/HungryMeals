@@ -137,3 +137,58 @@ export const addJob = (job) => async dispatch => {
         dispatch({ type: 'JOB_ADDED_FAILED', payload: error })
     }
 }
+
+//Update jobs
+export const updateJobsAction = (updatejobs, id) => async dispatch => {
+
+    dispatch({ type: 'UPDATE_JOBS_REQUEST' })
+
+    try {
+    
+        const response = await axios.put(`/api/jobportal/update/jobs/${id}`, updatejobs)
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1500,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
+        Toast.fire({
+            icon: 'success',
+            title: 'Jobs updated successfully!'
+        })
+       
+        setTimeout(function () {
+            window.location.reload('/admin/jobportalManage');
+        }, 1500);
+        console.log(response);
+        
+        dispatch({ type: 'UPDATE_JOB_SUCCESS' })
+
+
+    } catch (error) {
+
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
+        Toast.fire({
+            icon: 'error',
+            title: 'Jobs updated unsuccessfully!'
+        })
+        dispatch({ type: 'UPDATE_JOBS_FAILED', payload: error })
+    }
+}
