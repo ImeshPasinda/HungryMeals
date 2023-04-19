@@ -219,4 +219,59 @@ export const updaterefundrequestAction = (updatesendrefundStatus, orderId) => as
 
 }
 
+export const updateuserrefundrequestAction = (updateorderStatus, orderId) => async dispatch => {
+
+    dispatch({ type: 'UPDATE_REFUND_REQUEST' })
+
+
+        try {
+            const response = await axios.put(`/api/orders/update/order/refund/request/user/${orderId}`, updateorderStatus)
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 1500,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon: 'success',
+                title: 'Refund request send successfully!'
+            })
+            setTimeout(function () {
+                window.location.reload('/admin/orders');
+            }, 1500);
+           
+
+            console.log(response);
+            dispatch({ type: 'UPDATE_REFUND_REQUEST_SUCCESS' })
+
+
+        } catch (error) {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon: 'error',
+                title: 'Refund request send unsuccessfully'
+            })
+
+            dispatch({ type: 'UPDATE_REFUND_REQUEST_FAILED', payload: error })
+        }
+
+
+}
 

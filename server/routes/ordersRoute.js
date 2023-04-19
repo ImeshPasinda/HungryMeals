@@ -139,7 +139,9 @@ router.put("/update/order/status/:id", async (req, res) => {
     } catch (error) {
         return res.status(400).json({ message: error });
     }
-});router.put("/update/order/refund/request/:id", async (req, res) => {
+});
+
+router.put("/update/order/refund/request/:id", async (req, res) => {
 
     let orderId = req.params.id;
     const { sendrefundStatus } = req.body;
@@ -153,6 +155,27 @@ router.put("/update/order/status/:id", async (req, res) => {
     try {
 
         await Order.findByIdAndUpdate(orderId, updatesendrefundStatus)
+        res.send('Order refund request Successfully')
+
+    } catch (error) {
+        return res.status(400).json({ message: error });
+    }
+});
+
+router.put("/update/order/refund/request/user/:id", async (req, res) => {
+
+    let orderId = req.params.id;
+    const { orderStatus } = req.body;
+
+    const updateorderStatus = {
+
+        orderStatus,
+
+    }
+
+    try {
+
+        await Order.findByIdAndUpdate(orderId, updateorderStatus)
         res.send('Order refund request Successfully')
 
     } catch (error) {
