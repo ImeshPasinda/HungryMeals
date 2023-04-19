@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useState, useEffect } from "react";
 import { logoutUser } from '../actions/userActions';
 import { logoutAdmin } from '../actions/adminActions';
+import { loginDriver, logoutDriver } from '../actions/driverActions';
 
 
 
@@ -37,6 +38,8 @@ export default function Navbar() {
     const [notifications, setNotifications] = useState([]);
     const adminloginstate = useSelector(state => state.adminloginReducer)
     const { currentAdmin } = adminloginstate
+    const driverstate = useSelector(state => state.driverloginReducer)
+    const { currentDriver } = driverstate
     const dispatch = useDispatch()
 
 
@@ -209,6 +212,32 @@ export default function Navbar() {
                                         <li><a className="dropdown-item" href="/admin"><h9>Profile</h9></a></li>
 
                                         <li><a className="dropdown-item" href="#" onClick={() => { dispatch(logoutAdmin()) }}><li><h9>Logout</h9></li></a></li>
+                                    </ul>
+
+                                </div>
+                            ) : (
+
+                                <li className="nav-item mt-1">
+                                    <a className="nav-link " href="/login">
+                                        <h15>Login</h15>
+                                    </a>
+                                </li>
+                            )&& currentDriver ? (
+
+
+                                <div className="dropdown m-2">
+
+                                    <a style={{ color: 'white', width: '120px' }} className="dropdown-toggles" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <h15>Hi, {currentDriver.name}</h15> <img src='https://static.wixstatic.com/media/618c8c_5f176f88792f40609c74309e7f6f2eb2~mv2.png' style={{ height: '30px', height: '30px' }} />
+                                    </a>
+
+
+
+                                    <ul class="dropdown-menu text-center" style={{ minWidth: '7rem ' }} aria-labelledby="dropdownMenuButton1">
+
+                                        <li><a className="dropdown-item" href="/driver"><h9>Profile</h9></a></li>
+
+                                        <li><a className="dropdown-item" href="#" onClick={() => { dispatch(logoutDriver()) }}><li><h9>Logout</h9></li></a></li>
                                     </ul>
 
                                 </div>
