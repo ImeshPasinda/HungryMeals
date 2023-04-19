@@ -361,7 +361,7 @@ export default function Ordermanagementscreen() {
                                     {item.name}(Qty :{item.quantity})
                                   </p>
                                   <p className="text-muted mb-0">
-                                    LKR {item.price}
+                                    = LKR : {item.price}
                                   </p>
                                   <br></br>
                                 </div>

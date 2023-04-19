@@ -24,7 +24,7 @@ export default function Cartscreen() {
 
                     <div className="col-md-6">
 
-                        <h2 style={{ fontSize: '40px' }}>My Cart</h2>
+                        <h9 style={{ fontSize: '40px' }}>My Cart</h9>
 
                         {cartItems.map(item => {
 
