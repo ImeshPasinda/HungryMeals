@@ -15,6 +15,7 @@ import { riderloginReducer } from './reducers/riderReducer'
 import { getAllNewsReducer } from './reducers/newsfeedReducer'
 import { getAllJobsReducer } from './reducers/jobsReducer'
 import { jobApplyReducer } from './reducers/jobApplyReducer'
+import { addRefundReducer ,getAllRefundsReducer } from './reducers/refundReducer'
 
 
 const finalReducer = combineReducers({
@@ -31,7 +32,9 @@ const finalReducer = combineReducers({
     addCustomerReducer : addCustomerReducer,
     riderloginReducer : riderloginReducer,
     getAllNewsReducer: getAllNewsReducer,
-    jobApplyReducer : jobApplyReducer
+    jobApplyReducer : jobApplyReducer,
+    addRefundReducer : addRefundReducer,
+    getAllRefundsReducer : getAllRefundsReducer
     
 })
 

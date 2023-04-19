@@ -27,7 +27,6 @@ import Riderloginscreen from "./screens/rider/Riderloginscreen";
 import Ticketsscreen from "./screens/user/ticketsScreen";
 import SelectionFN from "./screens/SelectionFN";
 import Foodcataloguescreen from "./screens/Foodcataloguescreen";
-import SalesFinanceScreen from "./screens/SalesFinanceScreen";
 import Newsfeedscreen from "./screens/Newsfeedsrcreen";
 import SelectionUserAndCareer from "./screens/SelectionUserAndCareer";
 import Beveragesscreen from "./screens/Beveragesscreen";
@@ -37,6 +36,10 @@ import JobportalManagementScreen from "./screens/JobportalManagementScreen";
 import JobApplicantsManagementScreen from "./screens/JobApplicantsManagementScreen";
 import JobApplyScreen from "./screens/JobApplyScreen";
 import TicketsManagementScreen from "./screens/TicketsManagementScreen";
+import FinanceManagerScreen from "./screens/FinanceManagerScreen";
+import HistoryScreen from "./screens/HistoryScreen";
+import SalesScreen from "./screens/SalesScreen";
+import RefundRequestScreen from "./screens/RefundRequestScreen";
 
 function App() {
   const userstate = useSelector((state) => state.loginUserReducer);
@@ -153,16 +156,6 @@ function App() {
 
           {currentAdmin ? (
             <Route
-              path="admin/salesnfinance"
-              exact
-              element={<SalesFinanceScreen />}
-            />
-          ) : (
-            <Route path="/error" exact element={<Errorscreen />} />
-          )}
-
-          {currentAdmin ? (
-            <Route
               path="admin/newsfeedmanagement"
               exact
               element={<Newsfeedmanagement />}
@@ -194,6 +187,46 @@ function App() {
               path="admin/ticketsmanage"
               exact
               element={<TicketsManagementScreen />}
+            />
+          ) : (
+            <Route path="/error" exact element={<Errorscreen />} />
+          )}
+
+          {currentAdmin ? (
+            <Route
+              path="admin/financemanager"
+              exact
+              element={<FinanceManagerScreen />}
+            />
+          ) : (
+            <Route path="/error" exact element={<Errorscreen />} />
+          )}
+
+          {currentAdmin ? (
+            <Route
+              path="admin/financemanager/history"
+              exact
+              element={<HistoryScreen />}
+            />
+          ) : (
+            <Route path="/error" exact element={<Errorscreen />} />
+          )}
+
+          {currentAdmin ? (
+            <Route
+              path="admin/financemanager/sales"
+              exact
+              element={<SalesScreen />}
+            />
+          ) : (
+            <Route path="/error" exact element={<Errorscreen />} />
+          )}
+
+          {currentAdmin ? (
+            <Route
+              path="admin/financemanager/requests"
+              exact
+              element={<RefundRequestScreen />}
             />
           ) : (
             <Route path="/error" exact element={<Errorscreen />} />

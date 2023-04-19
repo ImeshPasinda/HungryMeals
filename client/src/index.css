@@ -455,7 +455,24 @@ p10 {
       
 
 
-
+      .financemanagerfunctions{
+        margin-top: 20px;
+        padding: 20px;
+        background-color:rgb(243, 238, 238) ;
+      }
+      
+      .financemanagerfunctions li{
+        list-style-type:none !important;
+        font-size: 18px;
+        display: inline !important;
+        color: black !important;
+      }
+      
+      .financemanagerfunctions li a{
+        color: black !important;
+        padding: 25px;
+        text-decoration: none;
+      }
 
 
 

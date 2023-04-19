@@ -11,7 +11,7 @@ const Rider = require('./models/deliveryModel')
 const News = require('./models/newsfeedModel')
 const Jobs=require('./models/jobsModel')
 const Applications=require('./models/JobApplyModel')
-
+const Refund = require('./models/refundModel')
 
 
 const app = express();
@@ -35,6 +35,7 @@ const newsfeedRoute = require('./routes/newsfeedRoute')
 const jobsRoute=require('./routes/jobsRoute')
 const JobApplyRoute=require('./routes/JobApplyRoute')
 const Tickets=require('./models/ticketsModel')
+const refundRoute = require('./routes/refundRoute')
 
 
 
@@ -49,6 +50,7 @@ app.use('/api/notifications/', notificationRoute)
 app.use('/api/newsfeed/', newsfeedRoute)
 app.use('/api/jobportal/',jobsRoute)
 app.use('/api/jobapply/',JobApplyRoute)
+app.use('/api/refunds/', refundRoute)
 
 
 
