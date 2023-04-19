@@ -1,19 +1,71 @@
-const mongoose = require("mongoose");
+/*const mongoose = require("mongoose");
 
-const deliverySchema = mongoose.Schema({
+//const userRiderSchema = mongoose.Schema({
 
-  driverName: { type: String },
-  orderId: { type: String },
-  orderItems : [],
-  location: {type: Object},
-  customerName: { type: String },
-  amount: { type: Number, default: 0 },
-  driverRate: { type: Number, default: 0 }
+    riderName: { type: String, require },
+    riderEmail: { type: String, require },
+    riderPassword: { type: String, require },
 
 }, {
 
-  timestamps: true,
+    timestamps: true,
+
+})//
+
+const driverSchema = mongoose.Schema({
+    name: { type: String, required: true },
+    email: { type: String, required: true },
+    phone: { type: String },
+    Password: { type: String, require },
+    dailySalary: { type: Number, default: 0 }
+  }, {
+
+    timestamps: true,
 
 });
 
-module.exports = mongoose.model('Delivery', deliverySchema);
+const deliverySchema = mongoose.Schema({
+    driver: { type: mongoose.Schema.Types.ObjectId, ref: 'Driver', required: true },
+    customer: { type: mongoose.Schema.Types.ObjectId, ref: 'Customer', required: true },
+    order: { type: mongoose.Schema.Types.ObjectId, ref: 'Order', required: true },
+    pickupTime: { type: Date, required: true },
+    deliveryTime: { type: Date },
+    earnings: { type: Number, default: 0 },
+  });
+
+const Driver = mongoose.model('Driver', driverSchema);
+
+const Delivery = mongoose.model('Delivery', deliverySchema);
+
+module.exports = { Driver, Delivery };
+
+//const Rider = mongoose.model('riders', userRiderSchema)
+
+//module.exports = Rider
+*/
+const mongoose = require("mongoose");
+
+const driverSchema = mongoose.Schema({
+  Name: { type: String, required: true },
+  email: { type: String, required: true },
+  phone: { type: String },
+  Password: { type: String, required: true },
+  dailySalary: { type: Number, default: 0 }
+}, {
+  timestamps: true,
+});
+
+const deliverySchema = mongoose.Schema({
+  driver: { type: mongoose.Schema.Types.ObjectId, ref: 'Driver', required: true },
+  customer: { type: mongoose.Schema.Types.ObjectId, ref: 'Customer', required: true },
+  order: { type: mongoose.Schema.Types.ObjectId, ref: 'Order', required: true },
+  pickupTime: { type: Date, required: true },
+  deliveryTime: { type: Date },
+  earnings: { type: Number, default: 0 },
+});
+
+const Driver = mongoose.model('Driver', driverSchema);
+
+const Delivery = mongoose.model('Delivery', deliverySchema);
+
+module.exports = { Driver, Delivery };
