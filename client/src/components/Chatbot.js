@@ -24,16 +24,8 @@ export default function chatbot() {
           },
           {
             id: '3',
-            message: 'Hi {previousValue}, nice to meet you! I am Binuka Putha',
-            trigger: '4',
-          },
-          {
-            id: '4',
-            component: (
-              <div> <img src="https://scontent-lhr8-1.xx.fbcdn.net/v/t1.6435-9/72250327_871224639941733_7036015368472625152_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=6MQUL9JrGU0AX98e088&tn=kP3xHg4BR0fN_o3g&_nc_ht=scontent-lhr8-1.xx&oh=00_AfDG61kjgSlgK8Qnz990QOyGCUTmIL8xA8nC8rXYgle_iQ&oe=63EE187B" style={{ borderRadius: '15px', width: '200px', height: "300px" }} className=" shadow" alt="..." /> </div>
-            ),
+            message: 'Hi {previousValue}, nice to meet you! I Agent in HungryMeals',
             trigger: '5',
-
           },
           {
             id: '5',
@@ -50,7 +42,7 @@ export default function chatbot() {
           },
           {
             id: '7',
-            message: 'තාම ඒක හදලා නෑ බං',
+            message: 'Not Completed!',
             end: true,
           },
           {
@@ -62,7 +54,7 @@ export default function chatbot() {
           },
           {
             id: '9',
-            message: 'තාම ඒක හදලා නෑ බං',
+            message: 'Not Colmpleted',
             end: true,
           },
 
