@@ -1,19 +1,17 @@
 const mongoose = require("mongoose");
 
-const deliverySchema = mongoose.Schema({
 
-  driverName: { type: String },
-  orderId: { type: String },
+const deliverySchema = mongoose.Schema({
+  driverName: {type: String , require},
+  orderId: {type: String , require},
   orderItems : [],
   location: {type: Object},
-  customerName: { type: String },
+  customerName: {type: String , require},
   amount: { type: Number, default: 0 },
-  driverRate: { type: Number, default: 0 }
-
-}, {
-
-  timestamps: true,
-
+  driverRate: { type: Number, default: 1000 },
 });
 
-module.exports = mongoose.model('Delivery', deliverySchema);
+
+
+module.exports  = mongoose.model('Delivery', deliverySchema);
+
