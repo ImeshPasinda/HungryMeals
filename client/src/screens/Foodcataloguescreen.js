@@ -255,7 +255,7 @@ export default function Foodcataloguescreen() {
         <div className='col-md-9 m-3 p-0'>
           {/* Data table for customer details */}
           <DataTable
-            title=<div style={{ paddingTop: '25px' }}><h20>Newsfeed Management <sup><span class="badge bg-danger">Not Completed</span></sup></h20></div>
+            title=<div style={{ paddingTop: '25px' }}><h20>Food Catalogue Management <sup><span class="badge bg-danger">Not Completed</span></sup></h20></div>
             columns={columnsOrders}
             data={filteredCatalogues}
             pagination
@@ -333,7 +333,7 @@ export default function Foodcataloguescreen() {
           <br />
           <div className='modal-footer'>
             <button class="btn" data-bs-target="#staticBackdrop2" data-bs-toggle="modal" data-bs-dismiss="modal"><i class="fa-solid fa-plus fa-beat" style={{ "color": "white" }}></i> Add New Foods</button>
-            <div className='p-1'><button class="btn" data-bs-target="#" data-bs-toggle="modal" data-bs-dismiss="modal"><i style={{ fontSize: '15px', color: 'white' }} class="fa fa-file" aria-hidden="true"></i> Generate Newsfeed Report</button></div>
+            <div className='p-1'><button class="btn" data-bs-target="#" data-bs-toggle="modal" data-bs-dismiss="modal"><i style={{ fontSize: '15px', color: 'white' }} class="fa fa-file" aria-hidden="true"></i> Generate Food Catalogue Report</button></div>
           </div>
 
 
