@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import { deleteOrderAction } from '../../actions/orderActions';
-import { newDeliveryAction, updateDeliveryStatus } from '../../actions/driverAction';
+import { newDeliveryAction, updateDeliveryStatus } from '../../actions/driverActions';
 
 let OrderId
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux'
-import { loginDriver } from "../../actions/driverAction";
+import { loginDriver } from "../../actions/driverActions";
 import Error from "../../components/Error";
 import Loading from "../../components/Loading";
 
