@@ -44,7 +44,7 @@ const currentUser = localStorage.getItem('currentUser') ? JSON.parse(localStorag
 
 const currentAdmin = localStorage.getItem('currentAdmin') ? JSON.parse(localStorage.getItem('currentAdmin')) : null
 
-const currentRider = localStorage.getItem('currentRider') ? JSON.parse(localStorage.getItem('currentRider')) : null
+const currentDriver = localStorage.getItem('currentDriver') ? JSON.parse(localStorage.getItem('currentDriver')) : null
 
 const currentNotifications = localStorage.getItem('currentNotifications') ? JSON.parse(localStorage.getItem('currentNotifications')) : null
 
@@ -65,8 +65,8 @@ const initialState = {
         currentNotifications: currentNotifications,
         
     },
-    riderloginReducer: {
-        currentRider: currentRider,
+    driverloginReducer: {
+        currentDriver: currentDriver,
         
         
     }

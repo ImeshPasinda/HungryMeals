@@ -11,6 +11,8 @@ export default function Driverprofilescreen() {
     const userstate = useSelector(state => state.driverloginReducer)
     const { currentDriver } = userstate
 
+    console.log(currentDriver)
+
 
     
 
