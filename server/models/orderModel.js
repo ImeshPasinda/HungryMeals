@@ -13,6 +13,7 @@ const orderSchemma = mongoose.Schema({
     refundRequestStatus : {type: Boolean , default : false},
     sendrefundStatus : {type: Boolean , default : false},
     transactionId : {type: String , require},
+    isSuccessfull : {type: Boolean , default : false},
 },{
     
     timestamps : true

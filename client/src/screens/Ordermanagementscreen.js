@@ -110,16 +110,20 @@ export default function Ordermanagementscreen() {
     {
       name: "Order Status",
       selector: (row) => {
-        if (row.sendrefundStatus) {
+        if (row.isSuccessfull) {
+          return (
+            <div>
+              <span className="badge bg-success">Refund Successful</span>
+            </div>
+          );
+        } else if (row.sendrefundStatus) {
           return (
             <div>
               <span className="badge bg-secondary">Refund Requested</span>
             </div>
           );
         } else if (row.isDelivered) {
-          return (
-            <span className="badge bg-success">Approved</span>
-          );
+          return <span className="badge bg-success">Approved</span>;
         } else if (row.orderStatus) {
           return (
             <div>
@@ -128,9 +132,7 @@ export default function Ordermanagementscreen() {
             </div>
           );
         } else {
-          return (
-            <span className="badge bg-warning">Pending</span>
-          );
+          return <span className="badge bg-warning">Pending</span>;
         }
       },
       sortable: true,
@@ -143,7 +145,7 @@ export default function Ordermanagementscreen() {
           return 0;
         }
       },
-    },  
+    },
 
     {
       name: "Order Details",
@@ -161,19 +163,19 @@ export default function Ordermanagementscreen() {
       ),
     },
 
-    {
-      name: "Delete",
-      cell: (row) => (
-        <button
-          onClick={() => {
-            deleteOrder(row._id);
-          }}
-          className="btn"
-        >
-          Delete
-        </button>
-      ),
-    },
+    // {
+    //   name: "Delete",
+    //   cell: (row) => (
+    //     <button
+    //       onClick={() => {
+    //         deleteOrder(row._id);
+    //       }}
+    //       className="btn"
+    //     >
+    //       Delete
+    //     </button>
+    //   ),
+    // },
   ];
 
   // search button
@@ -382,34 +384,44 @@ export default function Ordermanagementscreen() {
                       orders.orderStatus === false ? (
                         <span className="badge bg-success">Approved</span>
                       ) : orders.orderStatus === true ? (
-                        <>{orders.orderStatus && (
-                          <div>
-                            {orders.sendrefundStatus ? (
-                              <span className="badge bg-success">Refund Requested</span>
-                            ) : (
-                              <>
-                                <span className="ml-3">
-                                  Customer requested to cancel the order
-                                </span>
-                                <> </>
-                                <button
-                                  className="btn"
-                                  onClick={() =>
-                                    updateRefundRequest(orders._id, true)
-                                  }
-                                >
-                                  Request
-                                </button>
-                              </>
-                            )}
-                          </div>
-                        )}</>
+                        <>
+                          {orders.isSuccessfull ? (
+                            <><span className="badge bg-success">
+                              Refund Successfull
+                              
+                            </span><button
+                                onClick={() => {
+                                  deleteOrder(orders._id);
+                                }}
+                                className="btn"
+                              >
+                                Delete
+                              </button></>
+                          ) : orders.sendrefundStatus ? (
+                            <span className="badge bg-success">
+                              Refund Requested
+                            </span>
+                          ) : (
+                            <>
+                              <span className="ml-3">
+                                Customer requested to cancel the order
+                              </span>
+                              <> </>
+                              <button
+                                className="btn"
+                                onClick={() =>
+                                  updateRefundRequest(orders._id, true)
+                                }
+                              >
+                                Request
+                              </button>
+                            </>
+                          )}
+                        </>
                       ) : (
                         <button
                           className="btn"
-                          onClick={() => {
-                            updateOrderDelivery(orders._id, true);
-                          }}
+                          onClick={() => updateOrderDelivery(orders._id, true)}
                         >
                           Approve
                         </button>
