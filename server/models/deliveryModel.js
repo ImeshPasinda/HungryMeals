@@ -1,17 +1,19 @@
 const mongoose = require("mongoose");
 
-const userRiderSchema = mongoose.Schema({
+const deliverySchema = mongoose.Schema({
 
-    riderName: { type: String, require },
-    riderEmail: { type: String, require },
-    riderPassword: { type: String, require },
+  driverName: { type: String },
+  orderId: { type: String },
+  orderItems : [],
+  location: {type: Object},
+  customerName: { type: String },
+  amount: { type: Number, default: 0 },
+  driverRate: { type: Number, default: 0 }
 
 }, {
 
-    timestamps: true,
+  timestamps: true,
 
-})
+});
 
-const Rider = mongoose.model('riders', userRiderSchema)
- 
-module.exports = Rider
+module.exports = mongoose.model('Delivery', deliverySchema);

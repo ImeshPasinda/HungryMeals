@@ -1,33 +1,33 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux'
-import { loginRider } from "../../actions/riderActions";
+import { loginDriver } from "../../actions/driverAction";
 import Error from "../../components/Error";
 import Loading from "../../components/Loading";
 
 
 
-export default function Riderloginscreen() {
+export default function Driverloginscreen() {
 
 
-    const [RiderEmail, setemail] = useState('')
-    const [RiderPassword, setpassword] = useState('')
-    const riderloginstate = useSelector(state => state.riderloginReducer)
-    const { loading, error } = riderloginstate
+    const [email, setemail] = useState('')
+    const [Password, setpassword] = useState('')
+    const driverloginstate = useSelector(state => state.driverloginReducer)
+    const { loading, error } = driverloginstate
     const dispatch = useDispatch()
 
 
     useEffect(() => {
 
-        if (localStorage.getItem('currentRider')) {
-            window.location.href = '/rider'
+        if (localStorage.getItem('currentDriver')) {
+            window.location.href = '/driver'
         }
     })
 
 
     function login() {
 
-        const rider = { RiderEmail,RiderPassword }
-        dispatch(loginRider(rider))
+        const driver = { email,Password }
+        dispatch(loginDriver(driver))
         
     }
 
@@ -58,7 +58,7 @@ export default function Riderloginscreen() {
                             type="email"
                             placeholder="email"
                             className="form-control"
-                            value={RiderEmail}
+                            value={email}
                             onChange={(e) => { setemail(e.target.value) }}
 
                         />
@@ -68,7 +68,7 @@ export default function Riderloginscreen() {
                             type="password"
                             placeholder="password"
                             className="form-control"
-                            value={RiderPassword}
+                            value={Password}
                             onChange={(e) => { setpassword(e.target.value) }}
 
                         />

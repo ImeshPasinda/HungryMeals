@@ -23,7 +23,6 @@ import Customermanagementscreen from "./screens/Customermanagementscreen";
 import Feedbackmanagementscreen from "./screens/Feedbackmanagementscreen";
 import Detailsscreen from "./screens/user/Detailsscreen";
 import Ordermanagementscreen from "./screens/Ordermanagementscreen";
-import Riderloginscreen from "./screens/rider/Riderloginscreen";
 import Ticketsscreen from "./screens/user/ticketsScreen";
 import SelectionFN from "./screens/SelectionFN";
 import Foodcataloguescreen from "./screens/Foodcataloguescreen";
@@ -40,12 +39,18 @@ import FinanceManagerScreen from "./screens/FinanceManagerScreen";
 import HistoryScreen from "./screens/HistoryScreen";
 import SalesScreen from "./screens/SalesScreen";
 import RefundRequestScreen from "./screens/RefundRequestScreen";
+import Driverloginscreen from "./screens/driver/Driverloginscreen";
+import Yourdeliveryscreen from "./screens/driver/Yourdeliveryscreen";
+import Deliveryrequestscreen from "./screens/driver/Deliveryrequestsscreen";
+import Driverprofilescreen from "./screens/driver/Driverprofilescreen";
 
 function App() {
   const userstate = useSelector((state) => state.loginUserReducer);
   const { currentUser } = userstate;
   const adminloginstate = useSelector((state) => state.adminloginReducer);
   const { currentAdmin } = adminloginstate;
+  const driverloginstate = useSelector(state => state.driverloginReducer)
+  const { currentDriver } = driverloginstate
 
   return (
     <div className="App">
@@ -58,7 +63,7 @@ function App() {
           <Route path="/beverages" exact element={<Beveragesscreen />} />
           <Route path="/login" exact element={<Loginscreen />} />
           <Route path="/admin/login" exact element={<Adminloginscreen />} />
-          <Route path="/delivery/login" exact element={<Riderloginscreen />} />
+          <Route path="/driver/login" exact element={<Driverloginscreen />} />
           <Route path="/register" exact element={<Registerscreen />} />
           <Route path="/orders" exact element={<Ordersscreen />} />
           <Route path="/jobportal" exact element={<JobPortalscreen />} />
@@ -232,12 +237,32 @@ function App() {
             <Route path="/error" exact element={<Errorscreen />} />
           )}
 
+          {currentDriver ? (
+            <Route
+              path="driver/requests"
+              exact
+              element={<Deliveryrequestscreen />}
+            />
+          ) : (
+            <Route path="/error" exact element={<Errorscreen />} />
+          )}
+          {currentDriver ? (
+            <Route
+              path="driver/delivery"
+              exact
+              element={<Yourdeliveryscreen />}
+            />
+          ) : (
+            <Route path="/error" exact element={<Errorscreen />} />
+          )}
+
           <Route path="/profile" exact element={<Profilescreen />} />
           <Route path="/profile/details" exact element={<Detailsscreen />} />
           <Route path="/admin" exact element={<AdminProfilescreen />} />
           <Route path="/about" exact element={<AboutScreen />} />
           <Route path="/faq" exact element={<FAQScreen />} />
           <Route path="/newsfeed" exact element={<Newsfeedscreen />} />
+          <Route path="/driver" exact element={<Driverprofilescreen />} />
         </Routes>
       </BrowserRouter>
       <Footer />

@@ -11,7 +11,7 @@ import { loginUserReducer, registerUserReducer ,addCustomerReducer } from './red
 import { adminloginReducer} from './reducers/adminReducer'
 import { feedbackReducer } from './reducers/feedbackReducer'
 import { placeOrderReducer, getUserOrdersReducer } from './reducers/orderReducer'
-import { riderloginReducer } from './reducers/riderReducer'
+import { driverloginReducer } from './reducers/driverReducer'
 import { getAllNewsReducer } from './reducers/newsfeedReducer'
 import { getAllJobsReducer } from './reducers/jobsReducer'
 import { jobApplyReducer } from './reducers/jobApplyReducer'
@@ -30,7 +30,7 @@ const finalReducer = combineReducers({
     feedbackReducer : feedbackReducer,
     getUserOrdersReducer : getUserOrdersReducer,
     addCustomerReducer : addCustomerReducer,
-    riderloginReducer : riderloginReducer,
+    driverloginReducer : driverloginReducer,
     getAllNewsReducer: getAllNewsReducer,
     jobApplyReducer : jobApplyReducer,
     addRefundReducer : addRefundReducer,
