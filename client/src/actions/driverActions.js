@@ -26,61 +26,88 @@ export const logoutDriver = () => dispatch => {
 }
 
 
-export const updateDeliveryStatus = (updateisDeliveryAccepted, orderId) => async dispatch => {
+export const updateDeliveryStatus = (updateisDeliveryAccepted, orderId , val) => async dispatch => {
 
-    dispatch({ type: 'UPDATE_DELIVERY_ACCEPT_REQUEST' })
+    if(val === true){
 
-    console.log(updateisDeliveryAccepted)
-    try {
-        const response = await axios.put(`/api/delivery/update/status/delivery/${orderId}`, updateisDeliveryAccepted)
-        const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 1500,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
-        })
+        dispatch({ type: 'UPDATE_DELIVERY_ACCEPT_REQUEST' })
 
-        Toast.fire({
-            icon: 'success',
-            title: 'Delivery Accepted!'
-        })
-        setTimeout(function () {
-            window.location.href = '/driver/delivery'
-        }, 1500);
+        console.log(updateisDeliveryAccepted)
+        try {
+            const response = await axios.put(`/api/delivery/update/status/delivery/${orderId}`, updateisDeliveryAccepted)
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 1500,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+    
+            Toast.fire({
+                icon: 'success',
+                title: 'Delivery Accepted !'
+            })
+            setTimeout(function () {
+                window.location.href = '/driver/delivery'
+            }, 1500);
+    
+    
+            console.log(response);
+            dispatch({ type: 'UPDATE_DELIVERY_ACCEPT_SUCCESS' })
+    
+    
+        } catch (error) {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+    
+            Toast.fire({
+                icon: 'error',
+                title: 'Operation failed!'
+            })
+    
+            dispatch({ type: 'UPDATE_DELIVERY_ACCEPT_FAILED', payload: error })
+    
+    
+    
+        }
 
+    }else{
 
-        console.log(response);
-        dispatch({ type: 'UPDATE_DELIVERY_ACCEPT_SUCCESS' })
+        dispatch({ type: 'UPDATE_DELIVERY_ACCEPT_REQUEST' })
 
-
-    } catch (error) {
-        const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
-        })
-
-        Toast.fire({
-            icon: 'error',
-            title: 'Operation failed!'
-        })
-
-        dispatch({ type: 'UPDATE_DELIVERY_ACCEPT_FAILED', payload: error })
+        console.log(updateisDeliveryAccepted)
+        try {
+            const response = await axios.put(`/api/delivery/update/status/delivery/${orderId}`, updateisDeliveryAccepted)
+            
+            console.log(response);
+            dispatch({ type: 'UPDATE_DELIVERY_ACCEPT_SUCCESS' })
+    
+    
+        } catch (error) {
+           
+            dispatch({ type: 'UPDATE_DELIVERY_ACCEPT_FAILED', payload: error })
+    
+    
+    
+        }
 
 
 
     }
+    
 
 
 }

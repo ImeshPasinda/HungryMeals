@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
+import { updateDeliveryStatus } from '../../actions/driverActions'
+import { deleteDeliveryAction } from '../../actions/deliveryActions'
+
+
+let deliveryId;
 
 export default function Yourdeliveryscreen() {
   const dispatch = useDispatch()
@@ -25,6 +30,32 @@ export default function Yourdeliveryscreen() {
     }
     getdeliveries()
   }, [])
+
+  //update delivery status
+  const [isDeliveryAccepted, updateisDeliveryAccepted] = useState('')
+
+  function updateDStatus(orderId, val) {
+
+      const updateisDeliveryAccepted = {
+
+          isDeliveryAccepted: val
+      }
+
+
+
+      console.log(updateisDeliveryAccepted , orderId)
+      dispatch(updateDeliveryStatus(updateisDeliveryAccepted, orderId ,val))
+
+
+  }
+
+  //delete delivery
+  function deleteDeliveries(deliveryId) {
+
+    dispatch(deleteDeliveryAction(deliveryId));
+
+}
+
 
   return (
     <div>
@@ -69,6 +100,10 @@ export default function Yourdeliveryscreen() {
                 <p>Order Id : {delivery.orderId}</p>
               </div>
             </div>
+            <button onClick={() => {
+                        updateDStatus(delivery.orderId,false);
+                        deleteDeliveries(delivery._id)
+                    }} className="btn">CANCEL</button>
           </div>
         ))}
       </div>

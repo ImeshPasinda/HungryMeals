@@ -14,6 +14,7 @@ const orderSchemma = mongoose.Schema({
     sendrefundStatus : {type: Boolean , default : false},
     transactionId : {type: String , require},
     isSuccessfull : {type: Boolean , default : false},
+    isDeliveryAccepted : {type: Boolean , default : false},
 },{
     
     timestamps : true

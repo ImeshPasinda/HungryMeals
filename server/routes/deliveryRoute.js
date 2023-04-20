@@ -146,5 +146,22 @@ router.get("/getalldeliveries", async (req, res) => {
   }
 });
 
+router.delete("/delete/delivery/:id", async (req, res) => {
+
+  let deliveryId = req.params.id;
+
+  try {
+      await Delivery.findByIdAndDelete(deliveryId)
+
+      res.send('Delivery Deleted Successfully')
+  }
+
+  catch (error) {
+
+
+      return res.status(400).json({ message: error });
+  }
+});
+
 
 module.exports = router;

@@ -72,7 +72,7 @@ export default function Deliveryrequestscreen() {
 
 
 
-        dispatch(updateDeliveryStatus(updateisDeliveryAccepted, orderId))
+        dispatch(updateDeliveryStatus(updateisDeliveryAccepted, orderId, val))
 
 
     }
@@ -135,7 +135,7 @@ export default function Deliveryrequestscreen() {
                 <div>
                     <button onClick={() => {
                         deliveries(row._id);
-                        updateDStatus(row._id,true);
+                        updateDStatus(row._id, true);
                     }} className="btn">ACCEPT</button>
 
                 </div>
@@ -213,9 +213,16 @@ export default function Deliveryrequestscreen() {
 
 
                     />
-
+                    <br></br>
+                    <div className='modal-footer'>
+                    <a href="/driver/delivery" class="btn">Your Deliveries</a>
+                        
+                    </div>
                 </div>
+
+
             </div>
+
         </div>
     )
 }

@@ -9,6 +9,10 @@ const deliverySchema = mongoose.Schema({
   customerName: {type: String , require},
   amount: { type: Number, default: 0 },
   driverRate: { type: Number, default: 1000 },
+},{
+
+  timestamps: true,
+
 });
 
 
