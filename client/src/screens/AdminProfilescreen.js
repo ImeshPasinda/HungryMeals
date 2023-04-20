@@ -111,7 +111,7 @@ export default function AdminProfilescreen() {
                         <br />
                         <br />
 
-                        <a href="#" class="btn">See More</a>
+                        <a href="/admin/financemanager" class="btn">See More</a>
 
                     </div>
                 </div>
