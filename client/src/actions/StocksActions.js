@@ -27,6 +27,7 @@ export const updateItemAction = (updateItem, ItemId) => async dispatch => {
        
         setTimeout(function () {
             window.location.reload('/admin/stocksmanage');
+        }, 1500);
         console.log(response);
         
         dispatch({ type: 'UPDATE_ITEM_SUCCESS' })
