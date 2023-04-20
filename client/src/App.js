@@ -43,6 +43,7 @@ import Driverloginscreen from "./screens/driver/Driverloginscreen";
 import Yourdeliveryscreen from "./screens/driver/Yourdeliveryscreen";
 import Deliveryrequestscreen from "./screens/driver/Deliveryrequestsscreen";
 import Driverprofilescreen from "./screens/driver/Driverprofilescreen";
+import StocksManagementScreen from "./screens/StocksManagementScreen";
 
 function App() {
   const userstate = useSelector((state) => state.loginUserReducer);
@@ -254,6 +255,11 @@ function App() {
             />
           ) : (
             <Route path="/error" exact element={<Errorscreen />} />
+          )}
+          {currentAdmin ? (<Route path="admin/stocksmanage" exact element={<StocksManagementScreen />} />) : (
+
+            <Route path="/error" exact element={<Errorscreen />} />
+
           )}
 
           <Route path="/profile" exact element={<Profilescreen />} />

@@ -13,6 +13,7 @@ const News = require('./models/newsfeedModel')
 const Jobs=require('./models/jobsModel')
 const Applications=require('./models/JobApplyModel')
 const Refund = require('./models/refundModel')
+const Stocks=require('./models/stocksModel')
 
 
 const app = express();
@@ -37,7 +38,7 @@ const jobsRoute=require('./routes/jobsRoute')
 const JobApplyRoute=require('./routes/JobApplyRoute')
 const Tickets=require('./models/ticketsModel')
 const refundRoute = require('./routes/refundRoute')
-
+const stocksRoute=require('./routes/stocksRoute')
 
 
 app.use('/api/pizzas/', pizzaRoute)
@@ -52,7 +53,7 @@ app.use('/api/newsfeed/', newsfeedRoute)
 app.use('/api/jobportal/',jobsRoute)
 app.use('/api/jobapply/',JobApplyRoute)
 app.use('/api/refunds/', refundRoute)
-
+app.use('/api/stocks/',stocksRoute)
 
 
 app.get("/", (req, res) => {

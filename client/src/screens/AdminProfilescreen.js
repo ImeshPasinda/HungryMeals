@@ -183,7 +183,7 @@ export default function AdminProfilescreen() {
                             </p>
                             <br />
                             <br />
-                            <a href="#" class="btn">See More</a>
+                            <a href="/admin/stocksmanage" class="btn">See More</a>
                         </div>
                     </div>
                 </div>

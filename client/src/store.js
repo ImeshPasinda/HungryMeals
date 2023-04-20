@@ -16,6 +16,7 @@ import { getAllNewsReducer } from './reducers/newsfeedReducer'
 import { getAllJobsReducer } from './reducers/jobsReducer'
 import { jobApplyReducer } from './reducers/jobApplyReducer'
 import { addRefundReducer ,getAllRefundsReducer } from './reducers/refundReducer'
+import { getAllStocksReducer } from './reducers/stocksReducer'
 
 
 const finalReducer = combineReducers({
@@ -34,7 +35,8 @@ const finalReducer = combineReducers({
     getAllNewsReducer: getAllNewsReducer,
     jobApplyReducer : jobApplyReducer,
     addRefundReducer : addRefundReducer,
-    getAllRefundsReducer : getAllRefundsReducer
+    getAllRefundsReducer : getAllRefundsReducer,
+    getAllStocksReducer :getAllStocksReducer
     
 })
 
