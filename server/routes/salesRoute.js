@@ -15,7 +15,7 @@ router.put("/update/transactionstatus/:id", async (req, res) => {
   
     try {
   
-        await Sale.findByIdAndUpdate(salesid, updateisSuccessful)
+        await Refund.findByIdAndUpdate(salesid, updateisSuccessful)
         res.send('Refund Status Updated Successfully')
   
     } catch (error) {
