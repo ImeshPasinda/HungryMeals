@@ -6,10 +6,20 @@ import { useSelector, useDispatch } from 'react-redux'
 import Swal from 'sweetalert2';
 import truncate from 'lodash/truncate';
 import { createNewsAction, deleteNewsAction, updateNewsAction } from '../actions/newsfeedAtion';
-
+import QRCode from 'qrcode.react';
 
 
 let newsId;
+let numNewsItems;
+let numEvents;
+let numNews;
+let latestCollectionDate
+let latestCollectionImage
+let latestCollectionCategory
+let latestCollectionHeader
+let latestCollectionDescription
+let latestCollectionDateReport
+
 
 export default function Newsfeedmanagement() {
 
@@ -23,16 +33,57 @@ export default function Newsfeedmanagement() {
     useEffect(() => {
         function getNews() {
             axios.get("/api/newsfeed/getallnews").then((res) => {
-                setNews(res.data);
-                setFilterdNews(res.data);
+                const allNews = res.data;
+                setNews(allNews);
+                setFilterdNews(allNews);
+                numNews = allNews.length;
+                console.log(`Number of news collections: ${numNews}`);
 
+                numEvents = 0;
+                numNewsItems = 0;
+
+                allNews.forEach((item) => {
+                    if (item.category.toLowerCase() === "news") {
+                        numNewsItems += 1;
+                    } else if (item.category.toLowerCase() === "event") {
+                        numEvents += 1;
+                    }
+                });
+
+                console.log(`Number of news items: ${numNewsItems}`);
+                console.log(`Number of events: ${numEvents}`);
+
+                const latestCollection = allNews.sort(
+                    (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+                )[0];
+                latestCollectionDate = new Date(
+                    latestCollection.createdAt
+                ).toLocaleDateString(undefined, { month: "long", day: "numeric" });
+                console.log(`Latest collection created date: ${latestCollectionDate}`);
+
+
+
+                latestCollectionImage = latestCollection.image;
+                latestCollectionCategory = latestCollection.category;
+                latestCollectionHeader = latestCollection.header;
+                latestCollectionDescription = latestCollection.description;
+                latestCollectionDateReport = latestCollection.createdAt.substring(0, 10);
+
+
+                console.log(`Latest collection description: ${latestCollectionDescription}`);
             }).catch((err) => {
-                console.log(err.message)
-            })
+                console.log(err.message);
+            });
         }
         getNews();
+    }, []);
 
-    }, [])
+
+
+
+    //const qrValue = `Total news count: ${numNewsItems}`;
+
+
 
 
 
@@ -185,9 +236,9 @@ export default function Newsfeedmanagement() {
 
         }
 
-            console.log(updateNews, newsId)
-            dispatch(updateNewsAction(updateNews, newsId))
-       
+        console.log(updateNews, newsId)
+        dispatch(updateNewsAction(updateNews, newsId))
+
 
 
 
@@ -240,6 +291,7 @@ export default function Newsfeedmanagement() {
                         selectableRows
                         selectableRowsHighlight
                         subHeader
+                        noDataComponent={<div className="text-center"><p10>No posts available...</p10></div>}
                         subHeaderComponent={
                             <input
 
@@ -260,7 +312,7 @@ export default function Newsfeedmanagement() {
                     <br />
                     <div className='modal-footer'>
                         <button class="btn" data-bs-target="#staticBackdrop3" data-bs-toggle="modal" data-bs-dismiss="modal"><i class="fa-solid fa-plus fa-beat" style={{ "color": "white" }}></i> Add News & Events</button>
-                        <div className='p-1'><button class="btn" data-bs-target="#" data-bs-toggle="modal" data-bs-dismiss="modal"><i style={{ fontSize: '15px', color: 'white' }} class="fa fa-file" aria-hidden="true"></i> Generate Newsfeed Report</button></div>
+                        <div className='p-1'><button class="btn" data-bs-target="#newsfeedReport" data-bs-toggle="modal" data-bs-dismiss="modal"><i style={{ fontSize: '15px', color: 'white' }} class="fa fa-file" aria-hidden="true"></i> Generate Newsfeed Report</button></div>
                     </div>
                 </div>
 
@@ -408,7 +460,7 @@ export default function Newsfeedmanagement() {
                                         <span
                                             className={`badge bg-${news.category === "News" ? "success" : "success"}`}
                                         >
-                                             {category || news.category}
+                                            {category || news.category}
                                         </span>
                                         <br></br>
                                         <div class="form-group">
@@ -545,7 +597,7 @@ export default function Newsfeedmanagement() {
                                         <span
                                             className={`badge bg-${news.category === "News" ? "success" : "success"}`}
                                         >
-                                             {newCategory}
+                                            {newCategory}
                                         </span>
                                         <br></br>
                                         <div class="form-group">
@@ -619,6 +671,143 @@ export default function Newsfeedmanagement() {
                 </div>
 
             </div>
+
+
+
+            {/* Generate report */}
+
+            <div class="modal fade" id="newsfeedReport" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                <div class="modal-dialog modal-lg modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+
+
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-header">
+                            <img src="https://static.wixstatic.com/media/618c8c_e709bfc77cc844ec89f41c021d154a04~mv2.png" alt="" width="80" height="50" class="d-inline-block align-text-top" />
+                            <h20 className="text-center m-4" style={{ fontSize: '15px' }}>Hungry Meals Restaurants<br /></h20>
+                            <h20 className="text-center m-4" style={{ fontSize: '15px' }}>No.100,Galle Road,Matara<br /></h20>
+                            <h20 className="text-center m-4" style={{ fontSize: '15px' }}>Hotline :0777225900<br /></h20>
+
+                            {/* <h5 class="modal-title" id="exampleModalToggleLabel"> Detailed Report about Job Applicants</h5> */}
+                            {/* <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> */}
+                        </div>
+                        <div class="modal-body">
+
+                            <div class="container my-4">
+
+                                <div class="border p-5 mb-5">
+
+                                    <section>
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-6 mb-4">
+                                                <div class="card">
+                                                    <div class="card-body shadow shadow" >
+                                                        <p class="text-uppercase small mb-2">
+                                                            <strong>Total News & Events <i class="fa-solid fa-circle fa-fade" style={{ fontSize: '13px', color: 'red' }} ></i></strong>
+                                                        </p>
+                                                        <h5 class="mb-0">
+                                                            <strong>{numNewsItems}</strong>
+                                                            <small class="text-success ms-2">
+                                                                <i class="fas fa-arrow-up fa-sm pe-1"></i></small>
+                                                        </h5>
+
+                                                        <hr />
+
+                                                        <p class="text-uppercase text-muted small mb-2">
+                                                            Previous period
+                                                        </p>
+                                                        {/* <h5 class="text-muted mb-0">11 467</h5> */}
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-lg-3 col-md-6 mb-4">
+                                                <div class="card">
+                                                    <div class="card-body shadow">
+                                                        <p class="text-uppercase small mb-2">
+                                                            <strong>Number of News <i class="fa-solid fa-circle fa-fade" style={{ fontSize: '13px', color: 'red' }}></i></strong>
+                                                        </p>
+                                                        <h5 class="mb-0">
+                                                            <strong>{numEvents}</strong>
+                                                            <small class="text-success ms-2">
+                                                                <i class="fas fa-arrow-up fa-sm pe-1"></i></small>
+                                                        </h5>
+
+                                                        <hr />
+                                                        <p class="text-uppercase text-muted small mb-2">
+                                                            Previous period
+                                                        </p>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-3 col-md-6 mb-4">
+                                                <div class="card">
+                                                    <div class="card-body shadow">
+                                                        <p class="text-uppercase small mb-2">
+                                                            <strong>Number of News <i class="fa-solid fa-circle fa-fade" style={{ fontSize: '13px', color: 'red' }}></i></strong>
+                                                        </p>
+                                                        <h5 class="mb-0">
+                                                            <strong>{numNews}</strong>
+                                                            <small class="text-success ms-2">
+                                                                <i class="fas fa-arrow-up fa-sm pe-1"></i></small>
+                                                        </h5>
+
+                                                        <hr />
+                                                        <p class="text-uppercase text-muted small mb-2">
+                                                            Previous period
+                                                        </p>
+
+                                                        <h5 class="text-muted mb-0"></h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-3 col-md-6 mb-4">
+                                                <div class="card">
+                                                    <div class="card-body shadow">
+                                                        <p class="text-uppercase small mb-2">
+                                                            <strong>Latest Post On <i class="fa-solid fa-circle fa-fade" style={{ fontSize: '13px', color: 'red' }}></i></strong>
+                                                        </p>
+                                                        <h5 class="mb-0">
+                                                            <strong>{latestCollectionDate}</strong>
+
+
+
+                                                        </h5>
+
+                                                        <hr />
+
+                                                        <p class="text-uppercase text-muted small mb-2">
+                                                            Previous period
+                                                        </p>
+                                                        <h5 class="text-muted mb-0"></h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+
+                                    
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+                        <div class="modal-footer">
+                            <button class="btn" onClick={() => window.print()} >Print</button>
+                            <button class="btn" data-bs-toggle="modal">Close</button>
+                        </div>
+                    </div>
+                </div >
+            </div >
 
         </div >
     )
