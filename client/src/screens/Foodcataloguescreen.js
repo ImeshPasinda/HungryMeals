@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { addToCart } from "../actions/cartAction";
 import { updateFoodsAction, addFoodsAction, deleteFoodsAction } from '../actions/pizzaAction';
+import Swal from 'sweetalert2';
 
 
 let foodId;
@@ -213,8 +214,26 @@ export default function Foodcataloguescreen() {
 
 
   function addnewfood() {
+    if (!newName || !newPrices || !newImage || !newDescription) {
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 1500,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    })
 
-
+    Toast.fire({
+        icon: 'error',
+        title: 'Please fill out required fields !'
+    })
+      return;
+    }
+  
     const addFoods = {
       newName,
       newVarients: [
@@ -228,12 +247,11 @@ export default function Foodcataloguescreen() {
       newIsVegetarian,
       newIsNonVeg,
       newDescription
-
-
-    }
-
+    };
+  
     dispatch(addFoodsAction(addFoods));
   }
+  
 
   //delete foods
   function deleteFoods(foodId) {
