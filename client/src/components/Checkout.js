@@ -74,35 +74,37 @@ export default function Checkout({ subtotal,coordinates }) {
 
     return (
 
-        <div>
-            {loading && (<Loading />)}
-            {error && (<Error error='Something went wrong' />)}
-            {success && (<Success success='Your Order Placed Successfully' />)}
+      <div>
+      {loading && <Loading />}
+      {error && <Error error="Something went wrong" />}
+      {success && <Success success="Your Order Placed Successfully" />}
 
-
-
-            {currentUser ? (<StripeCheckout
-                amount={subtotal * 100}
-                shippingAddress
-                token={tokenHandler}
-                stripeKey="pk_test_GlFtmasU7tmBohUIk7vMbEnf00NA3VYaa0"
-                currency='LKR'
-            >
-                <button className='btn'>Pay Now</button>
-            </StripeCheckout>
-            ) : (
-
-
-                <button onClick={logintopay} className='btn'>Pay Now</button>
-
-            ) && currentAdmin ? (<button onClick={admintestpay} className='btn'>Pay Now</button>) : (
-
-                <button onClick={logintopay} className='btn'>Pay Now</button>
-
-
-            )}
-
-
-        </div>
+      {subtotal === 0 ? (
+        <button
+          onClick={() => alert("cart is empty")}
+          className="btn"
+        >
+          Pay Now
+        </button>
+      ) : currentUser ? (
+        <StripeCheckout
+          amount={subtotal * 100}
+          shippingAddress
+          token={tokenHandler}
+          stripeKey="pk_test_GlFtmasU7tmBohUIk7vMbEnf00NA3VYaa0"
+          currency="LKR"
+        >
+          <button className="btn">Pay Now</button>
+        </StripeCheckout>
+      ) : currentAdmin ? (
+        <button onClick={admintestpay} className="btn">
+          Pay Now
+        </button>
+      ) : (
+        <button onClick={logintopay} className="btn">
+          Pay Now
+        </button>
+      )}
+    </div>
     )
 }
