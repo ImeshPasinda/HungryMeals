@@ -111,7 +111,7 @@ export default function AdminProfilescreen() {
                         <br />
                         <br />
 
-                        <a href="/admin/financemanager" class="btn">See More</a>
+                        <a href="#" class="btn">See More</a>
 
                     </div>
                 </div>
@@ -169,7 +169,7 @@ export default function AdminProfilescreen() {
                             <br />
                             <br />
                             <br />
-                            <a href="#" class="btn">See More</a>
+                            <a href="/admin/ticketsmanage" class="btn">See More</a>
                         </div>
                     </div>
 
@@ -183,7 +183,7 @@ export default function AdminProfilescreen() {
                             </p>
                             <br />
                             <br />
-                            <a href="/admin/stocksmanage" class="btn">See More</a>
+                            <a href="#" class="btn">See More</a>
                         </div>
                     </div>
                 </div>

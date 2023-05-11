@@ -7,7 +7,10 @@ const ticketsSchema = mongoose.Schema({
     category: { type: String, require },
     description: { type: String, require},
     email: { type: String, require},
-    telephone: { type: String, require}
+    telephone: { type: String, require},
+    reply: { type: String, require , default:"empty"},
+
+    
 
 
 

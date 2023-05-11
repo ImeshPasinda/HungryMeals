@@ -5,12 +5,12 @@ import Swal from "sweetalert2";
 
 
 
-export const updatetickets = (updateticket,id) => async dispatch => {
+export const updateticketsAction = (updateticket,id) => async dispatch => {
 
-    dispatch({ type: 'UPDATE_USER_NAME_REQUEST' })
+    dispatch({ type: 'REPLY_SEND_REQUEST' })
 
     try {
-        const response = await axios.put(`/api/tickets/${id}`, updateticket)
+        const response = await axios.put(`/api/tickets/update/${id}`, updateticket)
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-end',
@@ -25,7 +25,7 @@ export const updatetickets = (updateticket,id) => async dispatch => {
 
         Toast.fire({
             icon: 'success',
-            title: 'Ticket submitted successfully'
+            title: 'Reply send successfully!'
         })
        
         setTimeout(function () {
@@ -33,7 +33,7 @@ export const updatetickets = (updateticket,id) => async dispatch => {
         }, 1500);
         console.log(response);
         
-        dispatch({ type: 'UPDATE_TICKETS_SUCCESS' })
+        dispatch({ type: 'REPLY_SEND_SUCCESS' })
 
 
     } catch (error) {
@@ -52,9 +52,9 @@ export const updatetickets = (updateticket,id) => async dispatch => {
 
         Toast.fire({
             icon: 'error',
-            title: 'Ticket submitted unsuccessfully'
+            title: 'Reply send unsuccessfully!'
         })
-        dispatch({ type: 'UPDATE_TICKETS_FAILED', payload: error })
+        dispatch({ type: 'REPLY_SEND_FAILED', payload: error })
     }
 }
 
@@ -126,6 +126,23 @@ export const TicketForm = (newTicket) => async dispatch => {
 
     try {
         const response = await axios.post('/api/tickets/post',newTicket )
+
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1500,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
+        Toast.fire({
+            icon: 'success',
+            title: 'Ticket submitted successfully!'
+        })
        
         console.log(response);
         dispatch({ type: 'TICKET_APPLICATION_SUCCESS' })
@@ -134,6 +151,22 @@ export const TicketForm = (newTicket) => async dispatch => {
          }, 1500);
 
     } catch (error) {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
+        Toast.fire({
+            icon: 'error',
+            title: 'Ticket subitted unsuccessfully!'
+        })
         dispatch({ type: 'TICKET_APPLICATION_FAILED' + error, payload: error })
     }
 }

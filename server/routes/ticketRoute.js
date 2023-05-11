@@ -41,18 +41,18 @@ router.delete("/delete/tickets/:id", async (req, res) => {
     return res.status(400).json({ message: error });
   }
 });
-router.put("/:id", async (req, res) => {
+router.put("/update/:id", async (req, res) => {
   let userId = req.params.id;
-  const { tickettitle, description } = req.body;
+  const { reply } = req.body;
 
   const updateTickets = {
-    tickettitle,
-    description,
+    reply,
+
   };
 
   try {
-    await User.findByIdAndUpdate(userId, updateTickets);
-    res.send("User Tickets Updated Successfully");
+    await Tickets.findByIdAndUpdate(userId, updateTickets);
+    res.send("Reply send successfully!");
   } catch (error) {
     return res.status(400).json({ message: error });
   }
