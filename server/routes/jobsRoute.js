@@ -8,6 +8,7 @@ router.post("/post/jobs", async (req, res) => {
     const { jobtitle,category, description ,salary,location} = req.body
     try {
 
+        // Creating a new job object and saving it in database
 
         const newJobs = new Jobs({ jobtitle,category, description ,salary,location })
         newJobs.save()
@@ -54,6 +55,8 @@ router.put("/update/jobs/:id", async (req, res) => {
         res.send('Job details updated successfully!')
 
     } catch (error) {
+                // Returning error message if any error occurs during job update
+
         return res.status(400).json({ message: error });
     }
 });
@@ -96,5 +99,6 @@ router.get("/getcurrentjobs/:id", async (req, res) => {
 
 
 
+// Exporting router module for use in other files
 
 module.exports = router;

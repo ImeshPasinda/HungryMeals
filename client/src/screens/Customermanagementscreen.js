@@ -552,9 +552,7 @@ function Customermanagementscreen() {
                         {/* enter new admin to the system */}
 
                         <button class="btn" data-bs-target="#addnewadmin" data-bs-toggle="modal" data-bs-dismiss="modal"><i style={{ fontSize: '15px', color: 'white' }} class="fa fa-plus" aria-hidden="true"></i>Add New Admin</button>
-                        {/* generate report button */}
-                        <div className='p-1'><button class="btn" data-bs-target="#exampleModalToggleReportAdmin" data-bs-toggle="modal" data-bs-dismiss="modal"><i style={{ fontSize: '15px', color: 'white' }} class="fa fa-file" aria-hidden="true"></i> Generate Admin Details Report</button>
-                        </div>
+                      
 
                     </div>
 
@@ -563,9 +561,16 @@ function Customermanagementscreen() {
                     <div class="modal fade" id="exampleModalToggleReport" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
                         <div class="modal-dialog modal-lg modal-dialog-centered">
                             <div class="modal-content">
+                            <div class="modal-header">
+                            <img src="https://static.wixstatic.com/media/618c8c_e709bfc77cc844ec89f41c021d154a04~mv2.png" alt="" width="80" height="50" class="d-inline-block align-text-top" />
+                            <h9 className="text-center m-4" style={{ fontSize: '15px' }}>Hungry Meals Restaurants<br /></h9>
+                            <h9 className="text-center m-4" style={{ fontSize: '15px' }}>No.100,Galle Road,Matara<br /></h9>
+                            <h9 className="text-center m-4" style={{ fontSize: '15px' }}>Hotline :0777225900<br /></h9>
+
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="exampleModalToggleLabel">Customer Detail Report</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
 
@@ -709,21 +714,7 @@ function Customermanagementscreen() {
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-md-4 mb-4">
-                                                        <div class="card mb-4">
-                                                            <div class="card-body shadow">
-                                                                <p class="text-center"><strong>Current period</strong></p>
-                                                                <div id="pie-chart-current">0</div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="card">
-                                                            <div class="card-body shadow">
-                                                                <p class="text-center"><strong>Previous period</strong></p>
-                                                                <div id="pie-chart-previous">0</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                   
                                                 </div>
                                             </section>
 

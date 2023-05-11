@@ -1,43 +1,42 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from 'react-redux'
-import Loading from "../components/Loading"
-import Success from "../components/Success"
-import Error from "../components/Error"
-import Swal from "sweetalert2";
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import Swal from 'sweetalert2';
 import { JobApplication } from './../actions/jobApplicantAction';
-import { jobApplyReducer } from './../reducers/jobApplyReducer';
 
 function JobApplyScreen() {
+  const [name, setname] = useState('');
+  const [email, setemail] = useState('');
+  const [address, setaddress] = useState('');
+  const [phoneNo, setphoneNo] = useState('');
+  const [jobCategory, setjobCategory] = useState('');
 
+  const applicationstate = useSelector((state) => state.jobApplyReducer);
+  const { error, loading, success } = applicationstate;
 
-  const [name, setname] = useState('')
-  const [email, setemail] = useState('')
-  const [address, setaddress] = useState('')
-  const [phoneNo, setphoneNo] = useState('')
-  const [jobCategory, setjobCategory] = useState('')
-
-  const applicationstate = useSelector(state => state.jobApplyReducer)
-  const { error, loading, success } = applicationstate
-
-  const dispatch = useDispatch()
-
-
+  const dispatch = useDispatch();
 
   function applyJob() {
-
     const newApplicant = {
       name,
       email,
       address,
       phoneNo,
-      jobCategory
-    }
-    if (name.trim().length !== 0 && email.trim().length !== 0 && address.trim().length !== 0 && jobCategory.trim().length !== 0) {
+      jobCategory,
+    };
 
-      dispatch(JobApplication(newApplicant))
+    const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    const isValidPhoneNo = /^\d{10}$/.test(phoneNo);
 
-    }
-    else {
+    if (
+      name.trim().length !== 0 &&
+      email.trim().length !== 0 &&
+      address.trim().length !== 0 &&
+      jobCategory.trim().length !== 0 &&
+      isValidEmail &&
+      isValidPhoneNo
+    ) {
+      dispatch(JobApplication(newApplicant));
+    } else {
       const Toast = Swal.mixin({
         toast: true,
         position: 'top-end',
@@ -45,21 +44,33 @@ function JobApplyScreen() {
         timer: 1500,
         timerProgressBar: true,
         didOpen: (toast) => {
-          toast.addEventListener('mouseenter', Swal.stopTimer)
-          toast.addEventListener('mouseleave', Swal.resumeTimer)
-        }
-      })
+          toast.addEventListener('mouseenter', Swal.stopTimer);
+          toast.addEventListener('mouseleave', Swal.resumeTimer);
+        },
+      });
 
-      Toast.fire({
-        icon: 'error',
-        title: 'Please fill out required fields !'
-      })
+      if (!isValidEmail && !isValidPhoneNo) {
+        Toast.fire({
+          icon: 'error',
+          title: 'Please enter a valid email and phone number!',
+        });
+      } else if (!isValidEmail) {
+        Toast.fire({
+          icon: 'error',
+          title: 'Please enter a valid email!',
+        });
+      } else if (!isValidPhoneNo) {
+        Toast.fire({
+          icon: 'error',
+          title: 'Please enter a valid phone number (10 digits)!',
+        });
+      } else {
+        Toast.fire({
+          icon: 'error',
+          title: 'Please fill out all required fields!',
+        });
+      }
     }
-
-
-
-
-
   }
 
 
@@ -128,19 +139,8 @@ function JobApplyScreen() {
               </select>
 
 
-            </div><br />
-
-
-
-            <div class="input-group mb-3">
-              {/* <label for="inputState" class="form-label">Upload Your CV here</label><br/> */}
-              <input type="file" class="form-control" id="inputGroupFile02" ></input>
-              <label class="input-group-text" for="inputGroupFile02">Upload CV</label>
             </div>
-
-
-
-
+            <br />
 
           </form>
           <div class="col-12">

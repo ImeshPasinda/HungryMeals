@@ -158,6 +158,8 @@ export const updateJobsAction = (updatejobs, id) => async dispatch => {
             }
         })
 
+
+      
         Toast.fire({
             icon: 'success',
             title: 'Jobs updated successfully!'
@@ -189,6 +191,6 @@ export const updateJobsAction = (updatejobs, id) => async dispatch => {
             icon: 'error',
             title: 'Jobs updated unsuccessfully!'
         })
-        dispatch({ type: 'UPDATE_JOBS_FAILED', payload: error })
-    }
+        dispatch({ type: 'UPDATE_JOBS_FAILED', payload: error })
+    }
 }

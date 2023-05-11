@@ -10,32 +10,39 @@ export const getallApplications = () => async dispatch => {
 
         const response = await axios.get('/api/jobapply/getallApplications')
         console.log(response)
-        dispatch({ type: 'GET_APPLICATIONS_SUCCESS', payload : response.data })
+        dispatch({ type: 'GET_APPLICATIONS_SUCCESS', payload: response.data })
 
     } catch (error) {
 
-        dispatch({ type: 'GET_APPLICATIONS_FAILED', payload : error })
+        dispatch({ type: 'GET_APPLICATIONS_FAILED', payload: error })
     }
 
 }
 
-export const JobApplication = (newApplicant) => async dispatch => {
 
-    dispatch({ type: 'JOB_APPLICATION_SENDING' })
+
+export const JobApplication = (newApplicant) => async (dispatch) => {
+    dispatch({ type: 'JOB_APPLICATION_SENDING' });
 
     try {
-        const response = await axios.post('/api/jobapply/post',newApplicant )
-       
-        console.log(response);
-        dispatch({ type: 'JOB_APPLICATION_SUCCESS' })
-        setTimeout(function(){
-            window.location.reload();
-         }, 1500);
+        const response = await axios.post('/api/jobapply/post', newApplicant);
 
+        console.log(response);
+        dispatch({ type: 'JOB_APPLICATION_SUCCESS' });
+
+        Swal.fire({
+            icon: 'success',
+            title: 'Application Submitted Successfully!',
+            showConfirmButton: false,
+            timer: 1500,
+            timerProgressBar: true
+        }).then(() => {
+            window.location.reload();
+        });
     } catch (error) {
-        dispatch({ type: 'JOB_APPLICATION_FAILED' + error, payload: error })
+        dispatch({ type: 'JOB_APPLICATION_FAILED', payload: error });
     }
-}
+};
 
 
 export const deleteApplicantAction = (ApplicantID) => async dispatch => {
