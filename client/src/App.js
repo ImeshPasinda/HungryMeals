@@ -46,6 +46,8 @@ import Driverprofilescreen from "./screens/driver/Driverprofilescreen";
 import StocksManagementScreen from "./screens/StocksManagementScreen";
 import Deliverymapscreen from "./screens/driver/Deliverymapscreen";
 import Myearningsscreen from "./screens/driver/Myearningssreen";
+import Reportscreen from "./screens/Reportscreen";
+import StocksPurchasescreen from "./screens/StocksPruchasescreen";
 
 function App() {
   const userstate = useSelector((state) => state.loginUserReducer);
@@ -271,23 +273,40 @@ function App() {
               exact
               element={<Deliverymapscreen />}
             />
-          ) :  
+          ) :
 
-          (
-            <Route path="/error" exact element={<Errorscreen />} />
-          )}  
+            (
+              <Route path="/error" exact element={<Errorscreen />} />
+            )}
 
-            {/* changed */}
+          {/* changed */}
           {currentDriver ? (
             <Route
               path="driver/earnings"
               exact
               element={<Myearningsscreen />}
             />
-          ) :  
+          ) :
 
-          (
+            (
+              <Route path="/error" exact element={<Errorscreen />} />
+            )}
+
+          {currentAdmin ? (
+            <Route
+              path="admin/financemanager/reports"
+              exact
+              element={<Reportscreen />}
+            />
+          ) : (
             <Route path="/error" exact element={<Errorscreen />} />
+          )}
+
+
+          {currentAdmin ? (<Route path="admin/purchasemanage" exact element={<StocksPurchasescreen />} />) : (
+
+            <Route path="/error" exact element={<Errorscreen />} />
+
           )}
 
           <Route path="/profile" exact element={<Profilescreen />} />

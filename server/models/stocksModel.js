@@ -6,7 +6,7 @@ const stocksSchema = mongoose.Schema({
     itemname: { type: String, require },
     category: { type: String, require },
     quantity: { type: String, require},
-    reorderLevel: { type: String, require},
+    ReOrderLevel: { type: String, require},
 
 
 

@@ -6,7 +6,10 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import { deleteItemAction, addItem, updateItemAction } from './../actions/StocksActions';
 
-let ItemId
+
+let ItemId;
+let stocksArray,stocksCount,meatCount,vegCount,cheeseCount;
+
 function StocksManagementScreen() {
 
 
@@ -52,8 +55,11 @@ function StocksManagementScreen() {
             axios.get("/api/stocks/getallstocks").then((res) => {
                 setItems(res.data);
                 console.log(res.data)
-
-
+                stocksArray=res.data;
+                stocksCount=stocksArray.length;
+                meatCount = res.data.filter(stocks => stocks.category === 'Meat').length;
+                vegCount = res.data.filter(stocks => stocks.category === 'Vegetables').length;
+                cheeseCount = res.data.filter(stocks => stocks.category === 'Cheese').length;
                 setFilterdItems(res.data);
 
 
@@ -125,8 +131,9 @@ function StocksManagementScreen() {
         },
 
 
-
     ]
+
+
 
 
 
@@ -171,13 +178,16 @@ function StocksManagementScreen() {
     }
 
 
-
-
-
     const [ItemName, setItemName] = useState('')
     const [Quantity, setQuantity] = useState('')
     const [ReOrderLevel, setReOrderLevel] = useState('')
     const [Category, setCategory] = useState('')
+
+
+    // const qty = state.items.map(items => parseFloat(items.quantity))
+    // const totalQuantiy = qty.reduce((acc, items) => (acc += items ),0); 
+
+    // const totalItems = state.items.length;
 
     return (
         <div>
@@ -228,8 +238,12 @@ function StocksManagementScreen() {
                         </div>
                         <br />
                         <div className='p-1'>
-                            <button class="btn" a href="admin/stocksmanage"><i style={{ fontSize: '15px', color: 'white' }} aria-hidden="true"></i>Go to purchases page</button>
+                            <button class="btn" a href="admin/purchasemanage"><i style={{ fontSize: '15px', color: 'white' }} aria-hidden="true"></i>Go to Purchase page</button>
                         </div>
+                        <br/>
+                        
+                        <br/>
+                        
                     </div>
                 </div>
             </div>
@@ -255,7 +269,7 @@ function StocksManagementScreen() {
                                         required
                                         type="text"
                                         class="form-control"
-                                        id="job-name"
+                                        id="Item-name"
                                         value={ItemName}
                                         onChange={(e) => { setItemName(e.target.value) }}
 
@@ -460,9 +474,13 @@ Model 2 - Update */}
                                                     <div class="card-body shadow shadow" >
                                                         <p class="text-uppercase small mb-2">
                                                             <strong>TOTAL PRODUCTS <i class="fa-solid fa-circle fa-fade" style={{ fontSize: '13px', color: 'red' }} ></i></strong>
+
                                                         </p>
+                                                       
+                                                       
+                                                        
                                                         <h5 class="mb-0">
-                                                            <strong>{ }</strong>
+                                                            <strong>{stocksCount }</strong>
                                                             <small class="text-success ms-2">
                                                                 <i class="fas fa-arrow-up fa-sm pe-1"></i></small>
                                                         </h5>
@@ -470,7 +488,7 @@ Model 2 - Update */}
                                                         <hr />
 
                                                         <p class="text-uppercase text-muted small mb-2">
-                                                            Previous period
+                                                            Recent Updates
                                                         </p>
                                                         {/* <h5 class="text-muted mb-0">11 467</h5> */}
                                                     </div>
@@ -482,7 +500,7 @@ Model 2 - Update */}
                                                 <div class="card">
                                                     <div class="card-body shadow">
                                                         <p class="text-uppercase small mb-2">
-                                                            <strong>MOST STOCK PRODUCTS <i class="fa-solid fa-circle fa-fade" style={{ fontSize: '13px', color: 'red' }}></i></strong>
+                                                            <strong>Total Quantiy <i class="fa-solid fa-circle fa-fade" style={{ fontSize: '13px', color: 'red' }}></i></strong>
                                                         </p>
                                                         <h5 class="mb-0">
                                                             <strong>{ }</strong>
@@ -522,7 +540,7 @@ Model 2 - Update */}
                                                 </div>
                                             </div>
 
-                                            <div class="col-lg-3 col-md-6 mb-4">
+                                            {/* <div class="col-lg-3 col-md-6 mb-4">
                                                 <div class="card">
                                                     <div class="card-body shadow">
                                                         <p class="text-uppercase small mb-2">
@@ -542,7 +560,7 @@ Model 2 - Update */}
                                                         <h5 class="text-muted mb-0"></h5>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> */}
                                         </div>
                                     </section>
 
@@ -555,7 +573,7 @@ Model 2 - Update */}
                                                         <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
                                                             <li class="nav-item" role="presentation">
                                                                 <a class="nav-link active" id="ex1-tab-1" data-mdb-toggle="pill" role="tab"
-                                                                    aria-controls="ex1-pills-1" aria-selected="true">Verified Users</a>
+                                                                    aria-controls="ex1-pills-1" aria-selected="true">Stock Categories</a>
                                                             </li>
 
 
@@ -592,15 +610,21 @@ Model 2 - Update */}
                                             <div class="col-md-4 mb-4">
                                                 <div class="card mb-4">
                                                     <div class="card-body shadow">
-                                                        <p class="text-center"><strong>Current period</strong></p>
-                                                        <div id="pie-chart-current">0</div>
+                                                        <p class="text-center"><strong>Meat Types</strong></p>
+                                                        <div id="pie-chart-current">{meatCount}</div>
                                                     </div>
                                                 </div>
 
                                                 <div class="card">
                                                     <div class="card-body shadow">
-                                                        <p class="text-center"><strong>Previous period</strong></p>
-                                                        <div id="pie-chart-previous">0</div>
+                                                        <p class="text-center"><strong>Vegetables Types</strong></p>
+                                                        <div id="pie-chart-previous">{vegCount}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="card">
+                                                    <div class="card-body shadow">
+                                                        <p class="text-center"><strong>Cheese Types</strong></p>
+                                                        <div id="pie-chart-previous">{cheeseCount}</div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -621,20 +645,6 @@ Model 2 - Update */}
                     </div>
                 </div>
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

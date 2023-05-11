@@ -181,11 +181,9 @@ router.put("/update/order/refund/request/user/:id", async (req, res) => {
         res.send('Order refund request Successfully')
 
     } catch (error) {
-        return res.status(400).json({ message: error });
-    }
+        return res.status(400).json({ message: error });
+    }
 });
-
-
 
 
 

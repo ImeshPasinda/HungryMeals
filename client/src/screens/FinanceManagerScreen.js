@@ -96,7 +96,7 @@ export default function FinanceManagerScreen() {
                         <br />
                         <br />
                         <br />
-                        <a href="#" class="btn">See More</a>
+                        <a href="financemanager/reports" class="btn">See More</a>
                     </div>
                 </div>
             </div>

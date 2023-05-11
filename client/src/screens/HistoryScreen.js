@@ -43,9 +43,15 @@ export default function HistoryScreen() {
 
     //crate data table for sales
     const columnsRefunds = [
+        // {
+        //     name: "Transaction ID",
+        //     selector: (row) => row._id,
+        //     sortable: true
+        // },
+
         {
-            name: "Transaction ID",
-            selector: (row) => row._id,
+            name: "Email",
+            selector: (row) => row.email,
             sortable: true
         },
 
@@ -61,17 +67,11 @@ export default function HistoryScreen() {
             sortable: true
         },
 
-        {
-            name: "Customer ID",
-            selector: (row) => row.id,
-            sortable: true
-        },
-
-        {
-            name: "Email",
-            selector: (row) => row.email,
-            sortable: true
-        },
+        // {
+        //     name: "Customer ID",
+        //     selector: (row) => row.id,
+        //     sortable: true
+        // },
 
         {
             name: "Delete",
@@ -83,7 +83,7 @@ export default function HistoryScreen() {
     // search button
     useEffect(() => {
         const results = refunds.filter(refunds => {
-            return refunds.id.toLowerCase().match(searchRefunds.toLowerCase());
+            return refunds.email.toLowerCase().match(searchRefunds.toLowerCase());
         });
 
 
@@ -132,7 +132,7 @@ export default function HistoryScreen() {
                             <input
 
                                 type="text"
-                                placeholder="Search Customer Id..."
+                                placeholder="Search Email..."
                                 className='w-25 form-control'
                                 value={searchRefunds}
                                 onChange={(e) => setSearchRefunds(e.target.value)}

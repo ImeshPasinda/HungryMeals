@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const refundSchema = mongoose.Schema({
 
     id : {type: String , require},
-    refundamount : {type: String , require},
+    refundamount : {type: Number , require},
     email : {type: String , require},
     description: { type: String, require },
     isSuccessfull : {type: Boolean , default : false},

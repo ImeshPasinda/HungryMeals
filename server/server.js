@@ -39,6 +39,7 @@ const JobApplyRoute=require('./routes/JobApplyRoute')
 const Tickets=require('./models/ticketsModel')
 const refundRoute = require('./routes/refundRoute')
 const stocksRoute=require('./routes/stocksRoute')
+const stockspurchaseRoute=require('./routes/stocksPurchaseRoute')
 
 
 app.use('/api/pizzas/', pizzaRoute)
@@ -54,6 +55,7 @@ app.use('/api/jobportal/',jobsRoute)
 app.use('/api/jobapply/',JobApplyRoute)
 app.use('/api/refunds/', refundRoute)
 app.use('/api/stocks/',stocksRoute)
+app.use('/api/stockspurchase', stockspurchaseRoute)
 
 
 app.get("/", (req, res) => {

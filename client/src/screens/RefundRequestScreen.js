@@ -66,28 +66,22 @@ export default function RefundRequestScreen() {
     const [refundamount, setrefundamount] = useState('')
     const [email, setemail] = useState('')
     const [description, setdescription] = useState('')
+    const [errorMessage, setErrorMessage] = useState('');
     const [isSuccessfull, setisSuccessfull] = useState(false)
-    // const [request, setrequest] = useState(null);
+
 
     const addrefundstate = useSelector(state => state.addRefundReducer)
     const { success, error, loading } = addrefundstate
 
+    //fetch data to form
+    useEffect(() => {
+        setid(orders.userid);
+        setorderid(orders._id);
+        setrefundamount(orders.orderAmount);
+        setemail(orders.email);
 
-    // useEffect(() => {
-    //     // Make an API call to retrieve the data from MongoDB
-    //     axios.get(`/api/orders/getcurrentorders/${OrderId}`).then(response => {
-    //         const data = response.data;
-    //         // Set the initial state using the retrieved data
-    //         setid(data.id);
-    //         setid(data.orderid);
-    //         setrefundamount(data.refundamount);
-    //         setemail(data.email);
-    //         setdescription(data.description);
-    //         setisSuccessfull(data.isSuccessfull);
-    //     }).catch(error => {
-    //         console.log(error);
-    //     });
-    // }, []);
+    }, [orders.userid, orders._id, orders.orderAmount, orders.email]);
+
 
     function formHandler(e) {
 
@@ -106,7 +100,17 @@ export default function RefundRequestScreen() {
         dispatch(addRefund(refund));
 
     }
-
+    
+    //form validation
+    const handleDescriptionChange = (e) => {
+        const value = e.target.value;
+        if (value.length > 50) {
+          setErrorMessage('Description should not exceed 50 characters');
+        } else {
+          setErrorMessage('');
+          setdescription(value);
+        }
+      };
 
     //update status
     function updateStatus(requestid, val) {
@@ -195,7 +199,7 @@ export default function RefundRequestScreen() {
             <br />
             <div className='row justify-content-center'>
 
-            
+
                 <div className='col-md-10'>
 
                     <ul className='financemanagerfunctions'>
@@ -204,7 +208,7 @@ export default function RefundRequestScreen() {
                     </ul>
 
                 </div>
-            
+
                 <div className='col-md-9 m-3   p-0 ' >
 
                     {/* Data table for refund request details */}
@@ -250,10 +254,10 @@ export default function RefundRequestScreen() {
                             <div class="modal-body">
                                 {/* form*/}
 
-                                {orders.userid}<br />
+                                {/* {orders.userid}<br />
                                 {orders._id}<br />
                                 {orders.orderAmount}<br />
-                                {orders.email}
+                                {orders.email} */}
 
                                 <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '80vh' }}>
                                     <div className='box col-md-10 m-2 p-5'>
@@ -279,7 +283,8 @@ export default function RefundRequestScreen() {
                                                     <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="Email address" value={email} onChange={(e) => { setemail(e.target.value) }} />
                                                 </div> <br />
                                                 <div className="form-group">
-                                                    <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Description" value={description} onChange={(e) => { setdescription(e.target.value) }}></textarea>
+                                                    <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Description" value={description} onChange={handleDescriptionChange}></textarea>
+                                                    {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
                                                 </div>
 
                                                 <button onClick={() => { { updateStatus(orders._id, true) } }} className='btn mt-3' type='submit'>Add Transaction</button>

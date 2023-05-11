@@ -1,13 +1,33 @@
 import axios from "axios";
 import Swal from "sweetalert2";
-//update item//
-export const updateItemAction = (updateItem, ItemId) => async dispatch => {
 
-    dispatch({ type: 'UPDATE_ITEM_REQUEST' })
+// Get All Purchase
+export const getallpurchases = () => async dispatch => {
+
+    dispatch({ type: 'GET_PURCHASE_REQUEST' })
+
+
+    try {
+
+        const response = await axios.get('/api/stockspurchase/getallpurchases')
+        console.log(response)
+        dispatch({ type: 'GET_PURCHASE_SUCCESS', payload : response.data })
+
+    } catch (error) {
+
+        dispatch({ type: 'GET_PURCHASE_FAILED', payload : error })
+    }
+
+}
+
+// Update All Purchase
+export const updatePruchaseAction = (updatePurchase, PurchaseId) => async dispatch => {
+
+    dispatch({ type: 'UPDATE_PURCHASE_REQUEST' })
 
     try {
     
-        const response = await axios.put(`/api/stocks/update/stocks/${ItemId}`, updateItem)
+        const response = await axios.put(`/api/stockspurchase/update/stockspurchase/${PurchaseId}`, updatePurchase)
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-end',
@@ -22,15 +42,15 @@ export const updateItemAction = (updateItem, ItemId) => async dispatch => {
 
         Toast.fire({
             icon: 'success',
-            title: 'Item updated successfully!'
+            title: 'Purchase updated successfully!'
         })
        
         setTimeout(function () {
-            window.location.reload('/admin/stocksmanage');
+            window.location.reload('/admin/stockspurchase');
         }, 1500);
         console.log(response);
         
-        dispatch({ type: 'UPDATE_ITEM_SUCCESS' })
+        dispatch({ type: 'UPDATE_PURCHASE_SUCCESS' })
 
 
     } catch (error) {
@@ -49,21 +69,21 @@ export const updateItemAction = (updateItem, ItemId) => async dispatch => {
 
         Toast.fire({
             icon: 'error',
-            title: 'Item updated unsuccessfully!'
+            title: 'Purchase updated unsuccessfully!'
         })
-        dispatch({ type: 'UPDATE_ITEM_FAILED', payload: error })
+        dispatch({ type: 'UPDATE_PURCHASE_FAILED', payload: error })
     }
 }
 
-//delet item//
-export const deleteItemAction = (ItemId) => async dispatch => {
+// Delet All Purchase
+export const deletePruchaseAction = (PurchaseId) => async dispatch => {
 
-    dispatch({ type: 'ITEM_DELETE_REQUEST' })
+    dispatch({ type: 'DELETE_PURCHASE_REQUEST' })
 
     
 
     try {
-        const response = await axios.delete(`/api/stocks/delete/stocks/${ItemId}`)
+        const response = await axios.delete(`/api/stockspurchase/delete/stockspurchase/${PurchaseId}`)
 
         const Toast = Swal.mixin({
             toast: true,
@@ -79,17 +99,17 @@ export const deleteItemAction = (ItemId) => async dispatch => {
 
         Toast.fire({
             icon: 'success',
-            title: 'Item deleted successfully'
+            title: 'Purchase deleted successfully'
         })
 
         setTimeout(function () {
-            window.location.reload('/admin/stocksmanage');
+            window.location.reload('/admin/stockspurchase');
         }, 1500);
 
 
 
         console.log(response);
-        dispatch({ type: 'DELETE_ITEM_SUCCESS' })
+        dispatch({ type: 'DELETE_PURCHASE_SUCCESS' })
 
 
 
@@ -118,13 +138,14 @@ export const deleteItemAction = (ItemId) => async dispatch => {
     }
 }
 
-//add item//
-export const addItem = (item) => async dispatch => {
 
-    dispatch({ type: 'ITEM_ADDED_REQUEST' })
+// Add All Purchase
+export const addPurchase = (purchase) => async dispatch => {
+
+    dispatch({ type: 'PURCHASE_ADDED_REQUEST' })
 
     try {
-        const response = await axios.post('/api/stocks/post/stocks', item)
+        const response = await axios.post('/api/stockspurchase/post/stockspurchase', purchase)
         console.log(response);
 
         
@@ -143,15 +164,15 @@ export const addItem = (item) => async dispatch => {
 
         Toast.fire({
             icon: 'success',
-            title: 'Item addded successfully'
+            title: 'Purchase addded successfully'
         })
        
         setTimeout(function () {
-            window.location.reload('/admin/stocksmanage');
+            window.location.reload('/admin/stockspurchase');
         }, 1500);
         console.log(response);
         
-        dispatch({ type: 'ITEM_ADDED_SUCCESS' })
+        dispatch({ type: 'PURCHASE_ADDED_SUCCESS' })
 
     } catch (error) {
         
@@ -169,9 +190,9 @@ export const addItem = (item) => async dispatch => {
 
         Toast.fire({
             icon: 'error',
-            title: 'Item added unsuccessfully'
+            title: 'Purchase added unsuccessfully'
         })
 
-        dispatch({ type: 'ITEM_ADDED_FAILED', payload: error })
+        dispatch({ type: 'PURCHASE_ADDED_FAILED', payload: error })
     }
 }
