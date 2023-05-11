@@ -40,7 +40,7 @@ export default function Footer() {
                             <h5>Section</h5>
                             <ul class="nav flex-column">
                                 <li class="nav-item mb-2"><a href="/" class="nav-link p-0 text-muted">Home</a></li>
-                                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Menus</a></li>
+                                <li class="nav-item mb-2"><a href="/tickets" class="nav-link p-0 text-muted">Help</a></li>
                                 <li class="nav-item mb-2"><a href="/feedback" class="nav-link p-0 text-muted">Feedback</a></li>
                                 <li class="nav-item mb-2"><a href="/faq" class="nav-link p-0 text-muted">FAQs</a></li>
                                 <li class="nav-item mb-2"><a href="/about" class="nav-link p-0 text-muted">About Us</a></li>
