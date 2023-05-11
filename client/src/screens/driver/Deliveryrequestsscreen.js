@@ -47,6 +47,7 @@ export default function Deliveryrequestscreen() {
             axios.get("/api/orders/getallorders")
                 .then((res) => {
                     const allOrders = res.data;
+                    //console.log(allOrders)
                     const deliveredOrders = allOrders.filter(order => order.isDelivered === true && order.isDeliveryAccepted === false);
                     setOrders(deliveredOrders);
                     setFilterdOrders(deliveredOrders);
@@ -93,6 +94,7 @@ export default function Deliveryrequestscreen() {
                     orderId: orders._id,
                     orderItems: orders.orderItems,
                     location: orders.shippingAddress,
+                    coordinates: orders.coordinates,
                     customerName: orders.name,
                     amount: orders.orderAmount,
                     driverRate: '1000'
@@ -129,15 +131,39 @@ export default function Deliveryrequestscreen() {
             sortable: true
         },
 
+        // {
+        //     name: "Accept",
+        //     cell: row => (
+        //         <div>
+        //             <button onClick={() => {
+        //                 deliveries(row._id);
+        //                 updateDStatus(row._id, true);
+        //             }} className="btn">ACCEPT</button>
+
+        //         </div>
+        //     )
+        // }
+
         {
-            name: "Accept",
+            name: "Actions",
             cell: row => (
                 <div>
-                    <button onClick={() => {
-                        deliveries(row._id);
-                        updateDStatus(row._id, true);
-                    }} className="btn">ACCEPT</button>
-
+                    <button
+                        onClick={() => {
+                            deliveries(row._id);
+                            updateDStatus(row._id, true);
+                        }}
+                        className="btn "
+                    >
+                        Accept
+                    </button>
+                    <> </>
+                    <button
+                        onClick={() => deleteOrder(row._id)}
+                        className="btn"
+                    >
+                        Decline
+                    </button>
                 </div>
             )
         }
@@ -145,6 +171,8 @@ export default function Deliveryrequestscreen() {
 
 
     ]
+
+
 
     // search button
     useEffect(() => {
@@ -185,11 +213,9 @@ export default function Deliveryrequestscreen() {
 
             <div className='row justify-content-center'>
                 <div className='col-md-9 m-3   p-0 ' >
-
                     {/* Data table for customer details */}
                     <DataTable
-
-                        title='DELIVERY REQUESTS'
+                         title="DELIVERY REQUESTS"
                         columns={columnsOrders}
                         data={filterdOrders}
                         pagination
@@ -200,29 +226,21 @@ export default function Deliveryrequestscreen() {
                         subHeader
                         subHeaderComponent={
                             <input
-
                                 type="text"
                                 placeholder="Search requests..."
                                 className='w-25 form-control'
                                 value={searchOrders}
                                 onChange={(e) => setSearchOrders(e.target.value)}
-
                             />
-
                         }
-
-
                     />
                     <br></br>
                     <div className='modal-footer'>
-                    <a href="/driver/delivery" class="btn">Your Deliveries</a>
-                        
+                        <a href="/driver/delivery" className="btn">Your Deliveries</a>
                     </div>
                 </div>
-
-
             </div>
-
         </div>
+
     )
 }

@@ -44,6 +44,8 @@ import Yourdeliveryscreen from "./screens/driver/Yourdeliveryscreen";
 import Deliveryrequestscreen from "./screens/driver/Deliveryrequestsscreen";
 import Driverprofilescreen from "./screens/driver/Driverprofilescreen";
 import StocksManagementScreen from "./screens/StocksManagementScreen";
+import Deliverymapscreen from "./screens/driver/Deliverymapscreen";
+import Myearningsscreen from "./screens/driver/Myearningssreen";
 
 function App() {
   const userstate = useSelector((state) => state.loginUserReducer);
@@ -260,6 +262,32 @@ function App() {
 
             <Route path="/error" exact element={<Errorscreen />} />
 
+          )}
+
+          {/* changed */}
+          {currentDriver ? (
+            <Route
+              path="driver/map"
+              exact
+              element={<Deliverymapscreen />}
+            />
+          ) :  
+
+          (
+            <Route path="/error" exact element={<Errorscreen />} />
+          )}  
+
+            {/* changed */}
+          {currentDriver ? (
+            <Route
+              path="driver/earnings"
+              exact
+              element={<Myearningsscreen />}
+            />
+          ) :  
+
+          (
+            <Route path="/error" exact element={<Errorscreen />} />
           )}
 
           <Route path="/profile" exact element={<Profilescreen />} />

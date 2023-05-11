@@ -7,7 +7,7 @@ const stripe = require("stripe")("sk_test_51FfQBPHdYSqFNE7IJEw81G8DKDo4N94EVn2rM
 
 router.post("/placeorder", async (req, res) => {
 
-    const { token, subtotal, currentUser, cartItems } = req.body
+    const { token, subtotal, currentUser, cartItems,coordinates } = req.body
 
     try {
         const customer = await stripe.customers.create({
@@ -31,6 +31,8 @@ router.post("/placeorder", async (req, res) => {
                 email: currentUser.email,
                 userid: currentUser._id,
                 orderItems: cartItems,
+                //changed
+                coordinates:coordinates,
                 orderAmount: subtotal,
                 shippingAddress: {
 
@@ -183,27 +185,7 @@ router.put("/update/order/refund/request/user/:id", async (req, res) => {
     }
 });
 
-router.put("/update/transactionstatus/:id", async (req, res) => {
 
-    let salesid = req.params.id;
-    const { isSuccessfull } = req.body;
-  
-    const updateisSuccessful = {
-  
-        isSuccessfull,
-  
-    }
-  
-    try {
-  
-        await Order.findByIdAndUpdate(salesid, updateisSuccessful)
-        res.send('Refund Status Updated Successfully')
-  
-    } catch (error) {
-        return res.status(400).json({ message: error });
-    }
-  });
-  
 
 
 

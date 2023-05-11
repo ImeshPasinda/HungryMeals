@@ -6,6 +6,7 @@ const deliverySchema = mongoose.Schema({
   orderId: {type: String , require},
   orderItems : [],
   location: {type: Object},
+  coordinates:{type: Object },
   customerName: {type: String , require},
   amount: { type: Number, default: 0 },
   driverRate: { type: Number, default: 1000 },

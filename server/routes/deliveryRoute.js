@@ -115,14 +115,14 @@ router.put("/update/status/delivery/:id", async (req, res) => {
 
 router.post("/post/delivery", async (req, res) => {
 
-  const { driverName, orderId, location,orderItems, customerName, amount,driverRate } = req.body
+  const { driverName, orderId, location,coordinates,orderItems, customerName, amount,driverRate } = req.body
 
 
 
   try {
 
 
-      const newDelivery = new Delivery({ driverName, orderId, location,orderItems, customerName, amount,driverRate })
+      const newDelivery = new Delivery({ driverName, orderId, location,coordinates,orderItems, customerName, amount,driverRate })
       newDelivery.save()
       res.send('Delivery Posted Successfully!')
 
@@ -160,6 +160,39 @@ router.delete("/delete/delivery/:id", async (req, res) => {
 
 
       return res.status(400).json({ message: error });
+  }
+});
+
+router.get("/getcoordinates", async (req, res) => {
+  try {
+    const deliveries = await Delivery.find().select("coordinates");
+    const coordinates = deliveries.map(delivery => delivery.coordinates);
+    res.json(coordinates);
+  } catch (error) {
+    console.log("Error fetching coordinates:", error);
+    res.status(500).json({ error: "Failed to fetch coordinates" });
+  }
+});
+
+
+router.put('/status/:id', async (req, res) => {
+  const deliveryId = req.params.id;
+
+  try {
+    const delivery = await Delivery.findById(deliveryId);
+
+    if (!delivery) {
+      return res.status(404).json({ message: 'Delivery not found' });
+    }
+
+    // Update the delivery status
+    delivery.isdelivered = true;
+
+    await delivery.save();
+
+    res.json({ message: 'Delivery status updated successfully' });
+  } catch (error) {
+    return res.status(400).json({ message: error });
   }
 });
 

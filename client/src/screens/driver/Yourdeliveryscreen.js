@@ -3,6 +3,7 @@ import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateDeliveryStatus } from '../../actions/driverActions'
 import { deleteDeliveryAction } from '../../actions/deliveryActions'
+import { Button } from 'react-bootstrap'
 
 
 let deliveryId;
@@ -104,9 +105,15 @@ export default function Yourdeliveryscreen() {
                         updateDStatus(delivery.orderId,false);
                         deleteDeliveries(delivery._id)
                     }} className="btn">CANCEL</button>
+
           </div>
+
+         
         ))}
       </div>
+
+      <a href="/driver/map" class="btn">Go to locations</a>
+
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import { addToCart } from "../actions/cartAction";
 import { deleteFromCart } from "../actions/cartAction";
@@ -10,6 +10,26 @@ export default function Cartscreen() {
     const cartItems = cartstate.cartItems
     var subtotal = cartItems.reduce((x, item) => x + item.price, 0)
     const dispatch = useDispatch()
+    //changed
+    const [coordinates, setCoordinates] = useState('');
+
+    //changed
+    function fetchCoordinates()  {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position) => {
+                setCoordinates({
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude,
+                });
+                console.log(coordinates);
+            })
+
+            
+        } else {
+            alert("Geolocation is not supported by this browser.");
+        }
+    }
+
 
     return (
         <div>
@@ -71,8 +91,18 @@ export default function Cartscreen() {
 
                     <div className="col-md-4 text-end">
 
-                        <h2 style={{ fontsize: '45px', backgroundColor: 'white',borderRadius: '10px',display: 'flex', justifyContent: 'center'}}>SubTotal : {subtotal} /- </h2>
-                        <Checkout subtotal={subtotal} />
+                        <h2 style={{ fontsize: '45px' }}>SubTotal : {subtotal} /- </h2>
+                        {/* changed */}
+                        <div className="p-1">
+                        <button className="btn" onClick={fetchCoordinates}>
+                        <i class="fa fa-map-marker" aria-hidden="true"></i>
+                        <> </>
+                        </button>
+                        </div>
+                        
+
+                        <Checkout subtotal={subtotal} coordinates = {coordinates} />
+
                     </div>
 
                 </div>

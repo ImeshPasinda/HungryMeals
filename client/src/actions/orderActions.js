@@ -1,7 +1,7 @@
 import axios from 'axios'
 import Swal from 'sweetalert2'
 
-export const placeOrder = (token, subtotal) => async (dispatch, getState) => {
+export const placeOrder = (token, subtotal,coordinates) => async (dispatch, getState) => {
 
     dispatch({ type: 'PLACE_ORDER_REQUEST' })
 
@@ -10,7 +10,7 @@ export const placeOrder = (token, subtotal) => async (dispatch, getState) => {
 
     try {
 
-        await axios.post('/api/orders/placeorder', { token, subtotal, currentUser, cartItems })
+        await axios.post('/api/orders/placeorder', { token, subtotal, currentUser, cartItems,coordinates })
         dispatch({ type: 'PLACE_ORDER_SUCCESS' })
         setTimeout(function(){
             window.location.replace('/orders');
