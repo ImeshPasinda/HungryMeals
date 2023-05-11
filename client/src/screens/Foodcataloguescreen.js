@@ -14,6 +14,7 @@ let x;
 let numofFoods;
 let numOfNonVeg;
 let numOfVeg;
+let numOfisBeverages;
 
 
 export default function Foodcataloguescreen() {
@@ -43,6 +44,10 @@ export default function Foodcataloguescreen() {
         //count number of non-veg pizzas
         numOfVeg = res.data.filter(pizza => pizza.isVegetarian).length;
         console.log(`Number of non-veg pizzas: ${numOfVeg}`);
+
+        //count number of beverages
+        numOfisBeverages = res.data.filter(pizza => pizza.isBeverage).length;
+        console.log(`Number of non-veg pizzas: ${numOfisBeverages}`);
 
       }).catch((err) => {
         console.log(err.message);
@@ -288,7 +293,7 @@ export default function Foodcataloguescreen() {
         <div className='col-md-9 m-3 p-0'>
           {/* Data table for customer details */}
           <DataTable
-            title=<div style={{ paddingTop: '25px' }}><h20>Food Catalogue Management <sup><span class="badge bg-danger">Not Completed</span></sup></h20></div>
+            title=<div style={{ paddingTop: '25px' }}><h20>Food Catalogue Management <sup></sup></h20></div>
             columns={columnsOrders}
             data={filteredCatalogues}
             pagination
@@ -1109,10 +1114,12 @@ export default function Foodcataloguescreen() {
                         <div class="card">
                           <div class="card-body shadow">
                             <p class="text-uppercase small mb-2">
-                              <strong>Latest Post On <i class="fa-solid fa-circle fa-fade" style={{ fontSize: '13px', color: 'red' }}></i></strong>
+                              <strong>Number of Beverages  <i class="fa-solid fa-circle fa-fade" style={{ fontSize: '13px', color: 'red' }}></i></strong>
                             </p>
                             <h5 class="mb-0">
-                              <strong></strong>
+                              <strong>{numOfisBeverages}</strong>
+                              <small class="text-success ms-2">
+                                <i class="fas fa-arrow-up fa-sm pe-1"></i></small>
 
 
 
