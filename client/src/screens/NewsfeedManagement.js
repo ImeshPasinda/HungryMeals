@@ -728,7 +728,7 @@ export default function Newsfeedmanagement() {
                                                 <div class="card">
                                                     <div class="card-body shadow">
                                                         <p class="text-uppercase small mb-2">
-                                                            <strong>Number of News <i class="fa-solid fa-circle fa-fade" style={{ fontSize: '13px', color: 'red' }}></i></strong>
+                                                            <strong>Number of Events <i class="fa-solid fa-circle fa-fade" style={{ fontSize: '13px', color: 'red' }}></i></strong>
                                                         </p>
                                                         <h5 class="mb-0">
                                                             <strong>{numEvents}</strong>
