@@ -13,6 +13,7 @@ const newsfeedSchema = mongoose.Schema({
 
 })
 
+
 const NewsfeedModel = mongoose.model('news', newsfeedSchema)
 
 module.exports = NewsfeedModel
