@@ -80,8 +80,8 @@ export default function AdminProfilescreen() {
                         <br />
                         <br />
                         <br />
-                        <br />
-                        <br />
+                       
+                        
                         <a href="/admin/selectionUC" class="btn">See More</a>
                     </div>
                 </div>
@@ -105,7 +105,7 @@ export default function AdminProfilescreen() {
                 <div class="card col-md-4 m-4 shadow p-3 mb-5 bg-white " style={{ width: '18rem', borderRadius: '15px' }}>
                     <img src="https://img.freepik.com/free-vector/flat-design-stock-market-concept_23-2149162443.jpg?w=996&t=st=1672322077~exp=1672322677~hmac=422126355402e7bd7f64cdfa22fa3401f3c587b34f29795381733fe65663d9ba" class="card-img-top" alt="..." />
                     <div class="card-body">
-                        <h5 class="card-title">Sales & Financial Management</h5>
+                        <h5 class="card-title">Financial Management</h5>
                         <p class="card-text">-Manage all the payment details<br />- Sales Management: Generate  sales reports (information on total sales, sales by category or item)<br />
                             -Get reports of payment details</p>
                         <br />
