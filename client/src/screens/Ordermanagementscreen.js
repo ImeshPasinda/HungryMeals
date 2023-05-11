@@ -27,6 +27,11 @@ import {
 
 let OrderId;
 var Items, Amount, name;
+let numOfOrders
+let numApproved
+let numRejected
+let approvalPercentage
+let rejectedPercentage
 
 export default function Ordermanagementscreen() {
   const [basicModal, setBasicModal] = useState(false);
@@ -39,7 +44,6 @@ export default function Ordermanagementscreen() {
 
   useEffect(() => {
     function getOrders() {
-      //get all users from database
       axios
         .get("/api/orders/getallorders")
         .then((res) => {
@@ -47,6 +51,31 @@ export default function Ordermanagementscreen() {
           console.log(res.data);
 
           setFilterdOrders(res.data);
+
+          numOfOrders = res.data.length;
+          console.log("Number of orders:", numOfOrders);
+
+          numApproved = res.data.filter(order => order.isDelivered === true).length;
+          console.log("Number of approved orders:", numApproved);
+
+          numRejected = res.data.filter(order => order.isSuccessfull === true).length;
+          console.log("Number of rejected orders:", numRejected);
+
+          approvalPercentage = ((numApproved / numOfOrders) * 100).toFixed(2);
+          console.log("Approval count as percentage :", approvalPercentage + "%");
+
+          rejectedPercentage = ((numRejected / numOfOrders) * 100).toFixed(2);
+          console.log("Rejected count as percentage :", rejectedPercentage + "%");
+
+          // Update the numApproved and numRejected variables in the orders document
+          axios
+            .put("/api/orders/updateNumApprovedAndRejected", { numApproved, numRejected })
+            .then((res) => {
+              console.log("NumApproved and NumRejected updated successfully.");
+            })
+            .catch((err) => {
+              console.log(err.message);
+            });
         })
         .catch((err) => {
           console.log(err.message);
@@ -55,6 +84,10 @@ export default function Ordermanagementscreen() {
 
     getOrders();
   }, []);
+
+
+
+
 
   // function orderdetails(OrderId) {
   //   axios
@@ -89,6 +122,7 @@ export default function Ordermanagementscreen() {
         console.log(error);
       });
   }
+
   const columnsOrders = [
     {
       name: "Email",
@@ -246,7 +280,31 @@ export default function Ordermanagementscreen() {
                 onChange={(e) => setSearchOrders(e.target.value)}
               />
             }
+            noDataComponent={
+              <div>
+                <p10>Invalid orderID</p10>
+              </div>
+            }
           />
+          <br></br>
+          <div className="modal-footer">
+            <div className="p-1">
+              <button
+                class="btn"
+                data-bs-target="#exampleModalToggleReport"
+                data-bs-toggle="modal"
+                data-bs-dismiss="modal"
+              >
+                <i
+                  style={{ fontSize: "15px", color: "white" }}
+                  class="fa fa-file"
+                  aria-hidden="true"
+                ></i>{" "}
+                Generate Customer Report
+              </button>
+            </div>
+          </div>
+
           <div
             class="modal fade"
             id="staticBackdrop"
@@ -259,8 +317,12 @@ export default function Ordermanagementscreen() {
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="staticBackdropLabel">
-                    Detailed Information
+                  <h1
+                    class="modal-title fs-5"
+                    id="staticBackdropLabel"
+                    style={{ fontWeight: "bold" }}
+                  >
+                    Report Details
                   </h1>
                   <button
                     type="button"
@@ -269,27 +331,12 @@ export default function Ordermanagementscreen() {
                     aria-label="Close"
                   ></button>
                 </div>
-                <div class="modal-body">
-                  <p>Customer Name</p>
-                  <p className="text-muted">{orders.name}</p>
-                  <p>Order Items</p>
-
-                  {orders && orders.orderItems && (
-                    <div>
-                      {orders.orderItems.map((item) => (
-                        <div key={item._id}>
-                          <p>{item.name}</p>
-                          <p>{item.quantity}</p>
-                          <p>{item.prices[0].price}</p>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-
-                  <p>Order Amount</p>
-                  <p className="text-muted">{orders.orderAmount}</p>
-                </div>
+                <div class="modal-body"></div>
                 <div class="modal-footer">
+                  <button class="btn" onClick={() => window.print()}>
+                    Print
+                  </button>
+
                   <button type="button" class="btn " data-bs-dismiss="modal">
                     Close
                   </button>
@@ -299,6 +346,155 @@ export default function Ordermanagementscreen() {
           </div>
         </div>
       </div>
+
+
+      <div class="modal fade" id="exampleModalToggleReport" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalToggleLabel">Customer Order Detail Report</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+              <div class="container my-4">
+
+                <div class="border p-5 mb-5">
+
+                  <section>
+                    <div class="row">
+                      <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="card">
+                          <div class="card-body shadow shadow" >
+                            <p class="text-uppercase small mb-2">
+                              <strong>All Order Count  <i class="fa-solid fa-circle fa-fade" style={{ fontSize: '13px', color: 'red' }} ></i></strong>
+                            </p>
+                            <h5 class="mb-0">
+                              <strong>{numOfOrders}</strong>
+                              <small class="text-success ms-2">
+                                <i class="fas fa-arrow-up fa-sm pe-1"></i></small>
+                            </h5>
+
+                            <hr />
+
+                            <p class="text-uppercase text-muted small mb-2">
+                              recent update
+                            </p>
+                            {/* <h5 class="text-muted mb-0">11 467</h5> */}
+                          </div>
+                        </div>
+
+                      </div>
+
+                      <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="card">
+                          <div class="card-body shadow">
+                            <p class="text-uppercase small mb-2">
+                              <strong>Aproved Order Count <i class="fa-solid fa-circle fa-fade" style={{ fontSize: '13px', color: 'red' }}></i></strong>
+                            </p>
+                            <h5 class="mb-0">
+                              <strong>{numApproved}</strong>
+                              <small class="text-success ms-2">
+                                <i class="fas fa-arrow-up fa-sm pe-1"></i></small>
+                            </h5>
+
+                            <hr />
+                            <p class="text-uppercase text-muted small mb-2">
+                              resent update
+                            </p>
+
+                            {/* <h5 class="text-muted mb-0">38 454</h5> */}
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="card">
+                          <div class="card-body shadow">
+                            <p class="text-uppercase small mb-2">
+                              <strong>Delete Order Count <i class="fa-solid fa-circle fa-fade" style={{ fontSize: '13px', color: 'red' }}></i></strong>
+                            </p>
+                            <h5 class="mb-0">
+                              <strong>{numRejected}</strong>
+                              <small class="text-success ms-2">
+                                <i class="fas fa-arrow-up fa-sm pe-1"></i></small>
+                            </h5>
+
+                            <hr />
+                            <p class="text-uppercase text-muted small mb-2">
+                              recent update
+                            </p>
+
+                            <h5 class="text-muted mb-0"></h5>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="card">
+                          <div class="card-body shadow">
+                            <p class="text-uppercase small mb-2">
+                              <strong>Approved Order Count percentage <i class="fa-solid fa-circle fa-fade" style={{ fontSize: '13px', color: 'red' }}></i></strong>
+                            </p>
+                            <h5 class="mb-0">
+                              <strong>{approvalPercentage}</strong>
+                              <small class="text-danger ms-2">
+                                <i class="fas fa-arrow-down fa-sm pe-1"></i></small>
+                            </h5>
+
+                            <hr />
+
+                            <p class="text-uppercase text-muted small mb-2">
+                              recent update
+                            </p>
+                            <h5 class="text-muted mb-0"></h5>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="card">
+                          <div class="card-body shadow">
+                            <p class="text-uppercase small mb-2">
+                              <strong>Rejected Order Count percentage <i class="fa-solid fa-circle fa-fade" style={{ fontSize: '13px', color: 'red' }}></i></strong>
+                            </p>
+                            <h5 class="mb-0">
+                              <strong>{rejectedPercentage}</strong>
+                              <small class="text-danger ms-2">
+                                <i class="fas fa-arrow-down fa-sm pe-1"></i></small>
+                            </h5>
+
+                            <hr />
+
+                            <p class="text-uppercase text-muted small mb-2">
+                              recent update
+                            </p>
+                            <h5 class="text-muted mb-0"></h5>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+
+
+                </div>
+
+
+              </div>
+
+            </div>
+
+            <div class="modal-footer">
+              <button class="btn" onClick={() => window.print()} >Print</button>
+              <button class="btn" data-bs-toggle="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
       <section>
         <MDBContainer className="py-5 h-100">
           <MDBRow className="justify-content-center align-items-center h-100 text-center">
@@ -333,8 +529,8 @@ export default function Ordermanagementscreen() {
                           <p className="small mb-0">
                             {orders.shippingAddress &&
                               orders.shippingAddress.street +
-                                "," +
-                                orders.shippingAddress.city}
+                              "," +
+                              orders.shippingAddress.city}
                           </p>
                         </div>
                       </MDBTypography>
@@ -381,22 +577,24 @@ export default function Ordermanagementscreen() {
 
                     <MDBModalFooter className="d-flex justify-content-center border-top-0 py-4">
                       {orders.isDelivered === true &&
-                      orders.orderStatus === false ? (
+                        orders.orderStatus === false ? (
                         <span className="badge bg-success">Approved</span>
                       ) : orders.orderStatus === true ? (
                         <>
                           {orders.isSuccessfull ? (
-                            <><span className="badge bg-success">
-                              Refund Successfull
-                              
-                            </span><button
+                            <>
+                              <span className="badge bg-success">
+                                Refund Successfull
+                              </span>
+                              <button
                                 onClick={() => {
                                   deleteOrder(orders._id);
                                 }}
                                 className="btn"
                               >
                                 Delete
-                              </button></>
+                              </button>
+                            </>
                           ) : orders.sendrefundStatus ? (
                             <span className="badge bg-success">
                               Refund Requested

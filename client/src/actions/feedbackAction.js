@@ -224,4 +224,65 @@ export const updateDisplayFeedback = (updateDisplayFeedback, userId, val) => asy
     }
 
 
+}  
+
+export const updateReplyMessageAction = (updateReplyMassage, userId) => async dispatch => {
+
+    dispatch({ type: 'DISPLAY_CUSTOMER_FEEDBACK_REQUEST' })
+
+
+   
+
+
+        try {
+            const response = await axios.put(`/api/feedback/update/reply/${userId}`, updateReplyMassage)
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 1500,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon: 'success',
+                title: 'Reply message successfully'
+            })
+            setTimeout(function () {
+                window.location.reload('/admin/feedback');
+            }, 1500);
+           
+
+            console.log(response);
+            dispatch({ type: 'REPLY_MESSAGE_SEND_SUCCESS' })
+
+
+        } catch (error) {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon: 'error',
+                title: 'Reply send unsuccessfully'
+            })
+
+            dispatch({ type: 'REPLY_MESSAGE_SEND_UNSUCCESSFULLY', payload: error })
+        }
+
+
+    
+
 }

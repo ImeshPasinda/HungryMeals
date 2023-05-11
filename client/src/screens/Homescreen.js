@@ -83,8 +83,8 @@ export default function Homescreen() {
             return pizza.name.toLowerCase().includes(searchQuery.toLowerCase());
         }
     })
-    
-    
+
+
 
 
     const handleSearch = (e) => {
@@ -450,7 +450,7 @@ export default function Homescreen() {
                                         <img src="https://static.wixstatic.com/media/618c8c_66b85eea9a4e44308771a5947da637c1~mv2.png" class="d-block w-100" alt="..." />
                                         <div class="carousel-caption" style={{ postition: 'absolute' }}>
 
-                                            <div class="row text-center">
+                                            <div class="row align-items-start text-center">
                                                 <div class="col-md-4 mb-5 mb-md-0">
 
                                                 </div>
@@ -497,7 +497,7 @@ export default function Homescreen() {
                                         <img src="https://static.wixstatic.com/media/618c8c_66b85eea9a4e44308771a5947da637c1~mv2.png" class="d-block w-100" alt="..." />
                                         <div class="carousel-caption" style={{ postition: 'absolute' }}>
 
-                                            <div class="row text-center">
+                                            <div class="row align-items-start text-center">
                                                 <div class="col-md-4 mb-5 mb-md-0">
 
                                                 </div>
@@ -547,7 +547,7 @@ export default function Homescreen() {
                                         <img src="https://static.wixstatic.com/media/618c8c_66b85eea9a4e44308771a5947da637c1~mv2.png" class="d-block w-100" alt="..." />
                                         <div class="carousel-caption" style={{ postition: 'absolute' }}>
 
-                                            <div class="row text-center">
+                                            <div class="row align-items-start text-center">
                                                 <div class="col-md-4 mb-5 mb-md-0">
 
                                                 </div>
@@ -595,8 +595,10 @@ export default function Homescreen() {
                                     <div class="carousel-item active">
                                         <img src="https://static.wixstatic.com/media/618c8c_66b85eea9a4e44308771a5947da637c1~mv2.png" class="d-block w-100" alt="..." />
                                         <div class="carousel-caption" style={{ postition: 'absolute' }}>
+                                        <h1>Feedback</h1>
 
                                             <div class="row text-center">
+                                                
                                                 <div class="col-md-4 mb-5 mb-md-0">
 
                                                 </div>
@@ -605,8 +607,7 @@ export default function Homescreen() {
                                                 </div>
                                                 <div class="col-md-4 mb-0">
 
-
-                                                    <p class="px-xl-3" >
+                                                    <p class="px-xl-3 text-center">
                                                         <i class="fas fa-quote-left pe-2"></i>Hurry Up Foodies!!! Give Us  Your Valuable Feedback...
                                                     </p>
 
@@ -692,14 +693,14 @@ export default function Homescreen() {
             </div></a>
 
 
-            {/* <a href="/feedback"><div className="position-fixed bottom-0 end-1" style={{ paddingBottom: '50px', paddingLeft: '25px' }}>
+            {<a href="/feedback"><div className="position-fixed bottom-0 end-1" style={{ paddingBottom: '50px', paddingLeft: '25px' }}>
 
                 <button className="btn rounded-circle shadow-lg " variant="success" style={{
                     width: '60px',
                     height: '60px',
                     borderRadius: '60px'
                 }} ><i className="fa-solid fa-pizza-slice" style={{ fontSize: '25px' }} ></i></button>
-            </div></a> */}
+            </div></a>}
 
 
 

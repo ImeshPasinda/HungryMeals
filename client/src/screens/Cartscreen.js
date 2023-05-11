@@ -71,7 +71,7 @@ export default function Cartscreen() {
 
                     <div className="col-md-4 text-end">
 
-                        <h2 style={{ fontsize: '45px' }}>SubTotal : {subtotal} /- </h2>
+                        <h2 style={{ fontsize: '45px', backgroundColor: 'white',borderRadius: '10px',display: 'flex', justifyContent: 'center'}}>SubTotal : {subtotal} /- </h2>
                         <Checkout subtotal={subtotal} />
                     </div>
 

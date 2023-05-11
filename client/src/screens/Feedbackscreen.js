@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux'
 import { UserFeedBack } from './../actions/feedbackAction';
@@ -27,18 +26,12 @@ export default function FeedbackScreen() {
             subject, 
             message 
         }
-
-        // console.log(newFeedback)
-        // dispatch(UserFeedBack(newFeedback))
-
-
-        if (name.trim().length !== 0 &&  email.trim().length !== 0 && subject.trim().length !== 0 && message.trim().length !== 0)
-        {
-
-            dispatch(UserFeedBack(newFeedback))
-
-        } 
-        else {
+    
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    
+        if (name.trim().length !== 0 && emailRegex.test(email) && subject.trim().length !== 0 && message.trim().length !== 0) {
+            dispatch(UserFeedBack(newFeedback));
+        } else {
             const Toast = Swal.mixin({
                 toast: true,
                 position: 'top-end',
@@ -46,21 +39,25 @@ export default function FeedbackScreen() {
                 timer: 1500,
                 timerProgressBar: true,
                 didOpen: (toast) => {
-                    toast.addEventListener('mouseenter', Swal.stopTimer)
-                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    toast.addEventListener('mouseenter', Swal.stopTimer);
+                    toast.addEventListener('mouseleave', Swal.resumeTimer);
                 }
             })
-
+    
+            let errorMessage = 'Please fill out required fields correctly!';
+    
+            if (!emailRegex.test(email)) {
+                errorMessage = 'Please enter a valid email address!';
+            }
+    
             Toast.fire({
                 icon: 'error',
-                title: 'Please fill out required fields !'
+                title: errorMessage
             })
         }
-
-
-
     }
-
+    
+    
     return (
         <div>
             <br/>
@@ -193,4 +190,3 @@ export default function FeedbackScreen() {
         </div>
     )
 }
-

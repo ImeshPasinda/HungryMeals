@@ -77,6 +77,28 @@ router.put("/update/feedback/display/:id", async (req, res) => {
     }
 });
 
+//reply message
+router.put("/update/reply/:id", async (req, res) => {
+
+    let userId = req.params.id;
+    const { reply } = req.body;
+
+    const updateReplyMassage = {
+
+        reply
+
+    }
+
+    try {
+
+        await Feedback.findByIdAndUpdate(userId, updateReplyMassage)
+        res.send('Reply send Successfully')
+
+    } catch (error) {
+        return res.status(400).json({ message: error });
+    }
+});
+
 
 
 module.exports = router

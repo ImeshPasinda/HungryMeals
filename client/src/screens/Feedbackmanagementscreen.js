@@ -6,6 +6,8 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import { deletefeedbackAction } from '../actions/feedbackAction';
 import { updateDisplayFeedback } from '../actions/feedbackAction';
+import { updateReplyMessageAction } from '../actions/feedbackAction';
+
 
 
 
@@ -19,6 +21,7 @@ let feedbackArray;
 let feedbackCount;
 let feedbackPercentage;
 let feedbackPercentageRate;
+let feedbackemail;
 
 function Feedbackmanagementscreen() {
 
@@ -82,8 +85,9 @@ function Feedbackmanagementscreen() {
     axios.get("/api/feedback/getallfeedbacks").then((res) => {
 
       setUsers(res.data);
-      console.log(userId)
-      //console.log(res.data)
+      console.log(res.data)
+
+
 
 
       for (let index = 0; index < res.data.length; index++) {
@@ -94,6 +98,7 @@ function Feedbackmanagementscreen() {
           //console.log(res.data[index].message)
           feedbackSub = res.data[index].subject
           feedbackMessage = res.data[index].message
+          feedbackemail = res.data[index].email
         }
       }
 
@@ -104,9 +109,9 @@ function Feedbackmanagementscreen() {
 
     })
   }
-  
+
   //percentagge
-  feedbackPercentage=(feedbackCount/usersCount)*100;
+  feedbackPercentage = (feedbackCount / usersCount) * 100;
   feedbackPercentageRate = feedbackPercentage.toFixed(2)
 
 
@@ -131,20 +136,39 @@ function Feedbackmanagementscreen() {
 
   const [isDisplayed, updateisDisplayed] = useState('')
 
-    function updateDisplay(userId, val) {
+  function updateDisplay(userId, val) {
 
-        const updateisDisplayed = {
+    const updateisDisplayed = {
 
-          isDisplayed: val
-        }
-
-        console.log(updateisDisplayed, userId)
-
-
-        dispatch(updateDisplayFeedback(updateisDisplayed, userId, val))
-
-
+      isDisplayed: val
     }
+
+    console.log(updateisDisplayed, userId)
+
+
+    dispatch(updateDisplayFeedback(updateisDisplayed, userId, val))
+
+
+  }
+
+
+  const [reply, updateReplyMassage] = useState('')
+
+  function updateReplyMsg(userId) {
+
+    const updateReplyMassage = {
+
+      reply
+    }
+
+    console.log(updateReplyMassage, userId)
+    dispatch(updateReplyMessageAction(updateReplyMassage, userId))
+
+
+  }
+
+
+
 
   //create data table
   const columns = [
@@ -160,7 +184,7 @@ function Feedbackmanagementscreen() {
 
     {
       name: "View",
-      cell: row => <button onClick={() => { feedbacks(row._id) }} className="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop" role="button">View</button>
+      cell: row => <button onClick={() => { updateReplyMsg(row._id) }} className="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop" role="button">View</button>
 
     },
     {
@@ -175,6 +199,44 @@ function Feedbackmanagementscreen() {
 
 
     },
+
+    {
+      name: "Reply",
+      cell: row => (
+        <button onClick={(updateReplyMsg) => {
+          Swal.fire({
+            title: "Reply",
+            html: `<b><u>Email:</u></b><br> ${row.email}`,
+            input: "textarea",
+            inputPlaceholder: "Type your reply here",
+            confirmButtonText: "Send",
+            showCancelButton: true,
+            cancelButtonText: "Cancel",
+            customClass: {
+              confirmButton: 'btn-red',
+              cancelButton: 'btn-red'
+            },
+            preConfirm: (reply) => {
+              const emailAddress = row.email;
+              const subject = "Reply to your message";
+              const emailBody = reply;
+              const emailLink = `https://mail.google.com/mail/?view=cm&to=${emailAddress}&su=${subject}&body=${emailBody}`;
+              window.open(emailLink, "_blank");
+            }
+          })
+        }} className="btn" role="button" >
+          Reply
+        </button>
+
+
+      )
+    },
+    {
+      name: "UpdateDB",
+      cell: row => <button onClick={() => { feedbacks(userId = row._id) }} className="btn" data-bs-toggle="modal" data-bs-target="#replymsg" role="button">updateDB</button>
+
+    },
+
 
   ]
 
@@ -278,7 +340,7 @@ function Feedbackmanagementscreen() {
 
                 <div class="border p-5 mb-5">
 
-                 
+
                   <section>
                     <div class="row">
                       <div class="col-lg-3 col-md-6 mb-4">
@@ -429,6 +491,44 @@ function Feedbackmanagementscreen() {
             <div class="modal-footer">
               <button class="btn" onClick={() => window.print()} >Print</button>
               <button class="btn" data-bs-toggle="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      {/* Reply Message */}
+
+      <div class="modal fade" id="replymsg" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="staticBackdropLabel">Detailed Infor</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p>Feedback Subject</p>
+
+              <p className='text-muted'>{feedbackemail}</p>
+
+              <p>Message</p>
+
+              <textarea
+                class="form-control"
+                id="exampleFormControlTextarea1"
+                rows="10"
+                placeholder='Enter your message...'
+                value={reply}
+                onChange={(e) => { updateReplyMassage(e.target.value) }}
+                style={{ fontSize: '16px', fontFamily: 'Mukta, calibri', color: "#6c757d", fontStyle: "italic", fontSize: "15px" }}
+              >
+              </textarea>
+
+            </div>
+            <div class="modal-footer">
+              <button onClick={() => updateReplyMsg(userId, updateReplyMsg)} type="button" class="btn ">Send</button>
+              <button type="button" class="btn " data-bs-dismiss="modal">Close</button>
+
             </div>
           </div>
         </div>

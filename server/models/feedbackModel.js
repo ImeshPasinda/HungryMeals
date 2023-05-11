@@ -6,6 +6,7 @@ const feedbackSchema = mongoose.Schema({
     email: { type: String, require },
     subject: { type: String, require },
     message: { type: String, require },
+    reply: {type: String, require, default:"empty"},
     isDisplayed: { type: Boolean, require , default : false }
 
 }, {
