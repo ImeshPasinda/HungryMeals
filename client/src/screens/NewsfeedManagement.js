@@ -696,103 +696,44 @@ export default function Newsfeedmanagement() {
                         <div class="modal-body">
 
                             <div class="container my-4">
-
+                            <h20>Newsfeed Management Report</h20>
+                            <br></br>
+                            <br></br>
                                 <div class="border p-5 mb-5">
 
-                                    <section>
-                                        <div class="row">
-                                            <div class="col-lg-3 col-md-6 mb-4">
-                                                <div class="card">
-                                                    <div class="card-body shadow shadow" >
-                                                        <p class="text-uppercase small mb-2">
-                                                            <strong>Total News & Events <i class="fa-solid fa-circle fa-fade" style={{ fontSize: '13px', color: 'red' }} ></i></strong>
-                                                        </p>
-                                                        <h5 class="mb-0">
-                                                            <strong>{numNewsItems}</strong>
-                                                            <small class="text-success ms-2">
-                                                                <i class="fas fa-arrow-up fa-sm pe-1"></i></small>
-                                                        </h5>
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>Metrics</th>
+                                                <th>Total</th>
 
-                                                        <hr />
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Total News & Events</td>
+                                                <td>{numNewsItems}</td>
 
-                                                        <p class="text-uppercase text-muted small mb-2">
-                                                            Previous period
-                                                        </p>
-                                                        {/* <h5 class="text-muted mb-0">11 467</h5> */}
-                                                    </div>
-                                                </div>
+                                            </tr>
+                                            <tr>
+                                                <td>Number of Events</td>
+                                                <td>{numEvents}</td>
 
-                                            </div>
+                                            </tr>
+                                            <tr>
+                                                <td>Number of News</td>
+                                                <td>{numNews}</td>
 
-                                            <div class="col-lg-3 col-md-6 mb-4">
-                                                <div class="card">
-                                                    <div class="card-body shadow">
-                                                        <p class="text-uppercase small mb-2">
-                                                            <strong>Number of Events <i class="fa-solid fa-circle fa-fade" style={{ fontSize: '13px', color: 'red' }}></i></strong>
-                                                        </p>
-                                                        <h5 class="mb-0">
-                                                            <strong>{numEvents}</strong>
-                                                            <small class="text-success ms-2">
-                                                                <i class="fas fa-arrow-up fa-sm pe-1"></i></small>
-                                                        </h5>
+                                            </tr>
+                                            <tr>
+                                                <td>Latest Post On</td>
+                                                <td>{latestCollectionDate}</td>
 
-                                                        <hr />
-                                                        <p class="text-uppercase text-muted small mb-2">
-                                                            Previous period
-                                                        </p>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-3 col-md-6 mb-4">
-                                                <div class="card">
-                                                    <div class="card-body shadow">
-                                                        <p class="text-uppercase small mb-2">
-                                                            <strong>Number of News <i class="fa-solid fa-circle fa-fade" style={{ fontSize: '13px', color: 'red' }}></i></strong>
-                                                        </p>
-                                                        <h5 class="mb-0">
-                                                            <strong>{numNews}</strong>
-                                                            <small class="text-success ms-2">
-                                                                <i class="fas fa-arrow-up fa-sm pe-1"></i></small>
-                                                        </h5>
-
-                                                        <hr />
-                                                        <p class="text-uppercase text-muted small mb-2">
-                                                            Previous period
-                                                        </p>
-
-                                                        <h5 class="text-muted mb-0"></h5>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-3 col-md-6 mb-4">
-                                                <div class="card">
-                                                    <div class="card-body shadow">
-                                                        <p class="text-uppercase small mb-2">
-                                                            <strong>Latest Post On <i class="fa-solid fa-circle fa-fade" style={{ fontSize: '13px', color: 'red' }}></i></strong>
-                                                        </p>
-                                                        <h5 class="mb-0">
-                                                            <strong>{latestCollectionDate}</strong>
+                                            </tr>
+                                        </tbody>
+                                    </table>
 
 
-
-                                                        </h5>
-
-                                                        <hr />
-
-                                                        <p class="text-uppercase text-muted small mb-2">
-                                                            Previous period
-                                                        </p>
-                                                        <h5 class="text-muted mb-0"></h5>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </section>
-
-                                    
 
                                 </div>
 

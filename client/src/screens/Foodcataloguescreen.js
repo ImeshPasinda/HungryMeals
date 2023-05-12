@@ -1042,100 +1042,38 @@ export default function Foodcataloguescreen() {
 
                 <div class="border p-5 mb-5">
 
-                  <section>
-                    <div class="row">
-                      <div class="col-lg-3 col-md-6 mb-4">
-                        <div class="card">
-                          <div class="card-body shadow shadow" >
-                            <p class="text-uppercase small mb-2">
-                              <strong>Total Food Items <i class="fa-solid fa-circle fa-fade" style={{ fontSize: '13px', color: 'red' }} ></i></strong>
-                            </p>
-                            <h5 class="mb-0">
-                              <strong>{numofFoods}</strong>
-                              <small class="text-success ms-2">
-                                <i class="fas fa-arrow-up fa-sm pe-1"></i></small>
-                            </h5>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th>Total</th>
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Total Food Items <i class="fa-solid fa-circle fa-fade" style={{ fontSize: '13px', color: 'red' }} ></i></td>
+                        <td>{numofFoods}</td>
+                        
+                      </tr>
+                      <tr>
+                        <td>Number of Veg Pizza <i class="fa-solid fa-circle fa-fade" style={{ fontSize: '13px', color: 'red' }}></i></td>
+                        <td>{numOfVeg}</td>
+                       
+                      </tr>
+                      <tr>
+                        <td>Number of Non-Veg <i class="fa-solid fa-circle fa-fade" style={{ fontSize: '13px', color: 'red' }}></i></td>
+                        <td>{numOfNonVeg}</td>
+                        
+                      </tr>
+                      <tr>
+                        <td>Number of Beverages <i class="fa-solid fa-circle fa-fade" style={{ fontSize: '13px', color: 'red' }}></i></td>
+                        <td>{numOfisBeverages}</td>
+                       
+                      </tr>
+                    </tbody>
+                  </table>
 
-                            <hr />
-
-                            <p class="text-uppercase text-muted small mb-2">
-                              Previous period
-                            </p>
-                            {/* <h5 class="text-muted mb-0">11 467</h5> */}
-                          </div>
-                        </div>
-
-                      </div>
-
-                      <div class="col-lg-3 col-md-6 mb-4">
-                        <div class="card">
-                          <div class="card-body shadow">
-                            <p class="text-uppercase small mb-2">
-                              <strong>Number of Veg Pizza <i class="fa-solid fa-circle fa-fade" style={{ fontSize: '13px', color: 'red' }}></i></strong>
-                            </p>
-                            <h5 class="mb-0">
-                              <strong>{numOfVeg}</strong>
-                              <small class="text-success ms-2">
-                                <i class="fas fa-arrow-up fa-sm pe-1"></i></small>
-                            </h5>
-
-                            <hr />
-                            <p class="text-uppercase text-muted small mb-2">
-                              Previous period
-                            </p>
-
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="col-lg-3 col-md-6 mb-4">
-                        <div class="card">
-                          <div class="card-body shadow">
-                            <p class="text-uppercase small mb-2">
-                              <strong>Number of Non-Veg <i class="fa-solid fa-circle fa-fade" style={{ fontSize: '13px', color: 'red' }}></i></strong>
-                            </p>
-                            <h5 class="mb-0">
-                              <strong>{numOfNonVeg}</strong>
-                              <small class="text-success ms-2">
-                                <i class="fas fa-arrow-up fa-sm pe-1"></i></small>
-                            </h5>
-
-                            <hr />
-                            <p class="text-uppercase text-muted small mb-2">
-                              Previous period
-                            </p>
-
-                            <h5 class="text-muted mb-0"></h5>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="col-lg-3 col-md-6 mb-4">
-                        <div class="card">
-                          <div class="card-body shadow">
-                            <p class="text-uppercase small mb-2">
-                              <strong>Number of Beverages  <i class="fa-solid fa-circle fa-fade" style={{ fontSize: '13px', color: 'red' }}></i></strong>
-                            </p>
-                            <h5 class="mb-0">
-                              <strong>{numOfisBeverages}</strong>
-                              <small class="text-success ms-2">
-                                <i class="fas fa-arrow-up fa-sm pe-1"></i></small>
-
-
-
-                            </h5>
-
-                            <hr />
-
-                            <p class="text-uppercase text-muted small mb-2">
-                              Previous period
-                            </p>
-                            <h5 class="text-muted mb-0"></h5>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </section>
 
 
 

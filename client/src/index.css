@@ -476,8 +476,29 @@ p10 {
 
 
 
-      .QRCode svg {
-        background-color: white;
-        border: 1px solid black;
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 1rem;
       }
       
+      thead {
+        background-color: #f5f5f5;
+      }
+      
+      th,
+      td {
+        text-align: left;
+        padding: 0.5rem;
+        border: 1px solid #ddd;
+      }
+      
+      th {
+        font-weight: bold;
+      }
+      
+      tbody tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+      
+
