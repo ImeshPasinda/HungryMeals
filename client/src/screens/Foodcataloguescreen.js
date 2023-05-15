@@ -1009,7 +1009,7 @@ export default function Foodcataloguescreen() {
 
 
             <div class="modal-footer">
-              <button onClick={() => addnewfood(addnewfood)} type="button" class="btn " >Update</button>
+              <button onClick={() => addnewfood(addnewfood)} type="button" class="btn " >Add</button>
             </div>
 
           </div>
