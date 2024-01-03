@@ -8,7 +8,7 @@ export const getAllJobs = () => async dispatch => {
 
     try {
 
-        const response = await axios.get('/api/jobportal/getalljobs')
+        const response = await axios.get('https://hungrymeals-backend.onrender.com/api/jobportal/getalljobs')
         console.log(response)
         dispatch({ type: 'GET_JOBS_SUCCESS', payload : response.data })
 
@@ -25,7 +25,7 @@ export const deleteJobAction = (JobID) => async dispatch => {
 
 
     try {
-        const response = await axios.delete(`/api/jobportal/delete/jobs/${JobID}`)
+        const response = await axios.delete(`https://hungrymeals-backend.onrender.com/api/jobportal/delete/jobs/${JobID}`)
 
         const Toast = Swal.mixin({
             toast: true,
@@ -86,7 +86,7 @@ export const addJob = (job) => async dispatch => {
     dispatch({ type: 'JOB_ADDED_REQUEST' })
 
     try {
-        const response = await axios.post('/api/jobportal/post/jobs', job)
+        const response = await axios.post('https://hungrymeals-backend.onrender.com/api/jobportal/post/jobs', job)
         console.log(response);
 
         
@@ -145,7 +145,7 @@ export const updateJobsAction = (updatejobs, id) => async dispatch => {
 
     try {
     
-        const response = await axios.put(`/api/jobportal/update/jobs/${id}`, updatejobs)
+        const response = await axios.put(`https://hungrymeals-backend.onrender.com/api/jobportal/update/jobs/${id}`, updatejobs)
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-end',

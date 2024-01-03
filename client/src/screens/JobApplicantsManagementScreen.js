@@ -28,7 +28,7 @@ function JobApplicantsManagementScreen() {
 
     useEffect(() => {
         function getJobs() {
-            axios.get("/api/jobapply/getallApplications")
+            axios.get("https://hungrymeals-backend.onrender.com/api/jobapply/getallApplications")
                 .then((res) => {
                     setApplicants(res.data);
 

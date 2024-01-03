@@ -10,7 +10,7 @@ export const updateStatusAction = (updatestatus, salesid, val) => async dispatch
 
 
         try {
-            const response = await axios.put(`/api/orders/update/transactionstatus/${salesid}`, updatestatus)
+            const response = await axios.put(`https://hungrymeals-backend.onrender.com/api/orders/update/transactionstatus/${salesid}`, updatestatus)
             const Toast = Swal.mixin({
                 toast: true,
                 position: 'top-end',
@@ -61,7 +61,7 @@ export const updateStatusAction = (updatestatus, salesid, val) => async dispatch
     } else {
 
         try {
-            const response = await axios.put(`/api/orders/update/transactionstatus/${salesid}`, updatestatus)
+            const response = await axios.put(`https://hungrymeals-backend.onrender.com/api/orders/update/transactionstatus/${salesid}`, updatestatus)
             const Toast = Swal.mixin({
                 toast: true,
                 position: 'top-end',

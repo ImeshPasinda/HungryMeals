@@ -9,7 +9,7 @@ export const deleteDeliveryAction = (deliveryId) => async dispatch => {
 
 
     try {
-        const response = await axios.delete(`/api/delivery/delete/delivery/${deliveryId}`)
+        const response = await axios.delete(`https://hungrymeals-backend.onrender.com/api/delivery/delete/delivery/${deliveryId}`)
 
         const Toast = Swal.mixin({
             toast: true,

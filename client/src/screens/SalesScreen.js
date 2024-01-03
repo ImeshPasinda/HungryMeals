@@ -27,7 +27,7 @@ export default function SalesScreen() {
         function getOrders() {
 
             //get all sales from database
-            axios.get("/api/orders/getallorders").then((res) => {
+            axios.get("https://hungrymeals-backend.onrender.com/api/orders/getallorders").then((res) => {
                 setOrders(res.data);
                 console.log(res.data)
 
@@ -67,7 +67,7 @@ export default function SalesScreen() {
 
     function getCurrentOrders(salesid) {
         axios
-            .get(`/api/orders/getcurrentorders/${salesid}`)
+            .get(`https://hungrymeals-backend.onrender.com/api/orders/getcurrentorders/${salesid}`)
             .then((res) => {
                 setOrders(res.data);
                 orders = res.data;

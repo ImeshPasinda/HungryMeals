@@ -57,7 +57,7 @@ export default function Navbar() {
 
         function getPublicNotifications() {
 
-            axios.get('/api/notifications/getnotifications').then((res) => {
+            axios.get('https://hungrymeals-backend.onrender.com/api/notifications/getnotifications').then((res) => {
 
 
                 setNotifications(res.data);
@@ -102,7 +102,7 @@ export default function Navbar() {
 
 
 
-        axios.get(`/api/users/getcurrentuser/${userId}`).then((res) => {
+        axios.get(`https://hungrymeals-backend.onrender.com/api/users/getcurrentuser/${userId}`).then((res) => {
             setUsers(res.data)
 
 

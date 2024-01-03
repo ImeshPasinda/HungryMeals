@@ -33,7 +33,7 @@ const MapScreen = () => {
 
     useEffect(() => {
         axios
-            .get("/api/delivery/getalldeliveries")
+            .get("https://hungrymeals-backend.onrender.com/api/delivery/getalldeliveries")
             .then((res) => {
                 const allDeliveries = res.data;
                 const deliveredDeliveries = allDeliveries.filter(
@@ -133,7 +133,7 @@ const MapScreen = () => {
                                             onClick={() => {
                                                 // Update the isdelivered value to true
                                                 axios
-                                                    .put(`/api/delivery/status/${delivery._id}`, {
+                                                    .put(`https://hungrymeals-backend.onrender.com/api/delivery/status/${delivery._id}`, {
                                                         isdelivered: true,
                                                     })
                                                     .then((res) => {

@@ -24,7 +24,7 @@ function Myearningsscreen() {
 
 
             axios
-                .get('/api/delivery/getalldeliveries')
+                .get('https://hungrymeals-backend.onrender.com/api/delivery/getalldeliveries')
                 .then((res) => {
                     const allDeliveries = res.data;
                     const deliveredDeliveries = allDeliveries.filter(

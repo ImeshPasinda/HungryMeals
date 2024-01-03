@@ -49,7 +49,7 @@ export default function Detailsscreen() {
 
         function getCurrentUser() {
 
-            axios.get(`/api/users/getcurrentuser/${currentUser._id}`).then((res) => {
+            axios.get(`https://hungrymeals-backend.onrender.com/api/users/getcurrentuser/${currentUser._id}`).then((res) => {
 
 
                 setUsers(res.data);
@@ -79,7 +79,7 @@ export default function Detailsscreen() {
 
         function getPublicNotifications() {
 
-            axios.get('/api/notifications/getnotifications').then((res) => {
+            axios.get('https://hungrymeals-backend.onrender.com/api/notifications/getnotifications').then((res) => {
 
 
                 setNotifications(res.data);

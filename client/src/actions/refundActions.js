@@ -4,7 +4,7 @@ import Swal from 'sweetalert2'
 export const addRefund = (refund)=>async dispatch=>{
     dispatch({type:'ADD_REFUND_TRANSACTION'})
     try{
-        const response= await axios.post('/api/refunds/addrefund', {refund})
+        const response= await axios.post('https://hungrymeals-backend.onrender.com/api/refunds/addrefund', {refund})
         console.log(response);
         dispatch({type:'ADD_REFUND_SUCCESS'})
     } catch(error){
@@ -16,7 +16,7 @@ export const addRefund = (refund)=>async dispatch=>{
 export const getAllRefunds = ()=>async dispatch=>{
     dispatch({type:'GET_ALLREFUNDS_REQUEST'})
     try{
-        const response= await axios.get('/api/refunds/getallrefunds')
+        const response= await axios.get('https://hungrymeals-backend.onrender.com/api/refunds/getallrefunds')
         console.log(response);
         dispatch({type:'GET_ALLREFUNDS_SUCCESS', payload : response.data})
     } catch(error){
@@ -33,7 +33,7 @@ export const updateStatusAction = (updatestatus, refundid, val) => async dispatc
 
 
         try {
-            const response = await axios.put(`/api/refunds/update/pendingrefund/${refundid}`, updatestatus)
+            const response = await axios.put(`https://hungrymeals-backend.onrender.com/api/refunds/update/pendingrefund/${refundid}`, updatestatus)
             const Toast = Swal.mixin({
                 toast: true,
                 position: 'top-end',
@@ -84,7 +84,7 @@ export const updateStatusAction = (updatestatus, refundid, val) => async dispatc
     } else {
 
         try {
-            const response = await axios.put(`/api/refunds/update/pendingrefund/${refundid}`, updatestatus)
+            const response = await axios.put(`https://hungrymeals-backend.onrender.com/api/refunds/update/pendingrefund/${refundid}`, updatestatus)
             const Toast = Swal.mixin({
                 toast: true,
                 position: 'top-end',
@@ -142,7 +142,7 @@ export const deleteRefundTransactionAction = (refundid) => async dispatch => {
 
 
     try {
-        const response = await axios.delete(`/api/refunds/delete/Refund/${refundid}`)
+        const response = await axios.delete(`https://hungrymeals-backend.onrender.com/api/refunds/delete/Refund/${refundid}`)
 
         const Toast = Swal.mixin({
             toast: true,

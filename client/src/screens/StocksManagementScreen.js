@@ -52,7 +52,7 @@ function StocksManagementScreen() {
 
         function getStocks() {
 
-            axios.get("/api/stocks/getallstocks").then((res) => {
+            axios.get("https://hungrymeals-backend.onrender.com/api/stocks/getallstocks").then((res) => {
                 setItems(res.data);
                 console.log(res.data)
                 stocksArray=res.data;
@@ -75,7 +75,7 @@ function StocksManagementScreen() {
 
     function getCurrentStocks(ItemId) {
 
-        axios.get(`/api/stocks/getcurrentstocks/${ItemId}`).then((res) => {
+        axios.get(`https://hungrymeals-backend.onrender.com/api/stocks/getcurrentstocks/${ItemId}`).then((res) => {
 
 
             setItems(res.data);

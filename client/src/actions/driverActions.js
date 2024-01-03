@@ -7,7 +7,7 @@ export const loginDriver = (driver) => async dispatch => {
     dispatch({ type: 'DRIVER_LOGIN_REQUEST' })
 
     try {
-        const response = await axios.post('/api/delivery/login', driver)
+        const response = await axios.post('https://hungrymeals-backend.onrender.com/api/delivery/login', driver)
         console.log(response);
         dispatch({ type: 'DRIVER_LOGIN_SUCCESS', payload: response.data })
         localStorage.setItem('currentDriver', JSON.stringify(response.data))
@@ -34,7 +34,7 @@ export const updateDeliveryStatus = (updateisDeliveryAccepted, orderId , val) =>
 
         console.log(updateisDeliveryAccepted)
         try {
-            const response = await axios.put(`/api/delivery/update/status/delivery/${orderId}`, updateisDeliveryAccepted)
+            const response = await axios.put(`https://hungrymeals-backend.onrender.com/api/delivery/update/status/delivery/${orderId}`, updateisDeliveryAccepted)
             const Toast = Swal.mixin({
                 toast: true,
                 position: 'top-end',
@@ -90,7 +90,7 @@ export const updateDeliveryStatus = (updateisDeliveryAccepted, orderId , val) =>
 
         console.log(updateisDeliveryAccepted)
         try {
-            const response = await axios.put(`/api/delivery/update/status/delivery/${orderId}`, updateisDeliveryAccepted)
+            const response = await axios.put(`https://hungrymeals-backend.onrender.com/api/delivery/update/status/delivery/${orderId}`, updateisDeliveryAccepted)
             
             console.log(response);
             dispatch({ type: 'UPDATE_DELIVERY_ACCEPT_SUCCESS' })
@@ -117,7 +117,7 @@ export const newDeliveryAction = (newDelivery) => async dispatch => {
     dispatch({ type: 'DELIVERY_STATUS_SENDING' })
 
     try {
-        const response = await axios.post('/api/delivery/post/delivery',newDelivery )
+        const response = await axios.post('https://hungrymeals-backend.onrender.com/api/delivery/post/delivery',newDelivery )
        
         console.log(response);
         dispatch({ type: 'DELIVERY_STATUS_SUCCESS' })

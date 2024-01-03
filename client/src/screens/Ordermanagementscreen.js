@@ -45,7 +45,7 @@ export default function Ordermanagementscreen() {
   useEffect(() => {
     function getOrders() {
       axios
-        .get("/api/orders/getallorders")
+        .get("https://hungrymeals-backend.onrender.com/api/orders/getallorders")
         .then((res) => {
           setOrders(res.data);
           console.log(res.data);
@@ -69,7 +69,7 @@ export default function Ordermanagementscreen() {
 
           // Update the numApproved and numRejected variables in the orders document
           axios
-            .put("/api/orders/updateNumApprovedAndRejected", { numApproved, numRejected })
+            .put("https://hungrymeals-backend.onrender.com/api/orders/updateNumApprovedAndRejected", { numApproved, numRejected })
             .then((res) => {
               console.log("NumApproved and NumRejected updated successfully.");
             })
@@ -91,7 +91,7 @@ export default function Ordermanagementscreen() {
 
   // function orderdetails(OrderId) {
   //   axios
-  //     .get("/api/orders/getallorders")
+  //     .get("https://hungrymeals-backend.onrender.com/api/orders/getallorders")
   //     .then((res) => {
   //       setOrders(res.data);
   //       //console.log(OrderId);
@@ -112,7 +112,7 @@ export default function Ordermanagementscreen() {
 
   function getCurrentOrders(OrderId) {
     axios
-      .get(`/api/orders/getcurrentorders/${OrderId}`)
+      .get(`https://hungrymeals-backend.onrender.com/api/orders/getcurrentorders/${OrderId}`)
       .then((res) => {
         setOrders(res.data);
         let orders = res.data;

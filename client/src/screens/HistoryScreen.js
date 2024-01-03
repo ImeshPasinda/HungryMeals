@@ -23,7 +23,7 @@ export default function HistoryScreen() {
         function getRefunds() {
 
             //get all refunds from database
-            axios.get("/api/refunds/getallrefunds").then((res) => {
+            axios.get("https://hungrymeals-backend.onrender.com/api/refunds/getallrefunds").then((res) => {
                 setRefunds(res.data);
                 console.log(res.data)
 

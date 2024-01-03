@@ -54,7 +54,7 @@ function StocksPurchasescreen() {
 
         function  getpurchase() {
 
-            axios.get("/api/stockspurchase/getallpurchases").then((res) => {
+            axios.get("https://hungrymeals-backend.onrender.com/api/stockspurchase/getallpurchases").then((res) => {
                 setPurchase(res.data);
                 console.log(res.data)
 
@@ -74,7 +74,7 @@ function StocksPurchasescreen() {
 
     function getCurrentPurchases(PurchaseId) {
 
-        axios.get(`/api/stockpurchases/getcurrents/${PurchaseId}`).then((res) => {
+        axios.get(`https://hungrymeals-backend.onrender.com/api/stockpurchases/getcurrents/${PurchaseId}`).then((res) => {
 
 
             setPurchase(res.data);

@@ -24,7 +24,7 @@ export default function Deliveryrequestscreen() {
     //     function getOrders() {
 
     //       //get all users from database
-    //       axios.get("/api/orders/getallorders").then((res) => {
+    //       axios.get("https://hungrymeals-backend.onrender.com/api/orders/getallorders").then((res) => {
     //         setOrders(res.data);
     //         console.log(res.data)
 
@@ -44,7 +44,7 @@ export default function Deliveryrequestscreen() {
 
     useEffect(() => {
         function getOrders() {
-            axios.get("/api/orders/getallorders")
+            axios.get("https://hungrymeals-backend.onrender.com/api/orders/getallorders")
                 .then((res) => {
                     const allOrders = res.data;
                     //console.log(allOrders)
@@ -83,7 +83,7 @@ export default function Deliveryrequestscreen() {
 
     function deliveries(OrderId) {
         axios
-            .get(`/api/orders/getcurrentorders/${OrderId}`)
+            .get(`https://hungrymeals-backend.onrender.com/api/orders/getcurrentorders/${OrderId}`)
             .then((res) => {
                 setOrders(res.data);
                 let orders = res.data;

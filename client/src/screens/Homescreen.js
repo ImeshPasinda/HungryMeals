@@ -100,7 +100,7 @@ export default function Homescreen() {
 
     useEffect(() => {
         function getFeedbacks() {
-            axios.get("/api/feedback/getallfeedbacks").then((res) => {
+            axios.get("https://hungrymeals-backend.onrender.com/api/feedback/getallfeedbacks").then((res) => {
                 setFeedbacks(res.data)
 
 
