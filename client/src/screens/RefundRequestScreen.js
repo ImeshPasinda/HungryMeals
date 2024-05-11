@@ -30,7 +30,7 @@ export default function RefundRequestScreen() {
     useEffect(() => {
         //get all refund requests
         function getOrders() {
-            axios.get("/api/orders/getallorders")
+            axios.get("https://hungrymeals-backend.onrender.com/api/orders/getallorders")
                 .then((res) => {
                     const filteredOrders = res.data.filter(order => order.sendrefundStatus === true);
                     setOrders(filteredOrders);
@@ -49,7 +49,7 @@ export default function RefundRequestScreen() {
     //
     function getCurrentOrders(OrderId) {
         axios
-            .get(`/api/orders/getcurrentorders/${OrderId}`)
+            .get(`https://hungrymeals-backend.onrender.com/api/orders/getcurrentorders/${OrderId}`)
             .then((res) => {
                 setOrders(res.data);
                 orders = res.data;

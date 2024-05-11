@@ -63,7 +63,7 @@ function JobportalManagementScreen() {
 
     //     function getJobs() {
 
-    //         axios.get("/api/jobportal/getalljobs").then((res) => {
+    //         axios.get("https://hungrymeals-backend.onrender.com/api/jobportal/getalljobs").then((res) => {
     //             setJobs(res.data);
     //             console.log(res.data)
 
@@ -87,7 +87,7 @@ function JobportalManagementScreen() {
 
     useEffect(() => {
         function getJobs() {
-            axios.get("/api/jobportal/getalljobs")
+            axios.get("https://hungrymeals-backend.onrender.com/api/jobportal/getalljobs")
                 .then((res) => {
                     setJobs(res.data);
 
@@ -126,7 +126,7 @@ function JobportalManagementScreen() {
     function jobdetails(JobId) {
 
 
-        axios.get("/api/jobportal/getalljobs").then((res) => {
+        axios.get("https://hungrymeals-backend.onrender.com/api/jobportal/getalljobs").then((res) => {
 
             setJobs(res.data);
             console.log(JobId)
@@ -157,7 +157,7 @@ function JobportalManagementScreen() {
 
     function getCurrentJobs(jobId) {
 
-        axios.get(`/api/jobportal/getcurrentjobs/${jobId}`).then((res) => {
+        axios.get(`https://hungrymeals-backend.onrender.com/api/jobportal/getcurrentjobs/${jobId}`).then((res) => {
 
 
             setJobs(res.data);

@@ -18,7 +18,7 @@ export default function Yourdeliveryscreen() {
 
   useEffect(() => {
     function getdeliveries() {
-      axios.get('/api/delivery/getalldeliveries')
+      axios.get('https://hungrymeals-backend.onrender.com/api/delivery/getalldeliveries')
         .then((res) => {
           const allDeliveries = res.data
           const deliveredDeliveries = allDeliveries.filter(delivery => delivery.driverName === currentDriver.name )

@@ -386,7 +386,7 @@ export default function Notificationmanagementscreen() {
 
     useEffect(() => {
         function getUsers() {
-            axios.get("/api/users/getAllusers").then((res) => {
+            axios.get("https://hungrymeals-backend.onrender.com/api/users/getAllusers").then((res) => {
                 setUsers(res.data);
                 setFilterdUsers(res.data);
 
@@ -410,7 +410,7 @@ export default function Notificationmanagementscreen() {
 
         function getPublicNotifications() {
 
-            axios.get('/api/notifications/getnotifications').then((res) => {
+            axios.get('https://hungrymeals-backend.onrender.com/api/notifications/getnotifications').then((res) => {
 
 
                 setNotifications(res.data);
@@ -492,7 +492,7 @@ export default function Notificationmanagementscreen() {
 
 
 
-        axios.get(`/api/users/getcurrentuser/${userId}`).then((res) => {
+        axios.get(`https://hungrymeals-backend.onrender.com/api/users/getcurrentuser/${userId}`).then((res) => {
             setUsers(res.data)
 
 

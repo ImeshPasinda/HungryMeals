@@ -41,7 +41,7 @@ function Feedbackmanagementscreen() {
 
   useEffect(() => {
     function getFeedbacks() {
-      axios.get("/api/feedback/getallfeedbacks").then((res) => {
+      axios.get("https://hungrymeals-backend.onrender.com/api/feedback/getallfeedbacks").then((res) => {
 
         setUsers(res.data);
         setFilterdUsers(res.data);
@@ -62,7 +62,7 @@ function Feedbackmanagementscreen() {
   }, [])
 
 
-  axios.get("/api/users/getAllusers").then((res) => {
+  axios.get("https://hungrymeals-backend.onrender.com/api/users/getAllusers").then((res) => {
     setUsersforfeedback(res.data);
     // console.log(res.data)
 
@@ -82,7 +82,7 @@ function Feedbackmanagementscreen() {
   function feedbacks(userId) {
 
 
-    axios.get("/api/feedback/getallfeedbacks").then((res) => {
+    axios.get("https://hungrymeals-backend.onrender.com/api/feedback/getallfeedbacks").then((res) => {
 
       setUsers(res.data);
       console.log(res.data)

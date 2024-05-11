@@ -6,7 +6,7 @@ export const registerUser = (user) => async dispatch => {
     dispatch({ type: 'USER_REGISTER_REQUEST' })
 
     try {
-        const response = await axios.post('/api/users/register', user)
+        const response = await axios.post('https://hungrymeals-backend.onrender.com/api/users/register', user)
         console.log(response);
         dispatch({ type: 'USER_REGISTER_SUCCESS' })
 
@@ -22,7 +22,7 @@ export const loginUser = (user) => async dispatch => {
     dispatch({ type: 'USER_LOGIN_REQUEST' })
 
     try {
-        const response = await axios.post('/api/users/login', user)
+        const response = await axios.post('https://hungrymeals-backend.onrender.com/api/users/login', user)
         console.log(response);
         dispatch({ type: 'USER_LOGIN_SUCCESS', payload: response.data })
         localStorage.setItem('currentUser', JSON.stringify(response.data))
@@ -49,7 +49,7 @@ export const updateUserName = (updatename, id) => async dispatch => {
     dispatch({ type: 'UPDATE_USER_NAME_REQUEST' })
 
     try {
-        const response = await axios.put(`/api/users/update/name/${id}`, updatename)
+        const response = await axios.put(`https://hungrymeals-backend.onrender.com/api/users/update/name/${id}`, updatename)
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-end',
@@ -104,7 +104,7 @@ export const updateUserEmail = (updateemail, id) => async dispatch => {
     dispatch({ type: 'UPDATE_USER_EMAIL_REQUEST' })
 
     try {
-        const response = await axios.put(`/api/users/update/email/${id}`, updateemail)
+        const response = await axios.put(`https://hungrymeals-backend.onrender.com/api/users/update/email/${id}`, updateemail)
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-end',
@@ -160,7 +160,7 @@ export const updateNotificationOneAction = (updateNotificationOne, userId) => as
 
     try {
        
-        const response = await axios.put(`/api/users/update/notificationOne/${userId}`, updateNotificationOne)
+        const response = await axios.put(`https://hungrymeals-backend.onrender.com/api/users/update/notificationOne/${userId}`, updateNotificationOne)
        
         if (updateNotificationOne.notificationOneHeader === 'empty') {
             const Toast = Swal.mixin({
@@ -244,7 +244,7 @@ export const updateNotificationTwoAction = (updateNotificationTwo, userId) => as
     
 
     try {
-        const response = await axios.put(`/api/users/update/notificationTwo/${userId}`, updateNotificationTwo)
+        const response = await axios.put(`https://hungrymeals-backend.onrender.com/api/users/update/notificationTwo/${userId}`, updateNotificationTwo)
 
         if (updateNotificationTwo.notificationTwoHeader === 'empty') {
             const Toast = Swal.mixin({
@@ -326,7 +326,7 @@ export const updateNotificationThreeAction = (updateNotificationThree, userId) =
     
 
     try {
-        const response = await axios.put(`/api/users/update/notificationThree/${userId}`, updateNotificationThree)
+        const response = await axios.put(`https://hungrymeals-backend.onrender.com/api/users/update/notificationThree/${userId}`, updateNotificationThree)
 
         if (updateNotificationThree.notificationThreeHeader === 'empty') {
             const Toast = Swal.mixin({
@@ -408,7 +408,7 @@ export const updateNotificationFourAction = (updateNotificationFour, userId) => 
     
 
     try {
-        const response = await axios.put(`/api/users/update/notificationFour/${userId}`, updateNotificationFour)
+        const response = await axios.put(`https://hungrymeals-backend.onrender.com/api/users/update/notificationFour/${userId}`, updateNotificationFour)
 
         if (updateNotificationFour.notificationFourHeader === 'empty') {
             const Toast = Swal.mixin({

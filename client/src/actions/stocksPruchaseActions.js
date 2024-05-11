@@ -9,7 +9,7 @@ export const getallpurchases = () => async dispatch => {
 
     try {
 
-        const response = await axios.get('/api/stockspurchase/getallpurchases')
+        const response = await axios.get('https://hungrymeals-backend.onrender.com/api/stockspurchase/getallpurchases')
         console.log(response)
         dispatch({ type: 'GET_PURCHASE_SUCCESS', payload : response.data })
 
@@ -27,7 +27,7 @@ export const updatePruchaseAction = (updatePurchase, PurchaseId) => async dispat
 
     try {
     
-        const response = await axios.put(`/api/stockspurchase/update/stockspurchase/${PurchaseId}`, updatePurchase)
+        const response = await axios.put(`https://hungrymeals-backend.onrender.com/api/stockspurchase/update/stockspurchase/${PurchaseId}`, updatePurchase)
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-end',
@@ -83,7 +83,7 @@ export const deletePruchaseAction = (PurchaseId) => async dispatch => {
     
 
     try {
-        const response = await axios.delete(`/api/stockspurchase/delete/stockspurchase/${PurchaseId}`)
+        const response = await axios.delete(`https://hungrymeals-backend.onrender.com/api/stockspurchase/delete/stockspurchase/${PurchaseId}`)
 
         const Toast = Swal.mixin({
             toast: true,
@@ -145,7 +145,7 @@ export const addPurchase = (purchase) => async dispatch => {
     dispatch({ type: 'PURCHASE_ADDED_REQUEST' })
 
     try {
-        const response = await axios.post('/api/stockspurchase/post/stockspurchase', purchase)
+        const response = await axios.post('https://hungrymeals-backend.onrender.com/api/stockspurchase/post/stockspurchase', purchase)
         console.log(response);
 
         

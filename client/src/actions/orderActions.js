@@ -10,7 +10,7 @@ export const placeOrder = (token, subtotal,coordinates) => async (dispatch, getS
 
     try {
 
-        await axios.post('/api/orders/placeorder', { token, subtotal, currentUser, cartItems,coordinates })
+        await axios.post('https://hungrymeals-backend.onrender.com/api/orders/placeorder', { token, subtotal, currentUser, cartItems,coordinates })
         dispatch({ type: 'PLACE_ORDER_SUCCESS' })
         setTimeout(function(){
             window.location.replace('/orders');
@@ -32,7 +32,7 @@ export const getUserOrders = () => async (dispatch , getState) => {
 
     try {
 
-        const response = await axios.post('/api/orders/getuserorders' , {userid : currentUser._id})
+        const response = await axios.post('https://hungrymeals-backend.onrender.com/api/orders/getuserorders' , {userid : currentUser._id})
         console.log(response);
         dispatch({ type: 'GET_USER_ORDERS_SUCCESS', payload : response.data })
         
@@ -50,7 +50,7 @@ export const deleteOrderAction = (OrderID) => async dispatch => {
 
 
     try {
-        const response = await axios.delete(`/api/orders/delete/Order/${OrderID}`)
+        const response = await axios.delete(`https://hungrymeals-backend.onrender.com/api/orders/delete/Order/${OrderID}`)
 
         const Toast = Swal.mixin({
             toast: true,
@@ -110,7 +110,7 @@ export const updateOrderDeliveryAction = (updateisDeliverd, orderId) => async di
 
 
         try {
-            const response = await axios.put(`/api/orders/update/order/status/${orderId}`, updateisDeliverd)
+            const response = await axios.put(`https://hungrymeals-backend.onrender.com/api/orders/update/order/status/${orderId}`, updateisDeliverd)
             const Toast = Swal.mixin({
                 toast: true,
                 position: 'top-end',
@@ -169,7 +169,7 @@ export const updaterefundrequestAction = (updatesendrefundStatus, orderId) => as
 
 
         try {
-            const response = await axios.put(`/api/orders/update/order/refund/request/${orderId}`, updatesendrefundStatus)
+            const response = await axios.put(`https://hungrymeals-backend.onrender.com/api/orders/update/order/refund/request/${orderId}`, updatesendrefundStatus)
             const Toast = Swal.mixin({
                 toast: true,
                 position: 'top-end',
@@ -225,7 +225,7 @@ export const updateuserrefundrequestAction = (updateorderStatus, orderId) => asy
 
 
         try {
-            const response = await axios.put(`/api/orders/update/order/refund/request/user/${orderId}`, updateorderStatus)
+            const response = await axios.put(`https://hungrymeals-backend.onrender.com/api/orders/update/order/refund/request/user/${orderId}`, updateorderStatus)
             const Toast = Swal.mixin({
                 toast: true,
                 position: 'top-end',

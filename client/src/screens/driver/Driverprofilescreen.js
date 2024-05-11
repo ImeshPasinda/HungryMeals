@@ -29,7 +29,7 @@ export default function Driverprofilescreen() {
   useEffect(() => {
     function getdeliveries() {
       axios
-        .get('/api/delivery/getalldeliveries')
+        .get('https://hungrymeals-backend.onrender.com/api/delivery/getalldeliveries')
         .then((res) => {
           const allDeliveries = res.data;
           const deliveredDeliveries = allDeliveries.filter(

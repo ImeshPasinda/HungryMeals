@@ -7,7 +7,7 @@ export const UserFeedBack = (newFeedback) => async dispatch => {
     dispatch({ type: 'USER_FEEDBACK_SENDING' })
 
     try {
-        const response = await axios.post('/api/feedback/post',newFeedback )
+        const response = await axios.post('https://hungrymeals-backend.onrender.com/api/feedback/post',newFeedback )
        
          console.log(response);
          dispatch({ type: 'USER_FEEDBACK_SUCCESS' })
@@ -56,7 +56,7 @@ export const deletefeedbackAction = (userId) => async dispatch => {
 
 
     try {
-        const response = await axios.delete(`/api/feedback/delete/feedback/${userId}`)
+        const response = await axios.delete(`https://hungrymeals-backend.onrender.com/api/feedback/delete/feedback/${userId}`)
 
         const Toast = Swal.mixin({
             toast: true,
@@ -123,7 +123,7 @@ export const updateDisplayFeedback = (updateDisplayFeedback, userId, val) => asy
 
 
         try {
-            const response = await axios.put(`/api/feedback/update/feedback/display/${userId}`, updateDisplayFeedback)
+            const response = await axios.put(`https://hungrymeals-backend.onrender.com/api/feedback/update/feedback/display/${userId}`, updateDisplayFeedback)
             const Toast = Swal.mixin({
                 toast: true,
                 position: 'top-end',
@@ -174,7 +174,7 @@ export const updateDisplayFeedback = (updateDisplayFeedback, userId, val) => asy
     } else {
 
         try {
-            const response = await axios.put(`/api/feedback/update/feedback/display/${userId}`, updateDisplayFeedback)
+            const response = await axios.put(`https://hungrymeals-backend.onrender.com/api/feedback/update/feedback/display/${userId}`, updateDisplayFeedback)
             const Toast = Swal.mixin({
                 toast: true,
                 position: 'top-end',
@@ -235,7 +235,7 @@ export const updateReplyMessageAction = (updateReplyMassage, userId) => async di
 
 
         try {
-            const response = await axios.put(`/api/feedback/update/reply/${userId}`, updateReplyMassage)
+            const response = await axios.put(`https://hungrymeals-backend.onrender.com/api/feedback/update/reply/${userId}`, updateReplyMassage)
             const Toast = Swal.mixin({
                 toast: true,
                 position: 'top-end',

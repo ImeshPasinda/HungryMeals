@@ -7,7 +7,7 @@ export const updateItemAction = (updateItem, ItemId) => async dispatch => {
 
     try {
     
-        const response = await axios.put(`/api/stocks/update/stocks/${ItemId}`, updateItem)
+        const response = await axios.put(`https://hungrymeals-backend.onrender.com/api/stocks/update/stocks/${ItemId}`, updateItem)
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-end',
@@ -63,7 +63,7 @@ export const deleteItemAction = (ItemId) => async dispatch => {
     
 
     try {
-        const response = await axios.delete(`/api/stocks/delete/stocks/${ItemId}`)
+        const response = await axios.delete(`https://hungrymeals-backend.onrender.com/api/stocks/delete/stocks/${ItemId}`)
 
         const Toast = Swal.mixin({
             toast: true,
@@ -124,7 +124,7 @@ export const addItem = (item) => async dispatch => {
     dispatch({ type: 'ITEM_ADDED_REQUEST' })
 
     try {
-        const response = await axios.post('/api/stocks/post/stocks', item)
+        const response = await axios.post('https://hungrymeals-backend.onrender.com/api/stocks/post/stocks', item)
         console.log(response);
 
         

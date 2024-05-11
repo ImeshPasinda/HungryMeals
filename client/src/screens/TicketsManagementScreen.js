@@ -26,7 +26,7 @@ function TicketsManagementScreen() {
 
     useEffect(() => {
         function getTickets() {
-            axios.get("/api/tickets/getallTickets")
+            axios.get("https://hungrymeals-backend.onrender.com/api/tickets/getallTickets")
                 .then((res) => {
                     setTickets(res.data);
                     console.log(res.data);
@@ -57,7 +57,7 @@ function TicketsManagementScreen() {
                     paymentTicketsCount = res.data.filter(ticket => ticket.category === 'Payments').length;
                     console.log(`Payments Tickets: ${paymentTicketsCount}`);
 
-                    axios.put('/api/orders', { OrderCount: orderTicketsCount, DeliveryCount: deliveryTicketsCount })
+                    axios.put('https://hungrymeals-backend.onrender.com/api/orders', { OrderCount: orderTicketsCount, DeliveryCount: deliveryTicketsCount })
                         .then(res => {
                             console.log('OrderCount and DeliveryCount updated successfully');
                         })
@@ -82,7 +82,7 @@ function TicketsManagementScreen() {
 
     function getAllTickets() {
 
-        axios.get("/api/tickets/getallTickets").then((res) => {
+        axios.get("https://hungrymeals-backend.onrender.com/api/tickets/getallTickets").then((res) => {
 
 
 

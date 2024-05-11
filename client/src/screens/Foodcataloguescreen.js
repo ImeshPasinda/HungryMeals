@@ -30,7 +30,7 @@ export default function Foodcataloguescreen() {
     function getCatalogues() {
 
       //get all catalogues from database
-      axios.get("/api/pizzas/getallpizzas").then((res) => {
+      axios.get("https://hungrymeals-backend.onrender.com/api/pizzas/getallpizzas").then((res) => {
         setCatalogues(res.data);
         setFilteredCatalogues(res.data);
 
@@ -62,7 +62,7 @@ export default function Foodcataloguescreen() {
 
   function getCurrentFood(foodId) {
 
-    axios.get(`/api/pizzas/getcurrentfood/${foodId}`).then((res) => {
+    axios.get(`https://hungrymeals-backend.onrender.com/api/pizzas/getcurrentfood/${foodId}`).then((res) => {
 
       setFoods(res.data);
       const foods = res.data
@@ -1009,7 +1009,7 @@ export default function Foodcataloguescreen() {
 
 
             <div class="modal-footer">
-              <button onClick={() => addnewfood(addnewfood)} type="button" class="btn " >Update</button>
+              <button onClick={() => addnewfood(addnewfood)} type="button" class="btn " >Add</button>
             </div>
 
           </div>

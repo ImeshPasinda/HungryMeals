@@ -27,7 +27,7 @@ export default function Reportscreen() {
         function getOrders() {
 
             //get all sales from database
-            axios.get("/api/orders/getallorders").then((res) => {
+            axios.get("https://hungrymeals-backend.onrender.com/api/orders/getallorders").then((res) => {
                 setOrders(res.data);
                 console.log(res.data)
 
@@ -67,7 +67,7 @@ export default function Reportscreen() {
 
     function getCurrentOrders(salesid) {
         axios
-            .get(`/api/orders/getcurrentorders/${salesid}`)
+            .get(`https://hungrymeals-backend.onrender.com/api/orders/getcurrentorders/${salesid}`)
             .then((res) => {
                 setOrders(res.data);
                 orders = res.data;
@@ -153,7 +153,7 @@ export default function Reportscreen() {
         function getRefunds() {
 
             //get all refund transactions from database
-            axios.get("/api/refunds/getallrefunds").then((res) => {
+            axios.get("https://hungrymeals-backend.onrender.com/api/refunds/getallrefunds").then((res) => {
                 setRefunds(res.data);
                 console.log(res.data)
 

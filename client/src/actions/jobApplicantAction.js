@@ -8,7 +8,7 @@ export const getallApplications = () => async dispatch => {
 
     try {
 
-        const response = await axios.get('/api/jobapply/getallApplications')
+        const response = await axios.get('https://hungrymeals-backend.onrender.com/api/jobapply/getallApplications')
         console.log(response)
         dispatch({ type: 'GET_APPLICATIONS_SUCCESS', payload: response.data })
 
@@ -25,7 +25,7 @@ export const JobApplication = (newApplicant) => async (dispatch) => {
     dispatch({ type: 'JOB_APPLICATION_SENDING' });
 
     try {
-        const response = await axios.post('/api/jobapply/post', newApplicant);
+        const response = await axios.post('https://hungrymeals-backend.onrender.com/api/jobapply/post', newApplicant);
 
         console.log(response);
         dispatch({ type: 'JOB_APPLICATION_SUCCESS' });
@@ -51,7 +51,7 @@ export const deleteApplicantAction = (ApplicantID) => async dispatch => {
 
 
     try {
-        const response = await axios.delete(`/api/jobapply/delete/applicants/${ApplicantID}`)
+        const response = await axios.delete(`https://hungrymeals-backend.onrender.com/api/jobapply/delete/applicants/${ApplicantID}`)
 
         const Toast = Swal.mixin({
             toast: true,

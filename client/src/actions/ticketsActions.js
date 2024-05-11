@@ -10,7 +10,7 @@ export const updateticketsAction = (updateticket,id) => async dispatch => {
     dispatch({ type: 'REPLY_SEND_REQUEST' })
 
     try {
-        const response = await axios.put(`/api/tickets/update/${id}`, updateticket)
+        const response = await axios.put(`https://hungrymeals-backend.onrender.com/api/tickets/update/${id}`, updateticket)
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-end',
@@ -64,7 +64,7 @@ export const deleteTicketAction = (TicketId) => async dispatch => {
 
 
     try {
-        const response = await axios.delete(`/api/tickets/delete/tickets/${TicketId}`)
+        const response = await axios.delete(`https://hungrymeals-backend.onrender.com/api/tickets/delete/tickets/${TicketId}`)
 
         const Toast = Swal.mixin({
             toast: true,
@@ -125,7 +125,7 @@ export const TicketForm = (newTicket) => async dispatch => {
     dispatch({ type: 'TICKET_APPLICATION_SENDING' })
 
     try {
-        const response = await axios.post('/api/tickets/post',newTicket )
+        const response = await axios.post('https://hungrymeals-backend.onrender.com/api/tickets/post',newTicket )
 
         const Toast = Swal.mixin({
             toast: true,

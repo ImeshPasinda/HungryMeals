@@ -32,7 +32,7 @@ export default function Newsfeedmanagement() {
 
     useEffect(() => {
         function getNews() {
-            axios.get("/api/newsfeed/getallnews").then((res) => {
+            axios.get("https://hungrymeals-backend.onrender.com/api/newsfeed/getallnews").then((res) => {
                 const allNews = res.data;
                 setNews(allNews);
                 setFilterdNews(allNews);
@@ -89,7 +89,7 @@ export default function Newsfeedmanagement() {
 
     function getCurrentNews(newsId) {
 
-        axios.get(`/api/newsfeed/getcurrentnews/${newsId}`).then((res) => {
+        axios.get(`https://hungrymeals-backend.onrender.com/api/newsfeed/getcurrentnews/${newsId}`).then((res) => {
 
 
             setNews(res.data);

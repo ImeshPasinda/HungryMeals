@@ -11,7 +11,7 @@ export const addFoodsAction = (newFoods) => async dispatch => {
     dispatch({ type: 'NEW_FOOD_SENDING' })
 
     try {
-        const response = await axios.post('/api/pizzas/add/food',newFoods )
+        const response = await axios.post('https://hungrymeals-backend.onrender.com/api/pizzas/add/food',newFoods )
        
         const Toast = Swal.mixin({
             toast: true,
@@ -65,7 +65,7 @@ export const getAllPizzas = () => async dispatch => {
 
     try {
 
-        const response = await axios.get('/api/pizzas/getallpizzas')
+        const response = await axios.get('https://hungrymeals-backend.onrender.com/api/pizzas/getallpizzas')
         console.log(response)
         dispatch({ type: 'GET_PIZZAS_SUCCESS', payload : response.data })
 
@@ -84,7 +84,7 @@ export const updateFoodsAction = (updatefoods, id) => async dispatch => {
 
     try {
     
-        const response = await axios.put(`/api/pizzas/update/food/${id}`, updatefoods)
+        const response = await axios.put(`https://hungrymeals-backend.onrender.com/api/pizzas/update/food/${id}`, updatefoods)
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-end',
@@ -139,7 +139,7 @@ export const deleteFoodsAction = (foodId) => async dispatch => {
 
 
     try {
-        const response = await axios.delete(`/api/pizzas/delete/food/${foodId}`)
+        const response = await axios.delete(`https://hungrymeals-backend.onrender.com/api/pizzas/delete/food/${foodId}`)
 
         const Toast = Swal.mixin({
             toast: true,
